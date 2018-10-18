@@ -1,0 +1,3 @@
+rootProject.name = 'chung_rn'
+
+include ':app'

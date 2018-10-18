@@ -1,0 +1,28 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "noLib": false,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["es6", "dom"],
+    "inlineSources":true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "rootDir":"./components",
+    "outDir": "./lib",
+    "sourceMap": true
+  },
+  "include": [ "*.ts"],
+  "exclude": [
+    "node_modules",
+    "__tests__",
+    "__tests__util"
+  ]
+}
