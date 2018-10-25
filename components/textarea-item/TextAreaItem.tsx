@@ -11,6 +11,8 @@ import {
     ViewStyle,
 } from 'react-native';
 import {Styles} from "../style/Styles";
+import {Label} from "../label/Label";
+import List from "../list/List";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -23,17 +25,17 @@ export type TextAreaEventHandle = (val?: string) => void;
 
 export interface TextareaItemNativeProps {
     last?: boolean;
+    label?: string;
     onContentSizeChange?: (e: any) => void;
     containerStyle?: ViewStyle;
-    inputStyle?:ViewStyle;
-    title?: React.ReactNode;
+    inputStyle?: ViewStyle;
     maxLength?: number;
     name?: string;
     value?: string;
     defaultValue?: string;
     placeholder?: string;
     clear?: boolean;
-    rows?: number;
+    rows: number;
     count?: number;
     error?: boolean;
     onErrorClick?: () => void;
@@ -47,15 +49,18 @@ export interface TextareaItemNativeProps {
 
 }
 
+interface State {
+    inputCount: number;
+    height: number
+}
 
-export default class TextAreaItem extends React.Component<TextareaItemNativeProps, any> {
+export default class TextAreaItem extends React.Component<TextareaItemNativeProps, State> {
 
     static defaultProps = {
-        editable: true,
-        keyboardType: 'default',
+        editable: true
     };
 
-    constructor(props: TextareaItemNativeProps) {
+    public constructor(props: TextareaItemNativeProps) {
         super(props);
         this.state = {
             inputCount: 0,
@@ -64,6 +69,79 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                     ? 6 * props.rows * 4
                     : Styles.listItemHeight,
         };
+    }
+
+    public render() {
+        const {
+            rows = 1,
+            label,
+            error = false,
+            clear = true,
+            count = 0,
+            autoHeight = false,
+            onErrorClick,
+            containerStyle,
+            inputStyle,
+            ...restProps
+        } = this.props;
+        const {value, defaultValue} = restProps;
+        const {inputCount, height} = this.state;
+
+        let valueProps;
+        if ('value' in this.props) {
+            valueProps = {
+                value: fixControlledValue(value),
+            };
+        } else {
+            valueProps = {
+                defaultValue,
+            };
+        }
+
+        const maxLength = count! > 0 ? count : undefined;
+
+        return (
+            <List.Item listItemStyle={containerStyle}>
+                {label && <Label content={label}/>}
+                <TextInput
+                    clearButtonMode={clear ? 'while-editing' : 'never'}
+                    underlineColorAndroid="transparent"
+                    style={[
+                        styles.input,
+                        {
+                            color: error ? '#f50' : Styles.textBaseColor,
+                            paddingRight: error ? 2 * Styles.paddingLg : 0,
+                        },
+                        {height: Math.max(45, height)},
+                        inputStyle,
+                    ]}
+                    {...restProps}
+                    {...valueProps}
+                    onChange={event => this.onChange(event)}
+                    onContentSizeChange={this.onContentSizeChange}
+                    multiline={rows! > 1 || autoHeight}
+                    numberOfLines={rows}
+                    maxLength={maxLength}
+                />
+                {error && (
+                    <TouchableWithoutFeedback onPress={onErrorClick}>
+                        <View style={[styles.errorIconContainer]}>
+                            <Image
+                                source={require('../../images/error.png')}
+                                style={styles.errorIcon as any}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                )}
+                {rows! > 1 && count! > 0 && (
+                    <View style={[styles!.count]}>
+                        <Text>
+                            {inputCount} / {count}
+                        </Text>
+                    </View>
+                )}
+            </List.Item>
+        );
     }
 
     onChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -93,92 +171,12 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             height = Styles.listItemHeight;
         }
 
-        this.setState({
-            height,
-        });
+        this.setState({height});
 
         if (onContentSizeChange) {
             onContentSizeChange(event);
         }
     };
-
-    render() {
-        const {
-            rows = 1,
-            error = false,
-            clear = true,
-            count = 0,
-            autoHeight = false,
-            last = false,
-            onErrorClick,
-            containerStyle,
-            inputStyle,
-            ...restProps
-        } = this.props;
-        const {value, defaultValue} = restProps;
-        const {inputCount} = this.state;
-
-        let valueProps;
-        if ('value' in this.props) {
-            valueProps = {
-                value: fixControlledValue(value),
-            };
-        } else {
-            valueProps = {
-                defaultValue,
-            };
-        }
-
-        const maxLength = count! > 0 ? count : undefined;
-
-        return (
-            <View
-                style={[
-                    styles.container,
-                    {borderBottomWidth: last ? 0 : Styles.borderWidth, position: 'relative'},
-                    containerStyle
-                ]}
-            >
-                <TextInput
-                    clearButtonMode={clear ? 'while-editing' : 'never'}
-                    underlineColorAndroid="transparent"
-                    style={[
-                        styles.input,
-                        {
-                            color: error ? '#f50' : Styles.textBaseColor,
-                            paddingRight: error ? 2 * Styles.paddingLg : 0,
-                        },
-                        {height: Math.max(45, this.state.height)},
-                        inputStyle,
-                    ]}
-                    {...restProps}
-                    {...valueProps}
-                    onChange={event => this.onChange(event)}
-                    onContentSizeChange={this.onContentSizeChange}
-                    multiline={rows! > 1 || autoHeight}
-                    numberOfLines={rows}
-                    maxLength={maxLength}
-                />
-                {error && (
-                    <TouchableWithoutFeedback onPress={onErrorClick}>
-                        <View style={[styles.errorIconContainer]}>
-                            <Image
-                                source={require('../../images/error.png')}
-                                style={styles.errorIcon as any}
-                            />
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
-                {rows! > 1 && count! > 0 && (
-                    <View style={[styles!.count]}>
-                        <Text>
-                            {inputCount} / {count}
-                        </Text>
-                    </View>
-                )}
-            </View>
-        );
-    }
 }
 
 const styles = StyleSheet.create({
@@ -187,7 +185,6 @@ const styles = StyleSheet.create({
         borderBottomColor: Styles.borderColor,
     },
     input: {
-        paddingHorizontal: Styles.padding,
         backgroundColor: Styles.backgroundColor,
         fontSize: Styles.inputFontSize,
         lineHeight: Math.round(1.3 * Styles.header),
@@ -204,9 +201,9 @@ const styles = StyleSheet.create({
         right: 18,
         top: 12,
     },
-    errorIcon:{
-        width:Styles.iconSizeSm,
-        height:Styles.iconSizeSm
+    errorIcon: {
+        width: Styles.iconSizeSm,
+        height: Styles.iconSizeSm
     },
     count: {
         position: 'absolute',

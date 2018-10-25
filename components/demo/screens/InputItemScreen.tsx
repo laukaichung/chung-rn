@@ -2,7 +2,10 @@ import * as React from 'react'
 import {ScreenProps} from "../../type";
 import InputItem from "../../input-item/InputItem";
 import List from "../../list/List";
-import TextAreaItem from "../../textarea-item/TextAreaItem";
+import {Text} from 'react-native'
+import DatePicker from "../../date-picker/DatePicker";
+import {Label} from "../../label/Label";
+import {Styles} from "../../style/Styles";
 
 interface InputItemScreenProps extends ScreenProps {
 
@@ -12,8 +15,17 @@ export class InputItemScreen extends React.Component<InputItemScreenProps> {
     render() {
         return (
             <List>
-                <InputItem label={"Label"} placeholder={"Some Holder"}/>
-                <TextAreaItem last/>
+                <InputItem label={"Label"} error extra={<Text>Hello</Text>} placeholder={"Some Holder"}/>
+                <DatePicker
+                    mode="date"
+                    minDate={new Date(2015, 7, 6)}
+                    maxDate={new Date(2026, 11, 3)}
+                    format="YYYY-MM-DD">
+                    <List.Item multipleLine arrow="horizontal">
+                        <Label content="Label"/>
+                        <Text style={{color:Styles.colorTextCaption}}>Selected option</Text>
+                    </List.Item>
+                </DatePicker>
             </List>
         )
     }

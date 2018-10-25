@@ -10,29 +10,28 @@ export interface ListProps {
 }
 
 export default class List extends React.Component<ListProps, any> {
-    static Item = Item;
+    public static Item = Item;
 
-    render() {
-        const {
-            children,
-            style,
-            renderHeader,
-            renderFooter,
-            ...restProps
-        } = this.props;
-
+    public render() {
+        const {children, style, renderHeader, renderFooter, ...restProps} = this.props;
         return (
             <View {...restProps as any} style={style}>
-                <View style={styles.header}>
-                    {renderHeader && renderHeader()}
-                </View>
+                {
+                    renderHeader &&
+                    <View style={styles.header}>
+                        {renderHeader()}
+                    </View>
+                }
                 <View style={styles.body}>
                     {children}
                     <View style={[styles.bodyBottomLine]}/>
                 </View>
-                <View style={styles.footer}>
-                    {renderFooter && renderFooter()}
-                </View>
+                {
+                    renderFooter &&
+                    <View style={styles.footer}>
+                        {renderFooter()}
+                    </View>
+                }
             </View>
         );
     }
@@ -41,10 +40,10 @@ export default class List extends React.Component<ListProps, any> {
 
 const styles = StyleSheet.create({
     header: {
-        paddingHorizontal:Styles.padding,
+        paddingHorizontal: Styles.padding,
     },
     footer: {
-        paddingHorizontal:Styles.padding,
+        paddingHorizontal: Styles.padding,
     },
     body: {
         backgroundColor: Styles.backgroundColor,

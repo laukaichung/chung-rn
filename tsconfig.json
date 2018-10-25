@@ -17,7 +17,11 @@
     "jsx": "preserve",
     "rootDir":"./components",
     "outDir": "./lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "./", // This must be specified if "paths" is enabled.
+    "paths": {
+      "@baseImages/*": ["images/*"] // This mapping is relative to "baseUrl"
+    }
   },
   "include": [ "*.ts"],
   "exclude": [

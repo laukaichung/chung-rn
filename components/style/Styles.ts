@@ -1,3 +1,4 @@
+
 export class Styles {
     static get primaryColor() {
         return '#108ee9'
@@ -25,9 +26,19 @@ export class Styles {
     static paddingLg= 15;
     static header = 20;
     static subHeader = 15;
+    static fillTap = '#dddddd';
+    static colorTextCaption = '#888888';
+    static colorTextBaseInverse: '#fff';
+
+    static fontSizeCaptionSm: 12
+
+    static brandPrimary:'#108ee9'
+
     static listItemHeight:44;
     static inputFontColor:'#686868';
     static inputFontSize:17;
+
+    static radiusSm:3;
 
     static borderWidth = 1;
 

@@ -3,5 +3,6 @@ export const screenKeys = {
     accordion:'accordion',
     list:'list',
     textArea:'textArea',
-    inputItem:'inputItem'
+    inputItem:'inputItem',
+    tabs:'tabs'
 }

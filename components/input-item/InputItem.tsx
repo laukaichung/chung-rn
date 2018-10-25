@@ -11,22 +11,19 @@ import {
 } from 'react-native';
 import Input from './Input.native';
 import {Styles} from "../style/Styles";
+import List from "../list/List";
+import {Label} from "../label/Label";
 
 export type InputEventHandler = (value?: string) => void;
 
+export type KeyboardType = 'decimal-pad' | 'phone-pad' | 'number-pad'  | 'numeric' | 'email-address' |'default' |'password' | 'bankCard'
 
 export interface InputItemProps {
     last?: boolean;
-    label?:string;
+    label: string;
     onExtraClick?: (event: GestureResponderEvent) => void;
     onErrorClick?: (event: GestureResponderEvent) => void;
-    type?:
-        | 'text'
-        | 'bankCard'
-        | 'phone'
-        | 'password'
-        | 'number'
-        | 'digit';
+    type?: KeyboardType;
     editable?: boolean;
     disabled?: boolean;
     name?: string;
@@ -48,6 +45,7 @@ export interface InputItemProps {
     onFocus?: InputEventHandler;
     onBlur?: InputEventHandler;
     onVirtualKeyboardConfirm?: InputEventHandler;
+    disableBorderBottom?:boolean
 }
 
 function normalizeValue(value?: string) {
@@ -60,7 +58,6 @@ function normalizeValue(value?: string) {
 
 export default class InputItem extends React.Component<InputItemProps, any> {
     static defaultProps = {
-        type: 'text',
         editable: true,
         clear: false,
         extra: '',
@@ -73,6 +70,106 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
     inputRef: Input | null;
 
+    render() {
+        let {
+            type,
+            label,
+            editable,
+            clear,
+            error,
+            extra,
+            onExtraClick,
+            onErrorClick,
+            disableBorderBottom,
+            ...restProps
+        } = this.props;
+        const {value, defaultValue} = restProps;
+
+        let valueProps;
+        if ('value' in this.props) {
+            valueProps = {
+                value: normalizeValue(value),
+            };
+        } else {
+            valueProps = {
+                defaultValue,
+            };
+        }
+
+        const extraStyle = {
+            width:
+                typeof extra === 'string' && (extra as string).length > 0
+                    ? (extra as string).length * Styles.header
+                    : 0,
+        };
+
+        if(type === "bankCard"){
+            type = 'number-pad';
+        }
+
+        return (
+            <List.Item disableBorderBottom={disableBorderBottom}>
+                {label && <Label content={label}/>}
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Input
+                        clearButtonMode={clear ? 'while-editing' : 'never'}
+                        underlineColorAndroid="transparent"
+                        ref={el => (this.inputRef = el)}
+                        {...restProps}
+                        {...valueProps}
+                        style={[styles.input, error && styles.inputErrorColor]}
+                        keyboardType={type}
+                        onChange={event => this.onChange(event.nativeEvent.text)}
+                        secureTextEntry={type === 'password'}
+                        onBlur={this.onInputBlur}
+                        onFocus={this.onInputFocus}
+                    />
+                    {/* 只在有 value 的 受控模式 下展示 自定义的 安卓 clear 按钮 */}
+                    {(editable && clear && value && Platform.OS === 'android') ? (
+                        <TouchableOpacity
+                            style={[styles.clear]}
+                            onPress={this.onInputClear}
+                            hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
+                        >
+                            <Image
+                                source={require('../../images/cross_w.png')}
+                                style={{width: 12, height: 12}}
+                            />
+                        </TouchableOpacity>
+                    ) : null}
+                    {extra ? (
+                        <TouchableWithoutFeedback onPress={onExtraClick}>
+                            <View>
+                                {typeof extra === 'string' ? (
+                                    <Text style={[styles.extra, extraStyle]}>{extra}</Text>
+                                ) : (
+                                    extra
+                                )}
+                            </View>
+                        </TouchableWithoutFeedback>
+                    ) : null}
+                    {error && (
+                        <TouchableWithoutFeedback onPress={onErrorClick}>
+                            <View style={[styles.errorIconContainer]}>
+                                <Image
+                                    source={require('../../images/error.png')}
+                                    style={styles.errorIcon as any}
+                                />
+                            </View>
+                        </TouchableWithoutFeedback>
+                    )}
+                </View>
+            </List.Item>
+        );
+    }
+
+    // expose this method for users;
+    focus(){
+        if (this.inputRef) {
+            this.inputRef.focus();
+        }
+    }
+
     onChange = (text: string) => {
         const {onChange, type} = this.props;
         const maxLength = this.props.maxLength as number;
@@ -84,7 +181,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                 }
                 text = text.replace(/\D/g, '').replace(/(....)(?=.)/g, '$1 ');
                 break;
-            case 'phone':
+            case 'phone-pad':
                 text = text.replace(/\D/g, '').substring(0, 11);
                 const valueLen = text.length;
                 if (valueLen > 3 && valueLen < 8) {
@@ -122,151 +219,10 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         this.onChange('');
     }
 
-    // this is instance method for user to use
-    focus = () => {
-        if (this.inputRef) {
-            this.inputRef.focus();
-        }
-    }
-
-    render() {
-        const {
-            type,
-            label,
-            children,
-            editable,
-            clear,
-            error,
-            extra,
-            labelNumber,
-            last,
-            onExtraClick,
-            onErrorClick,
-            containerStyle,
-            ...restProps
-        } = this.props;
-        const {value, defaultValue} = restProps;
-
-        let valueProps;
-        if ('value' in this.props) {
-            valueProps = {
-                value: normalizeValue(value),
-            };
-        } else {
-            valueProps = {
-                defaultValue,
-            };
-        }
-
-        const textStyle = {
-            width: Styles.header * (labelNumber as number) * 1.05,
-        };
-
-        const extraStyle = {
-            width:
-                typeof extra === 'string' && (extra as string).length > 0
-                    ? (extra as string).length *  Styles.header
-                    : 0,
-        };
-
-        const keyboardTypeArray = [
-            'default',
-            'email-address',
-            'numeric',
-            'phone-pad',
-            'ascii-capable',
-            'numbers-and-punctuation',
-            'url',
-            'number-pad',
-            'name-phone-pad',
-            'decimal-pad',
-            'twitter',
-            'web-search',
-        ];
-
-        let keyboardType: any = 'default';
-
-        if (type === 'number') {
-            keyboardType = 'numeric';
-        } else if (type === 'bankCard') {
-            keyboardType = 'number-pad'; // Without float input
-        } else if (type === 'phone') {
-            keyboardType = 'phone-pad';
-        } else if (type && keyboardTypeArray.indexOf(type) > -1) {
-            keyboardType = type;
-        }
-
-        return (
-            <View style={[styles.container, containerStyle]}>
-                {label && <Text style={[styles.text, textStyle] as any}>{label}</Text>}
-                {
-                    children && <View style={textStyle}>{children}</View>
-                }
-                <Input
-                    clearButtonMode={clear ? 'while-editing' : 'never'}
-                    underlineColorAndroid="transparent"
-                    ref={el => (this.inputRef = el)}
-                    {...restProps}
-                    {...valueProps}
-                    style={[styles.input, error && styles.inputErrorColor]}
-                    keyboardType={keyboardType}
-                    onChange={event => this.onChange(event.nativeEvent.text)}
-                    secureTextEntry={type === 'password'}
-                    onBlur={this.onInputBlur}
-                    onFocus={this.onInputFocus}
-                />
-                {/* 只在有 value 的 受控模式 下展示 自定义的 安卓 clear 按钮 */}
-                {(editable && clear && value && Platform.OS === 'android') ? (
-                    <TouchableOpacity
-                        style={[styles.clear]}
-                        onPress={this.onInputClear}
-                        hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
-                    >
-                        <Image
-                            source={require('../../images/cross_w.png')}
-                            style={{width: 12, height: 12}}
-                        />
-                    </TouchableOpacity>
-                ) : null}
-                {extra ? (
-                    <TouchableWithoutFeedback onPress={onExtraClick}>
-                        <View>
-                            {typeof extra === 'string' ? (
-                                <Text style={[styles.extra, extraStyle]}>{extra}</Text>
-                            ) : (
-                                extra
-                            )}
-                        </View>
-                    </TouchableWithoutFeedback>
-                ) : null}
-                {error && (
-                    <TouchableWithoutFeedback onPress={onErrorClick}>
-                        <View style={[styles.errorIconContainer]}>
-                            <Image
-                                source={require('../../images/error.png')}
-                                style={styles.errorIcon as any}
-                            />
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
-            </View>
-        );
-    }
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-        height: Styles.listItemHeight + Styles.borderWidth,
-        borderBottomWidth: Styles.borderWidth,
-        borderBottomColor: Styles.borderColor,
-        marginLeft: Styles.margin,
-        paddingRight: Styles.padding,
-        marginTop: 0,
-        marginBottom: 0,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
     text: {
         marginRight: Styles.margin,
         textAlignVertical: 'center',
@@ -298,7 +254,7 @@ const styles = StyleSheet.create({
         width: Styles.iconSizeSm,
         height: Styles.iconSizeSm,
     },
-    errorIcon:{
+    errorIcon: {
         width: Styles.iconSizeSm,
         height: Styles.iconSizeSm,
     }

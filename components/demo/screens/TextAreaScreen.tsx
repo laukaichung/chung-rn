@@ -16,8 +16,7 @@ export class TextAreaScreen extends React.Component<HomeScreenProps> {
                     <List.Item>
                         <Text>Hello</Text>
                     </List.Item>
-                    <TextAreaItem title={"Hello"}
-                                  last
+                    <TextAreaItem last
                                   placeholder={`Enter Here`}
                                   rows={5}
                                   count={40}

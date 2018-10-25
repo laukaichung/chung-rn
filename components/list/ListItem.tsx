@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {Image, StyleProp, StyleSheet, Text, TouchableHighlight, View, ViewStyle,} from 'react-native';
+import {Image, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
 import {Styles} from "../style/Styles";
 import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
 
@@ -17,7 +17,7 @@ export interface ListItemProps {
     platform?: 'android' | 'ios';
     disableBorderBottom?: boolean;
     onClick?: () => void;
-    onLongPress?:()=>void;
+    onLongPress?: () => void;
     onPressIn?: () => void;
     onPressOut?: () => void;
     listItemStyle?: StyleProp<ViewStyle>;
@@ -39,7 +39,6 @@ export default class Item extends React.Component<ListItemProps, any> {
             onPressOut,
             disableBorderBottom,
             wrap,
-            disabled,
             align,
             listItemStyle,
             ...restProps
@@ -49,19 +48,6 @@ export default class Item extends React.Component<ListItemProps, any> {
         if (!wrap) {
             numberOfLines = {
                 numberOfLines: 1,
-            };
-        }
-
-        let underlayColor = {};
-
-        if (!disabled && onClick) {
-            underlayColor = {
-                underlayColor: styles.underlayColor,
-                activeOpacity: 0.5,
-            };
-        } else {
-            underlayColor = {
-                activeOpacity: 1,
             };
         }
 
@@ -227,7 +213,7 @@ const styles = StyleSheet.create({
     },
     content: {
         textAlignVertical: 'center',
-        paddingVertical:15
+        paddingVertical: 15
     },
     extra: {
         textAlign: 'right',

@@ -13,11 +13,16 @@
     "android": "react-native run-android",
     "port": "lsof -t -i:8081",
     "server": "env TZ='utc' node ../web/index.js",
-    "debugSetting": "adb reverse tcp:9090 tcp:9090"
+    "debugSetting": "adb reverse tcp:9090 tcp:9090",
+    "backup": "tar -cvf components.tar ./components"
   },
   "dependencies": {
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.3"
+    "react-native": "0.57.3",
+    "react-native-camera-roll-picker": "^1.2.3",
+    "rmc-date-picker": "^6.0.8",
+    "rmc-tabs": "^1.2.27",
+    "rn-topview": "^0.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",

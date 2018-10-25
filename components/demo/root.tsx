@@ -6,6 +6,7 @@ import {AccordionScreen} from "./screens/AccordionScreen";
 import {ListScreen} from "./screens/ListScreen";
 import {TextAreaScreen} from "./screens/TextAreaScreen";
 import {InputItemScreen} from "./screens/InputItemScreen";
+import {TabScreen} from "./screens/TabScreen";
 
 const RootStack = createStackNavigator(
     {
@@ -13,11 +14,11 @@ const RootStack = createStackNavigator(
         [screenKeys.accordion]:AccordionScreen,
         [screenKeys.list]:ListScreen,
         [screenKeys.textArea]:TextAreaScreen,
-        [screenKeys.inputItem]:InputItemScreen
-
+        [screenKeys.inputItem]:InputItemScreen,
+        [screenKeys.tabs]:TabScreen
     },
     {
-        initialRouteName: screenKeys.inputItem,
+        initialRouteName: screenKeys.tabs,
     }
 );
 
