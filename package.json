@@ -20,8 +20,8 @@
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.3",
     "react-native-camera-roll-picker": "^1.2.3",
+    "react-native-tab-view": "^1.2.0",
     "rmc-date-picker": "^6.0.8",
-    "rmc-tabs": "^1.2.27",
     "rn-topview": "^0.1.6"
   },
   "devDependencies": {
@@ -41,11 +41,13 @@
     "babel-runtime": "^7.0.0-beta.3",
     "identity-obj-proxy": "^3.0.0",
     "ignore-styles": "^5.0.1",
+    "install": "^0.12.2",
     "isomorphic-fetch": "^2.2.1",
     "jest": "23.6.0",
     "jsdom": "11.12.0",
     "jsdom-global": "3.0.2",
     "metro-react-native-babel-preset": "0.48.1",
+    "npm": "^6.4.1",
     "react-dom": "^16.4.2",
     "react-navigation": "^2.18.0",
     "react-test-renderer": "16.6.0-alpha.8af6728",

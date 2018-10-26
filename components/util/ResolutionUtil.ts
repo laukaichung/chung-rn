@@ -1,5 +1,6 @@
 import {Dimensions} from "react-native";
-import {Orientations} from "../model";
+
+type Orientations = "landscape"|"portrait"
 
 export class ResolutionUtil{
     public static fullWidth(): number {

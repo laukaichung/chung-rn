@@ -4,5 +4,9 @@ export const screenKeys = {
     list:'list',
     textArea:'textArea',
     inputItem:'inputItem',
-    tabs:'tabs'
+    tabs:'tabs',
+    grid:'grid',
+    progress:'progress',
+    activityIndicator:'activityIndicator'
+
 }

@@ -1,7 +1,8 @@
-import React, {ReactNode} from 'react';
+import * as React from 'react';
 import {Image, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
 import {Styles} from "../style/Styles";
 import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
+import {ReactNode} from "react";
 
 export interface ListItemProps {
     align?: 'top' | 'middle' | 'bottom';

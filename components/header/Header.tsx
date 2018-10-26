@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {StyleSheet, Text} from 'react-native'
 import {Styles} from "../style/Styles";
-import {WhiteSpace} from "../whitespace/WhiteSpace";
+import {WhiteSpace} from "../white-space";
 
 interface HeaderProps {
     header: string

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {View, Text, Button, TouchableOpacityComponent, TouchableOpacity} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import {ScreenProps} from "../../type";
 import {screenKeys} from "../data/ScreenKeys";
 
@@ -15,7 +15,6 @@ export class HomeScreen extends React.Component<HomeScreenProps>{
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate(screenKeys.accordion)}>
                     <Text>Accordion</Text>
                 </TouchableOpacity>
-
             </View>
         )
     }

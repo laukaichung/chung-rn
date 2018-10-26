@@ -1,11 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import {Image, ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View,} from 'react-native';
 import {RadioPropsType} from './PropsType';
-import {IRadioStyle} from './style/index.native';
-import variables from "../style/themes/default.native";
+import {Styles} from "../style/Styles";
 
 export interface RadioNativeProps extends RadioPropsType {
-    styles?: IRadioStyle;
     style?: StyleProp<ImageStyle>;
 }
 
@@ -14,6 +12,8 @@ interface State {
 }
 export default class Radio extends React.Component<RadioNativeProps, State> {
     public state = {} as State;
+
+    public static RadioItem = null;
 
     public constructor(props: RadioNativeProps, context: any) {
         super(props, context);
@@ -28,8 +28,8 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
         let imgSrc = undefined as any;
         if (checked) {
             imgSrc = disabled
-                ? require('./image/checked_disable.png')
-                : require('./image/checked.png');
+                ? require('../../images/radio-image/checked_disable.png')
+                : require('../../images/radio-image/checked.png');
         }
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create( {
         alignItems: 'center',
     },
     icon: {
-        width: variables.icon_size_xxs,
-        height: variables.icon_size_xxs * 0.8,
+        width: Styles.iconSizeXxs,
+        height: Styles.iconSizeXxs * 0.8,
     }
 });

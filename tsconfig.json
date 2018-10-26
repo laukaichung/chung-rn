@@ -15,15 +15,16 @@
     "inlineSources":true,
     "skipLibCheck": true,
     "jsx": "preserve",
-    "rootDir":"./components",
+    "rootDir":"/components",
     "outDir": "./lib",
     "sourceMap": true,
-    "baseUrl": "./", // This must be specified if "paths" is enabled.
+    "baseUrl": "./",
     "paths": {
-      "@baseImages/*": ["images/*"] // This mapping is relative to "baseUrl"
+      "@baseImages/*": ["images/*"],
+      "@baseImages": ["images/"]
     }
   },
-  "include": [ "*.ts"],
+  "include": ["*.ts"],
   "exclude": [
     "node_modules",
     "__tests__",

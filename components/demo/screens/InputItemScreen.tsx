@@ -1,11 +1,11 @@
 import * as React from 'react'
 import {ScreenProps} from "../../type";
-import InputItem from "../../input-item/InputItem";
+import InputItem from "../../input-item";
 import List from "../../list/List";
 import {Text} from 'react-native'
-import DatePicker from "../../date-picker/DatePicker";
-import {Label} from "../../label/Label";
+import DatePicker from "../../date-picker";
 import {Styles} from "../../style/Styles";
+import {Label} from "../../index";
 
 interface InputItemScreenProps extends ScreenProps {
 

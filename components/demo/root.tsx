@@ -7,6 +7,10 @@ import {ListScreen} from "./screens/ListScreen";
 import {TextAreaScreen} from "./screens/TextAreaScreen";
 import {InputItemScreen} from "./screens/InputItemScreen";
 import {TabScreen} from "./screens/TabScreen";
+import {GridScreen} from "./screens/GridScreen";
+import {ProgressScreen} from "./screens/ProgressScreen";
+import {ActivityIndicatorScreen} from "./screens/ActivityIndicatorScreen";
+
 
 const RootStack = createStackNavigator(
     {
@@ -15,10 +19,13 @@ const RootStack = createStackNavigator(
         [screenKeys.list]:ListScreen,
         [screenKeys.textArea]:TextAreaScreen,
         [screenKeys.inputItem]:InputItemScreen,
-        [screenKeys.tabs]:TabScreen
+        [screenKeys.tabs]:TabScreen,
+        [screenKeys.grid]:GridScreen,
+        [screenKeys.progress]:ProgressScreen,
+        [screenKeys.activityIndicator]:ActivityIndicatorScreen
     },
     {
-        initialRouteName: screenKeys.tabs,
+        initialRouteName: screenKeys.grid,
     }
 );
 

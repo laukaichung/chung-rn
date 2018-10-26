@@ -1,6 +1,6 @@
-import React, {ReactNode} from 'react';
+import * as React from 'react';
+import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import Item from './ListItem';
 import {Styles} from "../style/Styles";
 
 export interface ListProps {
@@ -10,7 +10,7 @@ export interface ListProps {
 }
 
 export default class List extends React.Component<ListProps, any> {
-    public static Item = Item;
+    public static Item;
 
     public render() {
         const {children, style, renderHeader, renderFooter, ...restProps} = this.props;
