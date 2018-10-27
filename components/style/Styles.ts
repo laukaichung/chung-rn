@@ -1,8 +1,5 @@
 
 export class Styles {
-    static get primaryColor() {
-        return '#108ee9'
-    }
 
     static get primaryColorDark() {
         return '#0f6db8'
@@ -12,11 +9,14 @@ export class Styles {
         return '#dadada'
     }
 
+    static brandImportant = '#ff5b05';
+
+
     static iconButtonSize = 16;
 
     static colorIconBase = '#cccccc';
 
-    static textBaseColor = '#222';
+    static textBaseColor = '#222222';
 
     static marginXs = 3
     static marginLg = 15;
@@ -34,65 +34,61 @@ export class Styles {
     static paddingLg= 15;
     static paddingXl= 21;
 
-    static header = 20;
     static subHeader = 15;
     static fillTap = '#dddddd';
 
-    static fill_disabled: '#dddddd'
+    static fill_disabled= '#dddddd';
 
 
-    static colorTextCaption = '#888888';
-    static colorTextBaseInverse: '#fff';
+    static colorTextCaption = '#a5a5a5';
+    static colorTextHeading = '#7a6b7a'
+    static colorTextBaseInverse= '#ffffff';
+
+    static iconSizeSm = 16;
     static iconSizeXxs = 15;
-    static icon_size_lg = 36
+    static iconSizeLg = 36;
 
-    static fontSizeCaptionSm: 12;
+    static fontSizeCaptionSm= 12;
 
-    static modelZIndex: 999;
+    static modelZIndex= 999;
 
-    static brandPrimary:'#108ee9';
+    static brandPrimary='#108ee9';
 
-    static listItemHeight:44;
-    static inputFontColor:'#686868';
-    static inputFontSize:17;
+    static listItemHeight=44;
 
-    static radiusSm:3;
-    static radiusMd:5;
-    static radiusLg:7;
+    static inputFontColor='#686868';
+    static inputFontSize=17;
 
-    static toastZindex: 1999;
+    static radiusSm = 3;
+    static radiusMd = 5;
+    static radiusLg = 7;
 
-    static toastFill: 'rgba(0, 0, 0, .8)';
+    static toastZindex= 1999;
+
+    static toastFill= 'rgba(0, 0, 0, .8)';
 
     static borderWidth = 1;
 
-    static backgroundColor = '#fff';
+    static backgroundColor = '#ffffff';
 
 
-    static button_height: 47
-    static button_font_size: 18
+    static buttonHeight= 47
+    static buttonFontSize= 18
 
-    static button_height_sm: 23
-    static button_font_size_sm: 12
+    static buttonHeightSm= 23
+    static buttonFontSizeSm= 12
 
-    static get primary_button_fill(){return this.brandPrimary}
-    static primary_button_fill_tap: '#0e80d2';
-
-    static get ghost_button_color(){ return this.brandPrimary}
-    static get ghost_button_fill_tap(){ return `${this.brandPrimary}99`}
-
-    static warning_button_fill: '#e94f4f';
-    static warning_button_fill_tap: '#d24747';
+    static warningButtonBorderColor= '#e94f4f';
+    static warningButtonBackgroundColor= '#d24747';
 
     static get borderColor() {
-        return '#eee'
+        return '#bec5cc'
     }
 
     static get iconSize() {
         return 32
     }
 
-    static iconSizeSm = 16;
 
     static get iconButtonStyle() {
         return {

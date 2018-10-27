@@ -27,12 +27,12 @@ export default class Checkbox extends React.Component<ICheckboxNativeProps, Stat
         let imgSrc;
         if (checked) {
             imgSrc = disabled
-                ? require('../../images/checkbox-image/checked_disable.png')
-                : require('../../images/checkbox-image/checked.png');
+                ? require('../../images/checkbox-images/checked_disable.png')
+                : require('../../images/checkbox-images/checked.png');
         } else {
             imgSrc = disabled
-                ? require('../../images/checkbox-image/normal_disable.png')
-                : require('../../images/checkbox-image/normal.png');
+                ? require('../../images/checkbox-images/normal_disable.png')
+                : require('../../images/checkbox-images/normal.png');
         }
 
         return (

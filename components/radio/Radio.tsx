@@ -28,8 +28,8 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
         let imgSrc = undefined as any;
         if (checked) {
             imgSrc = disabled
-                ? require('../../images/radio-image/checked_disable.png')
-                : require('../../images/radio-image/checked.png');
+                ? require('../../images/radio-images/checked_disable.png')
+                : require('../../images/radio-images/checked.png');
         }
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>

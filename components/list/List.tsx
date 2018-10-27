@@ -2,6 +2,7 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {Styles} from "../style/Styles";
+import ListItem from "./ListItem";
 
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
@@ -10,7 +11,7 @@ export interface ListProps {
 }
 
 export default class List extends React.Component<ListProps, any> {
-    public static Item;
+    public static Item = ListItem
 
     public render() {
         const {children, style, renderHeader, renderFooter, ...restProps} = this.props;

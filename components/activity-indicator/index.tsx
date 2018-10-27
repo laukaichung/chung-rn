@@ -41,11 +41,10 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
 
     private _renderSpinner() {
         const {color, size, text} = this.props;
-        const {spinner, tip} = styles!;
         return (
-            <View style={spinner}>
-                <ActivityIndicator color={color} size={size}/>
-                {text && <Text style={[tip]}>{text}</Text>}
+            <View style={styles.spinner}>
+                <OriginalActivityIndicator color={color} size={size}/>
+                {text && <Text style={styles.tip}>{text}</Text>}
             </View>
         );
     }

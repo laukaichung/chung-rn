@@ -7,6 +7,9 @@ export const screenKeys = {
     tabs:'tabs',
     grid:'grid',
     progress:'progress',
-    activityIndicator:'activityIndicator'
+    activityIndicator:'activityIndicator',
+    card:'card',
+    button:'button',
 
+    badge:'badge'
 }

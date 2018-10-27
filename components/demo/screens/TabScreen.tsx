@@ -1,11 +1,7 @@
 import * as React from 'react'
 import {ScreenProps} from "../../type";
-import {Tabs} from "../../tabs/Tabs";
-import {TabPane} from "../../tabs/TabPane";
-
-interface InputItemScreenProps extends ScreenProps {
-
-}
+import TabPane from "../../tabs/TabPane";
+import Tabs from "../../tabs/Tabs";
 
 const routes = [
     {
@@ -32,7 +28,11 @@ const routes = [
 
 ];
 
-export class TabScreen extends React.Component<InputItemScreenProps> {
+interface TabScreenProps extends ScreenProps {
+
+}
+
+export class TabScreen extends React.Component<TabScreenProps> {
     render() {
         return (
             <Tabs routes={routes}/>

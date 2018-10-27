@@ -100,7 +100,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         const extraStyle = {
             width:
                 typeof extra === 'string' && (extra as string).length > 0
-                    ? (extra as string).length * Styles.header
+                    ? (extra as string).length * Styles.fontSizeHeading
                     : 0,
         };
 
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     text: {
         marginRight: Styles.margin,
         textAlignVertical: 'center',
-        fontSize: Styles.header,
+        fontSize: Styles.fontSizeHeading,
         color: Styles.inputFontColor,
     },
     input: {

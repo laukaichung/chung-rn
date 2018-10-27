@@ -1,25 +1,26 @@
 import * as React from 'react'
 import {StyleSheet, Text} from 'react-native'
 import {Styles} from "../style/Styles";
-import {WhiteSpace} from "../white-space";
 
 interface HeaderProps {
-    header: string
+    content: string
+    center?:boolean
+    marginVertical?:boolean
 }
 
-export const Header = ({header}: HeaderProps) => {
+export const Header = ({content,center,marginVertical}: HeaderProps) => {
     return (
         <React.Fragment>
-            <Text style={styles.header}>{header}</Text>
-            <WhiteSpace/>
+            <Text style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin}]}>{content}</Text>
         </React.Fragment>
 
     )
-}
+};
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: Styles.header,
-        fontWeight: "bold"
+        fontSize: Styles.fontSizeHeading,
+        fontWeight: "bold",
+        color: Styles.colorTextHeading,
     }
-})
+});

@@ -10,6 +10,9 @@ import {TabScreen} from "./screens/TabScreen";
 import {GridScreen} from "./screens/GridScreen";
 import {ProgressScreen} from "./screens/ProgressScreen";
 import {ActivityIndicatorScreen} from "./screens/ActivityIndicatorScreen";
+import {ButtonScreen} from "./screens/ButtonScreen";
+import {CardScreen} from "./screens/CardScreen";
+import {BadgeScreen} from "./screens/BadgeScreen";
 
 
 const RootStack = createStackNavigator(
@@ -22,11 +25,15 @@ const RootStack = createStackNavigator(
         [screenKeys.tabs]:TabScreen,
         [screenKeys.grid]:GridScreen,
         [screenKeys.progress]:ProgressScreen,
-        [screenKeys.activityIndicator]:ActivityIndicatorScreen
+        [screenKeys.activityIndicator]:ActivityIndicatorScreen,
+        [screenKeys.button]:ButtonScreen,
+        [screenKeys.card]:CardScreen,
+        [screenKeys.badge]:BadgeScreen
     },
     {
         initialRouteName: screenKeys.grid,
     }
+
 );
 
 export default class App extends React.Component {

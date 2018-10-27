@@ -14,7 +14,7 @@ const Label = ({content}: LabelProps) => {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: Styles.header,
+        fontSize: Styles.fontSizeHeading,
         fontWeight: "bold"
     }
 });
