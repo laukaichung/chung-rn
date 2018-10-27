@@ -10,6 +10,7 @@ export const screenKeys = {
     activityIndicator:'activityIndicator',
     card:'card',
     button:'button',
-
-    badge:'badge'
+    pickerModal:'pickerModal',
+    badge:'badge',
+    modal:'modal'
 }

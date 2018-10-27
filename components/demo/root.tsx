@@ -13,6 +13,8 @@ import {ActivityIndicatorScreen} from "./screens/ActivityIndicatorScreen";
 import {ButtonScreen} from "./screens/ButtonScreen";
 import {CardScreen} from "./screens/CardScreen";
 import {BadgeScreen} from "./screens/BadgeScreen";
+import {PickerModalScreen} from "./screens/PickerModalScreen";
+import {ModalScreen} from "./screens/ModalScreen";
 
 
 const RootStack = createStackNavigator(
@@ -28,10 +30,12 @@ const RootStack = createStackNavigator(
         [screenKeys.activityIndicator]:ActivityIndicatorScreen,
         [screenKeys.button]:ButtonScreen,
         [screenKeys.card]:CardScreen,
-        [screenKeys.badge]:BadgeScreen
+        [screenKeys.badge]:BadgeScreen,
+        [screenKeys.pickerModal]:PickerModalScreen,
+        [screenKeys.modal]:ModalScreen
     },
     {
-        initialRouteName: screenKeys.grid,
+        initialRouteName: screenKeys.modal,
     }
 
 );

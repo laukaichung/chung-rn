@@ -1,3 +1,4 @@
+import {StyleProp, ViewStyle} from "react-native";
 
 export class Styles {
 
@@ -5,9 +6,7 @@ export class Styles {
         return '#0f6db8'
     }
 
-    static get selectedColor() {
-        return '#dadada'
-    }
+    static selectedColor = '#dadada';
 
     static brandImportant = '#ff5b05';
 
@@ -22,7 +21,6 @@ export class Styles {
     static marginLg = 15;
     static margin = 10;
     static marginSm = 5;
-    static marginXl = 21;
 
     static fontSizeBase = 14;
     static fontSizeSubhead =  15
@@ -40,7 +38,7 @@ export class Styles {
     static fill_disabled= '#dddddd';
 
 
-    static colorTextCaption = '#a5a5a5';
+    static colorTextCaption = '#b6b6b6';
     static colorTextHeading = '#7a6b7a'
     static colorTextBaseInverse= '#ffffff';
 
@@ -95,6 +93,14 @@ export class Styles {
             width: this.iconButtonSize,
             height: this.iconButtonSize,
             tintColor: this.primaryColorDark
+        }
+    }
+
+    static get getCenterStyles():StyleProp<ViewStyle>{
+        return {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems:'center'
         }
     }
 

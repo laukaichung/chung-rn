@@ -11,7 +11,7 @@ interface HeaderProps {
 export const Header = ({content,center,marginVertical}: HeaderProps) => {
     return (
         <React.Fragment>
-            <Text style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin}]}>{content}</Text>
+            <Text style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin * 2}]}>{content}</Text>
         </React.Fragment>
 
     )
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
         color: Styles.colorTextHeading,
     }
 });
+
+export default Header
