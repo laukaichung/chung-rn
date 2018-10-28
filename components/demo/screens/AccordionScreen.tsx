@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Text, View} from 'react-native'
 import {RNScreenProps} from "../demotype";
-import {Accordion} from "../..";
+import Accordion from "../../accordion";
 interface AccordionScreenProps extends RNScreenProps{
 
 }

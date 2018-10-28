@@ -13,11 +13,10 @@ import {
 import Input from './Input';
 import {Styles} from "../style/Styles";
 import List from "../list/List";
-import {Label} from "..";
+import Label from "../label";
+import {KeyboardType} from "../type";
 
-export type InputEventHandler = (value?: string) => void;
-
-export type KeyboardType = 'decimal-pad' | 'phone-pad' | 'number-pad'  | 'numeric' | 'email-address' |'default' |'password' | 'bankCard'
+type InputEventHandler = (value?: string) => void;
 
 export interface InputItemProps {
     last?: boolean;

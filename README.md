@@ -10,3 +10,17 @@
 -->
 
 A Mobile UI framework based on ant-design-mobile-rn written in Typescript.
+
+## Installation
+
+All of the components are compiled in jsx. In order for react-native to find files with `.jsx` extension, you must add a file called `rn-cli.config` to the root of your project:
+
+After react-native 0.57.3:
+
+````
+module.exports = {
+    resolver: {
+        sourceExts: ['jsx','js', 'json', 'ts', 'tsx']
+    }
+};
+````

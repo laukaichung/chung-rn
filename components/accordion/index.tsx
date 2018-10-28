@@ -3,24 +3,20 @@ import {ReactNode} from 'react'
 import {Text, StyleSheet,Image, View} from "react-native";
 import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
 import {Styles} from "../style/Styles";
+import {AccordionPane} from "../type";
 
-export interface CustomAccordionPaneProps {
-    render: () => ReactNode
-    title: string
-}
-
-interface CustomAccordionContainterProps {
-    panes: CustomAccordionPaneProps[]
+interface AccordionContainerProps {
+    panes: AccordionPane[]
     defaultIndices: number[]
-    customTitleContainer?: (data: { pane: CustomAccordionPaneProps, isActive: boolean }) => ReactNode
+    customTitleContainer?: (data: { pane: AccordionPane, isActive: boolean }) => ReactNode
 }
 
-interface CustomAccordionState {
+interface AccordionState {
     activeIndices: number[]
 }
 
-export default class Accordion extends React.Component<CustomAccordionContainterProps, CustomAccordionState> {
-    public state = {activeIndices: []} as CustomAccordionState;
+export default class Accordion extends React.Component<AccordionContainerProps, AccordionState> {
+    public state = {activeIndices: []} as AccordionState;
 
     constructor(props) {
         super(props);

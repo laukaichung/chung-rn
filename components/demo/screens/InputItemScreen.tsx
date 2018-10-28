@@ -5,7 +5,7 @@ import List from "../../list/List";
 import {Text} from 'react-native'
 import DatePicker from "../../date-picker";
 import {Styles} from "../../style/Styles";
-import {Label} from "../..";
+import Label from "../../label";
 
 interface InputItemScreenProps extends RNScreenProps {
 
