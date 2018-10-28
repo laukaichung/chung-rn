@@ -14,9 +14,11 @@ import Input from './Input';
 import {Styles} from "../style/Styles";
 import List from "../list/List";
 import Label from "../label";
-import {KeyboardType} from "../type";
 
 type InputEventHandler = (value?: string) => void;
+
+export type KeyboardType = 'decimal-pad' | 'phone-pad' | 'number-pad'  | 'numeric' | 'email-address' |'default' |'password' | 'bankCard'
+
 
 export interface InputItemProps {
     last?: boolean;

@@ -3,7 +3,11 @@ import {ReactNode} from 'react'
 import {Text, StyleSheet,Image, View} from "react-native";
 import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
 import {Styles} from "../style/Styles";
-import {AccordionPane} from "../type";
+
+export interface AccordionPane {
+    render: () => ReactNode
+    title: string
+}
 
 interface AccordionContainerProps {
     panes: AccordionPane[]

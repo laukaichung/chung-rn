@@ -2,7 +2,7 @@ import * as React from 'react';
 import {View} from 'react-native';
 import {PagerPan, SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {ResolutionUtil} from "../util/ResolutionUtil";
-import {TabRoute} from "../type";
+import {ReactNode} from "react";
 
 
 interface Props{
@@ -11,6 +11,12 @@ interface Props{
     tabBarPosition?:"top"|"bottom"
     routes: TabRoute[]
 
+}
+
+export interface TabRoute {
+    title: string;
+    key:string;
+    render?:()=>ReactNode
 }
 
 interface State {

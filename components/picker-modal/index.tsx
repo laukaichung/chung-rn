@@ -8,10 +8,6 @@ import StringUtil from "../util/StringUtil";
 import {HintText} from "../hint-text";
 import {ReactNode} from "react";
 
-interface SelectOptionModel {
-    [text: string]: any;
-}
-
 export interface PickerModalProps {
     data: SelectOptionModel;
     label: string,
@@ -20,6 +16,10 @@ export interface PickerModalProps {
     columnNum?: number;
     closeModalAfterOptionSelected?: boolean;
     buttonTrigger?: ReactNode
+}
+
+interface SelectOptionModel {
+    [text: string]: any;
 }
 
 interface PickerModalCore extends PickerModalProps {
