@@ -4,7 +4,6 @@ import ActivityIndicator from "../activity-indicator";
 import {Styles} from "../style/Styles";
 import {ResolutionUtil} from "../util/ResolutionUtil";
 import {CameraRollFile} from "../type";
-import {Toast} from "../index";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
