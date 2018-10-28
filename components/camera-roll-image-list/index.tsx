@@ -4,6 +4,7 @@ import ActivityIndicator from "../activity-indicator";
 import {Styles} from "../style/Styles";
 import {ResolutionUtil} from "../util/ResolutionUtil";
 import {CameraRollFile} from "../type";
+import {Toast} from "../index";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -11,6 +12,8 @@ interface CustomCameraRollProps {
     multiple?:boolean;
     renderImage?: (props: { image: CameraRollFile, onSelected: (image: CameraRollFile) => void, isSelected: boolean }) => any;
     defaultSelectedImages?:CameraRollFile[];
+    onItemSelected?:(image:CameraRollFile)=>void;
+    // maxSelectedImageNo?:number;
 }
 
 
@@ -38,7 +41,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
     }
 
     public render() {
-        const {renderImage,multiple = true} = this.props;
+        const {renderImage,multiple = true,onItemSelected} = this.props;
         let {initialLoading, images, noMore, selectedImages} = this.state;
         if (initialLoading) return (<ActivityIndicator toast text={"Loading"}/>);
 
@@ -55,9 +58,10 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
                 )}
                 data={images}
                 keyExtractor={(item, index) => String(index)}
-                renderItem={({item: image, index}) => {
+                renderItem={({item: image}) => {
                     let isSelected = selectedImages.find(o => o.uri === image.uri) != null;
                     let onSelected = (image: CameraRollFile) => {
+
                         let targetIdx = selectedImages.findIndex(o => o.uri === image.uri);
                         if(multiple) {
                             if (targetIdx > -1) {
@@ -74,7 +78,9 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
                             }
                         }
 
-                        this.setState({selectedImages})
+                        this.setState({selectedImages});
+
+                        if(onItemSelected) onItemSelected(image);
                     };
 
                     if (renderImage) {
