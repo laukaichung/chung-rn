@@ -30,7 +30,6 @@ export default class List extends React.Component<ListProps, any> {
                         <Text style={styles.headerTitle}>{headerTitle}</Text>
                     </View>
                 }
-
                 <View style={styles.body}>
                     {children}
                     <View style={[styles.bodyBottomLine]}/>
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Styles.padding,
     },
     headerTitleContainer:{
-        padding:Styles.padding,
+        paddingHorizontal:Styles.padding,
         backgroundColor: "#d6d6d6"
     },
     headerTitle:{
