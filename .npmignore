@@ -1,5 +1,13 @@
 lib/demo/*.*
 components
 android
+ios
 .babelrc
 node_modules
+rn-cli.config.js
+index.js
+app.json
+.watchmanconfig
+.gitattributes
+.buckconfig
+.flowconfig
