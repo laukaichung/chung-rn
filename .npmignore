@@ -12,3 +12,4 @@ app.json
 .buckconfig
 .flowconfig
 .idea
+*.jsx.map
