@@ -13,3 +13,4 @@ app.json
 .flowconfig
 .idea
 *.jsx.map
+tsconfig.json
