@@ -1,18 +1,16 @@
 import * as React from 'react';
+import {RefObject} from 'react';
 import {Image, PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {Styles} from "../style/Styles";
 import List from "../list/List";
 import Label from "../label";
-import {CameraRollFile} from "../type";
 import Grid from "../grid";
 import CustomModal from "../modal";
 import Button from "../button";
 import CameraRollImageList from "../camera-roll-image-list";
-import {RefObject} from "react";
-import Flex from "../flex/Flex";
-import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
+import {CameraRollFile} from "../type";
 
-export interface ImagePickerPropTypes {
+interface ImagePickerPropTypes {
     images?: CameraRollFile[];
     onRemoveImages: (image: CameraRollFile) => void;
     onConfirm: (images: CameraRollFile[]) => void;
@@ -22,7 +20,7 @@ export interface ImagePickerPropTypes {
 export default class ImagePickerItemModal extends React.Component<ImagePickerPropTypes, any> {
     private ref: RefObject<CameraRollImageList>;
 
-    constructor(props) {
+    public constructor(props) {
         super(props);
         this.ref = React.createRef()
     }
@@ -155,24 +153,5 @@ const styles = StyleSheet.create({
         marginTop: -8,
         fontWeight: '300',
     },
-    plusWrap: {
-        borderRadius: Styles.radiusSm,
-        borderWidth: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    plusWrapNormal: {
-        backgroundColor: Styles.backgroundColor,
-        borderColor: Styles.borderColor,
-    },
-    plusWrapHighlight: {
-        backgroundColor: Styles.fillTap,
-        borderColor: Styles.borderColor,
-    },
-    plusText: {
-        fontSize: 64,
-        backgroundColor: 'transparent',
-        fontWeight: '100',
-        color: Styles.colorTextCaption,
-    },
+
 });

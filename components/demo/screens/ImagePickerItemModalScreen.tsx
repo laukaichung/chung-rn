@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {RNScreenProps} from "../demotype";
-import {CameraRollFile} from "../../type";
+import {CameraRollFile} from "../..";
 import ImagePickerItemModal from "../../image-picker-item-modal";
 import List from "../../list/List";
 

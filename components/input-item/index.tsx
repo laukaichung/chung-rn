@@ -13,7 +13,7 @@ import {
 import Input from './Input';
 import {Styles} from "../style/Styles";
 import List from "../list/List";
-import {Label} from "../index";
+import {Label} from "..";
 
 export type InputEventHandler = (value?: string) => void;
 

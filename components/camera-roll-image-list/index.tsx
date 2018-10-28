@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import ActivityIndicator from "../activity-indicator";
 import {Styles} from "../style/Styles";
-import {CameraRollFile} from "../type";
 import {ResolutionUtil} from "../util/ResolutionUtil";
+import {CameraRollFile} from "../type";
 
 interface CustomCameraRollProps {
     assetType?: CameraRollAssetType;

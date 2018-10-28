@@ -1,7 +1,20 @@
 {
   "name": "chung-rn",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.2.1",
+  "main": "lib/index.js",
+  "types" : "lib/index.d.ts",
+  "keywords": ["react native","ui"],
+  "description": "A React Native UI framework based on ant-design-mobile-rn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stonecold123/chung-rn.git"
+  },
+  "author": "Lau Kai Chung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stonecold123/chung-rn/issues"
+  },
+  "homepage":"https://github.com/stonecold123/chung-rn#readme",
   "scripts": {
     "androidBuild": "cd ./android && ./gradlew app:assembleRelease && ./gradlew installRelease",
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -16,8 +29,6 @@
     "backup": "tar -cvf components.tar ./components"
   },
   "dependencies": {
-    "react": "^16.6.0",
-    "react-native": "^0.57.4",
     "react-native-camera-roll-picker": "^1.2.3",
     "react-native-modal": "^6.5.0",
     "react-native-tab-view": "^1.2.0",
@@ -48,6 +59,8 @@
     "jsdom-global": "3.0.2",
     "metro-react-native-babel-preset": "0.48.1",
     "npm": "^6.4.1",
+    "react": "^16.6.0",
+    "react-native": "^0.57.4",
     "react-dom": "^16.4.2",
     "react-navigation": "^2.18.0",
     "react-test-renderer": "16.6.0-alpha.8af6728",

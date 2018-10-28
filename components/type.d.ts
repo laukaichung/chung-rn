@@ -5,3 +5,4 @@ export interface CameraRollFile {
     isStored?: boolean;
     type?: string
 }
+
