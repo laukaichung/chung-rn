@@ -11,3 +11,4 @@ app.json
 .gitattributes
 .buckconfig
 .flowconfig
+.idea
