@@ -50,7 +50,9 @@ export default class ImagePickerItemModal extends React.Component<ImagePickerPro
                                                 Confirm
                                             </Button>
                                     </View>
-                                    <CameraRollImageList multiple={multiple} ref={this.ref}/>
+                                    <CameraRollImageList defaultSelectedImages={images}
+                                                         multiple={multiple}
+                                                         ref={this.ref}/>
                                 </View>
                             )
                         }
@@ -70,7 +72,10 @@ export default class ImagePickerItemModal extends React.Component<ImagePickerPro
                                                resizeMethod="resize"
                                                style={[styles.size, styles.image] as any}/>
                                         <TouchableOpacity
-                                            onPress={() => onRemoveImages(file)}
+                                            onPress={() => {
+                                                this.ref.current._removeSelectedImage(file);
+                                                onRemoveImages(file)
+                                            }}
                                             style={styles.closeWrap}
                                             activeOpacity={0.6}>
                                             <Text style={styles.closeText}>×</Text>

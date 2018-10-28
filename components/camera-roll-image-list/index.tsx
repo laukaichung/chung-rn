@@ -10,6 +10,7 @@ interface CustomCameraRollProps {
     // groupType?: CameraRollGroupType;
     multiple?:boolean;
     renderImage?: (props: { image: CameraRollFile, onSelected: (image: CameraRollFile) => void, isSelected: boolean }) => any;
+    defaultSelectedImages?:CameraRollFile[];
 }
 
 
@@ -32,7 +33,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
             lastCursor: null,
             initialLoading: true,
             images: [],
-            selectedImages: []
+            selectedImages: this.props.defaultSelectedImages || []
         }
     }
 
@@ -104,6 +105,10 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
     public _removeSelectedImage(image: CameraRollFile) {
         let {selectedImages} = this.state;
         this.setState({selectedImages: selectedImages.filter(o => o.uri != image.uri)})
+    }
+
+    public _setSelectedImages(selectedImages:CameraRollFile[]){
+        this.setState({selectedImages})
     }
 
 
