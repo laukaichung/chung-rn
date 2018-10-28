@@ -1,5 +1,4 @@
 import './type';
-
 export {default as Accordion} from './accordion';
 export {default as ActivityIndicator} from './activity-indicator';
 export {default as Badge} from './badge';
@@ -27,5 +26,6 @@ export {default as TextareaItem} from './textarea-item';
 export {default as Toast} from './toast';
 export {default as WhiteSpace} from './white-space';
 export {default as WingBlank} from './wing-blank';
+
 export {default as ThemeStyles} from './style/Styles'
 
