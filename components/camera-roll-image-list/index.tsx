@@ -1,22 +1,14 @@
 import * as React from 'react'
-import {
-    CameraRoll,
-    CameraRollAssetType,
-    CameraRollGroupType,
-    FlatList,
-    Image,
-    StyleSheet,
-    TouchableOpacity,
-    View
-} from "react-native";
+import {CameraRoll, FlatList, Image, StyleSheet, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "../activity-indicator";
 import {Styles} from "../style/Styles";
 import {ResolutionUtil} from "../util/ResolutionUtil";
 import {CameraRollFile} from "../type";
 
 interface CustomCameraRollProps {
-    assetType?: CameraRollAssetType;
-    groupType?: CameraRollGroupType;
+    // assetType?: CameraRollAssetType;
+    // groupType?: CameraRollGroupType;
+    multiple?:boolean;
     renderImage?: (props: { image: CameraRollFile, onSelected: (image: CameraRollFile) => void, isSelected: boolean }) => any;
 }
 
@@ -45,8 +37,8 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
     }
 
     public render() {
-        const {renderImage} = this.props;
-        const {initialLoading, images, noMore, selectedImages} = this.state;
+        const {renderImage,multiple = true} = this.props;
+        let {initialLoading, images, noMore, selectedImages} = this.state;
         if (initialLoading) return (<ActivityIndicator toast text={"Loading"}/>);
 
         return (
@@ -66,11 +58,21 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
                     let isSelected = selectedImages.find(o => o.uri === image.uri) != null;
                     let onSelected = (image: CameraRollFile) => {
                         let targetIdx = selectedImages.findIndex(o => o.uri === image.uri);
-                        if (targetIdx > -1) {
-                            selectedImages.splice(targetIdx, 1)
-                        } else {
-                            selectedImages.push(image)
+                        if(multiple) {
+                            if (targetIdx > -1) {
+                                selectedImages.splice(targetIdx, 1)
+                            } else {
+                                selectedImages.push(image)
+                            }
+                        }else{
+
+                            if(targetIdx > -1){
+                                selectedImages = [];
+                            }else{
+                                selectedImages = [image]
+                            }
                         }
+
                         this.setState({selectedImages})
                     };
 

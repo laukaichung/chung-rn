@@ -26,7 +26,7 @@ export default class ImagePickerItemModal extends React.Component<ImagePickerPro
     }
 
     public render() {
-        const {images, onRemoveImages, onConfirm} = this.props;
+        const {images, onRemoveImages, onConfirm,multiple} = this.props;
         return (
             <React.Fragment>
                 <CustomModal
@@ -50,7 +50,7 @@ export default class ImagePickerItemModal extends React.Component<ImagePickerPro
                                                 Confirm
                                             </Button>
                                     </View>
-                                    <CameraRollImageList ref={this.ref}/>
+                                    <CameraRollImageList multiple={multiple} ref={this.ref}/>
                                 </View>
                             )
                         }
