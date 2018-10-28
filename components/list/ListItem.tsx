@@ -66,7 +66,9 @@ export default class Item extends React.Component<ListItemProps, any> {
 
         let contentDom;
         if (Array.isArray(children)) {
+
             contentDom = <View style={[styles.column]}>{children}</View>;
+
         } else {
             if (children && React.isValidElement(children)) {
                 contentDom = <View style={[styles.column]}>{children}</View>;
