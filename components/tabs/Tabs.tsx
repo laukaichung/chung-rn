@@ -26,15 +26,22 @@ interface State {
 
 export default class Tabs extends React.Component<Props, State> {
 
-    static TabPane
+    static TabPane;
 
     constructor(props) {
         super(props);
+
+        let routes:TabRoute[] = []
+        this.props.routes.forEach(r=>{
+            if(r === null){
+                return;
+            }
+            routes.push({key: r.key, title: r.title})
+        });
+
         this.state = {
             index: 0,
-            routes: this.props.routes.map((r) => {
-                return {key: r.key, title: r.title}
-            })
+            routes
         }
     }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import CustomModal, {CustomModalProps} from "./index";
+import CustomModal, {CustomModalProps} from "../modal";
 import WhiteSpace from "../white-space";
 import Flex from "../flex/Flex";
 import Button from "../button";
@@ -27,6 +27,14 @@ export const ConfirmModal = ({onConfirmClick, hint, confirmTitle,...restProps}: 
                                         closeModal();
                                     }}>
                                     Confirm
+                                </Button>
+                            </Flex.Item>
+                            <Flex.Item style={styles.cancelButton}>
+                                <Button
+                                    onClick={() => {
+                                        closeModal();
+                                    }}>
+                                    Cancel
                                 </Button>
                             </Flex.Item>
                         </Flex>

@@ -6,6 +6,7 @@ export {default as Button} from './button';
 export {default as Card} from './card';
 export {default as Carousel} from './carousel';
 export {default as Checkbox} from './checkbox';
+export {default as ConfirmModal} from './confirm-modal'
 export {default as DatePicker} from './date-picker';
 export {default as Flex} from './flex';
 export {default as Grid} from './grid';
