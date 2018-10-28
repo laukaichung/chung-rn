@@ -66,28 +66,7 @@ export default class Item extends React.Component<ListItemProps, any> {
 
         let contentDom;
         if (Array.isArray(children)) {
-            const tempContentDom: any[] = [];
-            children.forEach((el, index) => {
-                if (React.isValidElement(el)) {
-                    tempContentDom.push(el);
-                } else {
-
-                    if(el === false || tempContentDom === null){
-                        return null;
-                    }
-
-                    tempContentDom.push(
-                        <Text
-                            style={[styles.content]}
-                            {...numberOfLines}
-                            key={`${index}-children`}
-                        >
-                            {el}
-                        </Text>,
-                    );
-                }
-            });
-            contentDom = <View style={[styles.column]}>{tempContentDom}</View>;
+            contentDom = <View style={[styles.column]}>{children}</View>;
         } else {
             if (children && React.isValidElement(children)) {
                 contentDom = <View style={[styles.column]}>{children}</View>;
