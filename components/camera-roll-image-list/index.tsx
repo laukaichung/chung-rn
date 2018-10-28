@@ -6,7 +6,8 @@ import {
     FlatList,
     Image,
     StyleSheet,
-    TouchableOpacity, View
+    TouchableOpacity,
+    View
 } from "react-native";
 import ActivityIndicator from "../activity-indicator";
 import {Styles} from "../style/Styles";
@@ -14,8 +15,8 @@ import {CameraRollFile} from "../type";
 import {ResolutionUtil} from "../util/ResolutionUtil";
 
 interface CustomCameraRollProps {
-    assetType?: CameraRollAssetType
-    groupType?: CameraRollGroupType
+    assetType?: CameraRollAssetType;
+    groupType?: CameraRollGroupType;
     renderImage?: (props: { image: CameraRollFile, onSelected: (image: CameraRollFile) => void, isSelected: boolean }) => any;
 }
 
@@ -156,7 +157,7 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
     return (
         <TouchableOpacity
             onPress={() => onSelected(image)}>
-            <View style={{flex:1}}>
+            <View style={{flex: 1}}>
                 <Image
                     resizeMethod="resize"
                     source={{uri: image.uri}}

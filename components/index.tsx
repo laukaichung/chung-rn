@@ -10,7 +10,7 @@ export {default as Flex} from './flex';
 export {default as Grid} from './grid';
 export {default as Header} from './header'
 export {default as HintText} from './hint-text'
-export {default as ImagePicker} from './image-picker-item';
+export {default as ImagePickerItemModal} from './image-picker-item-modal'
 export {default as CameraRollImageList} from './camera-roll-image-list'
 export {default as InputItem} from './input-item';
 export {default as Label} from './label';

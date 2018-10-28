@@ -13,6 +13,7 @@ export const screenKeys = {
     pickerModal:'pickerModal',
     badge:'badge',
     modal:'modal',
-    imagePicker:'imagePicker',
-    imagePickerCameraRoll:'imagePickerCameraRoll'
+    imagePickerItem:'imagePickerItem',
+    imagePickerItemModal:'imagePickerItemModal',
+    cameraRollImageList:'cameraRollImageList'
 }

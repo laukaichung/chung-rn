@@ -15,8 +15,8 @@ import {CardScreen} from "./screens/CardScreen";
 import {BadgeScreen} from "./screens/BadgeScreen";
 import {PickerModalScreen} from "./screens/PickerModalScreen";
 import {ModalScreen} from "./screens/ModalScreen";
-import {ImagePickerScreen} from "./screens/ImagePickerScreen";
-import {ImagePickerCameraRollScreen} from "./screens/ImagePickerCameraRollScreen";
+import {CameraRollImageList} from "./screens/CameraRollImageList";
+import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
 
 
 const RootStack = createStackNavigator(
@@ -35,11 +35,11 @@ const RootStack = createStackNavigator(
         [screenKeys.badge]:BadgeScreen,
         [screenKeys.pickerModal]:PickerModalScreen,
         [screenKeys.modal]:ModalScreen,
-        [screenKeys.imagePicker]:ImagePickerScreen,
-        [screenKeys.imagePickerCameraRoll]:ImagePickerCameraRollScreen
+        [screenKeys.cameraRollImageList]:CameraRollImageList,
+        [screenKeys.imagePickerItemModal]:ImagePickerItemModalScreen
     },
     {
-        initialRouteName: screenKeys.imagePicker,
+        initialRouteName: screenKeys.imagePickerItemModal,
     }
 
 );

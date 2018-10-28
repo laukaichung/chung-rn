@@ -5,25 +5,59 @@ import List from "../list/List";
 import Label from "../label";
 import {CameraRollFile} from "../type";
 import Grid from "../grid";
+import CustomModal from "../modal";
+import Button from "../button";
+import CameraRollImageList from "../camera-roll-image-list";
+import {RefObject} from "react";
+import Flex from "../flex/Flex";
+import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
 
 export interface ImagePickerPropTypes {
-    style?: {};
     images?: CameraRollFile[];
-    onOpenCameraRollImageList: () => void;
     onRemoveImages: (image: CameraRollFile) => void;
+    onConfirm: (images: CameraRollFile[]) => void;
     multiple?: boolean;
-    accept?: string;
 }
 
-export default class ImagePickerItem extends React.Component<ImagePickerPropTypes, any> {
+export default class ImagePickerItemModal extends React.Component<ImagePickerPropTypes, any> {
+    private ref: RefObject<CameraRollImageList>;
+
+    constructor(props) {
+        super(props);
+        this.ref = React.createRef()
+    }
 
     public render() {
-        const {images, onRemoveImages, onOpenCameraRollImageList} = this.props;
+        const {images, onRemoveImages, onConfirm} = this.props;
         return (
             <React.Fragment>
-                <List.Item arrow="horizontal" onClick={onOpenCameraRollImageList}>
-                    <Label content={"Select Images"}/>
-                </List.Item>
+                <CustomModal
+                    fullScreen
+                    paddingHorizontal={false}
+                    buttonTrigger={(
+                        <List.Item arrow="horizontal">
+                            <Label content={"Select Images"}/>
+                        </List.Item>
+                    )}>
+                    {
+                        ({closeModal}) => {
+                            return (
+                                <View>
+                                    <View style={{position: 'absolute', right: 5, bottom: 5, zIndex: 999}}>
+                                            <Button type="primary"
+                                                    onClick={() => {
+                                                        onConfirm(this.ref.current._getSelectedImages())
+                                                        closeModal()
+                                                    }}>
+                                                Confirm
+                                            </Button>
+                                    </View>
+                                    <CameraRollImageList ref={this.ref}/>
+                                </View>
+                            )
+                        }
+                    }
+                </CustomModal>
                 {
                     images.length > 0 &&
                     <List.Item>

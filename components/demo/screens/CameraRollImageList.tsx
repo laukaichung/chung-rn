@@ -14,7 +14,7 @@ interface State {
 
 }
 
-export class ImagePickerCameraRollScreen extends React.Component<Props, State> {
+export class CameraRollImageList extends React.Component<Props, State> {
     private ref:RefObject<CameraRollList>;
     constructor(props) {
         super(props);
