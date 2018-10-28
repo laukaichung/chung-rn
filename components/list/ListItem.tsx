@@ -71,6 +71,11 @@ export default class Item extends React.Component<ListItemProps, any> {
                 if (React.isValidElement(el)) {
                     tempContentDom.push(el);
                 } else {
+
+                    if(el === false || tempContentDom === null){
+                        return null;
+                    }
+
                     tempContentDom.push(
                         <Text
                             style={[styles.content]}

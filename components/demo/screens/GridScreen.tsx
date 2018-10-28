@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import {View, Text} from 'react-native'
 import Grid from "../../grid";
 
-interface GridScreenProps extends ScreenProps {
+interface GridScreenProps extends RNScreenProps {
 
 }
 

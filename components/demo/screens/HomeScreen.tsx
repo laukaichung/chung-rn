@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {Text, TouchableOpacity, View} from "react-native";
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import {screenKeys} from "../data/ScreenKeys";
 
-interface HomeScreenProps extends ScreenProps{
+interface HomeScreenProps extends RNScreenProps{
 
 }
 

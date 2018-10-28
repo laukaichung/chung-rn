@@ -1,12 +1,12 @@
 import * as React from 'react'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import {Text} from 'react-native'
 import Card from "../../card";
 import CardHeader from "../../card/CardHeader";
 import CardBody from "../../card/CardBody";
 import CardFooter from "../../card/CardFooter";
 
-interface CardScreenProps extends ScreenProps {
+interface CardScreenProps extends RNScreenProps {
 
 }
 

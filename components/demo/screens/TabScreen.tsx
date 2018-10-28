@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import TabPane from "../../tabs/TabPane";
 import Tabs from "../../tabs/Tabs";
 
@@ -28,7 +28,7 @@ const routes = [
 
 ];
 
-interface TabScreenProps extends ScreenProps {
+interface TabScreenProps extends RNScreenProps {
 
 }
 

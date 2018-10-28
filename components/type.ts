@@ -1,7 +1,7 @@
-export interface ScreenProps {
-    navigation:NavigationProps
-}
-
-interface NavigationProps {
-    navigate:(screen:string)=>void;
+export interface CameraRollFile {
+    uri: string;
+    height: number;
+    width: number;
+    isStored?: boolean;
+    type?: string
 }

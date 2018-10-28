@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {View,Text} from "react-native";
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import List from "../../list/List";
 import TextAreaItem from "../../textarea-item";
 
-interface Props extends ScreenProps {
+interface Props extends RNScreenProps {
 
 }
 

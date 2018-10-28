@@ -1,10 +1,10 @@
 import * as React from 'react'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import {View} from 'react-native'
 import Button from "../../button";
 import {ConfirmModal} from "../../modal/ConfirmModal";
 
-interface ModalScreenProps extends ScreenProps {
+interface ModalScreenProps extends RNScreenProps {
 
 }
 

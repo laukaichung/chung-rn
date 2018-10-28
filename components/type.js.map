@@ -1,1 +1,0 @@
-{"version":3,"file":"type.js","sourceRoot":"","sources":["type.ts"],"names":[],"mappings":"","sourcesContent":["export interface ScreenProps {\n    navigation:NavigationProps\n}\n\ninterface NavigationProps {\n    navigate:(screen:string)=>void;\n}\n"]}

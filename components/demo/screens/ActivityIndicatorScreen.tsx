@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import {View} from 'react-native'
 import ActivityIndicator from "../../activity-indicator";
 
-interface ActivityIndicatorScreenProps extends ScreenProps {
+interface ActivityIndicatorScreenProps extends RNScreenProps {
 
 }
 

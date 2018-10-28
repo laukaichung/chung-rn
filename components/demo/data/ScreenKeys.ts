@@ -12,5 +12,7 @@ export const screenKeys = {
     button:'button',
     pickerModal:'pickerModal',
     badge:'badge',
-    modal:'modal'
+    modal:'modal',
+    imagePicker:'imagePicker',
+    imagePickerCameraRoll:'imagePickerCameraRoll'
 }

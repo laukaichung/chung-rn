@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {View} from "react-native";
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import Index from "../../progress";
 
-interface Props extends ScreenProps {
+interface Props extends RNScreenProps {
 
 }
 

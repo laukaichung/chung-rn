@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import PickerModal from "../../picker-modal";
 import List from "../../list/List";
 
-interface Props extends ScreenProps {
+interface Props extends RNScreenProps {
 
 }
 

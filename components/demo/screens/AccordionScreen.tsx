@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {Text, View} from 'react-native'
-import {ScreenProps} from "../../type";
+import {RNScreenProps} from "../demotype";
 import {Accordion} from "../..";
-interface AccordionScreenProps extends ScreenProps{
+interface AccordionScreenProps extends RNScreenProps{
 
 }
 
