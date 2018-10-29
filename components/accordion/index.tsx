@@ -9,6 +9,7 @@ export interface AccordionPane {
     title: string
 }
 
+
 interface AccordionContainerProps {
     panes: AccordionPane[]
     defaultIndices: number[]
@@ -22,7 +23,7 @@ interface AccordionState {
 export default class Accordion extends React.Component<AccordionContainerProps, AccordionState> {
     public state = {activeIndices: []} as AccordionState;
 
-    constructor(props) {
+    public constructor(props) {
         super(props);
         this.state = {activeIndices: this.props.defaultIndices}
     }
