@@ -18,7 +18,7 @@ import {ModalScreen} from "./screens/ModalScreen";
 import {CameraRollImageList} from "./screens/CameraRollImageList";
 import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
 import {ToastScreen} from "./screens/ToastScreen";
-
+import {OldTabScreen} from "./screens/OldTabScreen";
 
 const RootStack = createStackNavigator(
     {
@@ -38,10 +38,11 @@ const RootStack = createStackNavigator(
         [screenKeys.modal]:ModalScreen,
         [screenKeys.cameraRollImageList]:CameraRollImageList,
         [screenKeys.imagePickerItemModal]:ImagePickerItemModalScreen,
-        [screenKeys.toast]:ToastScreen
+        [screenKeys.toast]:ToastScreen,
+        [screenKeys.oldTabs]:OldTabScreen
     },
     {
-        initialRouteName: screenKeys.pickerModal,
+        initialRouteName: screenKeys.oldTabs,
     }
 );
 

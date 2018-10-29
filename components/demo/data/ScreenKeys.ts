@@ -1,3 +1,4 @@
+
 export const screenKeys = {
     home:'home',
     accordion:'accordion',
@@ -16,5 +17,7 @@ export const screenKeys = {
     imagePickerItem:'imagePickerItem',
     imagePickerItemModal:'imagePickerItemModal',
     cameraRollImageList:'cameraRollImageList',
-    toast:'toast'
-}
+    toast:'toast',
+    oldTabs:'oldTabs',
+    something:'something'
+};
