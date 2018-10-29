@@ -7,12 +7,12 @@ export {default as Card} from './card';
 export {default as Carousel} from './carousel';
 export {default as Checkbox} from './checkbox';
 export {default as ConfirmModal} from './confirm-modal'
-export {default as DateTimePickerItemModal} from './date-time-picker-item-modal';
+export {default as DateTimePickerModal} from './date-time-picker-modal';
 export {default as Flex} from './flex';
 export {default as Grid} from './grid';
 export {default as Header} from './header'
 export {default as HintText} from './hint-text'
-export {default as ImagePickerItemModal} from './image-picker-item-modal'
+export {default as ImagePickerModal} from './image-picker-modal'
 export {default as CameraRollImageList} from './camera-roll-image-list'
 export {default as InputItem} from './input-item';
 export {default as Label} from './label';

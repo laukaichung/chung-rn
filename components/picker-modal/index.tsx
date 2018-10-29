@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ScrollView, Text, View} from "react-native";
+import {ScrollView, Text, StyleSheet, View} from "react-native";
 import Grid from "../grid";
 import CustomModal, {CustomModalProps} from "../modal";
 import List from "../list"
@@ -7,14 +7,16 @@ import {Styles} from "../style/Styles";
 import StringUtil from "../util/StringUtil";
 import {HintText} from "../hint-text";
 import Label from "../label";
+import WhiteSpace from "../white-space";
 
-export interface PickerModalProps extends CustomModalProps{
-    data: SelectOptionModel;
+export interface PickerModalProps extends CustomModalProps {
+    data: PickerItem[];
+    multiple?: boolean
     label?: string,
     hint?: string;
     displayTextAsValue?: boolean;
     columnNum?: number;
-    closeModalAfterOptionSelected?: boolean;
+    // closeModalAfterOptionSelected?: boolean;
 }
 
 interface SelectOptionModel {
@@ -22,84 +24,130 @@ interface SelectOptionModel {
 }
 
 interface PickerModalCore extends PickerModalProps {
-    onChange: (option: Option) => void;
-    value: any;
+    onChange: (option: PickerItem[]) => void;
+    selectedOptions: PickerItem[];
 }
 
-interface Option {
+export interface PickerItem {
     text: string,
     value: any
 }
 
-const PickerModal = (props: PickerModalCore) => {
-    const {data, value, buttonTrigger, hint,displayTextAsValue, label,onChange, closeModalAfterOptionSelected = true, columnNum = 3} = props;
-    let list: Array<Option> = [];
-    for (let title in data) {
-        list.push({text: title, value: data[title]});
-    }
-
-    let displayValue = displayTextAsValue ? getOptionKey(data, value) : value;
-    return (
-        <CustomModal
-            {...props}
-            buttonTrigger={
-                buttonTrigger ||
-                <List.Item extra={StringUtil.capitalize(displayValue)} arrow="horizontal">
-                    <Label content={label}/>
-                </List.Item>
-            }>
-            {
-                ({closeModal}) => {
-                    return (
-                        <ScrollView>
-                            {hint && <HintText content={hint}/>}
-                            <Grid columnNum={columnNum}
-                                  data={list}
-                                  onClick={(option: Option) => {
-                                      onChange(option);
-                                      if (closeModalAfterOptionSelected)
-                                          closeModal()
-                                  }}
-                                  renderItem={(option: Option) => {
-                                      return (
-                                          <PickerOption selectedValue={value} option={option}/>
-                                      )
-                                  }}
-                            />
-                        </ScrollView>
-                    )
-                }
-            }
-        </CustomModal>
-    )
-};
-
 export interface PickerOptionProps {
-    option: Option
-    selectedValue: any;
+    option: PickerItem
+    selectedOptions: PickerItem[];
 }
 
-export const PickerOption = ({option: {text, value: thisValue}, selectedValue}: PickerOptionProps) => {
+const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
     return (
         <View style={Styles.getCenterStyles}>
             <Text style={{
                 fontWeight: "bold",
-                color: StringUtil.sameIds(thisValue, selectedValue) ? Styles.selectedColor : null
+                color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedColor : null
             }}>
-                {StringUtil.capitalize(text)}
+                {StringUtil.capitalize(option.text)}
             </Text>
         </View>
     )
 };
 
-function getOptionKey(options: SelectOptionModel, value: any) {
-    let key = null;
-    for (let option in options) {
-        if (options[option] === value) {
-            key = option;
-        }
-    }
-    return key;
+interface PickerModalState {
+    selectedOptions: PickerItem[]
 }
 
-export default PickerModal
+export default class PickerModal extends React.Component<PickerModalCore, PickerModalState> {
+
+    public state = {
+        selectedOptions: this.props.selectedOptions
+    };
+
+    public static Option = PickerOption;
+
+    public render() {
+        const {props, state} = this;
+        let {selectedOptions} = state;
+        const {data, multiple, buttonTrigger, hint, displayTextAsValue, label, onChange, columnNum = 3} = props;
+        let displayValues: string[] = selectedOptions.map(option => {
+            return displayTextAsValue ? option.text : option.value
+        });
+
+        return (
+            <CustomModal
+                title={multiple?`Select multiple options`:`Select one option`}
+                {...props}
+                buttonTrigger={
+                    buttonTrigger ||
+                    <List.Item
+                        multipleLine
+                        arrow="horizontal">
+                        <Label content={label}/>
+                        {
+                            displayValues.length > 0 &&
+                            <WhiteSpace>
+                                <Text>
+                                    <Text style={{color:Styles.colorTextCaption}}>
+                                        {displayValues.join(' , ')}
+                                    </Text>
+                                </Text>
+                            </WhiteSpace>
+                        }
+                    </List.Item>
+                }>
+                {
+                    ({closeModal}) => {
+                        return (
+                            <ScrollView style={styles.container}>
+                                {hint && <HintText content={hint}/>}
+                                <Grid columnNum={columnNum}
+                                      data={data}
+                                      onClick={(option: PickerItem) => {
+
+                                          let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
+                                          if (targetIdx > -1) {
+                                              selectedOptions.splice(targetIdx, 1);
+                                          } else {
+                                              if (multiple) {
+                                                  selectedOptions.push(option);
+                                              } else {
+                                                  selectedOptions = [option];
+                                              }
+                                          }
+                                          this.setState({
+                                              selectedOptions
+                                          });
+
+                                          onChange(selectedOptions);
+                                          if (!multiple) closeModal()
+                                      }}
+                                      renderItem={(option: PickerItem) => {
+                                          return (
+                                              <PickerOption selectedOptions={selectedOptions} option={option}/>
+                                          )
+                                      }}
+                                />
+                            </ScrollView>
+                        )
+                    }
+                }
+            </CustomModal>
+        )
+    }
+
+    public _unSelectAll() {
+        this.setState({selectedOptions: []})
+    }
+
+    public static _convertModalOptions(data: SelectOptionModel) {
+        let list: PickerItem[] = [];
+        for (let title in data) {
+            list.push({text: title, value: data[title]});
+        }
+        return list;
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        paddingBottom: Styles.padding
+    }
+})

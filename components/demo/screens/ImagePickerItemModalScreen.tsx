@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {RNScreenProps} from "../demotype";
-import ImagePickerItemModal from "../../image-picker-item-modal";
+import ImagePickerModal from "../../image-picker-modal";
 import List from "../../list/List";
 import {CameraRollFile} from "../../type";
 
@@ -25,7 +25,7 @@ export class ImagePickerItemModalScreen extends React.Component<Props, State> {
         let {images} = this.state;
         return (
             <List>
-                <ImagePickerItemModal
+                <ImagePickerModal
                     onRemoveImages={(image) => images.filter(o => o.uri != image.uri)}
                     onConfirm={(images) => this.setState({images})}
                     images={images}/>

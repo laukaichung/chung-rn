@@ -10,14 +10,14 @@ import Button from "../button";
 import CameraRollImageList from "../camera-roll-image-list";
 import {CameraRollFile} from "../type";
 
-interface ImagePickerPropTypes {
+interface ImagePickerModalProps {
     images?: CameraRollFile[];
     onRemoveImages: (image: CameraRollFile) => void;
     onConfirm: (images: CameraRollFile[]) => void;
     multiple?: boolean;
 }
 
-export default class ImagePickerItemModal extends React.Component<ImagePickerPropTypes, any> {
+export default class ImagePickerModal extends React.Component<ImagePickerModalProps, any> {
     private ref: RefObject<CameraRollImageList>;
 
     public constructor(props) {

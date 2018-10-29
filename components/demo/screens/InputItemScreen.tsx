@@ -5,7 +5,7 @@ import List from "../../list/List";
 import {Text} from 'react-native'
 import CheckboxItem from "../../checkbox/CheckboxItem";
 import RadioItem from "../../radio/RadioItem";
-import DateTimePickerItemModal from "../../date-time-picker-item-modal";
+import DateTimePickerModal from "../../date-time-picker-modal";
 import TextAreaItem from "../../textarea-item";
 
 interface InputItemScreenProps extends RNScreenProps {
@@ -23,7 +23,7 @@ export class InputItemScreen extends React.Component<InputItemScreenProps> {
                 <TextAreaItem rows={2} label="Text Area"/>
                 <CheckboxItem label={"Checkbox"}/>
                 <RadioItem label={"Radio"}/>
-                <DateTimePickerItemModal
+                <DateTimePickerModal
                     label={"Select Date"}
                     onCancel={()=>console.log('cancel')}
                     onConfirm={(date)=>console.log({date})}/>

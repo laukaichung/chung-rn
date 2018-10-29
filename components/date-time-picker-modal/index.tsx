@@ -4,9 +4,9 @@ import {DateTimePickerProps} from 'react-native-modal-datetime-picker'
 import List from "../list/List";
 import Label from "../label";
 import {Text} from 'react-native'
-import {ListItemCommonProps} from "../type";
+import {ListItemCommonProps} from "../list/ListItem";
 
-export interface DatePickerItemModalProps extends DateTimePickerProps,ListItemCommonProps{
+export interface DateTimePickerModalProps extends DateTimePickerProps,ListItemCommonProps{
     label:string;
     date?:Date
     renderDateValue?:(date:Date)=>string
@@ -17,11 +17,12 @@ interface State {
     date?:Date;
 }
 
-export default class DateTimePickerItemModal extends React.Component<DatePickerItemModalProps, State> {
+export default class DateTimePickerModal extends React.Component<DateTimePickerModalProps, State> {
     public state:State = {isVisible:false,date:this.props.date};
     public render() {
-        let {isVisible,date} = this.state;
-        let {onConfirm,onCancel,label,disableBorder,renderDateValue} = this.props;
+        let {state,props} = this;
+        let {isVisible,date} = state;
+        let {onConfirm,onCancel,label,disableBorder,renderDateValue} = props;
         return (
             <List.Item
                 disableBorder={disableBorder}
@@ -30,6 +31,7 @@ export default class DateTimePickerItemModal extends React.Component<DatePickerI
                 <Label content={label}/>
                 {date && <Text>{ renderDateValue? renderDateValue(date) : date.toDateString()}</Text>}
                 <DateTimePicker
+                    {...props}
                     isVisible={isVisible}
                     onConfirm={(date)=>{
                         this.setState({isVisible:false,date});

@@ -1,27 +1,29 @@
 import * as React from 'react'
 import {RNScreenProps} from "../demotype";
-import PickerModal from "../../picker-modal";
+import PickerModal, {PickerItem} from "../../picker-modal";
 import List from "../../list/List";
 
-interface Props extends RNScreenProps {
-
-}
+interface Props extends RNScreenProps {}
 
 interface State {
-    modal: boolean
+    selectedOptions:PickerItem[]
 }
 
 export class PickerModalScreen extends React.Component<Props, State> {
-    public state: State = {} as State;
+    public state = {selectedOptions:[]} as State;
 
     public render() {
         return (
             <List>
-                <PickerModal onChange={({text})=>alert(text)}
-                             value={null}
-                             data={{optionA:1,optionB:2}}
-                             label={"Select Option"}
-                             hint={"Hello Hint Text"}/>
+                <PickerModal onChange={(selectedOptions)=>this.setState({selectedOptions})}
+                             selectedOptions={this.state.selectedOptions}
+                             data={[
+                                 {value:"A",text:"A Text"},
+                                 {value:"B",text:"B Text"}
+                             ]}
+                             multiple
+                             label={"Select"}
+                />
             </List>
         )
     }

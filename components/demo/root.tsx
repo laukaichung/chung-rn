@@ -41,7 +41,7 @@ const RootStack = createStackNavigator(
         [screenKeys.toast]:ToastScreen
     },
     {
-        initialRouteName: screenKeys.toast,
+        initialRouteName: screenKeys.pickerModal,
     }
 );
 
