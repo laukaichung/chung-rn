@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {PagerPan, SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {ResolutionUtil} from "../util/ResolutionUtil";
 import {ReactNode} from "react";
+import StringUtil from "../util/StringUtil";
 
 
 interface Props{
@@ -10,7 +11,7 @@ interface Props{
     swipeEnabled?:boolean;
     tabBarPosition?:"top"|"bottom"
     routes: TabRoute[]
-
+    preRenderSiblings?:number;
 }
 
 export interface TabRoute {
@@ -31,7 +32,7 @@ export default class Tabs extends React.Component<Props, State> {
     constructor(props) {
         super(props);
 
-        let routes:TabRoute[] = []
+        let routes:TabRoute[] = [];
         this.props.routes.forEach(r=>{
             if(r === null){
                 return;
@@ -46,7 +47,7 @@ export default class Tabs extends React.Component<Props, State> {
     }
 
     render() {
-        let {animationEnabled,tabBarPosition = "bottom",swipeEnabled,routes} = this.props;
+        let {animationEnabled,tabBarPosition = "bottom",swipeEnabled,routes,preRenderSiblings = 0} = this.props;
         let {index} = this.state;
         return (
             <TabView
@@ -58,17 +59,17 @@ export default class Tabs extends React.Component<Props, State> {
                             {...data}
                             canJumpToTab={false}
                             scrollEnabled
+                            getLabelText={(text)=>text}
                             indicatorStyle={{backgroundColor: 'pink'}}
                         />
                     )
                 }}
                 onIndexChange={index => this.setState({ index })}
                 renderScene={({route}) => {
-                    if (Math.abs(index - this.state.routes.indexOf(route)) > 0) {
+                    if (Math.abs(index - this.state.routes.indexOf(route)) > preRenderSiblings) {
                         return <View />;
                     }
-
-                    return routes[index].render();
+                    return routes[this.state.routes.indexOf(route)].render();
                 }}
                 initialLayout={{width: ResolutionUtil.fullWidth(), height: ResolutionUtil.fullHeight()}}
             />

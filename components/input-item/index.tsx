@@ -14,10 +14,19 @@ import Input from './Input';
 import {Styles} from "../style/Styles";
 import List from "../list/List";
 import Label from "../label";
+import {ReactNode, RefObject} from "react";
 
 type InputEventHandler = (value?: string) => void;
 
-export type KeyboardType = 'decimal-pad' | 'phone-pad' | 'number-pad'  | 'numeric' | 'email-address' |'default' |'password' | 'bankCard'
+export type KeyboardType =
+    'decimal-pad'
+    | 'phone-pad'
+    | 'number-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'default'
+    | 'password'
+    | 'bankCard'
 
 
 export interface InputItemProps {
@@ -34,7 +43,7 @@ export interface InputItemProps {
     placeholder?: string;
     clear?: boolean;
     maxLength?: number;
-    extra?: React.ReactNode;
+    extra?: ReactNode;
     error?: boolean;
     containerStyle?: ViewStyle;
     labelNumber?: number;
@@ -47,7 +56,8 @@ export interface InputItemProps {
     onFocus?: InputEventHandler;
     onBlur?: InputEventHandler;
     onVirtualKeyboardConfirm?: InputEventHandler;
-    disableBorderBottom?:boolean
+    disableBorderBottom?: boolean
+    autoFocus?: boolean
 }
 
 function normalizeValue(value?: string) {
@@ -59,7 +69,7 @@ function normalizeValue(value?: string) {
 
 
 export default class InputItem extends React.Component<InputItemProps, any> {
-    static defaultProps = {
+    public static defaultProps = {
         editable: true,
         clear: false,
         extra: '',
@@ -70,9 +80,9 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         last: false,
     };
 
-    inputRef: Input | null;
+    private inputRef: RefObject<Input> = React.createRef();
 
-    render() {
+    public render() {
         let {
             type,
             label,
@@ -105,7 +115,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                     : 0,
         };
 
-        if(type === "bankCard"){
+        if (type === "bankCard") {
             type = 'number-pad';
         }
 
@@ -116,21 +126,21 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                     <Input
                         clearButtonMode={clear ? 'while-editing' : 'never'}
                         underlineColorAndroid="transparent"
-                        ref={el => (this.inputRef = el)}
+                        ref={this.inputRef}
                         {...restProps}
                         {...valueProps}
                         style={[styles.input, error && styles.inputErrorColor]}
                         keyboardType={type}
-                        onChange={event => this.onChange(event.nativeEvent.text)}
+                        onChange={event => this._onChange(event.nativeEvent.text)}
                         secureTextEntry={type === 'password'}
-                        onBlur={this.onInputBlur}
-                        onFocus={this.onInputFocus}
+                        onBlur={this._onInputBlur}
+                        onFocus={this._onInputFocus}
                     />
                     {/* 只在有 value 的 受控模式 下展示 自定义的 安卓 clear 按钮 */}
                     {(editable && clear && value && Platform.OS === 'android') ? (
                         <TouchableOpacity
                             style={[styles.clear]}
-                            onPress={this.onInputClear}
+                            onPress={this._onInputClear}
                             hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
                         >
                             <Image
@@ -139,7 +149,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                             />
                         </TouchableOpacity>
                     ) : null}
-                    {extra ? (
+                    {extra && (
                         <TouchableWithoutFeedback onPress={onExtraClick}>
                             <View>
                                 {typeof extra === 'string' ? (
@@ -149,7 +159,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                                 )}
                             </View>
                         </TouchableWithoutFeedback>
-                    ) : null}
+                    )}
                     {error && (
                         <TouchableWithoutFeedback onPress={onErrorClick}>
                             <View style={[styles.errorIconContainer]}>
@@ -165,14 +175,19 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         );
     }
 
+    public componentDidMount() {
+        if (this.props.autoFocus)
+            this._focus();
+    }
+
     // expose this method for users;
-    focus(){
-        if (this.inputRef) {
-            this.inputRef.focus();
+    public _focus() {
+        if (this.inputRef.current) {
+            this.inputRef.current.focus();
         }
     }
 
-    onChange = (text: string) => {
+    private _onChange = (text: string) => {
         const {onChange, type} = this.props;
         const maxLength = this.props.maxLength as number;
         switch (type) {
@@ -202,23 +217,23 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         }
     }
 
-    onInputBlur = () => {
+    private _onInputBlur = () => {
         if (this.props.onBlur) {
             this.props.onBlur(this.props.value);
         }
     }
 
-    onInputFocus = () => {
+    private _onInputFocus = () => {
         if (this.props.onFocus) {
             this.props.onFocus(this.props.value);
         }
     }
 
-    onInputClear = () => {
-        if (this.inputRef) {
-            this.inputRef.clear();
+    private _onInputClear = () => {
+        if (this.inputRef.current) {
+            this.inputRef.current.clear();
         }
-        this.onChange('');
+        this._onChange('');
     }
 
 }

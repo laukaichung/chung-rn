@@ -24,6 +24,14 @@ const routes = [
             alert(`renderThird`);
             return <TabPane containerStyle={{backgroundColor: '#222'}}/>
         }
+    },
+    {
+        title: `Forth`,
+        key:"4",
+        render: () => {
+            alert(`renderFoth`);
+            return <TabPane containerStyle={{backgroundColor: '#fff'}}/>
+        }
     }
 
 ];

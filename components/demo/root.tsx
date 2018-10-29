@@ -39,7 +39,7 @@ const RootStack = createStackNavigator(
         [screenKeys.imagePickerItemModal]:ImagePickerItemModalScreen
     },
     {
-        initialRouteName: screenKeys.imagePickerItemModal,
+        initialRouteName: screenKeys.tabs,
     }
 
 );

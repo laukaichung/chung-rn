@@ -8,11 +8,12 @@ import {Styles} from "../style/Styles";
 
 interface ConfirmModalProps extends CustomModalProps{
     onConfirmClick: () => void;
+    onCancelClick?:()=>void;
     hint?: string
     confirmTitle?: string
 }
 
-export const ConfirmModal = ({onConfirmClick, hint, confirmTitle,...restProps}: ConfirmModalProps) => {
+const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restProps}: ConfirmModalProps) => {
     return (
         <CustomModal {...restProps} title={confirmTitle || `Are you sure?`}>
             {
@@ -32,6 +33,7 @@ export const ConfirmModal = ({onConfirmClick, hint, confirmTitle,...restProps}: 
                             <Flex.Item style={styles.cancelButton}>
                                 <Button
                                     onClick={() => {
+                                        if(onCancelClick) onCancelClick()
                                         closeModal();
                                     }}>
                                     Cancel
@@ -56,3 +58,5 @@ const styles = StyleSheet.create({
     }
 
 });
+
+export default ConfirmModal;

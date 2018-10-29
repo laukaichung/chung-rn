@@ -5,14 +5,14 @@ import CardFooter from './CardFooter';
 import CardHeader from './CardHeader';
 import {Styles} from "../style/Styles";
 
-export interface CardNativeProps {
+export interface CardProps {
     style?: StyleProp<ViewStyle>;
     full?: boolean;
     marginVertical?:boolean;
 
 }
 
-export default class Card extends React.Component<CardNativeProps, any> {
+export default class Card extends React.Component<CardProps, any> {
     static Header = CardHeader;
     static Body = CardBody;
     static Footer = CardFooter;

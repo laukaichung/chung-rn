@@ -1,16 +1,17 @@
 import * as React from 'react';
 import {TextInput, TextInputProps} from 'react-native';
+import {RefObject} from "react";
 
 export interface TextInputExtendedProps extends TextInputProps {
     focused?: boolean;
 }
 
 class Input extends React.Component<TextInputExtendedProps, any> {
-    inputRef: TextInput | null;
+    inputRef: RefObject<TextInput>;
 
     constructor(props: TextInputExtendedProps) {
         super(props);
-
+        this.inputRef = React.createRef();
         // todos: remove focused in next major version.
         this.state = {
             focused: props.focused || false,
@@ -26,33 +27,33 @@ class Input extends React.Component<TextInputExtendedProps, any> {
     }
 
     componentDidMount() {
-        if (this.inputRef && (this.props.autoFocus || this.props.focused)) {
-            this.inputRef.focus();
+        if (this.inputRef.current && (this.props.autoFocus || this.props.focused)) {
+            this.inputRef.current.focus();
         }
     }
 
     componentDidUpdate() {
-        if (this.inputRef && this.props.focused) {
-            this.inputRef.focus();
+        if (this.inputRef.current && this.props.focused) {
+            this.inputRef.current.focus();
         }
     }
 
     focus = () => {
         if (this.inputRef) {
-            this.inputRef.focus();
+            this.inputRef.current.focus();
         }
     }
 
     clear = () => {
         if (this.inputRef) {
-            this.inputRef.clear();
+            this.inputRef.current.clear();
         }
     }
 
     render() {
         return (
             <TextInput
-                ref={el => ((this.inputRef as any) = el)}
+                ref={this.inputRef}
                 underlineColorAndroid="transparent"
                 {...this.props}
             />
