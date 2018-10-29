@@ -5,7 +5,7 @@ ios
 .babelrc
 node_modules
 rn-cli.config.js
-index.js
+./index.js
 app.json
 .watchmanconfig
 .gitattributes
