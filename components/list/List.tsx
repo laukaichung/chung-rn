@@ -7,6 +7,7 @@ import ListItem from "./ListItem";
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
     renderHeader?: () => ReactNode
+    headerContainerStyle?: StyleProp<ViewStyle>
     headerTitle?:string;
     renderFooter?: () => ReactNode
 }
@@ -15,18 +16,18 @@ export default class List extends React.Component<ListProps, any> {
     public static Item = ListItem;
 
     public render() {
-        const {children, style, renderHeader, headerTitle,renderFooter, ...restProps} = this.props;
+        const {children, style, renderHeader,headerContainerStyle, headerTitle,renderFooter, ...restProps} = this.props;
         return (
             <View {...restProps as any} style={style}>
                 {
                     renderHeader &&
-                    <View style={styles.header}>
+                    <View style={[styles.header,headerContainerStyle]}>
                         {renderHeader()}
                     </View>
                 }
                 {
                     headerTitle &&
-                    <View style={styles.headerTitleContainer}>
+                    <View style={[styles.headerTitleContainer,headerContainerStyle]}>
                         <Text style={styles.headerTitle}>{headerTitle}</Text>
                     </View>
                 }
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     },
     headerTitleContainer:{
         padding:Styles.padding,
-        backgroundColor: "#d6d6d6"
+        backgroundColor: "#e4e4e4"
     },
     headerTitle:{
         color: Styles.colorTextHeading,

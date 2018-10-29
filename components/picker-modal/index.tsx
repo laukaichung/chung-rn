@@ -1,21 +1,20 @@
 import * as React from 'react'
 import {ScrollView, Text, View} from "react-native";
 import Grid from "../grid";
-import CustomModal from "../modal";
+import CustomModal, {CustomModalProps} from "../modal";
 import List from "../list"
 import {Styles} from "../style/Styles";
 import StringUtil from "../util/StringUtil";
 import {HintText} from "../hint-text";
-import {ReactNode} from "react";
+import Label from "../label";
 
-export interface PickerModalProps {
+export interface PickerModalProps extends CustomModalProps{
     data: SelectOptionModel;
-    label: string,
+    label?: string,
     hint?: string;
     displayTextAsValue?: boolean;
     columnNum?: number;
     closeModalAfterOptionSelected?: boolean;
-    buttonTrigger?: ReactNode
 }
 
 interface SelectOptionModel {
@@ -32,7 +31,8 @@ interface Option {
     value: any
 }
 
-const PickerModal = ({data, value, buttonTrigger, hint,displayTextAsValue, label,onChange, closeModalAfterOptionSelected = true, columnNum = 3}: PickerModalCore) => {
+const PickerModal = (props: PickerModalCore) => {
+    const {data, value, buttonTrigger, hint,displayTextAsValue, label,onChange, closeModalAfterOptionSelected = true, columnNum = 3} = props;
     let list: Array<Option> = [];
     for (let title in data) {
         list.push({text: title, value: data[title]});
@@ -41,7 +41,13 @@ const PickerModal = ({data, value, buttonTrigger, hint,displayTextAsValue, label
     let displayValue = displayTextAsValue ? getOptionKey(data, value) : value;
     return (
         <CustomModal
-            buttonTrigger={buttonTrigger || <List.Item extra={StringUtil.capitalize(displayValue)} arrow="horizontal">{label}</List.Item>}>
+            {...props}
+            buttonTrigger={
+                buttonTrigger ||
+                <List.Item extra={StringUtil.capitalize(displayValue)} arrow="horizontal">
+                    <Label content={label}/>
+                </List.Item>
+            }>
             {
                 ({closeModal}) => {
                     return (
@@ -68,12 +74,12 @@ const PickerModal = ({data, value, buttonTrigger, hint,displayTextAsValue, label
     )
 };
 
-export interface CustomPickerOptionProps {
+export interface PickerOptionProps {
     option: Option
     selectedValue: any;
 }
 
-export const PickerOption = ({option: {text, value: thisValue}, selectedValue}: CustomPickerOptionProps) => {
+export const PickerOption = ({option: {text, value: thisValue}, selectedValue}: PickerOptionProps) => {
     return (
         <View style={Styles.getCenterStyles}>
             <Text style={{

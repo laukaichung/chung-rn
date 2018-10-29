@@ -5,7 +5,7 @@ import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
 import {ReactNode} from "react";
 
 export interface ListItemCommonProps {
-    disableBorder?: "bottom"|"top"|"all";
+    disableBorder?: "bottom"|"top"|"all"|"preserve";
 }
 
 export interface ListItemProps extends ListItemCommonProps{

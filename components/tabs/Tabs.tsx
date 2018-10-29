@@ -58,7 +58,7 @@ export default class Tabs extends React.Component<Props, State> {
                             {...data}
                             canJumpToTab={false}
                             scrollEnabled
-                            getLabelText={(text)=>text}
+                            getLabelText={(route)=>route.title}
                             indicatorStyle={{backgroundColor: 'pink'}}
                         />
                     )
