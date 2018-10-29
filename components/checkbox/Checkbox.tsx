@@ -1,10 +1,9 @@
 import * as React from 'react'
 import {Image, ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
-
 import {CheckboxPropsType} from './PropsType';
-import variables from "../style/themes/default.native";
 import CheckboxItem from "./CheckboxItem";
 import AgreeItem from "./AgreeItem";
+import Styles from "../style";
 
 export interface ICheckboxNativeProps extends CheckboxPropsType {
     style?: StyleProp<ImageStyle>;
@@ -74,22 +73,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     icon: {
-        width: variables.icon_size_sm,
-        height: variables.icon_size_sm,
+        width: Styles.iconSizeSm,
+        height: Styles.iconSizeSm,
     },
     iconRight: {
-        marginLeft: variables.h_spacing_md,
+        marginLeft: Styles.margin,
     },
     agreeItem: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     agreeItemCheckbox: {
-        marginLeft: variables.h_spacing_lg,
-        marginRight: variables.h_spacing_md,
+        marginLeft: Styles.marginLg,
+        marginRight: Styles.margin,
     },
     checkboxItemCheckbox: {
-        marginRight: variables.h_spacing_md,
+        marginRight: Styles.margin,
         alignSelf: 'center',
     },
 });

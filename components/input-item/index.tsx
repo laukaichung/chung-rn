@@ -12,7 +12,7 @@ import {
     ViewStyle,
 } from 'react-native';
 import Input from './Input';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";

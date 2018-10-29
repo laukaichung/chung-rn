@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {CameraRoll, FlatList, Image, StyleSheet, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "../activity-indicator";
-import {Styles} from "../style/Styles";
-import {ResolutionUtil} from "../util/ResolutionUtil";
+import Styles from "../style";
 import {CameraRollFile} from "../type";
+import ScreenUtil from "../util/ScreenUtil";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -173,7 +173,7 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
                 <Image
                     resizeMethod="resize"
                     source={{uri: image.uri}}
-                    style={{height: 100, width: ResolutionUtil.fullWidth() / 3}}/>
+                    style={{height: 100, width: ScreenUtil.fullWidth() / 3}}/>
                 {
                     isSelected && <Image style={styles.marker as any}
                                          source={require('../../images/image-picker-images/circle-check.png')}/>

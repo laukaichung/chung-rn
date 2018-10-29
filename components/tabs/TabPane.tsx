@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {ReactNode} from "react";
 import {StyleProp, StyleSheet, View, ViewStyle} from "react-native";
-import {ResolutionUtil} from "../util/ResolutionUtil";
+import ScreenUtil from "../util/ScreenUtil";
 
 interface TabPaneProps {
     children?: ReactNode;
@@ -18,8 +18,8 @@ const TabPane = ({children, containerStyle}: TabPaneProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: ResolutionUtil.fullWidth(),
-        height: ResolutionUtil.fullHeight()
+        width: ScreenUtil.fullWidth(),
+        height: ScreenUtil.fullHeight()
     }
 });
 

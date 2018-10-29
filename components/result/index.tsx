@@ -9,8 +9,7 @@ import {
     ViewStyle,
 } from 'react-native';
 import Button from '../button';
-import variables from "../style/themes/default.native";
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
@@ -108,7 +107,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 21,
-        color: variables.color_text_base,
+        color: Styles.textBaseColor,
     },
     message: {
         marginTop: Styles.marginLg,

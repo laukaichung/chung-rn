@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {View, StyleSheet, StyleProp, ViewStyle} from "react-native";
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import {ReactNode} from "react";
 
 interface WhiteSpaceProps {

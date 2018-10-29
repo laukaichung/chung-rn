@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, Text,ViewStyle} from 'react-native';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import ListItem from "./ListItem";
 
 export interface ListProps {

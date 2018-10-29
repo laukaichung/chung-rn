@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {StyleSheet, Text} from 'react-native'
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 
 interface HeaderProps {
     content: string

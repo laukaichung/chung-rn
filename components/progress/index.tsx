@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Animated, LayoutChangeEvent, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
-import {ResolutionUtil} from "../util/ResolutionUtil";
-import {Styles} from "../style/Styles";
+import Styles from "../style";
+import ScreenUtil from "../util/ScreenUtil";
 
 export interface ProgressProps {
     wrapWidth?: number;
@@ -30,7 +30,7 @@ export default class Progress extends React.Component<ProgressProps, ProgressSta
     public constructor(props: ProgressProps) {
         super(props);
         this.state = {
-            wrapWidth: props.wrapWidth || ResolutionUtil.fullWidth(),
+            wrapWidth: props.wrapWidth || ScreenUtil.fullWidth(),
             percentage: new Animated.Value(0),
         };
     }

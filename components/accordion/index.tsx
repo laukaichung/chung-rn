@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
 import {Text, StyleSheet,Image, View} from "react-native";
-import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
-import {Styles} from "../style/Styles";
+import {CustomTouchableHighlight} from "../custom-touchable-highlight";
+import Styles from "../style";
 
 export interface AccordionPane {
     render: () => ReactNode

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {RefObject} from 'react';
 import {Image, PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import Grid from "../grid";

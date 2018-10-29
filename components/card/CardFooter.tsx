@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import {ReactNode} from "react";
 
 export interface CardFooterProps {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Platform, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 
 export interface BadgeNativeProps {
     style?: StyleProp<ViewStyle>;

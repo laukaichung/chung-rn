@@ -2,8 +2,7 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import {View} from 'react-native';
 import {PagerPan, SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import {ResolutionUtil} from "../util/ResolutionUtil";
-
+import ScreenUtil from "../util/ScreenUtil";
 
 interface Props{
     animationEnabled?:boolean;
@@ -58,7 +57,7 @@ export default class Tabs extends React.Component<Props, State> {
                             {...data}
                             canJumpToTab={false}
                             scrollEnabled
-                            getLabelText={(route)=>route.title}
+                            // getLabelText={(route)=>route.title}
                             indicatorStyle={{backgroundColor: 'pink'}}
                         />
                     )
@@ -70,7 +69,7 @@ export default class Tabs extends React.Component<Props, State> {
                     }
                     return routes[this.state.routes.indexOf(route)].render();
                 }}
-                initialLayout={{width: ResolutionUtil.fullWidth(), height: ResolutionUtil.fullHeight()}}
+                initialLayout={{width: ScreenUtil.fullWidth(), height: ScreenUtil.fullHeight()}}
             />
         );
     }

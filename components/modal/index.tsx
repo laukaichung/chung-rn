@@ -2,9 +2,9 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import Modal, {ModalProps} from "react-native-modal";
 import {Keyboard, StyleSheet, View} from 'react-native'
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import WingBlank from "../wing-blank";
-import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
+import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Header from "../header";
 
 interface ModalCallback {
@@ -16,7 +16,7 @@ export interface CustomModalProps {
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
-    paddingHorizontal?:boolean
+    paddingHorizontal?:boolean;
 }
 
 interface CustomModalCoreProps extends CustomModalProps {
@@ -108,6 +108,7 @@ export default class CustomModal extends React.Component<CustomModalCoreProps, S
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Styles.backgroundColor,
-        minHeight: 100
+        minHeight: 100,
+        paddingVertical:Styles.padding
     },
 });

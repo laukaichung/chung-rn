@@ -7,6 +7,7 @@ export {default as Card} from './card';
 export {default as Carousel} from './carousel';
 export {default as Checkbox} from './checkbox';
 export {default as ConfirmModal} from './confirm-modal'
+export {default as CustomTouchableHighlight} from './custom-touchable-highlight'
 export {default as DateTimePickerModal} from './date-time-picker-modal';
 export {default as Flex} from './flex';
 export {default as Grid} from './grid';
@@ -27,4 +28,5 @@ export {default as TextareaItem} from './textarea-item';
 export {default as Toast} from './toast';
 export {default as WhiteSpace} from './white-space';
 export {default as WingBlank} from './wing-blank';
-export {default as ThemeStyles} from './style/Styles'
+export {default as ChungStyles} from './style'
+export {default as ScreenUtil} from './util/ScreenUtil'

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Image, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
-import {Styles} from "../style/Styles";
-import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
+import Styles from "../style";
+import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import {ReactNode} from "react";
 
 export interface ListItemCommonProps {

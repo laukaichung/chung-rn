@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {TouchableHighlight, TouchableHighlightProps} from "react-native";
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 
 export const CustomTouchableHighlight = (props: TouchableHighlightProps) => {
     return (

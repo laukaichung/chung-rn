@@ -3,7 +3,7 @@ import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import CardBody from './CardBody';
 import CardFooter from './CardFooter';
 import CardHeader from './CardHeader';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 
 export interface CardProps {
     style?: StyleProp<ViewStyle>;

@@ -10,7 +10,7 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";

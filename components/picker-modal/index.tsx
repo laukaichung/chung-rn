@@ -3,7 +3,7 @@ import {ScrollView, Text, StyleSheet, View} from "react-native";
 import Grid from "../grid";
 import CustomModal, {CustomModalProps} from "../modal";
 import List from "../list"
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 import StringUtil from "../util/StringUtil";
 import {HintText} from "../hint-text";
 import Label from "../label";
@@ -12,7 +12,7 @@ import WhiteSpace from "../white-space";
 export interface PickerModalProps extends CustomModalProps {
     data: PickerItem[];
     multiple?: boolean
-    label?: string,
+    label: string,
     hint?: string;
     displayTextAsValue?: boolean;
     columnNum?: number;
@@ -24,7 +24,7 @@ interface SelectOptionModel {
 }
 
 interface PickerModalCore extends PickerModalProps {
-    onChange: (option: PickerItem[]) => void;
+    onChange: (options: PickerItem[]) => void;
     selectedOptions: PickerItem[];
 }
 

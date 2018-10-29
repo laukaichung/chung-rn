@@ -3,10 +3,10 @@ import {ImageStyle, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
 import {RadioItemPropsType} from './PropsType';
 import Radio from "./Radio";
 import List from "../list/List";
-import variables from "../style/themes/default.native";
 import {RefObject} from "react";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
+import Styles from "../style";
 
 
 export interface RadioItemNativeProps extends RadioItemPropsType,ListItemCommonProps {
@@ -55,10 +55,10 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
 
 const styles = StyleSheet.create({
     radioItemContent: {
-        color: variables.color_text_base,
-        fontSize: variables.font_size_heading,
+        color: Styles.textBaseColor,
+        fontSize: Styles.fontSizeHeading,
     },
     radioItemContentDisable: {
-        color: variables.color_text_disabled,
+        color: Styles.colorTextDisabled,
     },
 });

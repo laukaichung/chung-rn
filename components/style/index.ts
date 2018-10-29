@@ -1,6 +1,6 @@
 import {StyleProp, ViewStyle} from "react-native";
 
-export class Styles {
+export default class Styles {
 
     static get primaryColorDark() {
         return '#0f6db8'
@@ -9,7 +9,6 @@ export class Styles {
     static selectedColor = '#dadada';
 
     static brandImportant = '#ff5b05';
-
 
     static iconButtonSize = 16;
 
@@ -41,6 +40,9 @@ export class Styles {
     static colorTextCaption = '#b6b6b6';
     static colorTextHeading = '#7a6b7a'
     static colorTextBaseInverse= '#ffffff';
+    static colorTextDisabled = '#bbbbbb'
+
+
 
     static iconSizeSm = 16;
     static iconSizeXxs = 15;

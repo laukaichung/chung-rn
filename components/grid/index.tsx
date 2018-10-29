@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Image, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
 import Carousel from '../carousel';
-import {Styles} from "../style/Styles";
-import {ResolutionUtil} from "../util/ResolutionUtil";
+import Styles from "../style";
 import {ReactNode} from "react";
 import Flex from "../flex/Flex";
+import ScreenUtil from "../util/ScreenUtil";
 
 interface DataItem {
     icon?: any;
@@ -161,7 +161,7 @@ export default class Grid extends React.Component<GridProps, any> {
 
     getFlexItemStyle(columnNum: number) {
         return {
-            height: ResolutionUtil.fullWidth() / columnNum,
+            height: ScreenUtil.fullWidth() / columnNum,
             borderRightWidth: this.props.hasLine ? StyleSheet.hairlineWidth : 0,
         };
     }

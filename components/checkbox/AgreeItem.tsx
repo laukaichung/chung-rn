@@ -2,8 +2,8 @@ import * as React from 'react'
 import {ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View, ViewStyle,} from 'react-native';
 import Checkbox from './Checkbox';
 import {CheckboxPropsType} from './PropsType';
-import variables from "../style/themes/default.native";
 import {RefObject} from "react";
+import Styles from "../style";
 
 const refCheckbox = 'checkbox';
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     agreeItemCheckbox: {
-        marginLeft: variables.h_spacing_lg,
-        marginRight: variables.h_spacing_md,
+        marginLeft: Styles.marginLg,
+        marginRight: Styles.margin,
     },
 });

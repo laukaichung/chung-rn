@@ -4,7 +4,7 @@ import CustomModal, {CustomModalProps} from "../modal";
 import WhiteSpace from "../white-space";
 import Flex from "../flex/Flex";
 import Button from "../button";
-import {Styles} from "../style/Styles";
+import Styles from "../style";
 
 interface ConfirmModalProps extends CustomModalProps{
     onConfirmClick: () => void;
