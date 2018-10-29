@@ -1,78 +1,83 @@
 import * as React from 'react';
-import {ReactNode} from 'react';
-import {View} from 'react-native';
-import {PagerPan, SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import ScreenUtil from "../util/ScreenUtil";
+import {
+    DefaultTabBar as RMCDefaultTabBar,
+    Tabs as RMCTabs,
+} from 'rmc-tabs/lib/index.native';
+import {Models, PropsType} from 'rmc-tabs';
+import Styles from "../style";
 
-interface Props{
-    animationEnabled?:boolean;
-    swipeEnabled?:boolean;
-    tabBarPosition?:"top"|"bottom"
-    routes: TabRoute[]
-    preRenderSiblings?:number;
+interface TabsProps extends PropsType {
+    /** render for replace the tab of tabbar. */
+    renderTab?: (tab: Models.TabData) => React.ReactNode;
 }
 
-export interface TabRoute {
-    title: string;
-    key:string;
-    render?:()=>ReactNode
-}
+export default class Tabs extends React.PureComponent<TabsProps, {}> {
+    public static DefaultTabBar = RMCDefaultTabBar;
 
-interface State {
-    index: number,
-    routes: TabRoute[];
-}
+    static defaultProps = {tabBarPosition:"bottom"} as TabsProps;
 
-export default class Tabs extends React.Component<Props, State> {
-
-    static TabPane;
-
-    constructor(props) {
-        super(props);
-
-        let routes:TabRoute[] = [];
-        this.props.routes.forEach(r=>{
-            if(r === null){
-                return;
-            }
-            routes.push({key: r.key, title: r.title})
-        });
-
-        this.state = {
-            index: 0,
-            routes
-        }
+    renderTabBar = (props: any) => {
+        const {renderTab} = this.props;
+        return (
+            <RMCDefaultTabBar
+                styles={styles}
+                {...props}
+                renderTab={renderTab}
+            />
+        );
     }
 
     render() {
-        let {animationEnabled,tabBarPosition = "bottom",swipeEnabled,routes,preRenderSiblings = 0} = this.props;
-        let {index} = this.state;
         return (
-            <TabView
-                {...{swipeEnabled,tabBarPosition,animationEnabled}}
-                navigationState={this.state}
-                renderTabBar={(data) => {
-                    return (
-                        <TabBar
-                            {...data}
-                            canJumpToTab={false}
-                            scrollEnabled
-                            // getLabelText={(route)=>route.title}
-                            indicatorStyle={{backgroundColor: 'pink'}}
-                        />
-                    )
-                }}
-                onIndexChange={index => this.setState({ index })}
-                renderScene={({route}) => {
-                    if (Math.abs(index - this.state.routes.indexOf(route)) > preRenderSiblings) {
-                        return <View />;
-                    }
-                    return routes[this.state.routes.indexOf(route)].render();
-                }}
-                initialLayout={{width: ScreenUtil.fullWidth(), height: ScreenUtil.fullHeight()}}
+            <RMCTabs
+                styles={styles as any}
+                renderTabBar={this.renderTabBar}
+                {...this.props}
             />
         );
     }
 }
 
-
+const styles = {
+    Tabs: {
+        container: {
+            flex: 1,
+        },
+        topTabBarSplitLine: {
+            borderBottomColor: Styles.borderColor,
+            borderBottomWidth: 1,
+        },
+        bottomTabBarSplitLine: {
+            borderTopColor: Styles.borderColor,
+            borderTopWidth: 1,
+        },
+    },
+    TabBar: {
+        container: {},
+        tabs: {
+            flex: 1,
+            flexDirection: 'row',
+            backgroundColor: Styles.backgroundColor,
+            justifyContent: 'space-around',
+            shadowRadius: 0,
+            shadowOpacity: 0,
+            elevation: 0,
+        },
+        tab: {
+            height: 42,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+            flexDirection: 'row',
+        },
+        underline: {
+            height: 2,
+            backgroundColor: Styles.brandPrimary,
+        },
+        textStyle: {
+            fontSize: 15,
+        },
+        activeTextColor: Styles.brandPrimary,
+        inactiveTextColor: Styles.textBaseColor,
+    },
+};

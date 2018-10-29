@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {RNScreenProps} from "../demotype";
 import TabPane from "../../tabs/TabPane";
-import Tabs from "../../tabs/Tabs";
+import NewTabs from "../../tabs/NewTabs";
 
 const routes = [
     {
@@ -43,7 +43,7 @@ interface TabScreenProps extends RNScreenProps {
 export class TabScreen extends React.Component<TabScreenProps> {
     render() {
         return (
-            <Tabs routes={routes}/>
+            <NewTabs routes={routes}/>
         )
     }
 }
