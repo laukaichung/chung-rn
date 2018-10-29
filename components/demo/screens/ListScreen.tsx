@@ -38,7 +38,7 @@ export class ListScreen extends React.Component<ListScreenProps> {
                     </List.Item>
                     <List.Item
                         onLongPress={()=>alert('dfdfdf')}
-                        disableBorderBottom>
+                        disableBorder={"top"}>
                         <Text>Hello, last one doesn't have a borderBottom</Text>
                     </List.Item>
                 </List>

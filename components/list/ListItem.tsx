@@ -4,7 +4,11 @@ import {Styles} from "../style/Styles";
 import {CustomTouchableHighlight} from "../misc/CustomTouchableHighlight";
 import {ReactNode} from "react";
 
-export interface ListItemProps {
+export interface ListItemCommonProps {
+    disableBorder?: "bottom"|"top"|"all";
+}
+
+export interface ListItemProps extends ListItemCommonProps{
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
     multipleLine?: boolean;
@@ -16,7 +20,6 @@ export interface ListItemProps {
     activeStyle?: React.CSSProperties;
     error?: boolean;
     platform?: 'android' | 'ios';
-    disableBorderBottom?: boolean;
     onClick?: () => void;
     onLongPress?: () => void;
     onPressIn?: () => void;
@@ -38,7 +41,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             onClick,
             onPressIn,
             onPressOut,
-            disableBorderBottom,
+            disableBorder,
             wrap,
             align,
             listItemStyle,
@@ -65,11 +68,16 @@ export default class Item extends React.Component<ListItemProps, any> {
         }
 
         let contentDom;
+
         if (Array.isArray(children)) {
 
+            console.log({isArray:children})
             contentDom = <View style={[styles.column]}>{children}</View>;
 
         } else {
+
+            console.log('noArray',children)
+
             if (children && React.isValidElement(children)) {
                 contentDom = <View style={[styles.column]}>{children}</View>;
             } else {
@@ -118,6 +126,14 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
+        let itemBorderStyle:StyleProp<ViewStyle> = {};
+        if(disableBorder === "bottom"){
+            itemBorderStyle = {borderBottomWidth:0}
+        }else if(disableBorder === "top"){
+            itemBorderStyle = {borderTopWidth:0}
+        }else if(disableBorder === "all"){
+            itemBorderStyle = {borderWidth:0}
+        }
 
         const itemView = (
             <View {...restProps} style={[styles.item, listItemStyle]}>
@@ -134,7 +150,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                         styles.line,
                         multipleLine && styles.multipleLine,
                         multipleLine && alignStyle,
-                        disableBorderBottom && {borderBottomWidth: 0},
+                        itemBorderStyle,
                     ]}
                 >
                     {contentDom}

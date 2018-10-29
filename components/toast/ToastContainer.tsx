@@ -18,13 +18,20 @@ export interface ToastProps {
     onAnimationEnd?: () => void;
 }
 
+const iconType: {
+    [key: string]: any;
+} = {
+    success: require('../../images/toast-images/success.png'),
+    fail: require('../../images/toast-images/fail.png'),
+    offline: require('../../images/toast-images/offline.png'),
+};
+
 
 export default class ToastContainer extends React.Component<ToastProps, any> {
     static defaultProps = {
         duration: 3,
         mask: true,
-        onClose() {
-        },
+        onClose() {},
     };
 
     anim: Animated.CompositeAnimation | null;
@@ -38,13 +45,6 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
 
     render() {
         const {type = '', content, mask} = this.props;
-        const iconType: {
-            [key: string]: any;
-        } = {
-            success: require('../../images/toast-images/success.png'),
-            fail: require('../../images/toast-images/fail.png'),
-            offline: require('../../images/toast-images/offline.png'),
-        };
 
         let iconDom: React.ReactElement<any> | null = null;
         if (type === 'loading') {

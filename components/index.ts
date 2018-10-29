@@ -7,7 +7,7 @@ export {default as Card} from './card';
 export {default as Carousel} from './carousel';
 export {default as Checkbox} from './checkbox';
 export {default as ConfirmModal} from './confirm-modal'
-export {default as DatePicker} from './date-picker';
+export {default as DateTimePickerItemModal} from './date-time-picker-item-modal';
 export {default as Flex} from './flex';
 export {default as Grid} from './grid';
 export {default as Header} from './header'

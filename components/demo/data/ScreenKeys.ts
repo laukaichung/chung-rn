@@ -15,5 +15,6 @@ export const screenKeys = {
     modal:'modal',
     imagePickerItem:'imagePickerItem',
     imagePickerItemModal:'imagePickerItemModal',
-    cameraRollImageList:'cameraRollImageList'
+    cameraRollImageList:'cameraRollImageList',
+    toast:'toast'
 }

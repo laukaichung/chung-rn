@@ -5,7 +5,6 @@ export interface RadioPropsType {
   onChange?: (e: { target: { checked: boolean } }) => void;
   name?: string;
   wrapLabel?: boolean;
-  label:string;
 }
 
 export interface RadioItemPropsType extends RadioPropsType {

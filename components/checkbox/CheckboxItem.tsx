@@ -1,12 +1,13 @@
 import * as React from 'react'
-import {ImageStyle, StyleProp,Text, StyleSheet, ViewStyle} from 'react-native';
+import {RefObject} from 'react'
+import {ImageStyle, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import Checkbox from './Checkbox';
 import {CheckboxItemPropsType} from './PropsType';
 import List from "../list/List";
-import variables from "../style/themes/default.native";
-import {RefObject} from "react";
+import Label from "../label";
+import {ListItemCommonProps} from "../list/ListItem";
 
-export interface ICheckboxItemNativeProps extends CheckboxItemPropsType {
+export interface ICheckboxItemNativeProps extends CheckboxItemPropsType,ListItemCommonProps {
     checkboxStyle?: StyleProp<ImageStyle>;
     style?: StyleProp<ViewStyle>;
     label:string
@@ -24,25 +25,24 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
             disabled,
             label,
             extra,
+            disableBorder,
             onChange,
         } = this.props;
 
         return (
             <List.Item
+                disableBorder={disableBorder}
                 listItemStyle={style}
                 onClick={disabled ? undefined : this._handleClick}
-                extra={extra}
-                thumb={(
-                    <Checkbox
-                        ref={this.refCheckbox}
-                        style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
-                        defaultChecked={defaultChecked}
-                        checked={checked}
-                        onChange={onChange}
-                        disabled={disabled}
-                    />
-                )}>
-                <Text>{label}</Text>
+                extra={<Checkbox
+                    ref={this.refCheckbox}
+                    style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
+                    defaultChecked={defaultChecked}
+                    checked={checked}
+                    onChange={onChange}
+                    disabled={disabled}
+                />}>
+                <Label content={label}/>{extra}
             </List.Item>
         );
     }
@@ -57,7 +57,6 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
 
 const styles = StyleSheet.create({
     checkboxItemCheckbox: {
-        marginRight: variables.h_spacing_md,
         alignSelf: 'center',
     },
 });

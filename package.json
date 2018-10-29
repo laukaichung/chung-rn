@@ -32,10 +32,9 @@
     "backup": "tar -cvf components.tar ./components"
   },
   "dependencies": {
-    "react-native-camera-roll-picker": "^1.2.3",
     "react-native-modal": "^6.5.0",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-tab-view": "^1.2.0",
-    "rmc-date-picker": "^6.0.8",
     "rn-topview": "^0.1.6"
   },
   "devDependencies": {

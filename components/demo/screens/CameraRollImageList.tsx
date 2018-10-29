@@ -4,7 +4,7 @@ import CameraRollList from "../../camera-roll-image-list";
 import {View} from "react-native";
 import Button from "../../button";
 import {RefObject} from "react";
-import {CameraRollFile} from "../..";
+import {CameraRollFile} from "../../type";
 
 interface Props extends RNScreenProps {
     params: { onConfirm: (files:CameraRollFile[]) => void }

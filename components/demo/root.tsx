@@ -17,6 +17,7 @@ import {PickerModalScreen} from "./screens/PickerModalScreen";
 import {ModalScreen} from "./screens/ModalScreen";
 import {CameraRollImageList} from "./screens/CameraRollImageList";
 import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
+import {ToastScreen} from "./screens/ToastScreen";
 
 
 const RootStack = createStackNavigator(
@@ -36,12 +37,12 @@ const RootStack = createStackNavigator(
         [screenKeys.pickerModal]:PickerModalScreen,
         [screenKeys.modal]:ModalScreen,
         [screenKeys.cameraRollImageList]:CameraRollImageList,
-        [screenKeys.imagePickerItemModal]:ImagePickerItemModalScreen
+        [screenKeys.imagePickerItemModal]:ImagePickerItemModalScreen,
+        [screenKeys.toast]:ToastScreen
     },
     {
-        initialRouteName: screenKeys.tabs,
+        initialRouteName: screenKeys.toast,
     }
-
 );
 
 export default class App extends React.Component {

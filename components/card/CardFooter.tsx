@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     },
     footerContainer: {
         flexDirection: 'row',
-        paddingHorizontal: Styles.padding,
+        padding: Styles.padding,
+
     },
     contentContainer:{
         flex:1

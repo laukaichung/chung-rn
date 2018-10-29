@@ -1,5 +1,5 @@
 import * as React from 'react';
-import topView from 'rn-topview';
+import * as topView from 'rn-topview';
 import ToastContainer from './ToastContainer';
 
 function notice(

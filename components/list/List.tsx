@@ -48,18 +48,18 @@ export default class List extends React.Component<ListProps, any> {
 
 const styles = StyleSheet.create({
     header: {
-        paddingHorizontal: Styles.padding,
+        padding: Styles.padding,
     },
     headerTitleContainer:{
-        paddingHorizontal:Styles.padding,
+        padding:Styles.padding,
         backgroundColor: "#d6d6d6"
     },
     headerTitle:{
-        color: Styles.colorTextCaption,
+        color: Styles.colorTextHeading,
         fontSize: Styles.fontSizeHeading
     },
     footer: {
-        paddingHorizontal: Styles.padding,
+        padding: Styles.padding,
     },
     body: {
         backgroundColor: Styles.backgroundColor,

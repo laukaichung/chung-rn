@@ -23,7 +23,7 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
     }
 
     public render(): JSX.Element {
-        const { style, disabled,label } = this.props;
+        const { style, disabled } = this.props;
         const checked = this.state.checked;
         let imgSrc = undefined as any;
         if (checked) {
@@ -35,9 +35,6 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
             <TouchableWithoutFeedback onPress={this._handleClick}>
                 <View style={[styles.wrapper]}>
                     <Image source={imgSrc} style={[styles.icon, style] as any} />
-                    {
-                        label && <Text>{label}</Text>
-                    }
                 </View>
             </TouchableWithoutFeedback>
         );

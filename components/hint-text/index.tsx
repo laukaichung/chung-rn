@@ -23,9 +23,3 @@ export const HintText = ({color =  Styles.brandPrimary, icon, content}: HintText
         </View>
     )
 };
-
-// const styles = StyleSheet.create({
-//     icon: {
-//         marginRight: Styles.margin
-//     }
-// });

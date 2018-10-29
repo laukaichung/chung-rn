@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {ReactNode, RefObject} from 'react';
 import {
     GestureResponderEvent,
     Image,
@@ -14,7 +15,7 @@ import Input from './Input';
 import {Styles} from "../style/Styles";
 import List from "../list/List";
 import Label from "../label";
-import {ReactNode, RefObject} from "react";
+import {ListItemCommonProps} from "../list/ListItem";
 
 type InputEventHandler = (value?: string) => void;
 
@@ -29,7 +30,7 @@ export type KeyboardType =
     | 'bankCard'
 
 
-export interface InputItemProps {
+export interface InputItemProps extends ListItemCommonProps{
     last?: boolean;
     label: string;
     onExtraClick?: (event: GestureResponderEvent) => void;
@@ -56,7 +57,6 @@ export interface InputItemProps {
     onFocus?: InputEventHandler;
     onBlur?: InputEventHandler;
     onVirtualKeyboardConfirm?: InputEventHandler;
-    disableBorderBottom?: boolean
     autoFocus?: boolean
 }
 
@@ -85,6 +85,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
     public render() {
         let {
             type,
+            disableBorder,
             label,
             editable,
             clear,
@@ -92,7 +93,6 @@ export default class InputItem extends React.Component<InputItemProps, any> {
             extra,
             onExtraClick,
             onErrorClick,
-            disableBorderBottom,
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
@@ -120,7 +120,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         }
 
         return (
-            <List.Item disableBorderBottom={disableBorderBottom}>
+            <List.Item multipleLine disableBorder={disableBorder}>
                 {label && <Label content={label}/>}
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Input
@@ -136,7 +136,6 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                         onBlur={this._onInputBlur}
                         onFocus={this._onInputFocus}
                     />
-                    {/* 只在有 value 的 受控模式 下展示 自定义的 安卓 clear 按钮 */}
                     {(editable && clear && value && Platform.OS === 'android') ? (
                         <TouchableOpacity
                             style={[styles.clear]}
@@ -149,7 +148,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                             />
                         </TouchableOpacity>
                     ) : null}
-                    {extra && (
+                    {extra ? (
                         <TouchableWithoutFeedback onPress={onExtraClick}>
                             <View>
                                 {typeof extra === 'string' ? (
@@ -159,8 +158,8 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                                 )}
                             </View>
                         </TouchableWithoutFeedback>
-                    )}
-                    {error && (
+                    ):null}
+                    {error ? (
                         <TouchableWithoutFeedback onPress={onErrorClick}>
                             <View style={[styles.errorIconContainer]}>
                                 <Image
@@ -169,7 +168,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                                 />
                             </View>
                         </TouchableWithoutFeedback>
-                    )}
+                    ):null}
                 </View>
             </List.Item>
         );
@@ -248,7 +247,6 @@ const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
-        height: Styles.listItemHeight,
         backgroundColor: 'transparent',
         fontSize: Styles.inputFontSize,
         color: Styles.inputFontColor,

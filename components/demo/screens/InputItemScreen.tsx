@@ -3,9 +3,10 @@ import {RNScreenProps} from "../demotype";
 import InputItem from "../../input-item";
 import List from "../../list/List";
 import {Text} from 'react-native'
-import DatePicker from "../../date-picker";
-import {Styles} from "../../style/Styles";
-import Label from "../../label";
+import CheckboxItem from "../../checkbox/CheckboxItem";
+import RadioItem from "../../radio/RadioItem";
+import DateTimePickerItemModal from "../../date-time-picker-item-modal";
+import TextAreaItem from "../../textarea-item";
 
 interface InputItemScreenProps extends RNScreenProps {
 
@@ -15,17 +16,17 @@ export class InputItemScreen extends React.Component<InputItemScreenProps> {
     render() {
         return (
             <List>
-                <InputItem label={"Label"} error extra={<Text>Hello</Text>} placeholder={"Some Holder"}/>
-                <DatePicker
-                    mode="date"
-                    minDate={new Date(2015, 7, 6)}
-                    maxDate={new Date(2026, 11, 3)}
-                    format="YYYY-MM-DD">
-                    <List.Item multipleLine arrow="horizontal">
-                        <Label content="Label"/>
-                        <Text style={{color:Styles.colorTextCaption}}>Selected option</Text>
-                    </List.Item>
-                </DatePicker>
+                <InputItem label={"Input"}
+                           error
+                           extra={<Text>Hello</Text>}
+                           placeholder={"Some Holder"}/>
+                <TextAreaItem rows={2} label="Text Area"/>
+                <CheckboxItem label={"Checkbox"}/>
+                <RadioItem label={"Radio"}/>
+                <DateTimePickerItemModal
+                    label={"Select Date"}
+                    onCancel={()=>console.log('cancel')}
+                    onConfirm={(date)=>console.log({date})}/>
             </List>
         )
     }

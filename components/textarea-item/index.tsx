@@ -13,6 +13,7 @@ import {
 import {Styles} from "../style/Styles";
 import List from "../list/List";
 import Label from "../label";
+import {ListItemCommonProps} from "../list/ListItem";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -23,7 +24,7 @@ function fixControlledValue(value?: string) {
 
 export type TextAreaEventHandle = (val?: string) => void;
 
-export interface TextareaItemNativeProps {
+export interface TextareaItemNativeProps extends ListItemCommonProps{
     last?: boolean;
     label?: string;
     onContentSizeChange?: (e: any) => void;
@@ -82,6 +83,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             onErrorClick,
             containerStyle,
             inputStyle,
+            disableBorder,
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
@@ -101,7 +103,8 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <List.Item listItemStyle={containerStyle}>
+            <List.Item disableBorder={disableBorder}
+                       listItemStyle={containerStyle}>
                 {label && <Label content={label}/>}
                 <TextInput
                     clearButtonMode={clear ? 'while-editing' : 'never'}

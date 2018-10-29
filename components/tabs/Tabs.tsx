@@ -1,9 +1,8 @@
 import * as React from 'react';
+import {ReactNode} from 'react';
 import {View} from 'react-native';
 import {PagerPan, SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {ResolutionUtil} from "../util/ResolutionUtil";
-import {ReactNode} from "react";
-import StringUtil from "../util/StringUtil";
 
 
 interface Props{
