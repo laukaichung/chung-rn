@@ -7,3 +7,5 @@ export const CustomTouchableHighlight = (props: TouchableHighlightProps) => {
         <TouchableHighlight underlayColor={Styles.selectedColor} {...props}/>
     )
 };
+
+export default CustomTouchableHighlight
