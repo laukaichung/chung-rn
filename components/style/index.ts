@@ -16,15 +16,15 @@ export default class Styles {
 
     static textBaseColor = '#222222';
 
-    static marginXs = 3
+    static marginXs = 3;
     static marginLg = 15;
     static margin = 10;
     static marginSm = 5;
 
     static fontSizeBase = 14;
-    static fontSizeSubhead =  15
-    static fontSizeCaption = 16
-    static fontSizeHeading = 17
+    static fontSizeSubhead =  15;
+    static fontSizeCaption = 16;
+    static fontSizeHeading = 17;
 
     static paddingSm = 5;
     static padding = 10;
@@ -38,11 +38,9 @@ export default class Styles {
 
 
     static colorTextCaption = '#b6b6b6';
-    static colorTextHeading = '#7a6b7a'
+    static colorTextHeading = '#7a6b7a';
     static colorTextBaseInverse= '#ffffff';
-    static colorTextDisabled = '#bbbbbb'
-
-
+    static colorTextDisabled = '#bbbbbb';
 
     static iconSizeSm = 16;
     static iconSizeXxs = 15;
@@ -71,12 +69,10 @@ export default class Styles {
 
     static backgroundColor = '#ffffff';
 
-
-    static buttonHeight= 47
-    static buttonFontSize= 18
-
-    static buttonHeightSm= 23
-    static buttonFontSizeSm= 12
+    static buttonHeight= 47;
+    static buttonFontSize= 18;
+    static buttonHeightSm= 23;
+    static buttonFontSizeSm= 12;
 
     static warningButtonBorderColor= '#e94f4f';
     static warningButtonBackgroundColor= '#d24747';
