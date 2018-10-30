@@ -131,6 +131,10 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
 
             let params = {
                 first: 10,
+                groupTypes:"SavedPhotos"
+                /*groupTypes must be provided in IOS. Otherwise, it will cause:
+                  json value null of type nsnull cannot be converted to nsString
+                */
             } as GetPhotosParamType;
 
             if(lastCursor) params.after = lastCursor;
