@@ -44,8 +44,8 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^10.9.4",
     "@types/react": "^16.4.18",
-    "@types/react-native": "^0.57.7",
-    "@types/react-test-renderer": "^16.0.2",
+    "@types/react-native": "0.57.7",
+    "@types/react-test-renderer": "^16.0.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "23.6.0",
     "babel-plugin-graphql-tag": "^1.6.0",
@@ -62,8 +62,8 @@
     "metro-react-native-babel-preset": "0.48.1",
     "npm": "^6.4.1",
     "react": "^16.6.0",
-    "react-native": "^0.57.4",
     "react-dom": "^16.4.2",
+    "react-native": "^0.57.4",
     "react-navigation": "^2.18.0",
     "react-test-renderer": "16.6.0-alpha.8af6728",
     "reactotron-react-native": "^2.0.0",
@@ -72,6 +72,32 @@
     "typescript": "^3.0.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.jest.json"
+      },
+      "window": {}
+    },
+    "testRegex": "(/chung_rn/__tests__/.*|(\\.|/)(test|spec))\\.(jsxxxx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss)$": "identity-obj-proxy",
+      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/FileMock.js"
+    }
   }
 }

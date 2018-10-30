@@ -38,7 +38,7 @@ export interface PickerOptionProps {
     selectedOptions: PickerItem[];
 }
 
-const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
+export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
     return (
         <View style={Styles.getCenterStyles}>
             <Text style={{
