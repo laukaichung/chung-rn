@@ -7,7 +7,7 @@ import ListItem from "./ListItem";
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
     renderHeader?: () => ReactNode
-    headerContainerStyle?: StyleProp<ViewStyle>
+    headerTitleContainerStyle?:StyleProp<ViewStyle>
     headerTitle?:string;
     renderFooter?: () => ReactNode
 }
@@ -16,18 +16,15 @@ export default class List extends React.Component<ListProps, any> {
     public static Item = ListItem;
 
     public render() {
-        const {children, style, renderHeader,headerContainerStyle, headerTitle,renderFooter, ...restProps} = this.props;
+        const {children, style, renderHeader, headerTitle,headerTitleContainerStyle,renderFooter, ...restProps} = this.props;
         return (
             <View {...restProps as any} style={style}>
                 {
-                    renderHeader &&
-                    <View style={[styles.header,headerContainerStyle]}>
-                        {renderHeader()}
-                    </View>
+                    renderHeader && renderHeader()
                 }
                 {
                     headerTitle &&
-                    <View style={[styles.headerTitleContainer,headerContainerStyle]}>
+                    <View style={[styles.headerTitleContainer,headerTitleContainerStyle]}>
                         <Text style={styles.headerTitle}>{headerTitle}</Text>
                     </View>
                 }
@@ -48,9 +45,6 @@ export default class List extends React.Component<ListProps, any> {
 
 
 const styles = StyleSheet.create({
-    header: {
-        padding: Styles.padding,
-    },
     headerTitleContainer:{
         padding:Styles.padding,
         backgroundColor: "#e4e4e4"
@@ -60,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: Styles.fontSizeHeading
     },
     footer: {
-        padding: Styles.padding,
+
     },
     body: {
         backgroundColor: Styles.backgroundColor,
