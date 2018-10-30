@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {CameraRoll, FlatList, Image, StyleSheet, TouchableOpacity, View} from "react-native";
+import {CameraRoll, FlatList, GetPhotosParamType, Image, StyleSheet, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "../activity-indicator";
 import Styles from "../style";
 import {CameraRollFile} from "../type";
@@ -128,10 +128,15 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
     private async _fetch() {
         let {lastCursor, images} = this.state;
         try {
-            let data = await CameraRoll.getPhotos({
+
+            let params = {
                 first: 10,
-                after: lastCursor
-            });
+            } as GetPhotosParamType;
+
+            if(lastCursor) params.after = lastCursor;
+
+
+            let data = await CameraRoll.getPhotos(params);
 
             let {edges} = data;
             var newState = {
