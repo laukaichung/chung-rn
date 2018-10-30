@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {ScrollView, Text, StyleSheet, View} from "react-native";
 import Grid from "../grid";
-import CustomModal, {CustomModalProps} from "../modal";
+import CustomModal, {ModalProps} from "../modal";
 import List from "../list"
 import Styles from "../style";
 import StringUtil from "../util/StringUtil";
@@ -9,7 +9,7 @@ import {HintText} from "../hint-text";
 import Label from "../label";
 import WhiteSpace from "../white-space";
 
-export interface PickerModalProps extends CustomModalProps {
+export interface PickerModalProps extends ModalProps {
     data: PickerItem[];
     multiple?: boolean
     label: string,

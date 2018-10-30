@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from "react-test-renderer";
 import {PickerModal} from "../components";
 import {PickerItem, PickerOption} from "../components/picker-modal";
-import Button from "../components/button";
+import Button, {ButtonProps} from "../components/button";
 import Modal from "../components/modal";
 import Styles from "../components/style";
 import Grid from "../components/grid";
@@ -43,10 +43,11 @@ describe(`PickerModal`, () => {
         const testInstance = testRenderer.root;
         const modal = testInstance.findByType(Modal);
         const button = testInstance.findByType(Button);
-        button.props.onClick();
+        let buttonProps:ButtonProps = button.props
+        buttonProps.onClick();
         // expect(modal.findAllByType(PickerOption).length).toBe(2);
         getGridOption({testRenderer,index:0});
-        button.props.onClick();
+        buttonProps.onClick();
         expect(modal.findAllByType(PickerOption)[0].findByType(Text).props.style.color).toBe(Styles.selectedColor);
     })
 

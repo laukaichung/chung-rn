@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import CustomModal, {CustomModalProps} from "../modal";
+import Modal, {ModalProps} from "../modal";
 import WhiteSpace from "../white-space";
 import Flex from "../flex/Flex";
 import Button from "../button";
 import Styles from "../style";
 
-interface ConfirmModalProps extends CustomModalProps{
+interface ConfirmModalProps extends ModalProps{
     onConfirmClick: () => void;
     onCancelClick?:()=>void;
     hint?: string
@@ -15,7 +15,7 @@ interface ConfirmModalProps extends CustomModalProps{
 
 const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restProps}: ConfirmModalProps) => {
     return (
-        <CustomModal {...restProps} title={confirmTitle || `Are you sure?`}>
+        <Modal {...restProps} title={confirmTitle || `Are you sure?`}>
             {
                 ({closeModal}) =>
                     <View>
@@ -42,7 +42,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                         </Flex>
                     </View>
             }
-        </CustomModal>
+        </Modal>
     )
 };
 

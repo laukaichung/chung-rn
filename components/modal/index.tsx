@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import RNModal, {ModalProps} from "react-native-modal";
+import RNModal from "react-native-modal";
 import {Keyboard, StyleSheet, View} from 'react-native'
 import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
@@ -10,7 +10,7 @@ interface ModalCallback {
     closeModal: () => void;
 }
 
-export interface CustomModalProps {
+export interface ModalProps {
     title?: string
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
@@ -18,7 +18,7 @@ export interface CustomModalProps {
     paddingHorizontal?:boolean;
 }
 
-interface CustomModalCoreProps extends CustomModalProps {
+interface CustomModalCoreProps extends ModalProps {
     children: (callback: ModalCallback) => ReactNode;
 
 }
