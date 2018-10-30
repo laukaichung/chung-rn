@@ -13,12 +13,8 @@ export interface CardHeaderProps {
 }
 
 export default class CardHeader extends React.Component<CardHeaderProps, any> {
-    static defaultProps = {
-        thumbStyle: {},
-        style: {},
-    };
 
-    render() {
+    public render() {
         const {
             title,
             thumb,

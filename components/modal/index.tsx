@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import Modal, {ModalProps} from "react-native-modal";
+import RNModal, {ModalProps} from "react-native-modal";
 import {Keyboard, StyleSheet, View} from 'react-native'
 import Styles from "../style";
-import WingBlank from "../wing-blank";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Header from "../header";
 
@@ -28,7 +27,7 @@ interface State {
     isVisible: boolean
 }
 
-export default class CustomModal extends React.Component<CustomModalCoreProps, State> {
+export default class Modal extends React.Component<CustomModalCoreProps, State> {
     private keyboardDidHideListener;
     private keyboardDidShowListener;
     private keyboardIsShown: boolean;
@@ -54,7 +53,7 @@ export default class CustomModal extends React.Component<CustomModalCoreProps, S
                 }
                 {
                     isVisible &&
-                    <Modal onBackButtonPress={this._closeModal}
+                    <RNModal onBackButtonPress={this._closeModal}
                            style={fullScreen && {margin: 0}}
                            supportedOrientations={['portrait', 'landscape']}
                            isVisible={isVisible}
@@ -67,7 +66,7 @@ export default class CustomModal extends React.Component<CustomModalCoreProps, S
                                     {children({closeModal: this._closeModal})}
                                 </View> : <View/>
                         }
-                    </Modal>
+                    </RNModal>
                 }
             </React.Fragment>
         )

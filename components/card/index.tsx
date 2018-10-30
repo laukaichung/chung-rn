@@ -16,14 +16,14 @@ export default class Card extends React.Component<CardProps, any> {
     static Header = CardHeader;
     static Body = CardBody;
     static Footer = CardFooter;
-    render() {
+    public render() {
         const {style = {}, full = false, children,marginVertical = true,...restProps} = this.props;
-        const cardStyle = full ? styles!.full : {};
+        const cardStyle = full ? styles.full : {};
         const childDom = React.Children.map(children, child =>
             React.cloneElement(child as React.ReactElement<any>, {styles}),
         );
         return (
-            <View style={[styles!.card, cardStyle, style,marginVertical && {marginVertical:Styles.margin}]} {...restProps}>
+            <View style={[styles.card, cardStyle, style,marginVertical && {marginVertical:Styles.margin}]} {...restProps}>
                 {childDom}
             </View>
         );
@@ -32,7 +32,7 @@ export default class Card extends React.Component<CardProps, any> {
 
 const styles = StyleSheet.create({
     card: {
-        borderWidth: Styles.borderWidth,
+        borderWidth: Styles.borderWidth * 0.2,
         borderColor: Styles.borderColor,
         borderRadius: Styles.radiusMd,
         paddingBottom: Styles.paddingSm,
