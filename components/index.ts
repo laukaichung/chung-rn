@@ -26,7 +26,10 @@ export {default as Radio} from './radio';
 export {default as Result} from './result';
 export {default as Tabs} from './tabs';
 export {default as TextareaItem} from './textarea-item';
-export {default as Theme} from './theme'
+export {default as ChungImage} from './chung-image';
+export {default as ChungText} from './chung-text';
+export {default as ChungView} from './chung-view';
+
 export {default as Toast} from './toast';
 export {default as WhiteSpace} from './white-space';
 export {default as WingBlank} from './wing-blank';
