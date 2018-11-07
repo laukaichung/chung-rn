@@ -6,10 +6,11 @@ import {ReactNode} from "react";
 interface WhiteSpaceProps {
     children?:ReactNode;
     size?:"sm"|"md"|"lg"
+    center?:boolean;
     containerStyle?:StyleProp<ViewStyle>
 }
 
-const WhiteSpace = ({children,size,containerStyle}: WhiteSpaceProps) => {
+const WhiteSpace = ({children,size,center,containerStyle}: WhiteSpaceProps) => {
 
     let style = styles.whiteSpaceMd;
     if(size === "sm"){
@@ -19,7 +20,7 @@ const WhiteSpace = ({children,size,containerStyle}: WhiteSpaceProps) => {
     }
 
     return (
-        <View style={[containerStyle,style]}>{children}</View>
+        <View style={[containerStyle,style,center && Styles.centerItems]}>{children}</View>
     )
 };
 

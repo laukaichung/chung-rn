@@ -58,7 +58,7 @@ const styles = StyleSheet.create( {
         alignItems: 'center',
     },
     icon: {
-        width: Styles.iconSizeXxs,
-        height: Styles.iconSizeXxs * 0.8,
+        width: Styles.iconSizeSm,
+        height: Styles.iconSizeSm * 0.8,
     }
 });

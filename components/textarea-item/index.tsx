@@ -196,8 +196,8 @@ const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         top: 8,
-        width: Styles.iconSize,
-        height: Styles.iconSize,
+        width: Styles.iconSizeMd,
+        height: Styles.iconSizeMd,
     },
     errorIconContainer: {
         position: 'absolute',

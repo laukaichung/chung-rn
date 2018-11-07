@@ -21,6 +21,7 @@ export {default as List} from './list';
 export {default as Modal} from './modal';
 export {default as PickerModal} from './picker-modal'
 export {default as Progress} from './progress';
+export {default as PausableGif} from './pausable-gif'
 export {default as Radio} from './radio';
 export {default as Result} from './result';
 export {default as Tabs} from './tabs';

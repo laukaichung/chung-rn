@@ -10,7 +10,9 @@ export default class Styles {
 
     static brandImportant = '#ff5b05';
 
-    static iconButtonSize = 16;
+    static iconSizeSm = 16;
+    static iconSizeMd = 32;
+    static iconSizeLg = 48;
 
     static colorIconBase = '#cccccc';
 
@@ -32,23 +34,15 @@ export default class Styles {
     static paddingXl= 21;
 
     static subHeader = 15;
-    static fillTap = '#dddddd';
 
     static fill_disabled= '#dddddd';
-
 
     static colorTextCaption = '#b6b6b6';
     static colorTextHeading = '#7a6b7a';
     static colorTextBaseInverse= '#ffffff';
     static colorTextDisabled = '#bbbbbb';
 
-    static iconSizeSm = 16;
-    static iconSizeXxs = 15;
-    static iconSizeLg = 36;
-
     static fontSizeCaptionSm= 12;
-
-    static modelZIndex= 999;
 
     static brandPrimary='#108ee9';
 
@@ -81,20 +75,15 @@ export default class Styles {
         return '#bec5cc'
     }
 
-    static get iconSize() {
-        return 32
-    }
-
-
     static get iconButtonStyle() {
         return {
-            width: this.iconButtonSize,
-            height: this.iconButtonSize,
+            width: this.iconSizeSm,
+            height: this.iconSizeSm,
             tintColor: this.primaryColorDark
         }
     }
 
-    static get getCenterStyles():StyleProp<ViewStyle>{
+    static get centerItems():StyleProp<ViewStyle>{
         return {
             flex: 1,
             justifyContent: 'center',

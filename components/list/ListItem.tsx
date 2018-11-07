@@ -207,8 +207,8 @@ const styles = StyleSheet.create({
         borderBottomColor: Styles.borderColor,
     },
     thumb: {
-        width: Styles.iconSize,
-        height: Styles.iconSize,
+        width: Styles.iconSizeMd,
+        height: Styles.iconSizeMd,
         marginRight: Styles.margin,
     },
     content: {
@@ -240,8 +240,8 @@ const styles = StyleSheet.create({
         paddingVertical: Styles.margin,
     },
     multipleThumb: {
-        width: Styles.iconSize,
-        height: Styles.iconSize,
+        width: Styles.iconSizeMd,
+        height: Styles.iconSizeMd,
     },
     column: {
         flex: 1,

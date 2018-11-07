@@ -40,7 +40,7 @@ export interface PickerOptionProps {
 
 export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
     return (
-        <View style={Styles.getCenterStyles}>
+        <View style={Styles.centerItems}>
             <Text style={{
                 fontWeight: "bold",
                 color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedColor : null
