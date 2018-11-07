@@ -1,8 +1,7 @@
 import * as React from 'react'
 import {Text, TextProps, View, Image, ViewProps, ImageProps} from 'react-native'
 
-interface ThemeProps {
-}
+interface ThemeProps {}
 
 const ChungText = (props: TextProps) => <Text {...props} style={{lineHeight: 24}}/>
 
