@@ -1,16 +1,35 @@
 import * as React from 'react'
 import {Text, TextProps, View, Image, ViewProps, ImageProps} from 'react-native'
 
-interface ThemeProps {}
+class ChungText extends React.Component<TextProps>{
+    render(){
+        let {props} = this;
+        return (
+            <Text {...props} style={{lineHeight: 24}}/>
+        )
+    }
+}
 
-const ChungText = (props: TextProps) => <Text {...props} style={{lineHeight: 24}}/>
+class ChungView extends React.Component<ViewProps>{
+    render(){
+        let {props} = this;
+        return (
+            <View {...props}/>
+        )
+    }
+}
 
-const ChungView = (props: ViewProps) => <View {...props}/>
+class ChungImage extends React.Component<ImageProps>{
+    render(){
+        let {props} = this;
+        return (
+            <Image {...props}/>
+        )
+    }
+}
 
-const ChungImage = (props:ImageProps) => <Image {...props}/>
-
-export default class Theme extends React.Component<ThemeProps> {
-    static Text = ChungText;
-    static View = ChungView;
+export default class Theme extends React.Component{
     static Image = ChungImage;
+    static View = ChungView;
+    static Text = ChungText;
 }
