@@ -13,7 +13,6 @@ import {Text, TextProps} from "react-native";
 const ChungText = (props:TextProps)=>{
     return (
         <Text {...props} style={{lineHeight: 24}}/>
-
     )
 }
 

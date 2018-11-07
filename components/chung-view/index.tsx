@@ -1,6 +1,5 @@
 import * as React from 'react'
-import {Text, TextProps, View, ViewProps} from "react-native";
-
+import {View, ViewProps} from "react-native";
 
 // class ChungView extends React.Component<ViewProps>{
 //     render(){
@@ -10,7 +9,6 @@ import {Text, TextProps, View, ViewProps} from "react-native";
 //         )
 //     }
 // }
-
 
 const ChungView = (props:ViewProps)=>{
     return (
