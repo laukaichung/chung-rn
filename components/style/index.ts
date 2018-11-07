@@ -1,4 +1,4 @@
-import {StyleProp, ViewStyle} from "react-native";
+import {ViewStyle} from "react-native";
 
 export default class Styles {
 
@@ -83,12 +83,10 @@ export default class Styles {
         }
     }
 
-    static get centerItems():StyleProp<ViewStyle>{
-        return {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems:'center'
-        }
-    }
+    static centerItems = {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems:'center'
+    } as ViewStyle
 
 }
