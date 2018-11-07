@@ -20,7 +20,7 @@ const WhiteSpace = ({children,size,center,containerStyle}: WhiteSpaceProps) => {
     }
 
     return (
-        <View style={[containerStyle,style,center && Styles.centerItems]}>{children}</View>
+        <View style={[containerStyle,style,center && {flex: 1, justifyContent: 'center', alignItems:'center'}]}>{children}</View>
     )
 };
 
