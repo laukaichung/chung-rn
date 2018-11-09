@@ -8,6 +8,7 @@ import StringUtil from "../util/StringUtil";
 import {HintText} from "../hint-text";
 import Label from "../label";
 import WhiteSpace from "../white-space";
+import {ReactNode} from "react";
 
 export interface PickerModalProps extends ModalProps {
     data: PickerItem[];
@@ -16,6 +17,7 @@ export interface PickerModalProps extends ModalProps {
     hint?: string;
     displayTextAsValue?: boolean;
     columnNum?: number;
+    customLabelElement?:ReactNode
     // closeModalAfterOptionSelected?: boolean;
 }
 
@@ -52,7 +54,7 @@ export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
 };
 
 interface PickerModalState {
-    selectedOptions: PickerItem[]
+    selectedOptions: PickerItem[];
 }
 
 export default class PickerModal extends React.Component<PickerModalCore, PickerModalState> {
@@ -66,7 +68,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
     public render() {
         const {props, state} = this;
         let {selectedOptions} = state;
-        const {data, multiple, buttonTrigger, hint, displayTextAsValue, label, onChange, columnNum = 3} = props;
+        const {data, multiple, customLabelElement, hint, displayTextAsValue, label, onChange, columnNum = 3} = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
         });
@@ -76,23 +78,19 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                 title={multiple ? `Select multiple options` : `Select one option`}
                 {...props}
                 buttonTrigger={
-                    buttonTrigger ||
-                    <React.Fragment>
-                        <List.Item
-                            arrow="horizontal">
-                            <Label content={label}/>
-                        </List.Item>
+                    <List.Item
+                        multipleLine
+                        arrow="horizontal">
+                        {customLabelElement || <Label content={label}/>}
                         {
                             displayValues.length > 0 &&
-                            <List.Item multipleLine>
-                                <Text>
-                                    <Text style={{color:Styles.colorTextCaption}}>
-                                        {displayValues.join(' , ')}
-                                    </Text>
+                            <WhiteSpace>
+                                <Text style={{color: Styles.colorTextCaption}}>
+                                    {displayValues.join(' , ')}
                                 </Text>
-                            </List.Item>
+                            </WhiteSpace>
                         }
-                    </React.Fragment>
+                    </List.Item>
                 }>
                 {
                     ({closeModal}) => {

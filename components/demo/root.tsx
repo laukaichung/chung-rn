@@ -41,7 +41,7 @@ const RootStack = createStackNavigator(
         [screenKeys.oldTabs]:OldTabScreen
     },
     {
-        initialRouteName: screenKeys.oldTabs,
+        initialRouteName: screenKeys.pickerModal,
     }
 );
 
