@@ -58,7 +58,7 @@ interface PickerModalState {
 export default class PickerModal extends React.Component<PickerModalCore, PickerModalState> {
 
     public state = {
-        selectedOptions: this.props.selectedOptions
+        selectedOptions: this.props.selectedOptions || []
     };
 
     public static Option = PickerOption;

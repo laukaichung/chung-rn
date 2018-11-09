@@ -22,8 +22,6 @@ export interface ListItemProps extends ListItemCommonProps{
     platform?: 'android' | 'ios';
     onClick?: () => void;
     onLongPress?: () => void;
-    onPressIn?: () => void;
-    onPressOut?: () => void;
     listItemStyle?: StyleProp<ViewStyle>;
 }
 
@@ -39,8 +37,6 @@ export default class Item extends React.Component<ListItemProps, any> {
             extra,
             arrow,
             onClick,
-            onPressIn,
-            onPressOut,
             disableBorder,
             wrap,
             align,
@@ -163,8 +159,8 @@ export default class Item extends React.Component<ListItemProps, any> {
             <CustomTouchableHighlight
                 onPress={onClick}
                 onLongPress={onLongPress}
-                onPressIn={onPressIn}
-                onPressOut={onPressOut}
+                // onPressIn={onPressIn}
+                // onPressOut={onPressOut}
             >
                 {itemView}
             </CustomTouchableHighlight>
