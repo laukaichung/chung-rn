@@ -73,25 +73,26 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
 
         return (
             <CustomModal
-                title={multiple?`Select multiple options`:`Select one option`}
+                title={multiple ? `Select multiple options` : `Select one option`}
                 {...props}
                 buttonTrigger={
                     buttonTrigger ||
-                    <List.Item
-                        multipleLine
-                        arrow="horizontal">
-                        <Label content={label}/>
+                    <React.Fragment>
+                        <List.Item
+                            arrow="horizontal">
+                            <Label content={label}/>
+                        </List.Item>
                         {
                             displayValues.length > 0 &&
-                            <WhiteSpace>
+                            <List.Item multipleLine>
                                 <Text>
                                     <Text style={{color:Styles.colorTextCaption}}>
                                         {displayValues.join(' , ')}
                                     </Text>
                                 </Text>
-                            </WhiteSpace>
+                            </List.Item>
                         }
-                    </List.Item>
+                    </React.Fragment>
                 }>
                 {
                     ({closeModal}) => {
