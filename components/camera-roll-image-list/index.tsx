@@ -1,5 +1,14 @@
 import * as React from 'react'
-import {CameraRoll, FlatList, GetPhotosParamType, Image, StyleSheet, TouchableOpacity, View} from "react-native";
+import {
+    CameraRoll,
+    FlatList,
+    GetPhotosParamType,
+    Image, Platform,
+    PlatformIOS,
+    StyleSheet,
+    TouchableOpacity,
+    View
+} from "react-native";
 import ActivityIndicator from "../activity-indicator";
 import Styles from "../style";
 import {CameraRollFile} from "../type";
@@ -131,7 +140,6 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
 
             let params = {
                 first: 10,
-                groupTypes:"SavedPhotos"
                 /*groupTypes must be provided in IOS. Otherwise, it will cause:
                   json value null of type nsnull cannot be converted to nsString
                 */
@@ -139,6 +147,8 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
 
             if(lastCursor) params.after = lastCursor;
 
+            // If you add groupTypes in Android, it would throw `groupTypes is not supported` error
+            if(Platform.OS === "ios") params.groupTypes = "SavedPhotos";
 
             let data = await CameraRoll.getPhotos(params);
 
