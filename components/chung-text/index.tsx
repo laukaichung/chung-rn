@@ -5,7 +5,8 @@ export default class ChungText extends React.Component<TextProps>{
     render(){
         let {props} = this;
         return (
-            <Text {...props} style={[props.style,{lineHeight: 24}]}/>
+            <Text {...props}
+                  style={[props.style,{lineHeight: 24}]}/>
         )
     }
 }
