@@ -32,7 +32,7 @@ export default class Card extends React.Component<CardProps, any> {
 
 const styles = StyleSheet.create({
     card: {
-        borderWidth: Styles.borderWidth * 0.2,
+        borderWidth: Styles.borderWidth,
         borderColor: Styles.borderColor,
         borderRadius: Styles.radiusMd,
         paddingBottom: Styles.paddingSm,
