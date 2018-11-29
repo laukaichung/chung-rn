@@ -3,8 +3,8 @@ import {
     CameraRoll,
     FlatList,
     GetPhotosParamType,
-    Image, Platform,
-    PlatformIOS,
+    Image,
+    Platform,
     StyleSheet,
     TouchableOpacity,
     View
