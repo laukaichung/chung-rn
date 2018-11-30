@@ -6,6 +6,7 @@ import {
     ViewStyle,
 } from 'react-native';
 import {ReactNode} from "react";
+import {ChungStyles} from "../index";
 
 export interface FlexItemProps {
     flex?: number;
@@ -14,6 +15,7 @@ export interface FlexItemProps {
     onPressIn?: () => void;
     onPressOut?: () => void;
     style?: StyleProp<ViewStyle>;
+    marginRight?:boolean;
     disabled?: boolean;
     children?: ReactNode;
 }
@@ -24,9 +26,10 @@ export default class FlexItem extends React.Component<FlexItemProps, any> {
     };
 
     render() {
-        const {style, children, flex, ...restProps} = this.props;
+        const {style, children,marginRight, flex, ...restProps} = this.props;
         const flexItemStyle = {
             flex: flex || 1,
+            marginRight:marginRight?ChungStyles.margin:null
         };
 
         const inner = (
