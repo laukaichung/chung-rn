@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
 import {StyleProp, TouchableWithoutFeedback, View, ViewStyle,} from 'react-native';
+import FlexItem from "./FlexItem";
 
 export interface FlexProps {
     onPress?: () => void;
@@ -17,7 +18,7 @@ export interface FlexProps {
 }
 
 export default class Flex extends React.Component<FlexProps, any> {
-    static Item;
+    static Item = FlexItem;
 
     static defaultProps = {
         direction: 'row',
