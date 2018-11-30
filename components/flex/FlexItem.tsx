@@ -28,8 +28,7 @@ export default class FlexItem extends React.Component<FlexItemProps, any> {
     render() {
         const {style, children,marginRight, flex, ...restProps} = this.props;
         const flexItemStyle = {
-            flex: flex || 1,
-            marginRight:marginRight?ChungStyles.margin:null
+            flex: flex || 1
         };
 
         const inner = (
