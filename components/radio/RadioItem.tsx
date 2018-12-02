@@ -40,7 +40,7 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
             <List.Item
                 disableBorder={disableBorder}
                 listItemStyle={style}
-                onClick={disabled ? undefined : this.handleClick}
+                onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>
                 <Label content={label}/>
             </List.Item>
@@ -56,9 +56,9 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
 const styles = StyleSheet.create({
     radioItemContent: {
         color: Styles.textBaseColor,
-        fontSize: Styles.fontSizeHeading,
+        fontSize: Styles.HeaderFontSize,
     },
     radioItemContentDisable: {
-        color: Styles.colorTextDisabled,
+        color: Styles.disabledTextColor,
     },
 });

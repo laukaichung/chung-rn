@@ -18,7 +18,5 @@ const styles = StyleSheet.create({
     body: {
         flexGrow: 1,
         minHeight: 48,
-        borderTopWidth: Styles.borderWidth,
-        borderColor: Styles.borderColor,
     }
 });

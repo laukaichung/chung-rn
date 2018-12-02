@@ -1,12 +1,6 @@
 import * as React from 'react'
-import {
-    StyleProp,
-    TouchableWithoutFeedback,
-    View,
-    ViewStyle,
-} from 'react-native';
-import {ReactNode} from "react";
-import {ChungStyles} from "../index";
+import {ReactNode} from 'react'
+import {StyleProp, TouchableWithoutFeedback, View, ViewStyle,} from 'react-native';
 
 export interface FlexItemProps {
     flex?: number;
@@ -26,7 +20,7 @@ export default class FlexItem extends React.Component<FlexItemProps, any> {
     };
 
     render() {
-        const {style, children,marginRight, flex, ...restProps} = this.props;
+        const {style, children, flex, ...restProps} = this.props;
         const flexItemStyle = {
             flex: flex || 1
         };

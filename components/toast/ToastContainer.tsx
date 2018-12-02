@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-        zIndex: Styles.toastZindex,
+        zIndex: Styles.toastZIndex,
     },
     innerContainer: {
         backgroundColor: 'transparent',
@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: Styles.paddingLg
     },
     content: {
-        color: Styles.colorTextBaseInverse,
-        fontSize: Styles.fontSizeSubhead,
+        color: Styles.InverseTextColor,
+        fontSize: Styles.subheaderFontSize,
     },
     image: {
         width: Styles.iconSizeLg,

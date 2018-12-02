@@ -6,15 +6,14 @@ export default class Styles {
         return '#0f6db8'
     }
 
-    static selectedColor = '#dadada';
-
     static brandImportant = '#ff5b05';
 
     static iconSizeSm = 16;
     static iconSizeMd = 32;
     static iconSizeLg = 48;
+    static iconSizeXL = 60;
 
-    static colorIconBase = '#cccccc';
+    static iconColorBase = '#cccccc';
 
     static textBaseColor = '#222222';
 
@@ -23,24 +22,23 @@ export default class Styles {
     static margin = 10;
     static marginSm = 5;
 
-    static fontSizeBase = 14;
-    static fontSizeSubhead =  15;
-    static fontSizeCaption = 16;
-    static fontSizeHeading = 17;
+    static fontSize = 14;
+    static subheaderFontSize =  15;
+    static captionFontSize = 16;
+    static HeaderFontSize = 17;
 
     static paddingSm = 5;
     static padding = 10;
     static paddingLg= 15;
     static paddingXl= 21;
 
-    static subHeader = 15;
+    static backgroundColorSelected = '#dadada';
+    static backgroundColorDisabled= '#dddddd';
 
-    static fill_disabled= '#dddddd';
-
-    static colorTextCaption = '#b6b6b6';
-    static colorTextHeading = '#7a6b7a';
-    static colorTextBaseInverse= '#ffffff';
-    static colorTextDisabled = '#bbbbbb';
+    static textColor = '#b6b6b6';
+    static headerColor = '#7a6b7a';
+    static InverseTextColor= '#ffffff';
+    static disabledTextColor = '#bbbbbb';
 
     static fontSizeCaptionSm= 12;
 
@@ -55,7 +53,7 @@ export default class Styles {
     static radiusMd = 5;
     static radiusLg = 7;
 
-    static toastZindex= 1999;
+    static toastZIndex= 1999;
 
     static toastFill= 'rgba(0, 0, 0, .8)';
 

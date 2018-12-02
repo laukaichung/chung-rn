@@ -19,7 +19,7 @@ export interface ResultNativeProps {
     message?: React.ReactNode;
     buttonText?: string;
     buttonType?: 'primary' | 'ghost';
-    onButtonClick?: () => void;
+    onButtonPress?: () => void;
 }
 
 export default class Result extends React.Component<ResultNativeProps, any> {
@@ -32,7 +32,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             title,
             message,
             buttonText,
-            onButtonClick,
+            onButtonPress,
             buttonType,
         } = this.props;
 
@@ -76,7 +76,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                         <Button
                             style={styles.button}
                             type={buttonType}
-                            onClick={onButtonClick}
+                            onPress={onButtonPress}
                         >
                             {buttonText}
                         </Button>
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: Styles.paddingLg,
     },
     messageText: {
-        fontSize: Styles.fontSizeCaption,
-        color: Styles.colorTextCaption,
+        fontSize: Styles.captionFontSize,
+        color: Styles.textColor,
     },
     buttonWrap: {
         flexDirection: 'row',

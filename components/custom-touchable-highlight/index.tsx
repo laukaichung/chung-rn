@@ -4,7 +4,7 @@ import Styles from "../style";
 
 export const CustomTouchableHighlight = (props: TouchableHighlightProps) => {
     return (
-        <TouchableHighlight underlayColor={Styles.selectedColor} {...props}/>
+        <TouchableHighlight underlayColor={Styles.backgroundColorSelected} {...props}/>
     )
 };
 

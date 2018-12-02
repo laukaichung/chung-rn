@@ -33,7 +33,7 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
             <List.Item
                 disableBorder={disableBorder}
                 listItemStyle={style}
-                onClick={disabled ? undefined : this._handleClick}
+                onPress={disabled ? undefined : this._handleClick}
                 extra={<Checkbox
                     ref={this.refCheckbox}
                     style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
@@ -49,8 +49,8 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
 
     private _handleClick = () => {
         this.refCheckbox.current._handleClick();
-        if (this.props.onClick) {
-            this.props.onClick();
+        if (this.props.onPress) {
+            this.props.onPress();
         }
     }
 }

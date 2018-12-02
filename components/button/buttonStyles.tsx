@@ -54,8 +54,8 @@ export default {
     borderColor: Styles.warningButtonBorderColor,
   },
   defaultDisabledRaw: {
-    backgroundColor: Styles.fill_disabled,
-    borderColor: Styles.fill_disabled,
+    backgroundColor: Styles.backgroundColorDisabled,
+    borderColor: Styles.backgroundColorDisabled,
   },
   primaryDisabledRaw: {
     opacity: 0.4,
@@ -70,13 +70,13 @@ export default {
     color: Styles.textBaseColor,
   },
   primaryHighlightText: {
-    color: `${Styles.colorTextBaseInverse}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: `${Styles.InverseTextColor}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   ghostHighlightText: {
     color: Styles.brandPrimary,
   },
   warningHighlightText: {
-    color: `${Styles.colorTextBaseInverse}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: `${Styles.InverseTextColor}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   largeRawText: {
     fontSize: Styles.buttonFontSize,
@@ -88,25 +88,25 @@ export default {
     color: Styles.textBaseColor,
   },
   primaryRawText: {
-    color: Styles.colorTextBaseInverse,
+    color: Styles.InverseTextColor,
   },
   ghostRawText: {
     color: Styles.brandPrimary,
   },
   warningRawText: {
-    color: Styles.colorTextBaseInverse,
+    color: Styles.InverseTextColor,
   },
   defaultDisabledRawText: {
     color: `${Styles.textBaseColor}`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   primaryDisabledRawText: {
-    color: `${Styles.colorTextBaseInverse}`, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: `${Styles.InverseTextColor}`, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   ghostDisabledRawText: {
     color: `${Styles.textBaseColor}`, // alpha 10%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   warningDisabledRawText: {
-    color: `${Styles.colorTextBaseInverse}`, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: `${Styles.InverseTextColor}`, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   indicator: {
     marginRight: Styles.margin,

@@ -19,9 +19,9 @@ export const Header = ({content,center,marginVertical}: HeaderProps) => {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: Styles.fontSizeHeading,
+        fontSize: Styles.HeaderFontSize,
         fontWeight: "bold",
-        color: Styles.colorTextHeading,
+        color: Styles.headerColor,
     }
 });
 

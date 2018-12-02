@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         backgroundColor: 'transparent',
-        zIndex: Styles.toastZindex,
+        zIndex: Styles.toastZIndex,
     },
     innerContainer: {
         flex: 1,
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     },
     tip: {
         color: Styles.textBaseColor,
-        fontSize: Styles.fontSizeBase,
+        fontSize: Styles.fontSize,
         marginLeft: Styles.margin,
     },
     toast: {
-        color: Styles.colorTextBaseInverse,
-        fontSize: Styles.fontSizeBase,
+        color: Styles.InverseTextColor,
+        fontSize: Styles.fontSize,
         marginTop: Styles.marginSm,
     },
     spinner: {

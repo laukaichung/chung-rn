@@ -26,7 +26,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
         return (
             <List.Item
                 disableBorder={disableBorder}
-                onClick={()=>this.setState({isVisible:true})}
+                onPress={()=>this.setState({isVisible:true})}
                 arrow="horizontal">
                 <Label content={label}/>
                 {date && <Text>{ renderDateValue? renderDateValue(date) : date.toDateString()}</Text>}

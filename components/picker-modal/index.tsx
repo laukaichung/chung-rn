@@ -45,7 +45,7 @@ export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
         <View style={Styles.centerItems}>
             <Text style={{
                 fontWeight: "bold",
-                color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedColor : null
+                color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.backgroundColorSelected : null
             }}>
                 {StringUtil.capitalize(option.text)}
             </Text>
@@ -85,7 +85,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         {
                             displayValues.length > 0 &&
                             <WhiteSpace>
-                                <Text style={{color: Styles.colorTextCaption}}>
+                                <Text style={{color: Styles.textColor}}>
                                     {displayValues.join(' , ')}
                                 </Text>
                             </WhiteSpace>
@@ -99,7 +99,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                                 {hint && <HintText content={hint}/>}
                                 <Grid columnNum={columnNum}
                                       data={data}
-                                      onClick={(option: PickerItem) => {
+                                      onPress={(option: PickerItem) => {
 
                                           let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
                                           if (targetIdx > -1) {

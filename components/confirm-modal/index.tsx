@@ -23,7 +23,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                         <Flex style={styles.footerContainer}>
                             <Flex.Item style={styles.confirmButton}>
                                 <Button
-                                    onClick={() => {
+                                    onPress={() => {
                                         onConfirmClick();
                                         closeModal();
                                     }}>
@@ -32,7 +32,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                             </Flex.Item>
                             <Flex.Item style={styles.cancelButton}>
                                 <Button
-                                    onClick={() => {
+                                    onPress={() => {
                                         if(onCancelClick) onCancelClick()
                                         closeModal();
                                     }}>

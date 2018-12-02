@@ -44,11 +44,11 @@ describe(`PickerModal`, () => {
         const modal = testInstance.findByType(Modal);
         const button = testInstance.findByType(Button);
         let buttonProps:ButtonProps = button.props
-        buttonProps.onClick();
+        buttonProps.onPress();
         // expect(modal.findAllByType(PickerOption).length).toBe(2);
         getGridOption({testRenderer,index:0});
-        buttonProps.onClick();
-        expect(modal.findAllByType(PickerOption)[0].findByType(Text).props.style.color).toBe(Styles.selectedColor);
+        buttonProps.onPress();
+        expect(modal.findAllByType(PickerOption)[0].findByType(Text).props.style.color).toBe(Styles.backgroundColorSelected);
     })
 
 });

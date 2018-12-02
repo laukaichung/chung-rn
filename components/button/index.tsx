@@ -5,7 +5,7 @@ import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
-    onClick?: (_?: any) => void;
+    onPress?: (_?: any) => void;
     type?: 'primary' | 'warning' | 'ghost';
     size?: 'large' | 'small';
     disabled?: boolean;
@@ -35,7 +35,7 @@ export default class Button extends React.Component<ButtonProps, State> {
             type = 'default',
             disabled,
             activeStyle,
-            onClick,
+            onPress,
             style,
             loading,
             ...restProps
@@ -70,7 +70,7 @@ export default class Button extends React.Component<ButtonProps, State> {
                 style={wrapperStyle}
                 disabled={disabled}
                 activeOpacity={1}
-                onPress={(e?: any) => onClick && onClick(e)}
+                onPress={(e?: any) => onPress && onPress(e)}
                 onPressIn={this._onPressIn}
                 onPressOut={this._onPressOut}
                 onShowUnderlay={this._onShowUnderlay}

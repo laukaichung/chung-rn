@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#e4e4e4"
     },
     headerTitle:{
-        color: Styles.colorTextHeading,
-        fontSize: Styles.fontSizeHeading
+        color: Styles.headerColor,
+        fontSize: Styles.HeaderFontSize
     },
     footer: {
 

@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: Styles.backgroundColor,
         fontSize: Styles.inputFontSize,
-        lineHeight: Math.round(1.3 * Styles.fontSizeHeading),
+        lineHeight: Math.round(1.3 * Styles.HeaderFontSize),
         textAlignVertical: 'top',
     },
     icon: {

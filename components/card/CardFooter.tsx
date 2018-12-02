@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
     },
     textContent: {
         flex: 1,
-        fontSize: Styles.fontSizeBase,
-        color: Styles.colorTextCaption,
+        fontSize: Styles.fontSize,
+        color: Styles.textColor,
     },
     extraText: {
         textAlign: 'right',
-        fontSize: Styles.fontSizeBase,
-        color: Styles.colorTextCaption,
+        fontSize: Styles.fontSize,
+        color: Styles.textColor,
     },
 });

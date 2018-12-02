@@ -64,6 +64,8 @@ const styles = StyleSheet.create({
         paddingRight: Styles.padding,
         marginLeft: Styles.margin,
         alignItems: 'center',
+        borderBottomWidth: Styles.borderWidth,
+        borderColor: Styles.borderColor,
     },
     headerTitle: {
         flex: 1,
@@ -75,13 +77,13 @@ const styles = StyleSheet.create({
     },
     headerContent: {
         color: Styles.textBaseColor,
-        fontSize: Styles.fontSizeHeading,
+        fontSize: Styles.HeaderFontSize,
         flex: 1,
     },
     headerExtra: {
         flex: 1,
-        fontSize: Styles.fontSizeHeading,
-        color: Styles.colorTextCaption,
+        fontSize: Styles.HeaderFontSize,
+        color: Styles.textColor,
         textAlign: 'right',
     },
 });

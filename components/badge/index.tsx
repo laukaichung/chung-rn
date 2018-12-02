@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         top: 3 * grid,
     },
     text: {
-        color: Styles.colorTextBaseInverse,
+        color: Styles.InverseTextColor,
         textAlign: 'center',
     },
 });

@@ -43,7 +43,7 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                                 <View>
                                     <View style={{position: 'absolute', right: 5, bottom: 5, zIndex: 999}}>
                                             <Button type="primary"
-                                                    onClick={() => {
+                                                    onPress={() => {
                                                         onConfirm(this.ref.current._getSelectedImages())
                                                         closeModal()
                                                     }}>
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     closeText: {
-        color: Styles.colorTextBaseInverse,
+        color: Styles.InverseTextColor,
         backgroundColor: 'transparent',
         fontSize: 20,
         height: 20,

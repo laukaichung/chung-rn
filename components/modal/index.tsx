@@ -46,7 +46,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
             <React.Fragment>
                 {
                     buttonTrigger ?
-                        React.cloneElement(buttonTrigger, {onClick: this._onOpen}) :
+                        React.cloneElement(buttonTrigger, {onPress: this._onOpen}) :
                         <CustomTouchableHighlight onPress={this._onOpen}>
                             {nonButtonTrigger}
                         </CustomTouchableHighlight>

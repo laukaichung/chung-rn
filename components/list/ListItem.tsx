@@ -20,7 +20,7 @@ export interface ListItemProps extends ListItemCommonProps{
     activeStyle?: React.CSSProperties;
     error?: boolean;
     platform?: 'android' | 'ios';
-    onClick?: () => void;
+    onPress?: () => void;
     onLongPress?: () => void;
     listItemStyle?: StyleProp<ViewStyle>;
 }
@@ -36,7 +36,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             thumb,
             extra,
             arrow,
-            onClick,
+            onPress,
             disableBorder,
             wrap,
             align,
@@ -157,7 +157,7 @@ export default class Item extends React.Component<ListItemProps, any> {
 
         return (
             <CustomTouchableHighlight
-                onPress={onClick}
+                onPress={onPress}
                 onLongPress={onLongPress}
                 // onPressIn={onPressIn}
                 // onPressOut={onPressOut}
@@ -189,7 +189,7 @@ const arrEnum = {
 
 const styles = StyleSheet.create({
     underlayColor: {
-        backgroundColor: Styles.selectedColor,
+        backgroundColor: Styles.backgroundColorSelected,
     },
 
     line: {

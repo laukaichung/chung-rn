@@ -25,8 +25,8 @@ export class CameraRollImageList extends React.Component<Props, State> {
         return (
             <View style={{flex:1}}>
                 <View>
-                    <Button onClick={()=>this.props.navigation.state.params.onConfirm(this.ref.current._getSelectedImages())}>Confirm</Button>
-                    <Button onClick={this.props.navigation.goBack}>Cancel</Button>
+                    <Button onPress={()=>this.props.navigation.state.params.onConfirm(this.ref.current._getSelectedImages())}>Confirm</Button>
+                    <Button onPress={this.props.navigation.goBack}>Cancel</Button>
                 </View>
                 <CameraRollList ref={this.ref}/>
             </View>

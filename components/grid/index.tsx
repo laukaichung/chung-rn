@@ -20,7 +20,7 @@ interface GridProps {
     columnNum?: number;
     isCarousel?: boolean;
     carouselMaxRow?: number;
-    onClick?: (dataItem: DataItem | undefined, itemIndex: number) => void;
+    onPress?: (dataItem: DataItem | undefined, itemIndex: number) => void;
     renderItem?: (
         dataItem: DataItem | undefined,
         itemIndex: number,
@@ -42,7 +42,7 @@ export default class Grid extends React.Component<GridProps, any> {
             data,
             hasLine,
             isCarousel,
-            onClick = () => {
+            onPress = () => {
             },
         } = this.props;
         const columnNum = this.props.columnNum as number;
@@ -58,7 +58,7 @@ export default class Grid extends React.Component<GridProps, any> {
                     direction="column"
                     justify="center"
                     style={{flex: 1}}
-                    onPress={() => onClick(dataItem, index)}
+                    onPress={() => onPress(dataItem, index)}
                 >
                     {React.isValidElement(dataItem.icon) ? (
                         dataItem.icon
@@ -87,7 +87,7 @@ export default class Grid extends React.Component<GridProps, any> {
                                 {borderLeftWidth: hasLine && j === 0 ? StyleSheet.hairlineWidth : 0},
                                 customItemStyle,
                             ]}
-                            onPress={() => onClick(el, dataIndex)}
+                            onPress={() => onPress(el, dataIndex)}
                         >
                             {renderItem(el, dataIndex)}
                         </Flex.Item>,

@@ -111,7 +111,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         const extraStyle = {
             width:
                 typeof extra === 'string' && (extra as string).length > 0
-                    ? (extra as string).length * Styles.fontSizeHeading
+                    ? (extra as string).length * Styles.HeaderFontSize
                     : 0,
         };
 
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     text: {
         marginRight: Styles.margin,
         textAlignVertical: 'center',
-        fontSize: Styles.fontSizeHeading,
+        fontSize: Styles.HeaderFontSize,
         color: Styles.inputFontColor,
     },
     input: {
@@ -255,13 +255,13 @@ const styles = StyleSheet.create({
         color: '#f50',
     },
     clear: {
-        backgroundColor: Styles.colorIconBase,
+        backgroundColor: Styles.iconColorBase,
         borderRadius: 15,
         padding: 2,
     },
     extra: {
         marginLeft: Styles.marginSm,
-        fontSize: Styles.subHeader,
+        fontSize: Styles.subheaderFontSize,
         color: '#888',
     },
     errorIconContainer: {
