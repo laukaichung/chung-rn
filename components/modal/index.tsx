@@ -83,7 +83,6 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
         clearTimeout(this.timeoutId);
     }
 
-
     private _closeModal = () => {
         // Don't close the modal when the keyboard is just closed.
         if (!this.keyboardIsShown) this.setState({isVisible: false})
@@ -100,7 +99,6 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     private _keyboardDidHide = () => {
         this.timeoutId = setTimeout(() => this.keyboardIsShown = false, 150)
     };
-
 
 }
 

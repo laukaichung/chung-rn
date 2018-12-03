@@ -19,6 +19,7 @@ export default class FlexItem extends React.Component<FlexItemProps, any> {
         flex: 1,
     };
 
+
     render() {
         const {style, children, flex, ...restProps} = this.props;
         const flexItemStyle = {

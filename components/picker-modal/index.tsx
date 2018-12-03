@@ -85,7 +85,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         {
                             displayValues.length > 0 &&
                             <WhiteSpace>
-                                <Text style={{color: Styles.textColor}}>
+                                <Text>
                                     {displayValues.join(' , ')}
                                 </Text>
                             </WhiteSpace>

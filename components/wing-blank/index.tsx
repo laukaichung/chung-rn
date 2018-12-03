@@ -9,6 +9,7 @@ export interface WingBlankProps {
 }
 
 class WingBlank extends React.Component<WingBlankProps, any> {
+
     public render() {
         const {size = "lg", style, children} = this.props;
         let margin = Styles.margin;

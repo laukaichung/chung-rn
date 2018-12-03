@@ -79,7 +79,7 @@ export default class Flex extends React.Component<FlexProps, any> {
             restProps.onPressIn ||
             restProps.onPressOut;
 
-        if (!!shouldWrapInTouchableComponent) {
+        if (shouldWrapInTouchableComponent) {
             return (
                 <TouchableWithoutFeedback {...restProps}>
                     {inner}

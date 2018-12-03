@@ -1,5 +1,4 @@
 import './type';
-
 export {default as Accordion} from './accordion';
 export {default as ActivityIndicator} from './activity-indicator';
 export {default as Badge} from './badge';
