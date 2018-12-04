@@ -54,8 +54,9 @@ export default {
     borderColor: Styles.warningButtonBorderColor,
   },
   defaultDisabledRaw: {
-    backgroundColor: Styles.backgroundColorDisabled,
-    borderColor: Styles.backgroundColorDisabled,
+    backgroundColor: Styles.disabledBackgroundColor,
+    borderColor: Styles.disabledBorderColor,
+    color:Styles.disabledTextColor
   },
   primaryDisabledRaw: {
     opacity: 0.4,

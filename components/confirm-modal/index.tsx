@@ -21,6 +21,15 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                     <View>
                         {hint && <WhiteSpace><Text>{hint}</Text></WhiteSpace>}
                         <Flex style={styles.footerContainer}>
+                            <Flex.Item style={styles.cancelButton}>
+                                <Button
+                                    onPress={() => {
+                                        if(onCancelClick) onCancelClick();
+                                        closeModal();
+                                    }}>
+                                    Cancel
+                                </Button>
+                            </Flex.Item>
                             <Flex.Item style={styles.confirmButton}>
                                 <Button
                                     onPress={() => {
@@ -28,15 +37,6 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                                         closeModal();
                                     }}>
                                     Confirm
-                                </Button>
-                            </Flex.Item>
-                            <Flex.Item style={styles.cancelButton}>
-                                <Button
-                                    onPress={() => {
-                                        if(onCancelClick) onCancelClick()
-                                        closeModal();
-                                    }}>
-                                    Cancel
                                 </Button>
                             </Flex.Item>
                         </Flex>

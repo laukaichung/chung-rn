@@ -33,11 +33,12 @@ export default class Styles {
     static paddingXl= 21;
 
     static backgroundColorSelected = '#dadada';
-    static backgroundColorDisabled= '#dddddd';
 
     static textColor = '#b6b6b6';
     static headerColor = '#7a6b7a';
     static InverseTextColor= '#ffffff';
+    static disabledBackgroundColor = '#dddddd';
+    static disabledBorderColor = '#dadada';
     static disabledTextColor = '#bbbbbb';
 
     static fontSizeCaptionSm= 12;
