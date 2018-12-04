@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Text, StyleSheet,Image, View} from "react-native";
+import {Image, StyleSheet,View,Text} from "react-native";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Styles from "../style";
 

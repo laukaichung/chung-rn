@@ -1,10 +1,12 @@
 import * as React from 'react';
-import {Image, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
+import {Image, StyleProp, StyleSheet, ViewStyle,} from 'react-native';
 import Carousel from '../carousel';
 import Styles from "../style";
 import {ReactNode} from "react";
 import Flex from "../flex/Flex";
 import ScreenUtil from "../util/ScreenUtil";
+import ChungView from "../chung-view";
+import ChungText from "../chung-text";
 
 interface DataItem {
     icon?: any;
@@ -65,7 +67,7 @@ export default class Grid extends React.Component<GridProps, any> {
                     ) : (
                         <Image source={{uri: dataItem.icon}} style={styles.icon}/>
                     )}
-                    <Text style={styles.text}>{dataItem.text}</Text>
+                    <ChungText style={styles.text}>{dataItem.text}</ChungText>
                 </Flex>
             ));
 
@@ -137,7 +139,7 @@ export default class Grid extends React.Component<GridProps, any> {
                     }
                 }
                 pagesArr.push(
-                    <View
+                    <ChungView
                         key={pageIndex}
                         style={[
                             styles.grayBorderBox,
@@ -145,7 +147,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         ]}
                     >
                         {pageRows}
-                    </View>,
+                    </ChungView>,
                 );
             }
         }

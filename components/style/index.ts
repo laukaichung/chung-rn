@@ -1,6 +1,14 @@
 import {ViewStyle} from "react-native";
 
+type ThemeMode = "dark"|"light"
+
 export default class Styles {
+
+    static mode:ThemeMode;
+
+    static get isDarkMode(){
+        return this.mode === "dark";
+    }
 
     static get primaryColorDark() {
         return '#0f6db8'
@@ -60,7 +68,9 @@ export default class Styles {
 
     static borderWidth = 1;
 
-    static backgroundColor = '#ffffff';
+    static get backgroundColor(){
+        return this.isDarkMode ? '#555059': '#ffffff'
+    };
 
     static buttonHeight= 47;
     static buttonFontSize= 18;

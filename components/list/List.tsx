@@ -3,6 +3,7 @@ import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, Text,ViewStyle} from 'react-native';
 import Styles from "../style";
 import ListItem from "./ListItem";
+import ChungText from "../chung-text";
 
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
@@ -25,7 +26,7 @@ export default class List extends React.Component<ListProps, any> {
                 {
                     headerTitle &&
                     <View style={[styles.headerTitleContainer,headerTitleContainerStyle]}>
-                        <Text style={styles.headerTitle}>{headerTitle}</Text>
+                        <ChungText style={styles.headerTitle}>{headerTitle}</ChungText>
                     </View>
                 }
                 <View style={styles.body}>

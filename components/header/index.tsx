@@ -1,6 +1,7 @@
 import * as React from 'react'
-import {StyleSheet, Text} from 'react-native'
+import {StyleSheet} from 'react-native'
 import Styles from "../style";
+import ChungText from "../chung-text";
 
 interface HeaderProps {
     content: string
@@ -10,10 +11,9 @@ interface HeaderProps {
 
 export const Header = ({content,center,marginVertical}: HeaderProps) => {
     return (
-        <React.Fragment>
-            <Text style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin * 2}]}>{content}</Text>
-        </React.Fragment>
-
+        <ChungText style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin * 2}]}>
+            {content}
+        </ChungText>
     )
 };
 
