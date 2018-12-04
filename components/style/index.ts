@@ -1,10 +1,10 @@
 import {ViewStyle} from "react-native";
 
-type ThemeMode = "dark"|"light"
+export type ChungThemeTypes = "dark"|"light"
 
 export default class Styles {
 
-    static mode:ThemeMode;
+    static mode:ChungThemeTypes;
 
     static get isDarkMode(){
         return this.mode === "dark";
@@ -12,6 +12,10 @@ export default class Styles {
 
     static get primaryColorDark() {
         return '#0f6db8'
+    }
+
+    static get primaryColorLight(){
+        return '#b6e3f9';
     }
 
     static brandImportant = '#ff5b05';
@@ -42,9 +46,18 @@ export default class Styles {
 
     static backgroundColorSelected = '#dadada';
 
-    static textColor = '#b6b6b6';
-    static headerColor = '#7a6b7a';
+    static get backgroundColor(){
+        return this.isDarkMode ? '#555059': '#ffffff'
+    };
+
+    static get textColor(){
+        return this.isDarkMode ? '#ffffff':'#b6b6b6'
+    };
+    static get headerColor(){
+        return this.isDarkMode? this.primaryColorLight:'#7a6b7a'
+    };
     static InverseTextColor= '#ffffff';
+
     static disabledBackgroundColor = '#dddddd';
     static disabledBorderColor = '#dadada';
     static disabledTextColor = '#bbbbbb';
@@ -68,9 +81,8 @@ export default class Styles {
 
     static borderWidth = 1;
 
-    static get backgroundColor(){
-        return this.isDarkMode ? '#555059': '#ffffff'
-    };
+
+
 
     static buttonHeight= 47;
     static buttonFontSize= 18;

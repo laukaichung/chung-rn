@@ -1,7 +1,9 @@
 import * as React from 'react';
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {ReactNode} from 'react';
+import {StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
 import Styles from "../style";
-import {ReactNode} from "react";
+import ChungView from "../chung-view";
+import ChungText from "../chung-text";
 
 export interface CardFooterProps {
     style?: StyleProp<ViewStyle>;
@@ -11,30 +13,28 @@ export interface CardFooterProps {
 
 export default class CardFooter extends React.Component<CardFooterProps, any> {
     public render() {
-
         const {content, extra, style = {}, ...restProps} = this.props;
         const contentDom =
             content !== undefined && React.isValidElement(content) ? (
-                <View style={styles.contentContainer}>{content}</View>
+                <ChungView style={styles.contentContainer}>{content}</ChungView>
             ) : (
-                <Text style={styles.textContent}>{content}</Text>
+                <ChungText style={styles.textContent}>{content}</ChungText>
             );
 
         const extraDom =
             extra !== undefined && React.isValidElement(extra) ? (
-                <View style={styles.extraContainer}>{extra}</View>
+                <ChungView style={styles.extraContainer}>{extra}</ChungView>
             ) : (
-                <Text style={[styles.extraText]}>{extra}</Text>
+                <ChungText style={[styles.extraText]}>{extra}</ChungText>
             );
 
         return (
-            <View style={[styles.footerContainer, style]} {...restProps}>
+            <ChungView style={[styles.footerContainer, style]} {...restProps}>
                 {contentDom}
                 {extra && extraDom}
-            </View>
+            </ChungView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
     textContent: {
         flex: 1,
         fontSize: Styles.fontSize,
-        color: Styles.textColor,
+        //color: Styles.textColor,
     },
     extraText: {
         textAlign: 'right',
         fontSize: Styles.fontSize,
-        color: Styles.textColor,
+        //color: Styles.textColor,
     },
 });
