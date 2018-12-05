@@ -16,6 +16,7 @@ export default class Card extends React.Component<CardProps, any> {
     static Header = CardHeader;
     static Body = CardBody;
     static Footer = CardFooter;
+
     public render() {
         const {style = {}, full = false, children,marginVertical = true,...restProps} = this.props;
         const cardStyle = full ? styles.full : {};
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
         borderRadius: Styles.radiusMd,
         paddingBottom: Styles.paddingSm,
         flexDirection: 'column',
-        backgroundColor: Styles.backgroundColor,
     },
     full: {
         borderRadius: 0,

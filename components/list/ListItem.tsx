@@ -196,8 +196,6 @@ const styles = StyleSheet.create({
         paddingRight: Styles.padding,
         paddingVertical: Styles.paddingLg,
         minHeight: Styles.listItemHeight,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: Styles.borderColor,
     },
     thumb: {
         width: Styles.iconSizeMd,
@@ -217,6 +215,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingLeft: Styles.padding,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: Styles.borderColor,
     },
     arrow: {
         width: 8,

@@ -1,10 +1,15 @@
 import * as React from 'react'
 import {View, ViewProps} from "react-native";
 import Styles from "../style";
+import {ReactNode} from "react";
 
-const ChungView = (props:ViewProps)=>{
+interface ChungViewProps extends ViewProps{
+    children:ReactNode
+}
+
+const ChungView = (props:ChungViewProps)=>{
     return (
-        <View {...props} style={[{backgroundColor:Styles.backgroundColor},props.style]}/>
+        <View {...props}/>
     )
 };
 

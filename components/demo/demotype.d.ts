@@ -1,14 +1,7 @@
-export interface RNScreenProps {
-    navigation:RNNavigationProps;
+import {NavigationScreenProp} from "react-navigation";
 
+export interface NavigationProps<Parameters = any,State = Object> {
+    navigation:NavigationScreenProp<State,Parameters>
 }
 
-interface RNNavigationProps {
-    navigate:(screen:string,params?:Object)=>void;
-    getParam:(key:string,defaultVal:any)=>void
-    goBack:()=>void;
-    state:{
-        params:any
-    }
-}
 

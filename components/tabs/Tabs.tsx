@@ -5,6 +5,7 @@ import {
 } from 'rmc-tabs/lib/index.native';
 import {Models, PropsType} from 'rmc-tabs';
 import Styles from "../style";
+import ThemeContext from "../theme-provider/ThemeContext";
 
 interface TabsProps extends PropsType {
     /** render for replace the tab of tabbar. */
@@ -13,72 +14,85 @@ interface TabsProps extends PropsType {
 
 export default class Tabs extends React.PureComponent<TabsProps, {}> {
     public static DefaultTabBar = RMCDefaultTabBar;
+    static defaultProps = {};
 
-    static defaultProps = {tabBarPosition:"bottom"} as TabsProps;
-
-    renderTabBar = (props: any) => {
-        const {renderTab} = this.props;
-        return (
-            <RMCDefaultTabBar
-                styles={[styles]}
-                {...props}
-                renderTab={renderTab}
-            />
-        );
-    }
+    // renderTabBar = (props: any) => {
+    //     const { renderTab } = this.props;
+    //     return (
+    //
+    //     );
+    // };
 
     render() {
+        const { renderTab } = this.props;
         return (
-            <RMCTabs
-                styles={styles as any}
-                renderTabBar={this.renderTabBar}
-                {...this.props}
-            />
-        );
+            <ThemeContext.Consumer>
+                {
+                    ({isDarkMode})=>{
+                        const tabStyles = {
+                            Tabs: {
+                                container: {
+                                    flex: 1,
+                                },
+                                topTabBarSplitLine: {
+                                    borderBottomColor: Styles.primaryColor,
+                                    borderBottomWidth: 1,
+                                },
+                                bottomTabBarSplitLine: {
+                                    borderTopColor: Styles.primaryColor,
+                                    borderTopWidth: 1,
+                                },
+                            },
+                            TabBar: {
+                                container: {},
+                                tabs: {
+                                    flex: 1,
+                                    flexDirection: 'row',
+                                    backgroundColor: Styles.backgroundColor,
+                                    justifyContent: 'space-around',
+                                    shadowRadius: 0,
+                                    shadowOpacity: 0,
+                                    elevation: 0,
+                                },
+                                tab: {
+                                    height: 42,
+                                    backgroundColor: Styles.backgroundColor,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: 0,
+                                    flexDirection: 'row',
+                                },
+                                underline: {
+                                    height: 2,
+                                    backgroundColor: Styles.primaryColor,
+                                },
+                                textStyle: {
+                                    fontSize: 15,
+                                },
+                                activeTextColor: Styles.primaryColor,
+                                inactiveTextColor: Styles.disabledTextColor,
+                            },
+                        };
+
+                        return (
+                            <RMCTabs
+                                styles={tabStyles as any}
+                                renderTabBar={(props)=>{
+                                    return <RMCDefaultTabBar
+                                        styles={tabStyles as any}
+                                        {...props}
+                                        renderTab={renderTab}
+                                    />
+                                }}
+                                {...this.props}
+                            />
+                        );
+                    }
+                }
+            </ThemeContext.Consumer>
+        )
+
     }
 }
 
-const styles = {
-    Tabs: {
-        container: {
-            flex: 1,
-            backgroundColor:Styles.backgroundColor
-        },
-        topTabBarSplitLine: {
-            borderBottomColor: Styles.borderColor,
-            borderBottomWidth: 1,
-        },
-        bottomTabBarSplitLine: {
-            borderTopColor: Styles.borderColor,
-            borderTopWidth: 1,
-        },
-    },
-    TabBar: {
-        container: {},
-        tabs: {
-            flex: 1,
-            flexDirection: 'row',
-            backgroundColor: Styles.backgroundColor,
-            justifyContent: 'space-around',
-            shadowRadius: 0,
-            shadowOpacity: 0,
-            elevation: 0,
-        },
-        tab: {
-            height: 42,
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-            flexDirection: 'row',
-        },
-        underline: {
-            height: 2,
-            backgroundColor: Styles.brandPrimary,
-        },
-        textStyle: {
-            fontSize: 15,
-        },
-        activeTextColor: Styles.brandPrimary,
-        inactiveTextColor: Styles.textBaseColor,
-    },
-};
+

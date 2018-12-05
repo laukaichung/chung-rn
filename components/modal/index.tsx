@@ -6,6 +6,7 @@ import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Header from "../header";
 import ChungView from "../chung-view";
+import ThemeContext from "../theme-provider/ThemeContext";
 
 interface ModalCallback {
     closeModal: () => void;
@@ -16,7 +17,7 @@ export interface ModalProps {
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
-    paddingHorizontal?:boolean;
+    paddingHorizontal?: boolean;
 }
 
 interface CustomModalCoreProps extends ModalProps {
@@ -42,7 +43,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     public render() {
         const {props, state} = this;
         const {isVisible} = state;
-        const {children, title, nonButtonTrigger, paddingHorizontal = true,fullScreen, buttonTrigger} = props;
+        const {children, title, nonButtonTrigger, paddingHorizontal = true, fullScreen, buttonTrigger} = props;
         return (
             <React.Fragment>
                 {
@@ -55,17 +56,27 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                 {
                     isVisible &&
                     <RNModal onBackButtonPress={this._closeModal}
-                           style={fullScreen && {margin: 0}}
-                           supportedOrientations={['portrait', 'landscape']}
-                           isVisible={isVisible}
-                           onBackdropPress={this._closeModal}
+                             style={fullScreen && {margin: 0}}
+                             supportedOrientations={['portrait', 'landscape']}
+                             isVisible={isVisible}
+                             onBackdropPress={this._closeModal}
                     >
                         {
-                            isVisible ?
-                                <ChungView style={[styles.container,paddingHorizontal && {paddingHorizontal:Styles.padding}]}>
-                                    {title && <Header center marginVertical content={title}/>}
-                                    {children({closeModal: this._closeModal})}
-                                </ChungView> : <ChungView/>
+                            isVisible &&
+                            <ThemeContext.Consumer>
+                                {
+                                    ({isDarkMode})=>
+                                    <ChungView style={
+                                        [
+                                            styles.container,
+                                            paddingHorizontal && {paddingHorizontal: Styles.padding},
+                                            {backgroundColor: Styles.modalBackgroundColor}
+                                        ]}>
+                                        {title && <Header center marginVertical content={title}/>}
+                                        {children({closeModal: this._closeModal})}
+                                    </ChungView>
+                                }
+                            </ThemeContext.Consumer>
                         }
                     </RNModal>
                 }
@@ -105,8 +116,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Styles.backgroundColor,
         minHeight: 100,
-        paddingVertical:Styles.padding
+        paddingVertical: Styles.padding
     },
 });

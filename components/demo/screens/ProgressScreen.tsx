@@ -1,18 +1,16 @@
 import * as React from 'react'
-import {View} from "react-native";
-import {RNScreenProps} from "../demotype";
+import {NavigationProps} from "../demotype";
 import Index from "../../progress";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
 
-interface Props extends RNScreenProps {
 
-}
-
-export class ProgressScreen extends React.Component<Props> {
+export class ProgressScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <View>
+            <ThemeContainer>
                 <Index percentage={80} barColor="red" />
-            </View>
+                <Index percentage={60} barColor="red" />
+            </ThemeContainer>
         )
     }
 }

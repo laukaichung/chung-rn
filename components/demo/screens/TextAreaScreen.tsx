@@ -1,28 +1,28 @@
 import * as React from 'react'
-import {View,Text} from "react-native";
-import {RNScreenProps} from "../demotype";
+import {NavigationProps} from "../demotype";
 import List from "../../list/List";
 import TextAreaItem from "../../textarea-item";
+import InputItem from "../../input-item";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
+import ChungText from "../../chung-text";
 
-interface Props extends RNScreenProps {
 
-}
-
-export class TextAreaScreen extends React.Component<Props> {
+export class TextAreaScreen extends React.Component<NavigationProps> {
     public render() {
         return (
-            <View>
+            <ThemeContainer>
                 <List>
                     <List.Item>
-                        <Text>Hello</Text>
+                        <ChungText>Hello</ChungText>
                     </List.Item>
                     <TextAreaItem last
-                                  placeholder={`Enter Here`}
+                                  placeholder={`Enter here`}
                                   rows={5}
                                   count={40}
                                   onChange={(val)=>console.log(val)}/>
+                    <InputItem label={"Input"} placeholder={"Enter here"}/>
                 </List>
-            </View>
+            </ThemeContainer>
         )
     }
 }

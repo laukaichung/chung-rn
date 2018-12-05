@@ -1,16 +1,12 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
-import {View, Text} from 'react-native'
 import Grid from "../../grid";
+import {NavigationProps} from "../demotype";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
 
-interface GridScreenProps extends RNScreenProps {
-
-}
-
-export class GridScreen extends React.Component<GridScreenProps> {
+export class GridScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <View>
+            <ThemeContainer>
                 <Grid
                     isCarousel
                     carouselMaxRow={1}
@@ -54,7 +50,7 @@ export class GridScreen extends React.Component<GridScreenProps> {
                         }
                         ]}
                 />
-            </View>
+            </ThemeContainer>
         )
     }
 }

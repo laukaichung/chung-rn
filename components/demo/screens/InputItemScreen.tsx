@@ -1,33 +1,32 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
+import {NavigationProps} from "../demotype";
 import InputItem from "../../input-item";
 import List from "../../list/List";
-import {Text} from 'react-native'
 import CheckboxItem from "../../checkbox/CheckboxItem";
 import RadioItem from "../../radio/RadioItem";
 import DateTimePickerModal from "../../date-time-picker-modal";
 import TextAreaItem from "../../textarea-item";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
 
-interface InputItemScreenProps extends RNScreenProps {
 
-}
-
-export class InputItemScreen extends React.Component<InputItemScreenProps> {
+export class InputItemScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <List>
-                <InputItem label={"Input"}
-                           error
-                           extra={<Text>Hello</Text>}
-                           placeholder={"Some Holder"}/>
-                <TextAreaItem rows={2} label="Text Area"/>
-                <CheckboxItem label={"Checkbox"}/>
-                <RadioItem label={"Radio"}/>
-                <DateTimePickerModal
-                    label={"Select Date"}
-                    onCancel={()=>console.log('cancel')}
-                    onConfirm={(date)=>console.log({date})}/>
-            </List>
+            <ThemeContainer>
+                <List>
+                    <InputItem label={"Input"}
+                               error
+                               extra={"Hello"}
+                               placeholder={"Some Holder"}/>
+                    <TextAreaItem rows={2} label="Text Area"/>
+                    <CheckboxItem label={"Checkbox"}/>
+                    <RadioItem label={"Radio"}/>
+                    <DateTimePickerModal
+                        label={"Select Date"}
+                        onCancel={() => console.log('cancel')}
+                        onConfirm={(date) => console.log({date})}/>
+                </List>
+            </ThemeContainer>
         )
     }
 }

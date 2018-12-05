@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "../style";
-import ChungView from "../chung-view";
 
 export interface CardBodyProps {
   style?: StyleProp<ViewStyle>;
@@ -11,7 +10,7 @@ export interface CardBodyProps {
 export default class CardBody extends React.Component<CardBodyProps, any> {
   public render() {
     const { style = {},padding, ...restProps } = this.props;
-    return <ChungView style={[styles.body, style,padding && {padding:Styles.padding}]} {...restProps} />;
+    return <View style={[styles.body, style,padding && {padding:Styles.padding}]} {...restProps} />;
   }
 }
 

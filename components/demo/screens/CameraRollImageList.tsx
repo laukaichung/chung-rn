@@ -1,20 +1,20 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
 import CameraRollList from "../../camera-roll-image-list";
 import {View} from "react-native";
 import Button from "../../button";
 import {RefObject} from "react";
 import {CameraRollFile} from "../../type";
+import {NavigationProps} from "../demotype";
 
-interface Props extends RNScreenProps {
-    params: { onConfirm: (files:CameraRollFile[]) => void }
+interface Props {
+    onConfirm: (files:CameraRollFile[]) => void
 }
 
 interface State {
 
 }
 
-export class CameraRollImageList extends React.Component<Props, State> {
+export class CameraRollImageList extends React.Component<NavigationProps<Props>, State> {
     private ref:RefObject<CameraRollList>;
     constructor(props) {
         super(props);

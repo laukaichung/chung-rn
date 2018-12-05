@@ -5,7 +5,6 @@ import {
     Image,
     Platform,
     StyleSheet,
-    Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
     View,
@@ -16,6 +15,8 @@ import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
+import ThemeContext from "../theme-provider/ThemeContext";
+import ChungText from "../chung-text";
 
 type InputEventHandler = (value?: string) => void;
 
@@ -30,7 +31,7 @@ export type KeyboardType =
     | 'bankCard'
 
 
-export interface InputItemProps extends ListItemCommonProps{
+export interface InputItemProps extends ListItemCommonProps {
     last?: boolean;
     label: string;
     onExtraClick?: (event: GestureResponderEvent) => void;
@@ -109,10 +110,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         }
 
         const extraStyle = {
-            width:
-                typeof extra === 'string' && (extra as string).length > 0
-                    ? (extra as string).length * Styles.HeaderFontSize
-                    : 0,
+            width: typeof extra === 'string' && (extra as string).length > 0 ? (extra as string).length * 10 : 0,
         };
 
         if (type === "bankCard") {
@@ -120,57 +118,68 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         }
 
         return (
-            <List.Item multipleLine disableBorder={disableBorder}>
-                {label && <Label content={label}/>}
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Input
-                        clearButtonMode={clear ? 'while-editing' : 'never'}
-                        underlineColorAndroid="transparent"
-                        ref={this.inputRef}
-                        {...restProps}
-                        {...valueProps}
-                        style={[styles.input, error && styles.inputErrorColor]}
-                        keyboardType={type}
-                        onChange={event => this._onChange(event.nativeEvent.text)}
-                        secureTextEntry={type === 'password'}
-                        onBlur={this._onInputBlur}
-                        onFocus={this._onInputFocus}
-                    />
-                    {(editable && clear && value && Platform.OS === 'android') ? (
-                        <TouchableOpacity
-                            style={[styles.clear]}
-                            onPress={this._onInputClear}
-                            hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
-                        >
-                            <Image
-                                source={require('../../images/cross_w.png')}
-                                style={{width: 12, height: 12}}
-                            />
-                        </TouchableOpacity>
-                    ) : null}
-                    {extra ? (
-                        <TouchableWithoutFeedback onPress={onExtraClick}>
-                            <View>
-                                {typeof extra === 'string' ? (
-                                    <Text style={[styles.extra, extraStyle]}>{extra}</Text>
-                                ) : (
-                                    extra
-                                )}
-                            </View>
-                        </TouchableWithoutFeedback>
-                    ):null}
-                    {error ? (
-                        <TouchableWithoutFeedback onPress={onErrorClick}>
-                            <View style={[styles.errorIconContainer]}>
-                                <Image
-                                    source={require('../../images/error.png')}
-                                    style={styles.errorIcon as any}
+            <ThemeContext.Consumer>
+                {
+                    () =>
+                        <List.Item multipleLine disableBorder={disableBorder}>
+                            {
+                                label && <Label marginVertical text={label}/>
+                            }
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Input
+                                    placeholderTextColor={Styles.placeholderTextColor}
+                                    clearButtonMode={clear ? 'while-editing' : 'never'}
+                                    underlineColorAndroid="transparent"
+                                    ref={this.inputRef}
+                                    {...restProps}
+                                    {...valueProps}
+                                    style={[
+                                        styles.input,
+                                        {color: Styles.textColor, backgroundColor: Styles.inputAreaBackgroundColor},
+                                        error && styles.inputErrorColor]}
+                                    keyboardType={type}
+                                    onChange={event => this._onChange(event.nativeEvent.text)}
+                                    secureTextEntry={type === 'password'}
+                                    onBlur={this._onInputBlur}
+                                    onFocus={this._onInputFocus}
                                 />
+                                {(editable && clear && value && Platform.OS === 'android') ? (
+                                    <TouchableOpacity
+                                        style={[styles.clear]}
+                                        onPress={this._onInputClear}
+                                        hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
+                                    >
+                                        <Image
+                                            source={require('../../images/cross_w.png')}
+                                            style={{width: 12, height: 12}}
+                                        />
+                                    </TouchableOpacity>
+                                ) : null}
+                                {extra ? (
+                                    <TouchableWithoutFeedback onPress={onExtraClick}>
+                                        <View>
+                                            {typeof extra === 'string' ? (
+                                                <ChungText style={[styles.extra, extraStyle]}>{extra}</ChungText>
+                                            ) : (
+                                                extra
+                                            )}
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                ) : null}
+                                {error ? (
+                                    <TouchableWithoutFeedback onPress={onErrorClick}>
+                                        <View style={[styles.errorIconContainer]}>
+                                            <Image
+                                                source={require('../../images/error.png')}
+                                                style={styles.errorIcon as any}
+                                            />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                ) : null}
                             </View>
-                        </TouchableWithoutFeedback>
-                    ):null}
-                </View>
-            </List.Item>
+                        </List.Item>
+                }
+            </ThemeContext.Consumer>
         );
     }
 
@@ -249,7 +258,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'transparent',
         fontSize: Styles.inputFontSize,
-        color: Styles.inputFontColor,
     },
     inputErrorColor: {
         color: '#f50',

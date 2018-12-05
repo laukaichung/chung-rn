@@ -1,7 +1,18 @@
 import * as React from 'react';
-import {ActivityIndicator, StyleProp, StyleSheet, Text, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
-import buttonStyle from './buttonStyles';
-import {CustomTouchableHighlight} from "../custom-touchable-highlight";
+import {
+    ActivityIndicator,
+    StyleProp,
+    StyleSheet,
+    Text,
+    TextStyle,
+    TouchableHighlight,
+    TouchableHighlightProps,
+    View,
+    ViewStyle,
+} from 'react-native';
+import buttonStyles from './buttonStyles';
+import Styles from "../style";
+import {ThemeContext} from "../theme-provider/ThemeContext";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
@@ -12,11 +23,9 @@ export interface ButtonProps extends TouchableHighlightProps {
     loading?: boolean;
 }
 
-const buttonStyles = StyleSheet.create<any>(buttonStyle);
-
 interface State {
-    pressIn:boolean,
-    touchIt:boolean
+    pressIn: boolean,
+    touchIt: boolean
 }
 
 export default class Button extends React.Component<ButtonProps, State> {
@@ -34,29 +43,31 @@ export default class Button extends React.Component<ButtonProps, State> {
             size = 'large',
             type = 'default',
             disabled,
+            children,
+            style,
             activeStyle,
             onPress,
-            style,
             loading,
             ...restProps
         } = this.props;
 
-        const textStyle = [
-            buttonStyles[`${size}RawText`],
-            buttonStyles[`${type}RawText`],
-            disabled && buttonStyles[`${type}DisabledRawText`],
-            this.state.pressIn && buttonStyles[`${type}HighlightText`],
-        ];
+        let {pressIn} = this.state;
 
-        const wrapperStyle = [
-            buttonStyles.wrapperStyle,
-            buttonStyles[`${size}Raw`],
-            buttonStyles[`${type}Raw`],
-            disabled && buttonStyles[`${type}DisabledRaw`],
-            this.state.pressIn && activeStyle && buttonStyles[`${type}Highlight`],
-            activeStyle && this.state.touchIt && activeStyle,
-            style,
-        ];
+        // textStyle = [
+        //     buttonStyles[`${size}RawText`],
+        //     disabled && buttonStyles[`${type}DisabledRawText`],
+        //     this.state.pressIn && buttonStyles[`${type}HighlightText`],
+        // ];
+
+        // wrapperStyle = [
+        //     buttonStyles.wrapperStyle,
+        //     buttonStyles[`${size}Raw`],
+        //     buttonStyles[`${type}Raw`],
+        //     disabled && buttonStyles[`${type}DisabledRaw`],
+        //     this.state.pressIn && activeStyle && buttonStyles[`${type}Highlight`],
+        //     activeStyle && this.state.touchIt && activeStyle,
+        //     style,
+        // ];
 
         const indicatorColor = (StyleSheet.flatten(
             this.state.pressIn
@@ -65,29 +76,173 @@ export default class Button extends React.Component<ButtonProps, State> {
         ) as any).color;
 
         return (
-            <CustomTouchableHighlight
-                {...restProps}
-                style={wrapperStyle}
-                disabled={disabled}
-                activeOpacity={1}
-                onPress={(e?: any) => onPress && onPress(e)}
-                onPressIn={this._onPressIn}
-                onPressOut={this._onPressOut}
-                onShowUnderlay={this._onShowUnderlay}
-                onHideUnderlay={this._onHideUnderlay}
-            >
-                <View style={buttonStyles.container}>
-                    {loading ? (
-                        <ActivityIndicator
-                            style={buttonStyles.indicator}
-                            animating
-                            color={indicatorColor}
-                            size="small"
-                        />
-                    ) : null}
-                    <Text style={textStyle}>{this.props.children}</Text>
-                </View>
-            </CustomTouchableHighlight>
+
+            <ThemeContext.Consumer>
+                {
+                    ({isDarkMode}) => {
+
+                        let textStyle:TextStyle[] = [
+                            {fontSize: size === "small" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
+                        ];
+
+                        let wrapperStyle: ViewStyle[] = [{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: Styles.radiusMd,
+                            borderWidth: 1,
+                        }];
+
+                        if (size === "large") {
+                            wrapperStyle.push({
+                                height: Styles.buttonHeight,
+                                paddingVertical: Styles.paddingLg
+                            })
+                        } else {
+                            wrapperStyle.push({
+                                height: Styles.buttonHeightSm,
+                                paddingVertical: Styles.paddingSm
+                            })
+                        }
+
+
+                        if (type === "primary") {
+
+                            wrapperStyle.push({
+                                backgroundColor: isDarkMode?"#0d4480":Styles.primaryColorDark,
+                                borderColor: Styles.primaryColorDark,
+                            });
+
+                            textStyle.push({
+                                color: isDarkMode?Styles.primaryColorLight:"#ffffff"
+                            });
+
+                            if(pressIn){
+
+                                textStyle.push({
+                                    color: `${Styles.InverseTextColor}4D`
+                                });
+
+                                if(activeStyle){
+                                    wrapperStyle.push({
+                                        backgroundColor: Styles.primaryColor,
+                                        borderColor: Styles.primaryColor,
+                                    });
+                                }
+                            }
+
+                            if (disabled) {
+
+                                wrapperStyle.push({
+                                    backgroundColor: Styles.disabledBackgroundColor,
+                                    borderColor: Styles.disabledBorderColor,
+                                });
+
+                                textStyle.push({
+                                    color: Styles.InverseTextColor
+                                })
+                            }
+
+                        } else if (type === "ghost") {
+
+                            wrapperStyle.push({
+                                backgroundColor: 'transparent',
+                                borderColor: Styles.primaryColor,
+                            });
+
+                            textStyle.push({
+                                color: Styles.primaryColor
+                            });
+
+                            if(pressIn) {
+
+                                textStyle.push({
+                                    color: `${Styles.InverseTextColor}4D`
+                                });
+
+                                if (activeStyle) {
+
+                                    wrapperStyle.push({
+                                        backgroundColor: 'transparent',
+                                        borderColor: Styles.primaryColor,
+                                    })
+
+                                }
+                            }
+
+                            if (disabled) {
+
+                                wrapperStyle.push({
+                                    borderColor: `${Styles.textBaseColor}1A`, // alpha 10%  https://codepen.io/chriscoyier/pen/XjbzAW
+                                });
+
+                                textStyle.push({
+                                    color: Styles.disabledTextColor
+                                })
+                            }
+
+                        } else if (type === "default") {
+
+                            textStyle.push({
+                                color: Styles.textColor,
+                            });
+
+                            wrapperStyle.push({
+                                backgroundColor: Styles.backgroundColor,
+                                borderColor: Styles.borderColor,
+                            });
+
+                            if (pressIn) {
+
+                                textStyle.push({
+                                    color: Styles.textBaseColor
+                                });
+
+                                if(activeStyle){
+                                    wrapperStyle.push({
+                                        backgroundColor: Styles.backgroundColor,
+                                        borderColor: Styles.borderColor,
+                                    });
+                                }
+                            }
+
+                            if (disabled) {
+                                wrapperStyle.push({
+                                    backgroundColor: Styles.disabledBackgroundColor,
+                                    borderColor: Styles.disabledBorderColor,
+                                })
+                            }
+                        }
+
+                        wrapperStyle.push(style as any);
+
+                        return (
+                            <TouchableHighlight
+                                {...restProps}
+                                style={wrapperStyle}
+                                disabled={disabled}
+                                activeOpacity={1}
+                                onPress={(e?: any) => onPress && onPress(e)}
+                                onPressIn={this._onPressIn}
+                                onPressOut={this._onPressOut}
+                                onShowUnderlay={this._onShowUnderlay}
+                                onHideUnderlay={this._onHideUnderlay}
+                            >
+                                <View style={buttonStyles.container}>
+                                    {loading ? (
+                                        <ActivityIndicator
+                                            style={buttonStyles.indicator}
+                                            animating
+                                            color={indicatorColor}
+                                            size="small"
+                                        />
+                                    ) : null}
+                                    <Text style={textStyle}>{children}</Text>
+                                </View>
+                            </TouchableHighlight>
+                        )
+                    }
+                }
+            </ThemeContext.Consumer>
         );
     }
 

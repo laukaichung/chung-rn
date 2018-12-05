@@ -1,18 +1,14 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
+import {NavigationProps} from "../demotype";
 import ImagePickerModal from "../../image-picker-modal";
 import List from "../../list/List";
 import {CameraRollFile} from "../../type";
-
-interface Props extends RNScreenProps {
-
-}
 
 interface State {
     images: CameraRollFile[]
 }
 
-export class ImagePickerItemModalScreen extends React.Component<Props, State> {
+export class ImagePickerItemModalScreen extends React.Component<NavigationProps, State> {
 
     constructor(props) {
         super(props);

@@ -1,17 +1,12 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
+import {NavigationProps} from "../demotype";
 import {Text} from 'react-native'
 import {Toast} from "../../index";
 
-interface Props extends RNScreenProps {
-
-}
-
-export class ToastScreen extends React.Component<Props> {
+export class ToastScreen extends React.Component<NavigationProps> {
     public render() {
         return (
             <Text>Hello</Text>
-
         )
     }
 

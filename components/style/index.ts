@@ -1,6 +1,7 @@
-import {ViewStyle} from "react-native";
+import {TextStyle, ViewStyle} from "react-native";
 
 export type ChungThemeTypes = "dark"|"light"
+
 
 export default class Styles {
 
@@ -10,12 +11,20 @@ export default class Styles {
         return this.mode === "dark";
     }
 
-    static get primaryColorDark() {
-        return '#0f6db8'
+    static get placeholderTextColor(){
+        return "#a3a3a3"
     }
 
-    static get primaryColorLight(){
-        return '#b6e3f9';
+    static get inputAreaBackgroundColor(){
+        return this.isDarkMode? "#2e2e2e":"#ffffff"
+    }
+
+    static primaryColorDark = '#0f62a8';
+
+    static primaryColorLight = '#108ee9';
+
+    static get primaryColor() {
+        return this.isDarkMode?this.primaryColorDark:this.primaryColorLight
     }
 
     static brandImportant = '#ff5b05';
@@ -28,18 +37,36 @@ export default class Styles {
     static iconColorBase = '#cccccc';
 
     static get hintTextDefaultTextColor(){
-        return this.primaryColorDark
-    }
-
-    static get hintTextWarningTextColor(){
-        return this.isDarkMode?"#e88d41":"#d7c61f"
-    }
-
-    static get hintTextErrorTextColor(){
-        return "red"
+        return this.primaryColor
     }
 
     static textBaseColor = '#222222';
+
+    static get listHeaderContainerStyle():ViewStyle{
+        return {
+            padding:Styles.padding,
+            backgroundColor: this.isDarkMode?'#343c40':'#c6d2e2'
+        }
+    }
+
+    static get accordionHeaderContainerStyle():ViewStyle{
+        return {
+            backgroundColor:this.isDarkMode?'#343c40':'#c6d2e2',
+            borderBottomColor:this.isDarkMode?"#8ba1ab":"#b7c2d2",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 10,
+            borderBottomWidth: 1,
+        }
+    }
+
+    static get accordionHeaderTextColor():TextStyle{
+        return {
+            fontWeight: "bold",
+            fontSize: 20,
+            color: this.isDarkMode?"#b7c0c0":"#75779e"
+        }
+    }
 
     static marginXs = 3;
     static marginLg = 15;
@@ -59,20 +86,23 @@ export default class Styles {
     static backgroundColorSelected = '#dadada';
 
     static get backgroundColor(){
-        return this.isDarkMode ? '#555059': '#ffffff'
+        return this.isDarkMode ? '#1d1d1d': '#ffffff'
     };
 
     static get textColor(){
-        return this.isDarkMode ? '#ffffff':'#9e9e9e'
+        return this.isDarkMode ? '#ccc6c0':'#6d6d6d'
     };
+
     static get headerColor(){
-        return this.isDarkMode? this.primaryColorLight:'#7a6b7a'
+        return this.isDarkMode? "#aac6e3":'#7a6b7a'
     };
     static InverseTextColor= '#ffffff';
 
-    static disabledBackgroundColor = '#dddddd';
+    static disabledBackgroundColor = '#eaeaea';
     static disabledBorderColor = '#dadada';
-    static disabledTextColor = '#bbbbbb';
+    static get disabledTextColor(){
+        return this.isDarkMode?'#979797':'#cbcbcb'
+    };
 
     static fontSizeCaptionSm= 12;
 
@@ -89,12 +119,13 @@ export default class Styles {
 
     static toastZIndex= 1999;
 
-    static toastFill= 'rgba(0, 0, 0, .8)';
+    static get modalBackgroundColor(){
+        return this.isDarkMode?this.modalBackgroundColorDark:this.backgroundColor
+    }
+
+    static modalBackgroundColorDark= '#07233f';
 
     static borderWidth = 1;
-
-
-
 
     static buttonHeight= 47;
     static buttonFontSize= 18;
@@ -105,14 +136,14 @@ export default class Styles {
     static warningButtonBackgroundColor= '#d24747';
 
     static get borderColor() {
-        return '#bec5cc'
+        return this.isDarkMode?'#cacaca':'#8b9198'
     }
 
     static get iconButtonStyle() {
         return {
             width: this.iconSizeSm,
             height: this.iconSizeSm,
-            tintColor: this.primaryColorDark
+            tintColor: this.primaryColor
         }
     }
 

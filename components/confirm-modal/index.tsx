@@ -1,10 +1,12 @@
 import * as React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet} from 'react-native'
 import Modal, {ModalProps} from "../modal";
 import WhiteSpace from "../white-space";
 import Flex from "../flex/Flex";
 import Button from "../button";
 import Styles from "../style";
+import ChungText from "../chung-text";
+import ChungView from "../chung-view";
 
 interface ConfirmModalProps extends ModalProps{
     onConfirmClick: () => void;
@@ -15,11 +17,17 @@ interface ConfirmModalProps extends ModalProps{
 
 const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restProps}: ConfirmModalProps) => {
     return (
-        <Modal {...restProps} title={confirmTitle || `Are you sure?`}>
+        <Modal {...restProps}
+
+               title={confirmTitle || `Are you sure?`}>
             {
                 ({closeModal}) =>
-                    <View>
-                        {hint && <WhiteSpace><Text>{hint}</Text></WhiteSpace>}
+                    <ChungView>
+                        {hint && (
+                            <WhiteSpace>
+                                <ChungText>{hint}</ChungText>
+                            </WhiteSpace>
+                        )}
                         <Flex style={styles.footerContainer}>
                             <Flex.Item style={styles.cancelButton}>
                                 <Button
@@ -30,7 +38,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                                     Cancel
                                 </Button>
                             </Flex.Item>
-                            <Flex.Item style={styles.confirmButton}>
+                            <Flex.Item>
                                 <Button
                                     onPress={() => {
                                         onConfirmClick();
@@ -40,7 +48,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
                                 </Button>
                             </Flex.Item>
                         </Flex>
-                    </View>
+                    </ChungView>
             }
         </Modal>
     )
@@ -48,9 +56,6 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restP
 
 const styles = StyleSheet.create({
     cancelButton: {
-        marginLeft: 5
-    },
-    confirmButton: {
         marginRight: 5
     },
     footerContainer:{

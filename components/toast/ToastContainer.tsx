@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     },
     innerWrap: {
         alignItems: 'center',
-        backgroundColor: Styles.toastFill,
+        backgroundColor: Styles.modalBackgroundColorDark,
         minWidth: 100,
     },
     iconToast: {

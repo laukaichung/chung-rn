@@ -9,6 +9,8 @@ import {HintText} from "../hint-text";
 import Label from "../label";
 import WhiteSpace from "../white-space";
 import {ReactNode} from "react";
+import ChungText from "../chung-text";
+import ChungView from "../chung-view";
 
 export interface PickerModalProps extends ModalProps {
     data: PickerItem[];
@@ -43,12 +45,12 @@ export interface PickerOptionProps {
 export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
     return (
         <View style={Styles.centerItems}>
-            <Text style={{
+            <ChungText style={{
                 fontWeight: "bold",
                 color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.backgroundColorSelected : null
             }}>
                 {StringUtil.capitalize(option.text)}
-            </Text>
+            </ChungText>
         </View>
     )
 };
@@ -81,13 +83,13 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     <List.Item
                         multipleLine
                         arrow="horizontal">
-                        {customLabelElement || <Label content={label}/>}
+                        {customLabelElement || <Label text={label}/>}
                         {
                             displayValues.length > 0 &&
                             <WhiteSpace>
-                                <Text>
+                                <ChungText>
                                     {displayValues.join(' , ')}
-                                </Text>
+                                </ChungText>
                             </WhiteSpace>
                         }
                     </List.Item>

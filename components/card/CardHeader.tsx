@@ -63,8 +63,7 @@ const styles = StyleSheet.create({
     headerWrap: {
         flexDirection: 'row',
         paddingVertical: Styles.paddingSm,
-        paddingRight: Styles.padding,
-        marginLeft: Styles.margin,
+        paddingHorizontal: Styles.padding,
         alignItems: 'center',
         borderBottomWidth: Styles.borderWidth,
         borderColor: Styles.borderColor,
@@ -78,14 +77,12 @@ const styles = StyleSheet.create({
         marginRight: Styles.marginSm,
     },
     headerContent: {
-        color: Styles.textBaseColor,
         fontSize: Styles.HeaderFontSize,
         flex: 1,
     },
     headerExtra: {
         flex: 1,
         fontSize: Styles.HeaderFontSize,
-        color: Styles.textColor,
         textAlign: 'right',
     },
 });

@@ -42,7 +42,7 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
                 listItemStyle={style}
                 onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>
-                <Label content={label}/>
+                <Label text={label}/>
             </List.Item>
         );
     }

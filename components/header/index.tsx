@@ -11,7 +11,13 @@ interface HeaderProps {
 
 export const Header = ({content,center,marginVertical}: HeaderProps) => {
     return (
-        <ChungText style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin * 2}]}>
+        <ChungText
+            colors={{
+                light:Styles.primaryColorLight,
+                dark:Styles.primaryColorDark
+            }}
+            style={[styles.header,center && {textAlign:"center"},marginVertical && {marginVertical:Styles.margin * 2}]}
+        >
             {content}
         </ChungText>
     )
@@ -21,7 +27,6 @@ const styles = StyleSheet.create({
     header: {
         fontSize: Styles.HeaderFontSize,
         fontWeight: "bold",
-        color: Styles.headerColor,
     }
 });
 

@@ -1,19 +1,19 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
 import {View} from 'react-native'
 import ActivityIndicator from "../../activity-indicator";
+import {NavigationProps} from "../demotype";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
+import WhiteSpace from "../../white-space";
 
-interface ActivityIndicatorScreenProps extends RNScreenProps {
 
-}
-
-export class ActivityIndicatorScreen extends React.Component<ActivityIndicatorScreenProps> {
+export class ActivityIndicatorScreen extends React.Component<NavigationProps> {
     public render() {
         return (
-                <View style={{flex:1,justifyContent: "center"}}>
+                <ThemeContainer>
                     <ActivityIndicator color="red" toast text={"Loading"}/>
+                    <WhiteSpace/>
                     <ActivityIndicator color="red" text={"Loading"}/>
-                </View>
+                </ThemeContainer>
 
         )
     }

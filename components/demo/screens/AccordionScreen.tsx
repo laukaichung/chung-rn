@@ -1,45 +1,45 @@
 import * as React from 'react'
-import {Text, View} from 'react-native'
-import {RNScreenProps} from "../demotype";
 import Accordion from "../../accordion";
-interface AccordionScreenProps extends RNScreenProps{
+import {NavigationProps} from "../demotype";
+import Container from "../../theme-provider/ThemeContainer";
+import ChungText from "../../chung-text";
 
-}
-
-export class AccordionScreen extends React.Component<AccordionScreenProps>{
+export class AccordionScreen extends React.Component<NavigationProps> {
 
     render() {
         return (
-            <View>
+            <Container>
                 <Accordion
                     panes={[
                         {
-                            title:'Title A',
-                            render: ()=>{
+                            title: 'Title A ddsd',
+                            render: () => {
                                 return (
-                                    <Text>Pane A Content</Text>
+
+                                    <ChungText>Title A</ChungText>
+
                                 )
                             }
                         },
                         {
-                            title:'Title B',
-                            render: ()=>{
+                            title: 'Title B',
+                            render: () => {
                                 return (
-                                    <Text>Pane B Content</Text>
+                                    <ChungText>Title B</ChungText>
                                 )
                             }
                         },
                         {
-                            title:'Title C',
-                            render: ()=>{
+                            title: 'Title C',
+                            render: () => {
                                 return (
-                                    <Text>Pane C Content</Text>
+                                    <ChungText>Title C</ChungText>
                                 )
                             }
                         }
                     ]}
                     defaultIndices={[0]}/>
-            </View>
+            </Container>
         )
     }
 }

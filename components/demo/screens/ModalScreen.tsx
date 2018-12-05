@@ -1,24 +1,19 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
-import {View} from 'react-native'
 import Button from "../../button";
 import ConfirmModal from "../../confirm-modal";
-
-interface ModalScreenProps extends RNScreenProps {
-
-}
+import {NavigationProps} from "../demotype";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
 
 
-
-export class ModalScreen extends React.Component<ModalScreenProps> {
+export class ModalScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <View>
+            <ThemeContainer>
                 <ConfirmModal buttonTrigger={<Button>Confirm Button</Button>}
                               hint={"fsdj fksdsdfs dfdsffdsfsds fdsfd ds fdfs sf d"}
                               onConfirmClick={()=>alert('Confirmed')}>
                 </ConfirmModal>
-            </View>
+            </ThemeContainer>
         )
     }
 }

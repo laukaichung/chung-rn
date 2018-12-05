@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {ActivityIndicator as OriginalActivityIndicator, StyleSheet,Text, View} from 'react-native';
+import {ActivityIndicator as OriginalActivityIndicator, StyleSheet, View} from 'react-native';
 import Styles from "../style";
+import ChungText from "../chung-text";
 
 export interface ActivityIndicatorNativeProps {
     color?: string;
@@ -19,8 +20,9 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
     };
 
     public render() {
-        if (this.props.animating) {
-            return this.props.toast ? this._renderToast() : this._renderSpinner();
+        let {animating,toast} = this.props;
+        if (animating) {
+            return toast ? this._renderToast() : this._renderSpinner();
         }
         return null;
     }
@@ -32,7 +34,7 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
                 <View style={[styles.innerContainer, {height: 89}]}>
                     <View style={[styles.wrapper]}>
                         <OriginalActivityIndicator color="white" size="large"/>
-                        {text && <Text style={[styles.toast]}>{text}</Text>}
+                        {text && <ChungText style={[styles.toast]}>{text}</ChungText>}
                     </View>
                 </View>
             </View>
@@ -44,7 +46,7 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
         return (
             <View style={styles.spinner}>
                 <OriginalActivityIndicator color={color} size={size}/>
-                {text && <Text style={styles.tip}>{text}</Text>}
+                {text && <ChungText style={styles.tip}>{text}</ChungText>}
             </View>
         );
     }
@@ -73,10 +75,10 @@ const styles = StyleSheet.create({
         width: 89,
         height: 89,
         borderRadius: Styles.radiusSm,
-        backgroundColor: Styles.toastFill,
+        backgroundColor: Styles.modalBackgroundColorDark,
     },
     tip: {
-        color: Styles.textBaseColor,
+        // color: Styles.textBaseColor,
         fontSize: Styles.fontSize,
         marginLeft: Styles.margin,
     },

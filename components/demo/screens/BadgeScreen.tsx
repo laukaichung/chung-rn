@@ -1,14 +1,10 @@
 import * as React from 'react'
-import {RNScreenProps} from "../demotype";
 import {Text} from 'react-native'
 import List from "../../list/List";
 import Badge from "../../badge";
+import {NavigationProps} from "../demotype";
 
-interface BadgeScreenProps extends RNScreenProps {
-
-}
-
-export class BadgeScreen extends React.Component<BadgeScreenProps> {
+export class BadgeScreen extends React.Component<NavigationProps> {
     render() {
         return (
             <List>
