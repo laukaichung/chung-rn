@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {StyleProp, StyleSheet, View, Text,ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import Styles from "../style";
 import ListItem from "./ListItem";
 import ChungText from "../chung-text";
+import ChungView from "../chung-view";
 
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
@@ -15,31 +16,30 @@ export interface ListProps {
 
 export default class List extends React.Component<ListProps, any> {
     public static Item = ListItem;
-
     public render() {
         const {children, style, renderHeader, headerTitle,headerTitleContainerStyle,renderFooter, ...restProps} = this.props;
         return (
-            <View {...restProps as any} style={style}>
+            <ChungView {...restProps as any} style={style}>
                 {
                     renderHeader && renderHeader()
                 }
                 {
                     headerTitle &&
-                    <View style={[styles.headerTitleContainer,headerTitleContainerStyle]}>
+                    <ChungView style={[styles.headerTitleContainer,headerTitleContainerStyle]}>
                         <ChungText style={styles.headerTitle}>{headerTitle}</ChungText>
-                    </View>
+                    </ChungView>
                 }
-                <View style={styles.body}>
+                <ChungView style={styles.body}>
                     {children}
-                    <View style={[styles.bodyBottomLine]}/>
-                </View>
+                    <ChungView style={[styles.bodyBottomLine]}/>
+                </ChungView>
                 {
                     renderFooter &&
-                    <View style={styles.footer}>
+                    <ChungView style={styles.footer}>
                         {renderFooter()}
-                    </View>
+                    </ChungView>
                 }
-            </View>
+            </ChungView>
         );
     }
 }
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
 
     },
     body: {
-        backgroundColor: Styles.backgroundColor,
         borderTopWidth: StyleSheet.hairlineWidth,
         borderTopColor: Styles.borderColor,
     },

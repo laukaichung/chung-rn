@@ -20,7 +20,7 @@ export default class Tabs extends React.PureComponent<TabsProps, {}> {
         const {renderTab} = this.props;
         return (
             <RMCDefaultTabBar
-                styles={styles}
+                styles={[styles]}
                 {...props}
                 renderTab={renderTab}
             />
@@ -42,6 +42,7 @@ const styles = {
     Tabs: {
         container: {
             flex: 1,
+            backgroundColor:Styles.backgroundColor
         },
         topTabBarSplitLine: {
             borderBottomColor: Styles.borderColor,

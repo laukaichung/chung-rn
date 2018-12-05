@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import RNModal from "react-native-modal";
-import {Keyboard, StyleSheet, View} from 'react-native'
+import {Keyboard, StyleSheet} from 'react-native'
 import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Header from "../header";
+import ChungView from "../chung-view";
 
 interface ModalCallback {
     closeModal: () => void;
@@ -61,10 +62,10 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                     >
                         {
                             isVisible ?
-                                <View style={[styles.container,paddingHorizontal && {paddingHorizontal:Styles.padding}]}>
+                                <ChungView style={[styles.container,paddingHorizontal && {paddingHorizontal:Styles.padding}]}>
                                     {title && <Header center marginVertical content={title}/>}
                                     {children({closeModal: this._closeModal})}
-                                </View> : <View/>
+                                </ChungView> : <ChungView/>
                         }
                     </RNModal>
                 }

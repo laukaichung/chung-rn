@@ -1,15 +1,10 @@
 import * as React from 'react';
-import {
-    Image,
-    ImageURISource,
-    StyleProp,
-    StyleSheet,
-    Text,
-    View,
-    ViewStyle,
-} from 'react-native';
+import {ImageURISource, StyleProp, StyleSheet, ViewStyle,} from 'react-native';
 import Button from '../button';
 import Styles from "../style";
+import ChungView from "../chung-view";
+import ChungText from "../chung-text";
+import ChungImage from "../chung-image";
 
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
@@ -38,41 +33,41 @@ export default class Result extends React.Component<ResultNativeProps, any> {
 
         let imgContent: JSX.Element | null = null;
         if (img) {
-            imgContent = <View style={styles.imgWrap}>{img}</View>;
+            imgContent = <ChungView style={styles.imgWrap}>{img}</ChungView>;
         } else if (imgUrl) {
             imgContent = (
-                <View style={styles.imgWrap}>
-                    <Image
+                <ChungView style={styles.imgWrap}>
+                    <ChungImage
                         source={imgUrl as ImageURISource | ImageURISource[]}
                         style={styles.img as any}
                     />
-                </View>
+                </ChungView>
             );
         }
 
         return (
-            <View style={[styles.result, style]}>
+            <ChungView style={[styles.result, style]}>
                 {imgContent}
                 {title ? (
-                    <View style={styles.title}>
+                    <ChungView style={styles.title}>
                         {typeof title === 'string' ? (
-                            <Text style={styles.titleText}>{title}</Text>
+                            <ChungText style={styles.titleText}>{title}</ChungText>
                         ) : (
                             title
                         )}
-                    </View>
+                    </ChungView>
                 ) : null}
                 {message ? (
-                    <View style={styles.message}>
+                    <ChungView style={styles.message}>
                         {typeof message === 'string' ? (
-                            <Text style={styles.messageText}>{message}</Text>
+                            <ChungText style={styles.messageText}>{message}</ChungText>
                         ) : (
                             message
                         )}
-                    </View>
+                    </ChungView>
                 ) : null}
                 {buttonText ? (
-                    <View style={styles.buttonWrap}>
+                    <ChungView style={styles.buttonWrap}>
                         <Button
                             style={styles.button}
                             type={buttonType}
@@ -80,9 +75,9 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                         >
                             {buttonText}
                         </Button>
-                    </View>
+                    </ChungView>
                 ) : null}
-            </View>
+            </ChungView>
         );
     }
 }
@@ -91,7 +86,6 @@ const styles = StyleSheet.create({
     result: {
         alignItems: 'center',
         paddingVertical: Styles.paddingXl,
-        backgroundColor: Styles.backgroundColor,
         borderBottomColor: Styles.borderColor,
     },
     imgWrap: {
@@ -107,7 +101,6 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 21,
-        color: Styles.textBaseColor,
     },
     message: {
         marginTop: Styles.marginLg,
@@ -115,7 +108,6 @@ const styles = StyleSheet.create({
     },
     messageText: {
         fontSize: Styles.captionFontSize,
-        color: Styles.textColor,
     },
     buttonWrap: {
         flexDirection: 'row',

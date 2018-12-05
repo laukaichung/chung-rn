@@ -1,19 +1,19 @@
 import * as React from 'react';
 import {
-    Image,
     NativeSyntheticEvent,
     StyleSheet,
-    Text,
     TextInput,
     TextInputChangeEventData,
     TouchableWithoutFeedback,
-    View,
     ViewStyle,
 } from 'react-native';
 import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
+import ChungText from "../chung-text";
+import ChungView from "../chung-view";
+import ChungImage from "../chung-image";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -24,7 +24,7 @@ function fixControlledValue(value?: string) {
 
 export type TextAreaEventHandle = (val?: string) => void;
 
-export interface TextareaItemNativeProps extends ListItemCommonProps{
+export interface TextareaItemNativeProps extends ListItemCommonProps {
     last?: boolean;
     label?: string;
     onContentSizeChange?: (e: any) => void;
@@ -128,20 +128,20 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                 />
                 {error && (
                     <TouchableWithoutFeedback onPress={onErrorClick}>
-                        <View style={[styles.errorIconContainer]}>
-                            <Image
+                        <ChungView style={[styles.errorIconContainer]}>
+                            <ChungImage
                                 source={require('../../images/error.png')}
                                 style={styles.errorIcon as any}
                             />
-                        </View>
+                        </ChungView>
                     </TouchableWithoutFeedback>
                 )}
                 {rows! > 1 && count! > 0 && (
-                    <View style={[styles!.count]}>
-                        <Text>
+                    <ChungView style={[styles!.count]}>
+                        <ChungText>
                             {inputCount} / {count}
-                        </Text>
-                    </View>
+                        </ChungText>
+                    </ChungView>
                 )}
             </List.Item>
         );

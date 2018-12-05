@@ -1,7 +1,9 @@
 import * as React from 'react';
-import {Image, ImageStyle, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
+import {Image, ImageStyle, StyleProp, StyleSheet, ViewStyle,} from 'react-native';
 import Styles from "../style";
 import {ReactNode} from "react";
+import ChungView from "../chung-view";
+import ChungText from "../chung-text";
 
 export interface CardHeaderProps {
     style?: StyleProp<ViewStyle>;
@@ -26,21 +28,21 @@ export default class CardHeader extends React.Component<CardHeaderProps, any> {
 
         const titleDom =
             title === undefined ? null : React.isValidElement(title) ? (
-                <View style={{flex: 1}}>{title}</View>
+                <ChungView style={{flex: 1}}>{title}</ChungView>
             ) : (
-                <Text style={styles.headerContent}>{title}</Text>
+                <ChungText style={styles.headerContent}>{title}</ChungText>
             );
 
         const extraDom =
             extra === undefined ? null : React.isValidElement(extra) ? (
-                <View style={{flex: 1}}>{extra}</View>
+                <ChungView style={{flex: 1}}>{extra}</ChungView>
             ) : (
-                <Text style={[styles.headerExtra]}>{extra}</Text>
+                <ChungText style={[styles.headerExtra]}>{extra}</ChungText>
             );
 
         return (
-            <View style={[styles.headerWrap, style]} {...restProps}>
-                <View style={[styles.headerTitle]}>
+            <ChungView style={[styles.headerWrap, style]} {...restProps}>
+                <ChungView style={[styles.headerTitle]}>
                     {typeof thumb === 'string' ? (
                         <Image
                             source={{uri: thumb}}
@@ -50,9 +52,9 @@ export default class CardHeader extends React.Component<CardHeaderProps, any> {
                         thumb
                     )}
                     {titleDom}
-                </View>
+                </ChungView>
                 {extra ? extraDom : null}
-            </View>
+            </ChungView>
         );
     }
 }

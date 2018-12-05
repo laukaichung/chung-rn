@@ -11,7 +11,6 @@ import ChungText from "../chung-text";
 interface DataItem {
     icon?: any;
     text?: any;
-
     [key: string]: any;
 }
 

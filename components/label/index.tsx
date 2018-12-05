@@ -1,6 +1,7 @@
 import * as React from 'react'
-import {StyleSheet, Text} from 'react-native'
+import {StyleSheet} from 'react-native'
 import Styles from "../style";
+import ChungText from "../chung-text";
 
 interface LabelProps {
     content: string
@@ -8,7 +9,7 @@ interface LabelProps {
 
 const Label = ({content}: LabelProps) => {
     return (
-        <Text style={styles.header}>{content}</Text>
+        <ChungText style={styles.header}>{content}</ChungText>
     )
 };
 

@@ -27,6 +27,18 @@ export default class Styles {
 
     static iconColorBase = '#cccccc';
 
+    static get hintTextDefaultTextColor(){
+        return this.primaryColorDark
+    }
+
+    static get hintTextWarningTextColor(){
+        return this.isDarkMode?"#e88d41":"#d7c61f"
+    }
+
+    static get hintTextErrorTextColor(){
+        return "red"
+    }
+
     static textBaseColor = '#222222';
 
     static marginXs = 3;
@@ -51,7 +63,7 @@ export default class Styles {
     };
 
     static get textColor(){
-        return this.isDarkMode ? '#ffffff':'#b6b6b6'
+        return this.isDarkMode ? '#ffffff':'#9e9e9e'
     };
     static get headerColor(){
         return this.isDarkMode? this.primaryColorLight:'#7a6b7a'

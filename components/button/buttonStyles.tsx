@@ -56,7 +56,6 @@ export default {
   defaultDisabledRaw: {
     backgroundColor: Styles.disabledBackgroundColor,
     borderColor: Styles.disabledBorderColor,
-    color:Styles.disabledTextColor
   },
   primaryDisabledRaw: {
     opacity: 0.4,
@@ -98,16 +97,16 @@ export default {
     color: Styles.InverseTextColor,
   },
   defaultDisabledRawText: {
-    color: `${Styles.textBaseColor}`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: Styles.disabledTextColor, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   primaryDisabledRawText: {
-    color: `${Styles.InverseTextColor}`, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: Styles.InverseTextColor, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   ghostDisabledRawText: {
-    color: `${Styles.textBaseColor}`, // alpha 10%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: Styles.textBaseColor, // alpha 10%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   warningDisabledRawText: {
-    color: `${Styles.InverseTextColor}`, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: Styles.InverseTextColor, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   indicator: {
     marginRight: Styles.margin,

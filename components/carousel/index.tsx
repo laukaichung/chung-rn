@@ -9,11 +9,11 @@ import {
     ScrollView,
     StyleProp,
     StyleSheet,
-    Text,
-    View,
     ViewStyle,
 } from 'react-native';
 import Styles from "../style";
+import ChungView from "../chung-view";
+import ChungText from "../chung-text";
 
 
 export interface CarouselProps {
@@ -74,7 +74,7 @@ const defaultPagination = (props: PaginationProps) => {
     const arr: any = [];
     for (let i = 0; i < count; i++) {
         arr.push(
-            <View
+            <ChungView
                 key={`dot-${i}`}
                 // tslint:disable-next-line:jsx-no-multiline-js
                 style={[
@@ -88,9 +88,9 @@ const defaultPagination = (props: PaginationProps) => {
         );
     }
     return (
-        <View style={[styles.pagination, styles[positionStyle]]}>
-            <View style={{flexDirection}}>{arr}</View>
-        </View>
+        <ChungView style={[styles.pagination, styles[positionStyle]]}>
+            <ChungView style={{flexDirection}}>{arr}</ChungView>
+        </ChungView>
     );
 };
 
@@ -135,9 +135,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
 
         if (!children) {
             return (
-                <Text style={{backgroundColor: 'white'}}>
+                <ChungText style={{backgroundColor: 'white'}}>
                     You are supposed to add children inside Carousel
-                </Text>
+                </ChungText>
             );
         }
 
@@ -157,18 +157,18 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
             pages = childrenArray.map((page, i) => {
                 return (
                     // when vertical, use the height of the first child as the height of the Carousel
-                    <View style={{width}} key={i} onLayout={i === 0 ? this.onChildLayout : () => {
+                    <ChungView style={{width}} key={i} onLayout={i === 0 ? this.onChildLayout : () => {
                     }}>
                         {page}
-                    </View>
+                    </ChungView>
                 );
             });
         } else {
-            pages = <View style={{width}} onLayout={this.onChildLayout}>{children}</View>;
+            pages = <ChungView style={{width}} onLayout={this.onChildLayout}>{children}</ChungView>;
         }
 
         return (
-            <View onLayout={this.onLayout} style={height > 0 ? {height} : {}}>
+            <ChungView onLayout={this.onLayout} style={height > 0 ? {height} : {}}>
                 <ScrollView
                     ref={this.scrollviewRef}
                     {...this.props}
@@ -191,7 +191,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                     {pages}
                 </ScrollView>
                 {dots && this.renderDots(selectedIndex)}
-            </View>
+            </ChungView>
         );
     }
 

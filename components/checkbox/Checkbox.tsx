@@ -4,6 +4,8 @@ import {CheckboxPropsType} from './PropsType';
 import CheckboxItem from "./CheckboxItem";
 import AgreeItem from "./AgreeItem";
 import Styles from "../style";
+import ChungView from "../chung-view";
+import ChungImage from "../chung-image";
 
 export interface ICheckboxNativeProps extends CheckboxPropsType {
     style?: StyleProp<ImageStyle>;
@@ -38,9 +40,9 @@ export default class Checkbox extends React.Component<ICheckboxNativeProps, Stat
 
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>
-                <View style={[styles.wrapper]}>
-                    <Image source={imgSrc} style={[styles.icon, style] as any}/>
-                </View>
+                <ChungView style={[styles.wrapper]}>
+                    <ChungImage source={imgSrc} style={[styles.icon, style] as any}/>
+                </ChungView>
             </TouchableWithoutFeedback>
         );
     }

@@ -1,8 +1,11 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Image, StyleSheet,View,Text} from "react-native";
+import {Image, StyleSheet, View} from "react-native";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Styles from "../style";
+import ChungView from "../chung-view";
+import ChungText from "../chung-text";
+import ChungImage from "../chung-image";
 
 export interface AccordionPane {
     render: () => ReactNode
@@ -53,13 +56,13 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
                                     {
                                         customTitleContainer ?
                                             customTitleContainer({pane: p, isActive}) :
-                                            <View style={styles.accordionTitleContainer}>
-                                                <Text style={styles.accordionTitle}>
+                                            <ChungView style={styles.accordionTitleContainer}>
+                                                <ChungText style={styles.accordionTitle}>
                                                     {p.title}
-                                                </Text>
+                                                </ChungText>
                                                 {
                                                     isActive ?
-                                                    <Image
+                                                    <ChungImage
                                                         style={Styles.iconButtonStyle}
                                                         source={require('../../images/arrow-up.png')}/>
                                                         :
@@ -67,7 +70,7 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
                                                         style={Styles.iconButtonStyle}
                                                         source={require('../../images/arrow-down.png')}/>
                                                 }
-                                             </View>
+                                             </ChungView>
                                     }
                                 </CustomTouchableHighlight>
                                 {
