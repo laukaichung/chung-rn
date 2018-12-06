@@ -1,15 +1,5 @@
 import * as React from 'react';
-import {
-    ActivityIndicator,
-    StyleProp,
-    StyleSheet,
-    Text,
-    TextStyle,
-    TouchableHighlight,
-    TouchableHighlightProps,
-    View,
-    ViewStyle,
-} from 'react-native';
+import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
 import {UIContext} from "../ui-provider/UIContext";
 import CustomTouchableHighlight from "../custom-touchable-highlight";

@@ -34,7 +34,7 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                     paddingHorizontal={false}
                     buttonTrigger={(
                         <List.Item arrow="horizontal">
-                            <Label content={"Select Images"}/>
+                            <Label text={"Select Images"}/>
                         </List.Item>
                     )}>
                     {

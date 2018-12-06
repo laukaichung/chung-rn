@@ -4,12 +4,12 @@ import Styles from "../style";
 import UIContext from "../ui-provider/UIContext";
 
 interface HeaderProps {
-    content: string
+    text: string
     center?: boolean
     marginVertical?: boolean
 }
 
-export const Header = ({content, center, marginVertical}: HeaderProps) => {
+export const Header = ({text, center, marginVertical}: HeaderProps) => {
     return (
         <UIContext.Consumer>
             {
@@ -21,7 +21,7 @@ export const Header = ({content, center, marginVertical}: HeaderProps) => {
                     marginVertical && {marginVertical: Styles.margin * 2}
                 ]
                 }>
-                    {content}
+                    {text}
                 </Text>
             }
         </UIContext.Consumer>

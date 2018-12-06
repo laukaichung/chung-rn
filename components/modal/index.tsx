@@ -72,7 +72,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                                             paddingHorizontal && {paddingHorizontal: Styles.padding},
                                             {backgroundColor: Styles.modalBackgroundColor}
                                         ]}>
-                                        {title && <Header center marginVertical content={title}/>}
+                                        {title && <Header center marginVertical text={title}/>}
                                         {children({closeModal: this._closeModal})}
                                     </ChungView>
                                 }

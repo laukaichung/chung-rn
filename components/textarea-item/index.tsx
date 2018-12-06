@@ -109,7 +109,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                     ()=>
                     <List.Item disableBorder={disableBorder}
                                listItemStyle={containerStyle}>
-                        {label && <Label marginVertical content={label}/>}
+                        {label && <Label marginVertical text={label}/>}
                         <TextInput
                             placeholderTextColor={Styles.placeholderTextColor}
                             clearButtonMode={clear ? 'while-editing' : 'never'}

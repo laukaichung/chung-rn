@@ -6,12 +6,12 @@ import ChungView from "../chung-view";
 import UIContext from "../ui-provider/UIContext";
 
 export interface HintTextProps {
-    content: string;
+    text: string;
     icon?: ReactNode;
     color?: string;
 }
 
-export const HintText = ({color, icon, content}: HintTextProps) => {
+export const HintText = ({color, icon, text}: HintTextProps) => {
     return (
         <UIContext.Consumer>
             {
@@ -25,7 +25,7 @@ export const HintText = ({color, icon, content}: HintTextProps) => {
                             marginVertical: Styles.margin
                         }}>
                             <Text style={[{lineHeight: 24,color}]}>
-                                {icon} {content}
+                                {icon} {text}
                             </Text>
                         </ChungView>
                     )

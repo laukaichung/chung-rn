@@ -51,7 +51,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                 {title ? (
                     <ChungView style={styles.title}>
                         {typeof title === 'string' ? (
-                            <Header content={title}/>
+                            <Header text={title}/>
                         ) : (
                             title
                         )}

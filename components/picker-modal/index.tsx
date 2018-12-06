@@ -83,7 +83,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     <List.Item
                         multipleLine
                         arrow="horizontal">
-                        {customLabelElement || <Label content={label}/>}
+                        {customLabelElement || <Label text={label}/>}
                         {
                             displayValues.length > 0 &&
                             <WhiteSpace>
@@ -98,7 +98,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     ({closeModal}) => {
                         return (
                             <ScrollView style={styles.container}>
-                                {hint && <HintText content={hint}/>}
+                                {hint && <HintText text={hint}/>}
                                 <Grid columnNum={columnNum}
                                       data={data}
                                       onPress={(option: PickerItem) => {

@@ -8,7 +8,7 @@ import {
     Platform,
     ScrollView,
     StyleProp,
-    StyleSheet,
+    StyleSheet, View,
     ViewStyle,
 } from 'react-native';
 import Styles from "../style";
@@ -74,7 +74,7 @@ const defaultPagination = (props: PaginationProps) => {
     const arr: any = [];
     for (let i = 0; i < count; i++) {
         arr.push(
-            <ChungView
+            <View
                 key={`dot-${i}`}
                 // tslint:disable-next-line:jsx-no-multiline-js
                 style={[

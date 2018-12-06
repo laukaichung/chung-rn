@@ -23,7 +23,7 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
             <Container>
                 <WingBlank>
                     <ChungText>Chung Text</ChungText>
-                    <Header content={"Header"}/>
+                    <Header text={"Header"}/>
 
                     <UIContext.Consumer>
                         {
