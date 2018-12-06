@@ -83,7 +83,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     <List.Item
                         multipleLine
                         arrow="horizontal">
-                        {customLabelElement || <Label text={label}/>}
+                        {customLabelElement || <Label content={label}/>}
                         {
                             displayValues.length > 0 &&
                             <WhiteSpace>

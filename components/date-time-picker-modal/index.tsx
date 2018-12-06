@@ -33,7 +33,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
                             disableBorder={disableBorder}
                             onPress={() => this.setState({isVisible: true})}
                             arrow="horizontal">
-                            <Label text={label}/>
+                            <Label content={label}/>
                             {date &&
                             <ChungText>{renderDateValue ? renderDateValue(date) : date.toDateString()}</ChungText>}
                             <DateTimePicker

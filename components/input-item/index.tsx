@@ -123,7 +123,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                     () =>
                         <List.Item multipleLine disableBorder={disableBorder}>
                             {
-                                label && <Label marginVertical text={label}/>
+                                label && <Label marginVertical content={label}/>
                             }
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                 <Input
