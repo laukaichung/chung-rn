@@ -5,10 +5,10 @@ import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import {ReactNode} from "react";
 
 export interface ListItemCommonProps {
-    disableBorder?: "bottom"|"top"|"all"|"preserve";
+    disableBorder?: "bottom" | "top" | "all" | "preserve";
 }
 
-export interface ListItemProps extends ListItemCommonProps{
+export interface ListItemProps extends ListItemCommonProps {
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
     multipleLine?: boolean;
@@ -24,7 +24,6 @@ export interface ListItemProps extends ListItemCommonProps{
     onLongPress?: () => void;
     listItemStyle?: StyleProp<ViewStyle>;
 }
-
 
 export default class Item extends React.Component<ListItemProps, any> {
 
@@ -119,17 +118,25 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        let itemBorderStyle:StyleProp<ViewStyle> = {};
-        if(disableBorder === "bottom"){
-            itemBorderStyle = {borderBottomWidth:0}
-        }else if(disableBorder === "top"){
-            itemBorderStyle = {borderTopWidth:0}
-        }else if(disableBorder === "all"){
-            itemBorderStyle = {borderWidth:0}
+        let itemBorderStyle: StyleProp<ViewStyle> = {};
+        if (disableBorder === "bottom") {
+            itemBorderStyle = {borderBottomWidth: 0}
+        } else if (disableBorder === "top") {
+            itemBorderStyle = {borderTopWidth: 0}
+        } else if (disableBorder === "all") {
+            itemBorderStyle = {borderWidth: 0}
         }
 
         const itemView = (
-            <View {...restProps} style={[styles.item, listItemStyle]}>
+            <View {...restProps}
+                  style={[
+                      styles.item,
+                      listItemStyle,
+                      !disableBorder && {
+                          borderBottomWidth: StyleSheet.hairlineWidth,
+                          borderBottomColor: Styles.borderColor
+                      }
+                  ]}>
                 {typeof thumb === 'string' ? (
                     <Image
                         source={{uri: thumb}}
@@ -215,8 +222,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingLeft: Styles.padding,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: Styles.borderColor,
     },
     arrow: {
         width: 8,

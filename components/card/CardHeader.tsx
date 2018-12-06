@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Image, ImageStyle, StyleProp, StyleSheet, ViewStyle,} from 'react-native';
+import {Image, ImageStyle, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
 import {ReactNode} from "react";
-import ChungView from "../chung-view";
 import ChungText from "../chung-text";
+import UIContext from "../ui-provider/UIContext";
 
 export interface CardHeaderProps {
     style?: StyleProp<ViewStyle>;
@@ -28,33 +28,44 @@ export default class CardHeader extends React.Component<CardHeaderProps, any> {
 
         const titleDom =
             title === undefined ? null : React.isValidElement(title) ? (
-                <ChungView style={{flex: 1}}>{title}</ChungView>
+                <View style={{flex: 1}}>{title}</View>
             ) : (
                 <ChungText style={styles.headerContent}>{title}</ChungText>
             );
 
         const extraDom =
             extra === undefined ? null : React.isValidElement(extra) ? (
-                <ChungView style={{flex: 1}}>{extra}</ChungView>
+                <View style={{flex: 1}}>{extra}</View>
             ) : (
                 <ChungText style={[styles.headerExtra]}>{extra}</ChungText>
             );
 
         return (
-            <ChungView style={[styles.headerWrap, style]} {...restProps}>
-                <ChungView style={[styles.headerTitle]}>
-                    {typeof thumb === 'string' ? (
-                        <Image
-                            source={{uri: thumb}}
-                            style={[styles.headerImage, thumbStyle] as any}
-                        />
-                    ) : (
-                        thumb
-                    )}
-                    {titleDom}
-                </ChungView>
-                {extra ? extraDom : null}
-            </ChungView>
+            <UIContext.Consumer>
+                {
+                    ()=>
+                    <View style={
+                        [
+                            styles.headerWrap,
+                            {borderColor: Styles.borderColor,backgroundColor:Styles.inputAreaBackgroundColor},
+                            style
+                        ]
+                    } {...restProps}>
+                        <View style={[styles.headerTitle]}>
+                            {typeof thumb === 'string' ? (
+                                <Image
+                                    source={{uri: thumb}}
+                                    style={[styles.headerImage, thumbStyle] as any}
+                                />
+                            ) : (
+                                thumb
+                            )}
+                            {titleDom}
+                        </View>
+                        {extra ? extraDom : null}
+                    </View>
+                }
+            </UIContext.Consumer>
         );
     }
 }
@@ -66,7 +77,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: Styles.padding,
         alignItems: 'center',
         borderBottomWidth: Styles.borderWidth,
-        borderColor: Styles.borderColor,
     },
     headerTitle: {
         flex: 1,

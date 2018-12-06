@@ -16,15 +16,8 @@ export default class Tabs extends React.PureComponent<TabsProps, {}> {
     public static DefaultTabBar = RMCDefaultTabBar;
     static defaultProps = {};
 
-    // renderTabBar = (props: any) => {
-    //     const { renderTab } = this.props;
-    //     return (
-    //
-    //     );
-    // };
-
     render() {
-        const { renderTab } = this.props;
+        const { renderTab,tabBarPosition="bottom" } = this.props;
         return (
             <UIContext.Consumer>
                 {
@@ -76,6 +69,7 @@ export default class Tabs extends React.PureComponent<TabsProps, {}> {
 
                         return (
                             <RMCTabs
+                                tabBarPosition={tabBarPosition}
                                 styles={tabStyles as any}
                                 renderTabBar={(props)=>{
                                     return <RMCDefaultTabBar

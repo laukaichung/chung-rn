@@ -128,6 +128,8 @@ export default class Button extends React.Component<ButtonProps, State> {
 
                             if (disabled) {
 
+                                //todo Disabled background color doesn't look good in dark mode
+
                                 wrapperStyle.push({
                                     backgroundColor: Styles.disabledBackgroundColor,
                                     borderColor: Styles.disabledBorderColor,
@@ -209,6 +211,9 @@ export default class Button extends React.Component<ButtonProps, State> {
                             }
 
                             if (disabled) {
+
+
+
                                 wrapperStyle.push({
                                     backgroundColor: Styles.disabledBackgroundColor,
                                     borderColor: Styles.disabledBorderColor,

@@ -24,7 +24,6 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                 <WingBlank>
                     <ChungText>Chung Text</ChungText>
                     <Header text={"Header"}/>
-
                     <UIContext.Consumer>
                         {
                             ({theme, toggleTheme}) => {
@@ -47,10 +46,20 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                     <Button type="primary" onPress={() => {}}>
                         Primary Button
                     </Button>
+
+                    <Button type="primary" disabled onPress={() => {}}>
+                        Diabled Primary Button
+                    </Button>
+
                     <WhiteSpace/>
                     <Button type="ghost" onPress={() => {}}>
                         Ghost Button
                     </Button>
+
+                    <Button type="ghost" disabled onPress={() => {}}>
+                        Diabled Ghost Button
+                    </Button>
+
                 </WingBlank>
                 <List>
                     <List.Item arrow="horizontal">

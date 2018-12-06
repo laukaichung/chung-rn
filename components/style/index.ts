@@ -16,7 +16,7 @@ export default class Styles {
     }
 
     static get inputAreaBackgroundColor(){
-        return this.isDarkMode? "#2e2e2e":"#ffffff"
+        return this.isDarkMode? "#000000":"#ffffff"
     }
 
     static primaryColorDark = '#0f62a8';
@@ -27,7 +27,7 @@ export default class Styles {
         return this.isDarkMode?this.primaryColorDark:this.primaryColorLight
     }
 
-    static brandImportant = '#ff5b05';
+    static brandImportant = '#d85105';
 
     static iconSizeSm = 16;
     static iconSizeMd = 32;
@@ -94,12 +94,14 @@ export default class Styles {
     };
 
     static get headerColor(){
-        return this.isDarkMode? "#aac6e3":'#7a6b7a'
+        return this.isDarkMode? "#d85105":this.primaryColorDark
     };
     static InverseTextColor= '#ffffff';
 
     static disabledBackgroundColor = '#eaeaea';
+
     static disabledBorderColor = '#dadada';
+
     static get disabledTextColor(){
         return this.isDarkMode?'#979797':'#cbcbcb'
     };
@@ -135,7 +137,7 @@ export default class Styles {
     static warningButtonBorderColor= '#e94f4f';
 
     static get borderColor() {
-        return this.isDarkMode?'#cacaca':'#8b9198'
+        return this.isDarkMode?'#444444':'#d6d6d6'
     }
 
     static get iconButtonStyle() {
