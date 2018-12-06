@@ -7,8 +7,8 @@ import ChungText from "../../chung-text";
 import List from "../../list";
 import Styles from "../../style";
 import WingBlank from "../../wing-blank";
-import Container from "../../theme-provider/ThemeContainer";
-import ThemeContext from "../../theme-provider/ThemeContext";
+import Container from "../../ui-provider/UIContainer";
+import UIContext from "../../ui-provider/UIContext";
 import Header from "../../header";
 import WhiteSpace from "../../white-space";
 
@@ -25,7 +25,7 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                     <ChungText>Chung Text</ChungText>
                     <Header content={"Header"}/>
 
-                    <ThemeContext.Consumer>
+                    <UIContext.Consumer>
                         {
                             ({theme, toggleTheme}) => {
                                 return (
@@ -42,7 +42,7 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                                 )
                             }
                         }
-                    </ThemeContext.Consumer>
+                    </UIContext.Consumer>
                     <WhiteSpace/>
                     <Button type="primary" onPress={() => {}}>
                         Primary Button

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import List from "../../list/List";
 import {NavigationProps} from "../demotype";
-import Container from "../../theme-provider/ThemeContainer";
+import Container from "../../ui-provider/UIContainer";
 import ChungText from "../../chung-text";
 
 export class ListScreen extends React.Component<NavigationProps> {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import ThemeContext, {ThemeContextProps} from "./ThemeContext";
+import UIContext, {ThemeContextProps} from "./UIContext";
 import {AsyncStorage} from "react-native";
 import Styles, {ChungThemeTypes} from "../style";
 
@@ -12,15 +12,19 @@ interface ChungContainerState extends ThemeContextProps {
     fetchingStoreData: boolean
 }
 
-export default class ThemeProvider extends React.Component<ChungContainerProps, ChungContainerState> {
+
+const asyncStoreKeys = {
+    theme:"theme"
+}
+
+export default class UIProvider extends React.Component<ChungContainerProps, ChungContainerState> {
     public state: ChungContainerState = {fetchingStoreData: true} as ChungContainerState;
 
     public async componentDidMount() {
-        let theme: ChungThemeTypes = await AsyncStorage.getItem("theme") as ChungThemeTypes;
+        let theme: ChungThemeTypes = await AsyncStorage.getItem(asyncStoreKeys.theme) as ChungThemeTypes;
         theme = theme || "light";
         Styles.mode = theme;
         this.setState({theme, fetchingStoreData: false});
-        console.log("componentWillMount", theme);
     }
 
     public render() {
@@ -29,19 +33,19 @@ export default class ThemeProvider extends React.Component<ChungContainerProps, 
             return null;
         }
         return (
-            <ThemeContext.Provider value={{
+            <UIContext.Provider value={{
                 theme,
                 toggleTheme: async () => {
                     let newTheme: ChungThemeTypes = theme === "light" ? "dark" : "light";
                     Styles.mode = newTheme;
                     this.setState({theme: newTheme});
-                    await AsyncStorage.setItem("theme", newTheme);
+                    await AsyncStorage.setItem(asyncStoreKeys.theme, newTheme);
                 },
                 isDarkMode: theme === "dark"
             } as ThemeContextProps
             }>
                 {this.props.children}
-            </ThemeContext.Provider>
+            </UIContext.Provider>
         )
     }
 }

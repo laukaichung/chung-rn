@@ -1,12 +1,12 @@
 import * as React from 'react'
 import Grid from "../../grid";
 import {NavigationProps} from "../demotype";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 
 export class GridScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <Grid
                     isCarousel
                     carouselMaxRow={1}
@@ -50,7 +50,7 @@ export class GridScreen extends React.Component<NavigationProps> {
                         }
                         ]}
                 />
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

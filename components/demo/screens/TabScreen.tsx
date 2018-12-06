@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import Tabs from "../../tabs";
-import Container from "../../theme-provider/ThemeContainer";
+import Container from "../../ui-provider/UIContainer";
 import ChungView from "../../chung-view";
 import ChungText from "../../chung-text";
 

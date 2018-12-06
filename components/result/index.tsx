@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {ImageURISource, StyleProp, StyleSheet, ViewStyle,} from 'react-native';
+import {ImageURISource, StyleProp, StyleSheet,Text, ViewStyle,} from 'react-native';
 import Button from '../button';
 import Styles from "../style";
 import ChungView from "../chung-view";
-import ChungText from "../chung-text";
 import ChungImage from "../chung-image";
+import Header from "../header";
 
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
@@ -46,12 +46,12 @@ export default class Result extends React.Component<ResultNativeProps, any> {
         }
 
         return (
-            <ChungView style={[styles.result, style]}>
+            <ChungView style={[styles.result, style,{borderColor:Styles.borderColor}]}>
                 {imgContent}
                 {title ? (
                     <ChungView style={styles.title}>
                         {typeof title === 'string' ? (
-                            <ChungText style={styles.titleText}>{title}</ChungText>
+                            <Header content={title}/>
                         ) : (
                             title
                         )}
@@ -60,7 +60,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                 {message ? (
                     <ChungView style={styles.message}>
                         {typeof message === 'string' ? (
-                            <ChungText style={styles.messageText}>{message}</ChungText>
+                            <Text style={styles.messageText}>{message}</Text>
                         ) : (
                             message
                         )}
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     result: {
         alignItems: 'center',
         paddingVertical: Styles.paddingXl,
-        borderBottomColor: Styles.borderColor,
+        borderWidth:Styles.borderWidth
     },
     imgWrap: {
         margin: 0,
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     },
     messageText: {
         fontSize: Styles.captionFontSize,
+        color:"#929083"
     },
     buttonWrap: {
         flexDirection: 'row',

@@ -6,11 +6,11 @@ export interface ThemeContextProps {
     toggleTheme:()=>void;
     isDarkMode:boolean;
 }
-export const ThemeContext = React.createContext<ThemeContextProps>(
+export const UIContext = React.createContext<ThemeContextProps>(
     {
         theme:"light",
         toggleTheme:()=>{},
         isDarkMode:false
     });
 
-export default ThemeContext
+export default UIContext

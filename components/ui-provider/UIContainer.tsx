@@ -1,20 +1,20 @@
 import * as React from 'react'
 import ChungView from "../chung-view";
-import ThemeContext from "./ThemeContext";
+import UIContext from "./UIContext";
 import Styles from "../style";
 
-const ThemeContainer = (props) => {
+const UIContainer = (props) => {
     return (
-        <ThemeContext.Consumer>
+        <UIContext.Consumer>
             {
                 ({theme}) => {
                     return (<ChungView {...props} style={{backgroundColor: Styles.backgroundColor,flex:1}}/>)
                 }
             }
-        </ThemeContext.Consumer>
+        </UIContext.Consumer>
     )
 };
 
-export default ThemeContainer;
+export default UIContainer;
 
 

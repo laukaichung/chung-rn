@@ -6,7 +6,7 @@ import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Header from "../header";
 import ChungView from "../chung-view";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 
 interface ModalCallback {
     closeModal: () => void;
@@ -63,7 +63,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                     >
                         {
                             isVisible &&
-                            <ThemeContext.Consumer>
+                            <UIContext.Consumer>
                                 {
                                     ({isDarkMode})=>
                                     <ChungView style={
@@ -76,7 +76,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                                         {children({closeModal: this._closeModal})}
                                     </ChungView>
                                 }
-                            </ThemeContext.Consumer>
+                            </UIContext.Consumer>
                         }
                     </RNModal>
                 }

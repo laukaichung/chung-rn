@@ -4,7 +4,7 @@ import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
 import ChungText from "../chung-text";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 import Styles from "../style";
 
 export interface DateTimePickerModalProps extends DateTimePickerProps, ListItemCommonProps {
@@ -26,7 +26,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
         let {isVisible, date} = state;
         let {onConfirm, onCancel, label, disableBorder, renderDateValue} = props;
         return (
-            <ThemeContext.Consumer>
+            <UIContext.Consumer>
                 {
                     ({isDarkMode}) =>
                         <List.Item
@@ -55,7 +55,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
                             />
                         </List.Item>
                 }
-            </ThemeContext.Consumer>
+            </UIContext.Consumer>
         )
     }
 }

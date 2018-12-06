@@ -133,7 +133,6 @@ export default class Styles {
     static buttonFontSizeSm= 12;
 
     static warningButtonBorderColor= '#e94f4f';
-    static warningButtonBackgroundColor= '#d24747';
 
     static get borderColor() {
         return this.isDarkMode?'#cacaca':'#8b9198'

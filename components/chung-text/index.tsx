@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Text, TextProps} from "react-native";
 import Styles from "../style";
-import {ThemeContext} from "../theme-provider/ThemeContext";
+import {UIContext} from "../ui-provider/UIContext";
 
 interface ChungTextProps extends TextProps {
     children: any
@@ -17,7 +17,7 @@ export interface ChungTextColorProps {
 export const ChungText = (props: ChungTextProps) => {
     let {colors,oneColor} = props;
     return (
-        <ThemeContext.Consumer>
+        <UIContext.Consumer>
             {
                 ({theme})=> {
 
@@ -26,7 +26,7 @@ export const ChungText = (props: ChungTextProps) => {
                     return <Text {...props} style={[props.style, {lineHeight: 24}, {color}]}/>
                 }
             }
-        </ThemeContext.Consumer>
+        </UIContext.Consumer>
     )
 };
 

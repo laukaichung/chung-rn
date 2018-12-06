@@ -3,7 +3,7 @@ import {View} from 'react-native'
 import Button from "../../button";
 import CustomModal from "../../modal";
 import {NavigationProps} from "../demotype";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 import ChungText from "../../chung-text";
 
 interface State {
@@ -15,7 +15,7 @@ export class ButtonScreen extends React.Component<NavigationProps, State> {
 
     render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <CustomModal title={"Title"} buttonTrigger={<Button size="small" type="ghost">Hello</Button>}>
                     {
                         () => {
@@ -27,7 +27,7 @@ export class ButtonScreen extends React.Component<NavigationProps, State> {
                         }
                     }
                 </CustomModal>
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

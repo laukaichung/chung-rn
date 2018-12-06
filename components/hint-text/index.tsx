@@ -3,7 +3,7 @@ import {ReactNode} from 'react'
 import {Text} from "react-native";
 import Styles from "../style";
 import ChungView from "../chung-view";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 
 export interface HintTextProps {
     content: string;
@@ -13,7 +13,7 @@ export interface HintTextProps {
 
 export const HintText = ({color, icon, content}: HintTextProps) => {
     return (
-        <ThemeContext.Consumer>
+        <UIContext.Consumer>
             {
                 ({isDarkMode}) => {
                     color = color || Styles.hintTextDefaultTextColor;
@@ -31,6 +31,6 @@ export const HintText = ({color, icon, content}: HintTextProps) => {
                     )
                 }
             }
-        </ThemeContext.Consumer>
+        </UIContext.Consumer>
     )
 };

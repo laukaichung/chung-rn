@@ -15,7 +15,7 @@ import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 import ChungText from "../chung-text";
 
 type InputEventHandler = (value?: string) => void;
@@ -118,7 +118,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         }
 
         return (
-            <ThemeContext.Consumer>
+            <UIContext.Consumer>
                 {
                     () =>
                         <List.Item multipleLine disableBorder={disableBorder}>
@@ -179,7 +179,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                             </View>
                         </List.Item>
                 }
-            </ThemeContext.Consumer>
+            </UIContext.Consumer>
         );
     }
 

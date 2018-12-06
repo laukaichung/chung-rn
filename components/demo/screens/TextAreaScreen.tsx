@@ -3,14 +3,14 @@ import {NavigationProps} from "../demotype";
 import List from "../../list/List";
 import TextAreaItem from "../../textarea-item";
 import InputItem from "../../input-item";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 import ChungText from "../../chung-text";
 
 
 export class TextAreaScreen extends React.Component<NavigationProps> {
     public render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <List>
                     <List.Item>
                         <ChungText>Hello</ChungText>
@@ -22,7 +22,7 @@ export class TextAreaScreen extends React.Component<NavigationProps> {
                                   onChange={(val)=>console.log(val)}/>
                     <InputItem label={"Input"} placeholder={"Enter here"}/>
                 </List>
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

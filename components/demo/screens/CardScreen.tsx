@@ -5,7 +5,7 @@ import Card from "../../card";
 import CardHeader from "../../card/CardHeader";
 import CardBody from "../../card/CardBody";
 import CardFooter from "../../card/CardFooter";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 import ChungText from "../../chung-text";
 
 interface State {
@@ -17,7 +17,7 @@ export class CardScreen extends React.Component<NavigationProps, State> {
 
     public render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <Card marginVertical full>
                     <CardHeader title={<ChungText>Hello</ChungText>}/>
                     <CardBody padding>
@@ -25,7 +25,7 @@ export class CardScreen extends React.Component<NavigationProps, State> {
                     </CardBody>
                     <CardFooter extra={`Extra`}/>
                 </Card>
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

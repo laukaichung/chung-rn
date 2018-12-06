@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Accordion from "../../accordion";
 import {NavigationProps} from "../demotype";
-import Container from "../../theme-provider/ThemeContainer";
+import Container from "../../ui-provider/UIContainer";
 import ChungText from "../../chung-text";
 
 export class AccordionScreen extends React.Component<NavigationProps> {

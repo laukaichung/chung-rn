@@ -34,6 +34,6 @@ export {default as WhiteSpace} from './white-space';
 export {default as WingBlank} from './wing-blank';
 export {default as ChungStyles} from './style'
 export {default as ScreenUtil} from './util/ScreenUtil'
-export {default as ThemeProvider} from "./theme-provider"
-export {default as ThemeContainer} from "./theme-provider/ThemeContainer"
-export {default as ThemeContext} from "./theme-provider/ThemeContext"
+export {default as UIProvider} from "./ui-provider"
+export {default as UIContainer} from "./ui-provider/UIContainer"
+export {default as UIContext} from "./ui-provider/UIContext"

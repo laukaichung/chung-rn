@@ -2,7 +2,7 @@ import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import PickerModal, {PickerItem} from "../../picker-modal";
 import List from "../../list/List";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 
 interface State {
     selectedOptions: PickerItem[]
@@ -13,7 +13,7 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
 
     public render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <List>
                     <PickerModal onChange={(selectedOptions) => this.setState({selectedOptions})}
                                  selectedOptions={this.state.selectedOptions}
@@ -26,7 +26,7 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
                                  label={"Select"}
                     />
                 </List>
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

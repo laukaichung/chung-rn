@@ -6,13 +6,13 @@ import CheckboxItem from "../../checkbox/CheckboxItem";
 import RadioItem from "../../radio/RadioItem";
 import DateTimePickerModal from "../../date-time-picker-modal";
 import TextAreaItem from "../../textarea-item";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 
 
-export class InputItemScreen extends React.Component<NavigationProps> {
+export default class FormScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <List>
                     <InputItem label={"Input"}
                                error
@@ -26,7 +26,7 @@ export class InputItemScreen extends React.Component<NavigationProps> {
                         onCancel={() => console.log('cancel')}
                         onConfirm={(date) => console.log({date})}/>
                 </List>
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

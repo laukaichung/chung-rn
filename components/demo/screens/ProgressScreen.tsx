@@ -1,16 +1,16 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import Index from "../../progress";
-import ThemeContainer from "../../theme-provider/ThemeContainer";
+import UIContainer from "../../ui-provider/UIContainer";
 
 
 export class ProgressScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <ThemeContainer>
+            <UIContainer>
                 <Index percentage={80} barColor="red" />
                 <Index percentage={60} barColor="red" />
-            </ThemeContainer>
+            </UIContainer>
         )
     }
 }

@@ -1,24 +1,30 @@
 import * as React from 'react'
-import {StyleSheet,Text} from 'react-native'
+import {StyleSheet, Text} from 'react-native'
 import Styles from "../style";
+import UIContext from "../ui-provider/UIContext";
 
 interface HeaderProps {
     content: string
-    center?:boolean
-    marginVertical?:boolean
+    center?: boolean
+    marginVertical?: boolean
 }
 
-export const Header = ({content,center,marginVertical}: HeaderProps) => {
+export const Header = ({content, center, marginVertical}: HeaderProps) => {
     return (
-        <Text style={[
-            {color:Styles.headerColor},
-            styles.header,
-            center && {textAlign:"center"},
-            marginVertical && {marginVertical:Styles.margin * 2}
-            ]
-        }>
-            {content}
-        </Text>
+        <UIContext.Consumer>
+            {
+                ()=>
+                <Text style={[
+                    {color: Styles.headerColor},
+                    styles.header,
+                    center && {textAlign: "center"},
+                    marginVertical && {marginVertical: Styles.margin * 2}
+                ]
+                }>
+                    {content}
+                </Text>
+            }
+        </UIContext.Consumer>
     )
 };
 

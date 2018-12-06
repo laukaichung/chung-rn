@@ -5,7 +5,7 @@ import Styles from "../style";
 import ListItem from "./ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
@@ -22,7 +22,7 @@ export default class List extends React.Component<ListProps, any> {
     public render() {
         const {children, style, renderHeader, headerText, footerText, headerTitleContainerStyle, renderFooter, ...restProps} = this.props;
         return (
-            <ThemeContext.Consumer>
+            <UIContext.Consumer>
                 {
                     ()=>
                     <ChungView {...restProps as any} style={style}>
@@ -47,7 +47,7 @@ export default class List extends React.Component<ListProps, any> {
                         }
                     </ChungView>
                 }
-            </ThemeContext.Consumer>
+            </UIContext.Consumer>
         );
     }
 

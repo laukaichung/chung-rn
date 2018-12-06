@@ -5,7 +5,7 @@ import {
 } from 'rmc-tabs/lib/index.native';
 import {Models, PropsType} from 'rmc-tabs';
 import Styles from "../style";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 
 interface TabsProps extends PropsType {
     /** render for replace the tab of tabbar. */
@@ -26,7 +26,7 @@ export default class Tabs extends React.PureComponent<TabsProps, {}> {
     render() {
         const { renderTab } = this.props;
         return (
-            <ThemeContext.Consumer>
+            <UIContext.Consumer>
                 {
                     ({isDarkMode})=>{
                         const tabStyles = {
@@ -89,7 +89,7 @@ export default class Tabs extends React.PureComponent<TabsProps, {}> {
                         );
                     }
                 }
-            </ThemeContext.Consumer>
+            </UIContext.Consumer>
         )
 
     }

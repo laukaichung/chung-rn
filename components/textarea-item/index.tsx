@@ -14,7 +14,7 @@ import {ListItemCommonProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
-import ThemeContext from "../theme-provider/ThemeContext";
+import UIContext from "../ui-provider/UIContext";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -104,7 +104,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <ThemeContext.Consumer>
+            <UIContext.Consumer>
                 {
                     ()=>
                     <List.Item disableBorder={disableBorder}
@@ -152,7 +152,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                         )}
                     </List.Item>
                 }
-            </ThemeContext.Consumer>
+            </UIContext.Consumer>
         );
     }
 

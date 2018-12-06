@@ -4,7 +4,7 @@ export const screenKeys = {
     accordion:'accordion',
     list:'list',
     textArea:'textArea',
-    inputItem:'inputItem',
+    form:'form',
     tabs:'tabs',
     grid:'grid',
     progress:'progress',
@@ -19,5 +19,6 @@ export const screenKeys = {
     cameraRollImageList:'cameraRollImageList',
     toast:'toast',
     oldTabs:'oldTabs',
-    something:'something'
+    something:'something',
+    result:'result'
 };

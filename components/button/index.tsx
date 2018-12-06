@@ -11,7 +11,7 @@ import {
     ViewStyle,
 } from 'react-native';
 import Styles from "../style";
-import {ThemeContext} from "../theme-provider/ThemeContext";
+import {UIContext} from "../ui-provider/UIContext";
 import CustomTouchableHighlight from "../custom-touchable-highlight";
 
 export interface ButtonProps extends TouchableHighlightProps {
@@ -77,7 +77,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
         return (
 
-            <ThemeContext.Consumer>
+            <UIContext.Consumer>
                 {
                     ({isDarkMode}) => {
 
@@ -255,7 +255,7 @@ export default class Button extends React.Component<ButtonProps, State> {
                         )
                     }
                 }
-            </ThemeContext.Consumer>
+            </UIContext.Consumer>
         );
     }
 
