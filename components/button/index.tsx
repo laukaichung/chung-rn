@@ -10,9 +10,9 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import buttonStyles from './buttonStyles';
 import Styles from "../style";
 import {ThemeContext} from "../theme-provider/ThemeContext";
+import CustomTouchableHighlight from "../custom-touchable-highlight";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
@@ -69,11 +69,11 @@ export default class Button extends React.Component<ButtonProps, State> {
         //     style,
         // ];
 
-        const indicatorColor = (StyleSheet.flatten(
-            this.state.pressIn
-                ? buttonStyles[`${type}HighlightText`]
-                : buttonStyles[`${type}RawText`],
-        ) as any).color;
+        // const indicatorColor = (StyleSheet.flatten(
+        //     this.state.pressIn
+        //         ? buttonStyles[`${type}HighlightText`]
+        //         : buttonStyles[`${type}RawText`],
+        // ) as any).color;
 
         return (
 
@@ -84,6 +84,9 @@ export default class Button extends React.Component<ButtonProps, State> {
                         let textStyle:TextStyle[] = [
                             {fontSize: size === "small" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
                         ];
+
+                        let indicatorColor:string;
+                        let textColor:string;
 
                         let wrapperStyle: ViewStyle[] = [{
                             alignItems: 'center',
@@ -111,15 +114,18 @@ export default class Button extends React.Component<ButtonProps, State> {
                                 backgroundColor: isDarkMode?"#0d4480":Styles.primaryColorDark,
                                 borderColor: Styles.primaryColorDark,
                             });
+                            indicatorColor = textColor = isDarkMode?Styles.primaryColorLight:"#ffffff";
 
                             textStyle.push({
-                                color: isDarkMode?Styles.primaryColorLight:"#ffffff"
+                                color: textColor
                             });
 
                             if(pressIn){
 
+                                indicatorColor = textColor = `${Styles.InverseTextColor}4D`;
+
                                 textStyle.push({
-                                    color: `${Styles.InverseTextColor}4D`
+                                    color:textColor
                                 });
 
                                 if(activeStyle){
@@ -149,15 +155,17 @@ export default class Button extends React.Component<ButtonProps, State> {
                                 borderColor: Styles.primaryColor,
                             });
 
-                            textStyle.push({
-                                color: Styles.primaryColor
-                            });
+                            textStyle.push({color: Styles.primaryColor});
+
+                            indicatorColor = Styles.primaryColor;
 
                             if(pressIn) {
 
                                 textStyle.push({
                                     color: `${Styles.InverseTextColor}4D`
                                 });
+
+                                indicatorColor = `${Styles.InverseTextColor}4D`
 
                                 if (activeStyle) {
 
@@ -182,9 +190,12 @@ export default class Button extends React.Component<ButtonProps, State> {
 
                         } else if (type === "default") {
 
+
                             textStyle.push({
                                 color: Styles.textColor,
                             });
+
+                            indicatorColor = Styles.textColor;
 
                             wrapperStyle.push({
                                 backgroundColor: Styles.backgroundColor,
@@ -196,6 +207,8 @@ export default class Button extends React.Component<ButtonProps, State> {
                                 textStyle.push({
                                     color: Styles.textBaseColor
                                 });
+
+                                indicatorColor = Styles.textBaseColor;
 
                                 if(activeStyle){
                                     wrapperStyle.push({
@@ -216,7 +229,7 @@ export default class Button extends React.Component<ButtonProps, State> {
                         wrapperStyle.push(style as any);
 
                         return (
-                            <TouchableHighlight
+                            <CustomTouchableHighlight
                                 {...restProps}
                                 style={wrapperStyle}
                                 disabled={disabled}
@@ -227,10 +240,10 @@ export default class Button extends React.Component<ButtonProps, State> {
                                 onShowUnderlay={this._onShowUnderlay}
                                 onHideUnderlay={this._onHideUnderlay}
                             >
-                                <View style={buttonStyles.container}>
+                                <View style={{flexDirection: 'row'}}>
                                     {loading ? (
                                         <ActivityIndicator
-                                            style={buttonStyles.indicator}
+                                            style={{marginRight: Styles.margin}}
                                             animating
                                             color={indicatorColor}
                                             size="small"
@@ -238,7 +251,7 @@ export default class Button extends React.Component<ButtonProps, State> {
                                     ) : null}
                                     <Text style={textStyle}>{children}</Text>
                                 </View>
-                            </TouchableHighlight>
+                            </CustomTouchableHighlight>
                         )
                     }
                 }

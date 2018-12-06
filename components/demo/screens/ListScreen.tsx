@@ -1,5 +1,4 @@
 import * as React from 'react'
-import {Text, View} from "react-native";
 import List from "../../list/List";
 import {NavigationProps} from "../demotype";
 import Container from "../../theme-provider/ThemeContainer";

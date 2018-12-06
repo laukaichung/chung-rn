@@ -1,8 +1,10 @@
 import * as React from 'react'
-import {View,Text} from 'react-native'
+import {View} from 'react-native'
 import Button from "../../button";
 import CustomModal from "../../modal";
 import {NavigationProps} from "../demotype";
+import ThemeContainer from "../../theme-provider/ThemeContainer";
+import ChungText from "../../chung-text";
 
 interface State {
     modal: boolean
@@ -13,19 +15,19 @@ export class ButtonScreen extends React.Component<NavigationProps, State> {
 
     render() {
         return (
-            <View>
+            <ThemeContainer>
                 <CustomModal title={"Title"} buttonTrigger={<Button size="small" type="ghost">Hello</Button>}>
                     {
                         () => {
                             return (
                                 <View>
-                                    <Text>Hello</Text>
+                                    <ChungText>Hello</ChungText>
                                 </View>
                             )
                         }
                     }
                 </CustomModal>
-            </View>
+            </ThemeContainer>
         )
     }
 }

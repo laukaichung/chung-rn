@@ -6,7 +6,7 @@ import {ChungStyles} from "../index";
 
 interface LabelProps {
     text: string
-    marginVertical:boolean
+    marginVertical?:boolean
 }
 
 const Label = ({text,marginVertical}: LabelProps) => {

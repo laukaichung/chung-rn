@@ -83,7 +83,7 @@ export default class Styles {
     static paddingLg= 15;
     static paddingXl= 21;
 
-    static backgroundColorSelected = '#dadada';
+    static backgroundColorSelected = '#cdcdcd';
 
     static get backgroundColor(){
         return this.isDarkMode ? '#1d1d1d': '#ffffff'

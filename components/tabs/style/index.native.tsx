@@ -1,5 +1,5 @@
 import * as RN from 'react-native';
-import {Styles} from "../../style";
+import Styles from "../../style";
 
 export default {
   Tabs: {

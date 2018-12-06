@@ -2,25 +2,6 @@ import {ViewStyle} from 'react-native';
 import Styles from "../style";
 
 export default {
-  container: {
-    flexDirection: 'row',
-  } as ViewStyle,
-  defaultHighlight: {
-    backgroundColor: Styles.backgroundColor,
-    borderColor: Styles.borderColor,
-  },
-  primaryHighlight: {
-    backgroundColor: Styles.brandPrimary,
-    borderColor: Styles.brandPrimary,
-  },
-  ghostHighlight: {
-    backgroundColor: 'transparent',
-    borderColor: Styles.brandPrimary,
-  },
-  warningHighlight: {
-    backgroundColor: Styles.warningButtonBackgroundColor,
-    borderColor: Styles.warningButtonBorderColor,
-  },
   wrapperStyle: {
     alignItems: 'center',
     justifyContent: 'center',
