@@ -112,7 +112,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                     underlineColorAndroid="transparent"
                     style={[
                         styles.input,
-                        {backgroundColor: Styles.darkestBackgroundColor},
+                        {backgroundColor: Styles.extremeBackgroundColor},
                         {
                             color: error ? Styles.errorColor : Styles.textColor,
                             paddingRight: error ? 2 * Styles.paddingLg : 0,

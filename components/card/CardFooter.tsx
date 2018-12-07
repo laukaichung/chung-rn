@@ -30,7 +30,7 @@ export default class CardFooter extends React.Component<CardFooterProps, any> {
 
         return (
             <View
-                style={[styles.footerContainer, {backgroundColor: Styles.darkestBackgroundColor}, style]} {...restProps}>
+                style={[styles.footerContainer, {backgroundColor: Styles.extremeBackgroundColor}, style]} {...restProps}>
                 {contentDom}
                 {extra && extraDom}
             </View>

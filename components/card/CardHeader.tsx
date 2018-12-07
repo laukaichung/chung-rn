@@ -43,7 +43,7 @@ export default class CardHeader extends React.Component<CardHeaderProps, any> {
             <View style={
                 [
                     styles.headerWrap,
-                    {borderColor: Styles.borderColor, backgroundColor: Styles.darkestBackgroundColor},
+                    {borderColor: Styles.borderColor, backgroundColor: Styles.extremeBackgroundColor},
                     style
                 ]
             } {...restProps}>

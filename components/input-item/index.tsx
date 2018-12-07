@@ -135,7 +135,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                                     {...valueProps}
                                     style={[
                                         styles.input,
-                                        {color: Styles.textColor, backgroundColor: Styles.darkestBackgroundColor},
+                                        {color: Styles.textColor, backgroundColor: Styles.extremeBackgroundColor},
                                         error && Styles.errorColor]}
                                     keyboardType={type}
                                     onChange={event => this._onChange(event.nativeEvent.text)}

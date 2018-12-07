@@ -2,7 +2,6 @@ import {TextStyle, ViewStyle} from "react-native";
 
 export type ChungThemeTypes = "dark"|"light"
 
-
 export default class Styles {
 
     static mode:ChungThemeTypes;
@@ -15,8 +14,12 @@ export default class Styles {
         return "#a3a3a3"
     }
 
-    static get darkestBackgroundColor(){
-        return this.isDarkMode? "#000000":"#ffffff"
+    static darkestColor = "#000000";
+
+    static lightestColor = "#ffffff";
+
+    static get extremeBackgroundColor(){
+        return this.isDarkMode? this.darkestColor:this.lightestColor
     }
 
     static primaryColorDark = '#003978';
@@ -98,6 +101,10 @@ export default class Styles {
         return this.isDarkMode? this.primaryColorDark:this.primaryColor
     }
 
+    static get statusBarBackgroundColor(){
+        return this.darkestColor;
+    }
+
     static get backgroundColor(){
         return this.isDarkMode ? '#1d1d1d': '#ffffff'
     };
@@ -116,7 +123,7 @@ export default class Styles {
     };
 
     static get disabledTextColor(){
-        return this.isDarkMode?"#6c6c6c":"grey"
+        return this.isDarkMode?"#6c6c6c":"#909090"
     };
 
     static disabledBorderColor = '#dadada';

@@ -60,7 +60,7 @@ const StackNavigator = createStackNavigator(
 
             let isDarkMode = ChungStyles.mode === "dark";
             return {
-                headerStyle: isDarkMode ? {backgroundColor: ChungStyles.darkestBackgroundColor} : {},
+                headerStyle: isDarkMode ? {backgroundColor: ChungStyles.extremeBackgroundColor} : {},
                 headerTitleStyle: isDarkMode ? {color: ChungStyles.textColor} : {},
                 headerTintColor:ChungStyles.textColor,
                 headerRight: (
