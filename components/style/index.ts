@@ -101,9 +101,18 @@ export default class Styles {
         return this.isDarkMode? this.primaryColorDark:this.primaryColor
     }
 
+    ////////Use in App /////////
+
+    static iconColorDark = "#c6c6c6";
+    static iconColorLight = "#5e5e5e";
+    static get iconColor(){
+        return this.isDarkMode ? this.iconColorDark:this.iconColorLight;
+    }
+
     static get statusBarBackgroundColor(){
         return this.darkestColor;
     }
+    ////////////////////////////
 
     static get backgroundColor(){
         return this.isDarkMode ? '#1d1d1d': '#ffffff'
