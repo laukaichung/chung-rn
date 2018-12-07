@@ -47,7 +47,7 @@ export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
         <View style={Styles.centerItems}>
             <ChungText style={{
                 fontWeight: "bold",
-                color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.backgroundColorSelected : null
+                color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedBackgroundColor : null
             }}>
                 {StringUtil.capitalize(option.text)}
             </ChungText>

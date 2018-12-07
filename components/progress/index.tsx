@@ -36,7 +36,7 @@ export default class Progress extends React.Component<ProgressProps, ProgressSta
     }
 
     public render() {
-        const {position, unfilled, style, appearTransition, barColor = Styles.brandPrimary} = this.props;
+        const {position, unfilled, style, appearTransition, barColor = Styles.primaryColor} = this.props;
         const {percentage} = this.state;
         const percentStyle = {width: appearTransition ? percentage : this._getWidth(), height: 0};
         const barStyles: any = [styles.progressBar, percentStyle, {borderColor: barColor}];

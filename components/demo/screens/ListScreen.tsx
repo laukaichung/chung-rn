@@ -18,9 +18,6 @@ export class ListScreen extends React.Component<NavigationProps> {
                         arrow="horizontal">
                         <ChungText numberOfLines={5}>Hello, this is a list item g dfdfsfdsdfs dds df sdf sdf sdsf  dfs dsf dsfd sfd sfdsf dfs  ffgdfdgdgf fdg fgd fdgfdgfgd dfg fdfdg</ChungText>
                     </List.Item>
-                    <List.Item>
-                        <ChungText>Hello, last one doesn't have a borderBottom</ChungText>
-                    </List.Item>
                     <List.Item
                         onLongPress={()=>alert('dfdfdf')}
                         disableBorder={"top"}>

@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         marginLeft: Styles.margin,
     },
     toast: {
-        color: Styles.InverseTextColor,
+        color: Styles.whiteTextColor,
         fontSize: Styles.fontSize,
         marginTop: Styles.marginSm,
     },

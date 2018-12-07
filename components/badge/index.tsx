@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         width: 2 * grid,
         height: 2 * grid,
         borderRadius: grid,
-        backgroundColor: Styles.brandImportant,
+        backgroundColor: Styles.badgeBackgroundColor,
         position: 'absolute',
         top: -1 * grid,
         right: -1 * grid,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     textDom: {
         paddingVertical: 0.5 * grid,
         paddingHorizontal: (Platform.OS === 'ios' ? 1.5 : 2) * grid,
-        backgroundColor: Styles.brandImportant,
+        backgroundColor: Styles.badgeBackgroundColor,
         borderRadius: 4 * Styles.radiusSm,
         borderStyle: 'solid',
         position: 'absolute',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
     textCorner: {
         width: 18 * grid,
-        backgroundColor: Styles.brandImportant,
+        backgroundColor: Styles.badgeBackgroundColor,
         transform: [
             {
                 rotate: '45deg',
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         top: 3 * grid,
     },
     text: {
-        color: Styles.InverseTextColor,
+        color: Styles.whiteTextColor,
         textAlign: 'center',
     },
 });

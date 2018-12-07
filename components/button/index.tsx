@@ -101,10 +101,10 @@ export default class Button extends React.Component<ButtonProps, State> {
                         if (type === "primary") {
 
                             wrapperStyle.push({
-                                backgroundColor: isDarkMode?"#0d4480":Styles.primaryColorDark,
-                                borderColor: Styles.primaryColorDark,
+                                backgroundColor: Styles.primaryColor,
+                                borderColor: Styles.borderColor,
                             });
-                            indicatorColor = textColor = isDarkMode?Styles.primaryColorLight:"#ffffff";
+                            indicatorColor = textColor = Styles.indicatorColor;
 
                             textStyle.push({
                                 color: textColor
@@ -112,7 +112,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
                             if(pressIn){
 
-                                indicatorColor = textColor = `${Styles.InverseTextColor}4D`;
+                                indicatorColor = textColor = `${Styles.whiteTextColor}4D`;
 
                                 textStyle.push({
                                     color:textColor
@@ -128,15 +128,12 @@ export default class Button extends React.Component<ButtonProps, State> {
 
                             if (disabled) {
 
-                                //todo Disabled background color doesn't look good in dark mode
-
                                 wrapperStyle.push({
-                                    backgroundColor: Styles.disabledBackgroundColor,
-                                    borderColor: Styles.disabledBorderColor,
+                                    borderColor: Styles.primaryColor,
                                 });
 
                                 textStyle.push({
-                                    color: Styles.InverseTextColor
+                                    color: Styles.primaryColorDark
                                 })
                             }
 
@@ -154,10 +151,10 @@ export default class Button extends React.Component<ButtonProps, State> {
                             if(pressIn) {
 
                                 textStyle.push({
-                                    color: `${Styles.InverseTextColor}4D`
+                                    color: `${Styles.whiteTextColor}4D`
                                 });
 
-                                indicatorColor = `${Styles.InverseTextColor}4D`
+                                indicatorColor = `${Styles.whiteTextColor}4D`;
 
                                 if (activeStyle) {
 
@@ -172,7 +169,8 @@ export default class Button extends React.Component<ButtonProps, State> {
                             if (disabled) {
 
                                 wrapperStyle.push({
-                                    borderColor: `${Styles.textBaseColor}1A`, // alpha 10%  https://codepen.io/chriscoyier/pen/XjbzAW
+                                    borderStyle:"dashed",
+                                    borderColor:Styles.disabledBorderColor
                                 });
 
                                 textStyle.push({
@@ -212,11 +210,13 @@ export default class Button extends React.Component<ButtonProps, State> {
 
                             if (disabled) {
 
-
-
                                 wrapperStyle.push({
                                     backgroundColor: Styles.disabledBackgroundColor,
                                     borderColor: Styles.disabledBorderColor,
+                                })
+
+                                textStyle.push({
+                                    color:Styles.disabledTextColor
                                 })
                             }
                         }

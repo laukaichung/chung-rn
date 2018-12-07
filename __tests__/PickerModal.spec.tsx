@@ -48,7 +48,7 @@ describe(`PickerModal`, () => {
         // expect(modal.findAllByType(PickerOption).length).toBe(2);
         getGridOption({testRenderer,index:0});
         buttonProps.onPress();
-        expect(modal.findAllByType(PickerOption)[0].findByType(Text).props.style.color).toBe(Styles.backgroundColorSelected);
+        expect(modal.findAllByType(PickerOption)[0].findByType(Text).props.style.color).toBe(Styles.selectedBackgroundColor);
     })
 
 });

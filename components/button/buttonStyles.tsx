@@ -22,18 +22,6 @@ export default {
     backgroundColor: Styles.backgroundColor,
     borderColor: Styles.borderColor,
   },
-  primaryRaw: {
-    backgroundColor: Styles.brandPrimary,
-    borderColor: Styles.brandPrimary,
-  },
-  ghostRaw: {
-    backgroundColor: 'transparent',
-    borderColor: Styles.brandPrimary,
-  },
-  warningRaw: {
-    backgroundColor: Styles.warningButtonBorderColor,
-    borderColor: Styles.warningButtonBorderColor,
-  },
   defaultDisabledRaw: {
     backgroundColor: Styles.disabledBackgroundColor,
     borderColor: Styles.disabledBorderColor,
@@ -51,13 +39,13 @@ export default {
     color: Styles.textBaseColor,
   },
   primaryHighlightText: {
-    color: `${Styles.InverseTextColor}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: `${Styles.whiteTextColor}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   ghostHighlightText: {
     color: Styles.brandPrimary,
   },
   warningHighlightText: {
-    color: `${Styles.InverseTextColor}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: `${Styles.whiteTextColor}4D`, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   largeRawText: {
     fontSize: Styles.buttonFontSize,
@@ -69,25 +57,25 @@ export default {
     color: Styles.textBaseColor,
   },
   primaryRawText: {
-    color: Styles.InverseTextColor,
+    color: Styles.whiteTextColor,
   },
   ghostRawText: {
     color: Styles.brandPrimary,
   },
   warningRawText: {
-    color: Styles.InverseTextColor,
+    color: Styles.whiteTextColor,
   },
   defaultDisabledRawText: {
     color: Styles.disabledTextColor, // alpha 30%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   primaryDisabledRawText: {
-    color: Styles.InverseTextColor, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: Styles.whiteTextColor, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   ghostDisabledRawText: {
     color: Styles.textBaseColor, // alpha 10%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   warningDisabledRawText: {
-    color: Styles.InverseTextColor, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
+    color: Styles.whiteTextColor, // alpha 60%  https://codepen.io/chriscoyier/pen/XjbzAW
   },
   indicator: {
     marginRight: Styles.margin,

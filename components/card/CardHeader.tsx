@@ -47,7 +47,7 @@ export default class CardHeader extends React.Component<CardHeaderProps, any> {
                     <View style={
                         [
                             styles.headerWrap,
-                            {borderColor: Styles.borderColor,backgroundColor:Styles.inputAreaBackgroundColor},
+                            {borderColor: Styles.borderColor,backgroundColor:Styles.darkestBackgroundColor},
                             style
                         ]
                     } {...restProps}>
@@ -87,12 +87,12 @@ const styles = StyleSheet.create({
         marginRight: Styles.marginSm,
     },
     headerContent: {
-        fontSize: Styles.HeaderFontSize,
+        fontSize: Styles.headerFontSize,
         flex: 1,
     },
     headerExtra: {
         flex: 1,
-        fontSize: Styles.HeaderFontSize,
+        fontSize: Styles.headerFontSize,
         textAlign: 'right',
     },
 });

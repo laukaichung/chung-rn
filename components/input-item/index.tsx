@@ -135,8 +135,8 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                                     {...valueProps}
                                     style={[
                                         styles.input,
-                                        {color: Styles.textColor, backgroundColor: Styles.inputAreaBackgroundColor},
-                                        error && styles.inputErrorColor]}
+                                        {color: Styles.textColor, backgroundColor: Styles.darkestBackgroundColor},
+                                        error && Styles.errorColor]}
                                     keyboardType={type}
                                     onChange={event => this._onChange(event.nativeEvent.text)}
                                     secureTextEntry={type === 'password'}
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     text: {
         marginRight: Styles.margin,
         textAlignVertical: 'center',
-        fontSize: Styles.HeaderFontSize,
+        fontSize: Styles.headerFontSize,
         color: Styles.inputFontColor,
     },
     input: {
@@ -259,11 +259,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontSize: Styles.inputFontSize,
     },
-    inputErrorColor: {
-        color: '#f50',
-    },
     clear: {
-        backgroundColor: Styles.iconColorBase,
+        backgroundColor: Styles.indicatorColor,
         borderRadius: 15,
         padding: 2,
     },

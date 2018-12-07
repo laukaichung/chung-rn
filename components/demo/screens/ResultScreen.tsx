@@ -3,17 +3,24 @@ import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";
 import Result from "../../result";
 import WingBlank from "../../wing-blank";
+import WhiteSpace from "../../white-space";
 
 export default class ResultScreen extends React.Component<NavigationProps> {
     render() {
         return (
             <UIContainer>
-                <WingBlank>
-                    <Result title={"No Results Found"} message={"This is the message"}/>
-                </WingBlank>
-                <WingBlank>
-                    <Result title={"Success"} message={"This is the message"}/>
-                </WingBlank>
+                <WhiteSpace/>
+                <Result title={"Warning"}
+                        type="warning"
+                        message={"This is a message"}/>
+                <WhiteSpace/>
+                <Result title={"Success"}
+                        type="success"
+                        message={"This is a message"}/>
+                <WhiteSpace/>
+                <Result title={"Error"}
+                        type="error"
+                        message={"This is a message"}/>
             </UIContainer>
         )
     }

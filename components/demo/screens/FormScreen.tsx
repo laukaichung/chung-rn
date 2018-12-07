@@ -18,9 +18,16 @@ export default class FormScreen extends React.Component<NavigationProps> {
                                error
                                extra={"Hello"}
                                placeholder={"Some Holder"}/>
+
                     <TextAreaItem rows={2} label="Text Area"/>
+
+
                     <CheckboxItem label={"Checkbox"}/>
                     <RadioItem label={"Radio"}/>
+
+                    <CheckboxItem disabled label={"Disabled Checkbox"}/>
+                    <RadioItem disabled label={"Disabled Radio"}/>
+
                     <DateTimePickerModal
                         label={"Select Date"}
                         onCancel={() => console.log('cancel')}

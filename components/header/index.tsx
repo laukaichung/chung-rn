@@ -30,7 +30,7 @@ export const Header = ({text, center, marginVertical}: HeaderProps) => {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: Styles.HeaderFontSize,
+        fontSize: Styles.headerFontSize,
         fontWeight: "bold",
     }
 });

@@ -43,10 +43,15 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                         }
                     </UIContext.Consumer>
                     <WhiteSpace/>
-                    <Button type="primary" onPress={() => {}}>
+                    <Button disabled onPress={() => {}}>
                         Primary Button
                     </Button>
 
+                    <WhiteSpace/>
+                    <Button type="primary" onPress={() => {}}>
+                        Primary Button
+                    </Button>
+                    <WhiteSpace/>
                     <Button type="primary" disabled onPress={() => {}}>
                         Diabled Primary Button
                     </Button>
@@ -55,10 +60,13 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                     <Button type="ghost" onPress={() => {}}>
                         Ghost Button
                     </Button>
+                    <WhiteSpace/>
 
                     <Button type="ghost" disabled onPress={() => {}}>
                         Diabled Ghost Button
                     </Button>
+
+
 
                 </WingBlank>
                 <List>

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import {Text} from 'react-native'
 import Card from "../../card";
 import CardHeader from "../../card/CardHeader";
 import CardBody from "../../card/CardBody";
@@ -19,6 +18,13 @@ export class CardScreen extends React.Component<NavigationProps, State> {
         return (
             <UIContainer>
                 <Card marginVertical full>
+                    <CardHeader title={<ChungText>Hello</ChungText>}/>
+                    <CardBody padding>
+                        <ChungText>Body Text</ChungText>
+                    </CardBody>
+                    <CardFooter extra={`Extra`}/>
+                </Card>
+                <Card marginVertical>
                     <CardHeader title={<ChungText>Hello</ChungText>}/>
                     <CardBody padding>
                         <ChungText>Body Text</ChungText>

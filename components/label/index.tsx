@@ -19,7 +19,7 @@ const Label = ({text,marginVertical}: LabelProps) => {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: Styles.HeaderFontSize,
+        fontSize: Styles.headerFontSize,
         fontWeight: "bold"
     }
 });

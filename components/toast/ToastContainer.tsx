@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Styles.paddingLg
     },
     content: {
-        color: Styles.InverseTextColor,
+        color: Styles.whiteTextColor,
         fontSize: Styles.subheaderFontSize,
     },
     image: {

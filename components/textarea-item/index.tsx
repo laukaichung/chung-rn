@@ -116,7 +116,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                             underlineColorAndroid="transparent"
                             style={[
                                 styles.input,
-                                {backgroundColor: Styles.inputAreaBackgroundColor},
+                                {backgroundColor: Styles.darkestBackgroundColor},
                                 {
                                     color: error ? '#f50' : Styles.textColor,
                                     paddingRight: error ? 2 * Styles.paddingLg : 0,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     },
     input: {
         fontSize: Styles.inputFontSize,
-        lineHeight: Math.round(1.5 * Styles.HeaderFontSize),
+        lineHeight: Math.round(1.5 * Styles.headerFontSize),
         textAlignVertical: 'top',
     },
     icon: {

@@ -1,18 +1,19 @@
 import * as React from 'react';
-import {ImageStyle, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
+import {RefObject} from 'react';
+import {ImageStyle, StyleProp, ViewStyle} from 'react-native';
 import {RadioItemPropsType} from './PropsType';
 import Radio from "./Radio";
 import List from "../list/List";
-import {RefObject} from "react";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
 import Styles from "../style";
+import UIContext from "../ui-provider/UIContext";
 
 
-export interface RadioItemNativeProps extends RadioItemPropsType,ListItemCommonProps {
+export interface RadioItemNativeProps extends RadioItemPropsType, ListItemCommonProps {
     style?: StyleProp<ViewStyle>;
     radioStyle?: StyleProp<ImageStyle>;
-    label:string;
+    label: string;
 }
 
 export default class RadioItem extends React.Component<RadioItemNativeProps> {
@@ -24,7 +25,7 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
     }
 
     public render() {
-        const {style, radioStyle, defaultChecked,disableBorder, checked, label, disabled, onChange} = this.props;
+        const {style, radioStyle, defaultChecked, disableBorder, checked, label, disabled, onChange} = this.props;
         const radioEl = (
             <Radio
                 ref={this.ref}
@@ -37,13 +38,18 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
         );
 
         return (
-            <List.Item
-                disableBorder={disableBorder}
-                listItemStyle={style}
-                onPress={disabled ? undefined : this.handleClick}
-                extra={radioEl}>
-                <Label text={label}/>
-            </List.Item>
+            <UIContext.Consumer>
+                {
+                    ()=>
+                    <List.Item
+                        disableBorder={disableBorder}
+                        listItemStyle={[style,disabled && {backgroundColor:Styles.disabledBackgroundColor}]}
+                        onPress={disabled ? undefined : this.handleClick}
+                        extra={radioEl}>
+                        <Label text={label}/>
+                    </List.Item>
+                }
+            </UIContext.Consumer>
         );
     }
 
@@ -53,12 +59,3 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
     }
 }
 
-const styles = StyleSheet.create({
-    radioItemContent: {
-        color: Styles.textBaseColor,
-        fontSize: Styles.HeaderFontSize,
-    },
-    radioItemContentDisable: {
-        color: Styles.disabledTextColor,
-    },
-});

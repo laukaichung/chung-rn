@@ -15,26 +15,31 @@ export default class Styles {
         return "#a3a3a3"
     }
 
-    static get inputAreaBackgroundColor(){
+    static get darkestBackgroundColor(){
         return this.isDarkMode? "#000000":"#ffffff"
     }
 
-    static primaryColorDark = '#0f62a8';
+    static primaryColorDark = '#003978';
+    static primaryColorLight = '#568fda';
+    static primaryColor = "#0f62a8";
 
-    static primaryColorLight = '#108ee9';
 
-    static get primaryColor() {
-        return this.isDarkMode?this.primaryColorDark:this.primaryColorLight
+    static badgeBackgroundColor = "#f57c00";
+
+    static get warningColor(){
+        return this.isDarkMode?"#eea21b":"#ffcc00"
     }
 
-    static brandImportant = '#d85105';
+    static get errorColor(){
+        return this.isDarkMode?"#cc3300":"#ea4732"
+    }
 
     static iconSizeSm = 16;
     static iconSizeMd = 32;
     static iconSizeLg = 48;
     static iconSizeXL = 60;
 
-    static iconColorBase = '#cccccc';
+    static indicatorColor = '#BDBDBD';
 
     static get hintTextDefaultTextColor(){
         return this.primaryColor
@@ -45,14 +50,14 @@ export default class Styles {
     static get listHeaderContainerStyle():ViewStyle{
         return {
             padding:Styles.padding,
-            backgroundColor: this.isDarkMode?'#343c40':'#c6d2e2'
+            backgroundColor: this.isDarkMode?this.primaryColorDark:'#c6d2e2'
         }
     }
 
     static get accordionHeaderContainerStyle():ViewStyle{
         return {
-            backgroundColor:this.isDarkMode?'#343c40':'#c6d2e2',
-            borderBottomColor:this.isDarkMode?"#8ba1ab":"#b7c2d2",
+            backgroundColor:this.isDarkMode?this.primaryColorDark:this.primaryColor,
+            borderBottomColor:this.borderColor,
             flexDirection: 'row',
             justifyContent: 'space-between',
             padding: 10,
@@ -64,7 +69,7 @@ export default class Styles {
         return {
             fontWeight: "bold",
             fontSize: 20,
-            color: this.isDarkMode?"#b7c0c0":"#75779e"
+            color: this.isDarkMode?this.textColor:this.whiteTextColor
         }
     }
 
@@ -75,15 +80,16 @@ export default class Styles {
 
     static fontSize = 14;
     static subheaderFontSize =  15;
-    static captionFontSize = 16;
-    static HeaderFontSize = 17;
+    static headerFontSize = 19;
 
     static paddingSm = 5;
     static padding = 10;
     static paddingLg= 15;
     static paddingXl= 21;
 
-    static backgroundColorSelected = '#cdcdcd';
+    static get selectedBackgroundColor(){
+        return this.isDarkMode? this.primaryColorDark:this.primaryColor
+    }
 
     static get backgroundColor(){
         return this.isDarkMode ? '#1d1d1d': '#ffffff'
@@ -94,17 +100,19 @@ export default class Styles {
     };
 
     static get headerColor(){
-        return this.isDarkMode? "#d85105":this.primaryColorDark
+        return this.primaryColor
     };
-    static InverseTextColor= '#ffffff';
+    static whiteTextColor= '#ffffff';
 
-    static disabledBackgroundColor = '#eaeaea';
-
-    static disabledBorderColor = '#dadada';
+    static get disabledBackgroundColor() {
+        return this.isDarkMode?"#868686":"#bcbcbc"
+    };
 
     static get disabledTextColor(){
-        return this.isDarkMode?'#979797':'#cbcbcb'
+        return this.isDarkMode?"#6c6c6c":"grey"
     };
+
+    static disabledBorderColor = '#dadada';
 
     static fontSizeCaptionSm= 12;
 
@@ -134,17 +142,19 @@ export default class Styles {
     static buttonHeightSm= 23;
     static buttonFontSizeSm= 12;
 
-    static warningButtonBorderColor= '#e94f4f';
+    static borderColorDark = "#444444";
+
+    static borderColorLight = "#d0d0d0";
 
     static get borderColor() {
-        return this.isDarkMode?'#444444':'#d6d6d6'
+        return this.isDarkMode? this.borderColorDark:this.borderColorLight
     }
 
     static get iconButtonStyle() {
         return {
             width: this.iconSizeSm,
             height: this.iconSizeSm,
-            tintColor: this.primaryColor
+            tintColor: this.isDarkMode?this.primaryColor:this.primaryColorLight
         }
     }
 

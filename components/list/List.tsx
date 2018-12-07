@@ -64,7 +64,7 @@ export default class List extends React.Component<ListProps, any> {
 const styles = StyleSheet.create({
     headerTitle: {
         color: Styles.headerColor,
-        fontSize: Styles.HeaderFontSize
+        fontSize: Styles.headerFontSize
     },
     footer: {},
     body: {

@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     closeText: {
-        color: Styles.InverseTextColor,
+        color: Styles.whiteTextColor,
         backgroundColor: 'transparent',
         fontSize: 20,
         height: 20,

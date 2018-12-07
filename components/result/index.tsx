@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {ImageURISource, StyleProp, StyleSheet,Text, ViewStyle,} from 'react-native';
+import {ImageURISource, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
 import Button from '../button';
 import Styles from "../style";
-import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
 import Header from "../header";
 
@@ -15,16 +14,20 @@ export interface ResultNativeProps {
     buttonText?: string;
     buttonType?: 'primary' | 'ghost';
     onButtonPress?: () => void;
+    marginHorizontal?: boolean
+    type?: "error" | "success" | "warning"
 }
 
 export default class Result extends React.Component<ResultNativeProps, any> {
 
-    render() {
+    public render() {
         const {
             style,
             img,
+            type,
             imgUrl,
             title,
+            marginHorizontal = true,
             message,
             buttonText,
             onButtonPress,
@@ -33,41 +36,50 @@ export default class Result extends React.Component<ResultNativeProps, any> {
 
         let imgContent: JSX.Element | null = null;
         if (img) {
-            imgContent = <ChungView style={styles.imgWrap}>{img}</ChungView>;
+            imgContent = <View style={styles.imgWrap}>{img}</View>;
         } else if (imgUrl) {
             imgContent = (
-                <ChungView style={styles.imgWrap}>
+                <View style={styles.imgWrap}>
                     <ChungImage
                         source={imgUrl as ImageURISource | ImageURISource[]}
                         style={styles.img as any}
                     />
-                </ChungView>
+                </View>
             );
         }
 
+        let typeColor = type === "error" ? Styles.errorColor :
+            type === "warning" ? Styles.warningColor : Styles.textColor;
+
         return (
-            <ChungView style={[styles.result, style,{borderColor:Styles.borderColor}]}>
+            <View style={
+                [
+                    styles.result,
+                    {borderColor: typeColor},
+                    marginHorizontal && {marginHorizontal: Styles.margin},
+                    style,
+                ]}>
                 {imgContent}
                 {title ? (
-                    <ChungView style={styles.title}>
+                    <View style={styles.title}>
                         {typeof title === 'string' ? (
-                            <Header text={title}/>
+                            <Text style={{fontSize: Styles.headerFontSize, color: typeColor}}>{title}</Text>
                         ) : (
                             title
                         )}
-                    </ChungView>
+                    </View>
                 ) : null}
                 {message ? (
-                    <ChungView style={styles.message}>
+                    <View style={styles.message}>
                         {typeof message === 'string' ? (
-                            <Text style={styles.messageText}>{message}</Text>
+                            <Text style={{color: typeColor}}>{message}</Text>
                         ) : (
                             message
                         )}
-                    </ChungView>
+                    </View>
                 ) : null}
                 {buttonText ? (
-                    <ChungView style={styles.buttonWrap}>
+                    <View style={styles.buttonWrap}>
                         <Button
                             style={styles.button}
                             type={buttonType}
@@ -75,18 +87,20 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                         >
                             {buttonText}
                         </Button>
-                    </ChungView>
+                    </View>
                 ) : null}
-            </ChungView>
+            </View>
         );
     }
+
+
 }
 
 const styles = StyleSheet.create({
     result: {
         alignItems: 'center',
         paddingVertical: Styles.paddingXl,
-        borderWidth:Styles.borderWidth
+        borderWidth: Styles.borderWidth
     },
     imgWrap: {
         margin: 0,
@@ -105,10 +119,6 @@ const styles = StyleSheet.create({
     message: {
         marginTop: Styles.marginLg,
         paddingHorizontal: Styles.paddingLg,
-    },
-    messageText: {
-        fontSize: Styles.captionFontSize,
-        color:"#929083"
     },
     buttonWrap: {
         flexDirection: 'row',

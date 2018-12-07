@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
         width: 8,
         height: 8,
         borderRadius: 8,
-        backgroundColor: Styles.iconColorBase,
+        backgroundColor: Styles.indicatorColor,
     },
     pointActiveStyle: {
         backgroundColor: '#888',

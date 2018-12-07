@@ -118,7 +118,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        let itemBorderStyle: StyleProp<ViewStyle> = {};
+        let itemBorderStyle: StyleProp<ViewStyle> = {borderBottomWidth:Styles.borderWidth,borderBottomColor: Styles.borderColor};
         if (disableBorder === "bottom") {
             itemBorderStyle = {borderBottomWidth: 0}
         } else if (disableBorder === "top") {
@@ -131,11 +131,8 @@ export default class Item extends React.Component<ListItemProps, any> {
             <View {...restProps}
                   style={[
                       styles.item,
+                      itemBorderStyle,
                       listItemStyle,
-                      !disableBorder && {
-                          borderBottomWidth: StyleSheet.hairlineWidth,
-                          borderBottomColor: Styles.borderColor
-                      }
                   ]}>
                 {typeof thumb === 'string' ? (
                     <Image
@@ -150,7 +147,6 @@ export default class Item extends React.Component<ListItemProps, any> {
                         styles.line,
                         multipleLine && styles.multipleLine,
                         multipleLine && alignStyle,
-                        itemBorderStyle,
                     ]}
                 >
                     {contentDom}
@@ -193,7 +189,7 @@ const arrEnum = {
 
 const styles = StyleSheet.create({
     underlayColor: {
-        backgroundColor: Styles.backgroundColorSelected,
+        backgroundColor: Styles.selectedBackgroundColor,
     },
 
     line: {

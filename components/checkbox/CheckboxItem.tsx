@@ -6,15 +6,17 @@ import {CheckboxItemPropsType} from './PropsType';
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
+import Styles from "../style";
+import UIContext from "../ui-provider/UIContext";
 
-export interface ICheckboxItemNativeProps extends CheckboxItemPropsType,ListItemCommonProps {
+export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, ListItemCommonProps {
     checkboxStyle?: StyleProp<ImageStyle>;
     style?: StyleProp<ViewStyle>;
-    label:string
+    label: string
 }
 
 export default class CheckboxItem extends React.Component<ICheckboxItemNativeProps, any> {
-    private refCheckbox:RefObject<Checkbox> = React.createRef();
+    private refCheckbox: RefObject<Checkbox> = React.createRef();
 
     public render() {
         const {
@@ -30,20 +32,25 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
         } = this.props;
 
         return (
-            <List.Item
-                disableBorder={disableBorder}
-                listItemStyle={style}
-                onPress={disabled ? undefined : this._handleClick}
-                extra={<Checkbox
-                    ref={this.refCheckbox}
-                    style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
-                    defaultChecked={defaultChecked}
-                    checked={checked}
-                    onChange={onChange}
-                    disabled={disabled}
-                />}>
-                <Label text={label}/>{extra}
-            </List.Item>
+            <UIContext.Consumer>
+                {
+                    ()=>
+                    <List.Item
+                        disableBorder={disableBorder}
+                        listItemStyle={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
+                        onPress={disabled ? undefined : this._handleClick}
+                        extra={<Checkbox
+                            ref={this.refCheckbox}
+                            style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
+                            defaultChecked={defaultChecked}
+                            checked={checked}
+                            onChange={onChange}
+                            disabled={disabled}
+                        />}>
+                        <Label text={label}/>{extra}
+                    </List.Item>
+                }
+            </UIContext.Consumer>
         );
     }
 
