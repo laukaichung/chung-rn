@@ -24,7 +24,10 @@ export default class Styles {
     static primaryColor = "#0f62a8";
 
 
-    static badgeBackgroundColor = "#f57c00";
+    static get badgeBackgroundColor(){
+        //return this.isDarkMode?"#d87000":"#f57c00"
+        return "#d87000"
+    };
 
     static get warningColor(){
         return this.isDarkMode?"#eea21b":"#ffcc00"
@@ -50,8 +53,12 @@ export default class Styles {
     static get listHeaderContainerStyle():ViewStyle{
         return {
             padding:Styles.padding,
-            backgroundColor: this.isDarkMode?this.primaryColorDark:'#c6d2e2'
+            backgroundColor: this.isDarkMode?this.primaryColorDark:this.primaryColorLight
         }
+    }
+
+    static get listHeaderTextColor(){
+        return this.whiteTextColor
     }
 
     static get accordionHeaderContainerStyle():ViewStyle{

@@ -1,10 +1,8 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, View,Text, ViewStyle} from 'react-native';
 import Styles from "../style";
 import ListItem from "./ListItem";
-import ChungText from "../chung-text";
-import ChungView from "../chung-view";
 import UIContext from "../ui-provider/UIContext";
 
 export interface ListProps {
@@ -17,6 +15,7 @@ export interface ListProps {
 }
 
 export default class List extends React.Component<ListProps, any> {
+
     public static Item = ListItem;
 
     public render() {
@@ -25,27 +24,27 @@ export default class List extends React.Component<ListProps, any> {
             <UIContext.Consumer>
                 {
                     ()=>
-                    <ChungView {...restProps as any} style={style}>
+                    <View {...restProps as any} style={style}>
                         {
                             renderHeader && renderHeader()
                         }
                         {
                             headerText && this.renderHeaderOrFooterContainer(headerText, headerTitleContainerStyle)
                         }
-                        <ChungView style={styles.body}>
+                        <View style={styles.body}>
                             {children}
                             <View style={[styles.bodyBottomLine]}/>
-                        </ChungView>
+                        </View>
                         {
                             renderFooter &&
-                            <ChungView style={styles.footer}>
+                            <View style={styles.footer}>
                                 {renderFooter()}
-                            </ChungView>
+                            </View>
                         }
                         {
                             footerText && this.renderHeaderOrFooterContainer(footerText)
                         }
-                    </ChungView>
+                    </View>
                 }
             </UIContext.Consumer>
         );
@@ -53,9 +52,9 @@ export default class List extends React.Component<ListProps, any> {
 
     private renderHeaderOrFooterContainer(text: string, containerStyle?: StyleProp<ViewStyle>) {
         return (
-            <ChungView style={[Styles.listHeaderContainerStyle, containerStyle]}>
-                <ChungText style={styles.headerTitle}>{text}</ChungText>
-            </ChungView>
+            <View style={[Styles.listHeaderContainerStyle, containerStyle]}>
+                <Text style={{color:Styles.listHeaderTextColor,fontSize:Styles.headerFontSize}}>{text}</Text>
+            </View>
         )
     }
 }

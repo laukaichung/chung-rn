@@ -1,5 +1,11 @@
 import * as React from 'react'
-import {createAppContainer, createDrawerNavigator} from 'react-navigation';
+import {
+    createAppContainer,
+    createDrawerNavigator,
+    createStackNavigator,
+    NavigationActions,
+    StackActions
+} from 'react-navigation';
 import {HomeScreen} from "./screens/HomeScreen";
 import {screenKeys} from "./data/ScreenKeys";
 import {AccordionScreen} from "./screens/AccordionScreen";
@@ -24,8 +30,10 @@ import Button from "../button";
 import UIContext from "../ui-provider/UIContext";
 import Styles from "../style";
 import ResultScreen from "./screens/ResultScreen";
+import {DrawerScreen} from "./screens/DrawerScreen";
+import {ChungStyles} from "../index";
 
-const AppNavigator = createDrawerNavigator(
+const StackNavigator = createStackNavigator(
     {
         [screenKeys.home]: HomeScreen,
         [screenKeys.accordion]: AccordionScreen,
@@ -49,14 +57,29 @@ const AppNavigator = createDrawerNavigator(
     {
         initialRouteName: screenKeys.home,
         defaultNavigationOptions: ({navigation}) => {
+
+            let isDarkMode = ChungStyles.mode === "dark";
             return {
+                headerStyle: isDarkMode ? {backgroundColor: ChungStyles.darkestBackgroundColor} : {},
+                headerTitleStyle: isDarkMode ? {color: ChungStyles.textColor} : {},
+                headerTintColor:ChungStyles.textColor,
                 headerRight: (
                     <View>
                         <UIContext.Consumer>
                             {
                                 ({theme, toggleTheme}) => {
                                     return (
-                                        <Button size="small" onPress={toggleTheme}>
+                                        <Button onPress={()=>{
+                                            toggleTheme();
+
+                                            const resetAction = StackActions.reset({
+                                                index: 0,
+                                                actions: [NavigationActions.navigate({routeName: screenKeys.home})],
+                                            });
+                                            navigation.dispatch(resetAction);
+
+
+                                        }}>
                                             Current Theme {Styles.mode}
                                         </Button>
                                     )
@@ -71,7 +94,19 @@ const AppNavigator = createDrawerNavigator(
     }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const DrawerNavigator = createDrawerNavigator(
+    {
+        MainContent: StackNavigator
+    },
+    {
+        drawerPosition: 'right',
+        drawerType: 'front',
+        contentComponent: (navigation) => <DrawerScreen navigation={navigation}/>
+    }
+);
+
+
+const AppContainer = createAppContainer(DrawerNavigator);
 
 export default class App extends React.Component {
 

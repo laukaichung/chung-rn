@@ -5,7 +5,6 @@ export const screenKeys = {
     list:'list',
     textArea:'textArea',
     form:'form',
-    tabs:'tabs',
     grid:'grid',
     progress:'progress',
     activityIndicator:'activityIndicator',
@@ -14,11 +13,9 @@ export const screenKeys = {
     pickerModal:'pickerModal',
     badge:'badge',
     modal:'modal',
-    imagePickerItem:'imagePickerItem',
     imagePickerItemModal:'imagePickerItemModal',
     cameraRollImageList:'cameraRollImageList',
     toast:'toast',
     oldTabs:'oldTabs',
-    something:'something',
     result:'result'
 };

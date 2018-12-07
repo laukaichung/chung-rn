@@ -30,11 +30,6 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                                 return (
                                     <Button onPress={() => {
                                         toggleTheme();
-                                        const resetAction = StackActions.reset({
-                                            index: 0,
-                                            actions: [NavigationActions.navigate({routeName: screenKeys.card})],
-                                        });
-                                        navigation.dispatch(resetAction);
                                     }}>
                                         Current Theme {Styles.mode}
                                     </Button>

@@ -5,24 +5,16 @@ import {UIContext} from "../ui-provider/UIContext";
 
 interface ChungTextProps extends TextProps {
     children: any
-    colors?:ChungTextColorProps
-    oneColor?:string;
-}
-
-export interface ChungTextColorProps {
-    light:string
-    dark:string;
+    color?:string;
 }
 
 export const ChungText = (props: ChungTextProps) => {
-    let {colors,oneColor} = props;
+    let {color} = props;
     return (
         <UIContext.Consumer>
             {
                 ({theme})=> {
-
-                    let color = oneColor || Styles.textColor;
-                    if(colors) color = theme === "light"?colors.light:colors.dark;
+                    color = color || Styles.textColor;
                     return <Text {...props} style={[props.style, {lineHeight: 24}, {color}]}/>
                 }
             }
