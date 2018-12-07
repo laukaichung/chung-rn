@@ -10,9 +10,10 @@ interface HeaderProps {
     marginVertical?: boolean
     style?:TextStyle
     fontSize?:number
+    children?:string;
 }
 
-export const Header = ({text, color,center,fontSize, style,marginVertical}: HeaderProps) => {
+export const Header = ({text, color,center,children,fontSize, style,marginVertical}: HeaderProps) => {
     return (
         <UIContext.Consumer>
             {
@@ -28,7 +29,7 @@ export const Header = ({text, color,center,fontSize, style,marginVertical}: Head
                     style
                 ]
                 }>
-                    {text}
+                    {children || text}
                 </Text>
             }
         </UIContext.Consumer>
