@@ -29,15 +29,12 @@ export default class CardFooter extends React.Component<CardFooterProps, any> {
             );
 
         return (
-            <UIContext.Consumer>
-                {
-                    ()=>
-                    <View style={[styles.footerContainer,{backgroundColor:Styles.darkestBackgroundColor}, style]} {...restProps}>
-                        {contentDom}
-                        {extra && extraDom}
-                    </View>
-                }
-            </UIContext.Consumer>
+            <View
+                style={[styles.footerContainer, {backgroundColor: Styles.darkestBackgroundColor}, style]} {...restProps}>
+                {contentDom}
+                {extra && extraDom}
+            </View>
+
         );
     }
 }

@@ -1,9 +1,8 @@
 import * as React from 'react';
+import {ReactNode} from 'react';
 import {Image, ImageStyle, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
-import {ReactNode} from "react";
 import ChungText from "../chung-text";
-import UIContext from "../ui-provider/UIContext";
 
 export interface CardHeaderProps {
     style?: StyleProp<ViewStyle>;
@@ -41,31 +40,26 @@ export default class CardHeader extends React.Component<CardHeaderProps, any> {
             );
 
         return (
-            <UIContext.Consumer>
-                {
-                    ()=>
-                    <View style={
-                        [
-                            styles.headerWrap,
-                            {borderColor: Styles.borderColor,backgroundColor:Styles.darkestBackgroundColor},
-                            style
-                        ]
-                    } {...restProps}>
-                        <View style={[styles.headerTitle]}>
-                            {typeof thumb === 'string' ? (
-                                <Image
-                                    source={{uri: thumb}}
-                                    style={[styles.headerImage, thumbStyle] as any}
-                                />
-                            ) : (
-                                thumb
-                            )}
-                            {titleDom}
-                        </View>
-                        {extra ? extraDom : null}
-                    </View>
-                }
-            </UIContext.Consumer>
+            <View style={
+                [
+                    styles.headerWrap,
+                    {borderColor: Styles.borderColor, backgroundColor: Styles.darkestBackgroundColor},
+                    style
+                ]
+            } {...restProps}>
+                <View style={[styles.headerTitle]}>
+                    {typeof thumb === 'string' ? (
+                        <Image
+                            source={{uri: thumb}}
+                            style={[styles.headerImage, thumbStyle] as any}
+                        />
+                    ) : (
+                        thumb
+                    )}
+                    {titleDom}
+                </View>
+                {extra ? extraDom : null}
+            </View>
         );
     }
 }

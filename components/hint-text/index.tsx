@@ -12,30 +12,22 @@ export interface HintTextProps {
     containerStyle?: ViewStyle
 }
 
-const HintText = ({color, icon, text,containerStyle}: HintTextProps) => {
+const HintText = ({color, icon, text, containerStyle}: HintTextProps) => {
+    color = color || Styles.hintTextDefaultTextColor;
     return (
-        <UIContext.Consumer>
+        <ChungView style={[
             {
-                ({isDarkMode}) => {
-                    color = color || Styles.hintTextDefaultTextColor;
-                    return (
-                        <ChungView style={[
-                            {
-                                borderColor: color,
-                                borderWidth: 1,
-                                padding: Styles.padding,
-                                marginVertical: Styles.margin
-                            },
-                            containerStyle
-                        ]}>
-                            <Text style={[{lineHeight: 24, color}]}>
-                                {icon} {text}
-                            </Text>
-                        </ChungView>
-                    )
-                }
-            }
-        </UIContext.Consumer>
+                borderColor: color,
+                borderWidth: 1,
+                padding: Styles.padding,
+                marginVertical: Styles.margin
+            },
+            containerStyle
+        ]}>
+            <Text style={[{lineHeight: 24, color}]}>
+                {icon} {text}
+            </Text>
+        </ChungView>
     )
 };
 
