@@ -90,10 +90,11 @@ export default class Button extends React.Component<ButtonProps, State> {
                                 height: Styles.buttonHeight,
                                 paddingVertical: Styles.paddingLg
                             })
+
                         } else {
                             wrapperStyle.push({
                                 height: Styles.buttonHeightSm,
-                                paddingVertical: Styles.paddingSm
+                                paddingVertical: Styles.padding
                             })
                         }
 
@@ -213,7 +214,7 @@ export default class Button extends React.Component<ButtonProps, State> {
                                 wrapperStyle.push({
                                     backgroundColor: Styles.disabledBackgroundColor,
                                     borderColor: Styles.disabledBorderColor,
-                                })
+                                });
 
                                 textStyle.push({
                                     color:Styles.disabledTextColor
