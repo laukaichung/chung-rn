@@ -11,7 +11,7 @@ export interface HintTextProps {
     color?: string;
 }
 
-export const HintText = ({color, icon, text}: HintTextProps) => {
+const HintText = ({color, icon, text}: HintTextProps) => {
     return (
         <UIContext.Consumer>
             {
@@ -34,3 +34,5 @@ export const HintText = ({color, icon, text}: HintTextProps) => {
         </UIContext.Consumer>
     )
 };
+
+export default HintText
