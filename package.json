@@ -1,6 +1,6 @@
 {
   "name": "chung-rn",
-  "version": "0.2.961",
+  "version": "0.2.962",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "keywords": [
