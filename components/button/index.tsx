@@ -83,21 +83,8 @@ export default class Button extends React.Component<ButtonProps, State> {
                             justifyContent: 'center',
                             borderRadius: Styles.radiusMd,
                             borderWidth: 1,
+                            paddingVertical:size === "small"?Styles.paddingSm : Styles.padding
                         }];
-
-                        if (size === "large") {
-                            wrapperStyle.push({
-                                height: Styles.buttonHeight,
-                                paddingVertical: Styles.paddingLg
-                            })
-
-                        } else {
-                            wrapperStyle.push({
-                                height: Styles.buttonHeightSm,
-                                paddingVertical: Styles.padding
-                            })
-                        }
-
 
                         if (type === "primary") {
 
