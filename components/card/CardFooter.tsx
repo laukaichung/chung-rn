@@ -16,7 +16,7 @@ export default class CardFooter extends React.Component<CardFooterProps, any> {
         const {content, extra, style = {}, ...restProps} = this.props;
         const contentDom =
             content !== undefined && React.isValidElement(content) ? (
-                <View style={styles.contentContainer}>{content}</View>
+                content
             ) : (
                 <ChungText style={styles.textContent}>{content}</ChungText>
             );

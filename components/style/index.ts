@@ -169,6 +169,11 @@ export default class Styles {
         flex: 1,
         justifyContent: 'center',
         alignItems:'center'
-    } as ViewStyle
+    } as ViewStyle;
+
+    static inline:ViewStyle = {
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    }
 
 }

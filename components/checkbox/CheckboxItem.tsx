@@ -7,7 +7,6 @@ import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
 import Styles from "../style";
-import UIContext from "../ui-provider/UIContext";
 
 export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, ListItemCommonProps {
     checkboxStyle?: StyleProp<ImageStyle>;
@@ -32,25 +31,22 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
         } = this.props;
 
         return (
-            <UIContext.Consumer>
-                {
-                    ()=>
-                    <List.Item
-                        disableBorder={disableBorder}
-                        listItemStyle={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
-                        onPress={disabled ? undefined : this._handleClick}
-                        extra={<Checkbox
-                            ref={this.refCheckbox}
-                            style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
-                            defaultChecked={defaultChecked}
-                            checked={checked}
-                            onChange={onChange}
-                            disabled={disabled}
-                        />}>
-                        <Label text={label}/>{extra}
-                    </List.Item>
-                }
-            </UIContext.Consumer>
+
+            <List.Item
+                disableBorder={disableBorder}
+                listItemStyle={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
+                onPress={disabled ? undefined : this._handleClick}
+                extra={<Checkbox
+                    ref={this.refCheckbox}
+                    style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
+                    defaultChecked={defaultChecked}
+                    checked={checked}
+                    onChange={onChange}
+                    disabled={disabled}
+                />}>
+                <Label>{label}</Label>{extra}
+            </List.Item>
+
         );
     }
 

@@ -14,7 +14,6 @@ import {ListItemCommonProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
-import UIContext from "../ui-provider/UIContext";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -104,55 +103,50 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <UIContext.Consumer>
-                {
-                    ()=>
-                    <List.Item disableBorder={disableBorder}
-                               listItemStyle={containerStyle}>
-                        {label && <Label marginVertical text={label}/>}
-                        <TextInput
-                            placeholderTextColor={Styles.placeholderTextColor}
-                            clearButtonMode={clear ? 'while-editing' : 'never'}
-                            underlineColorAndroid="transparent"
-                            style={[
-                                styles.input,
-                                {backgroundColor: Styles.darkestBackgroundColor},
-                                {
-                                    color: error ? '#f50' : Styles.textColor,
-                                    paddingRight: error ? 2 * Styles.paddingLg : 0,
-                                },
-                                {height: Math.max(45, height)},
-                                inputStyle,
+            <List.Item disableBorder={disableBorder}
+                       listItemStyle={containerStyle}>
+                {label && <Label marginVertical text={label}/>}
+                <TextInput
+                    placeholderTextColor={Styles.placeholderTextColor}
+                    clearButtonMode={clear ? 'while-editing' : 'never'}
+                    underlineColorAndroid="transparent"
+                    style={[
+                        styles.input,
+                        {backgroundColor: Styles.darkestBackgroundColor},
+                        {
+                            color: error ? Styles.errorColor : Styles.textColor,
+                            paddingRight: error ? 2 * Styles.paddingLg : 0,
+                        },
+                        {height: Math.max(45, height)},
+                        inputStyle,
 
-                            ]}
-                            {...restProps}
-                            {...valueProps}
-                            onChange={event => this.onChange(event)}
-                            onContentSizeChange={this.onContentSizeChange}
-                            multiline={rows! > 1 || autoHeight}
-                            numberOfLines={rows}
-                            maxLength={maxLength}
-                        />
-                        {error && (
-                            <TouchableWithoutFeedback onPress={onErrorClick}>
-                                <ChungView style={[styles.errorIconContainer]}>
-                                    <ChungImage
-                                        source={require('../../images/error.png')}
-                                        style={styles.errorIcon as any}
-                                    />
-                                </ChungView>
-                            </TouchableWithoutFeedback>
-                        )}
-                        {rows! > 1 && count! > 0 && (
-                            <ChungView style={[styles!.count]}>
-                                <ChungText>
-                                    {inputCount} / {count}
-                                </ChungText>
-                            </ChungView>
-                        )}
-                    </List.Item>
-                }
-            </UIContext.Consumer>
+                    ]}
+                    {...restProps}
+                    {...valueProps}
+                    onChange={event => this.onChange(event)}
+                    onContentSizeChange={this.onContentSizeChange}
+                    multiline={rows! > 1 || autoHeight}
+                    numberOfLines={rows}
+                    maxLength={maxLength}
+                />
+                {error && (
+                    <TouchableWithoutFeedback onPress={onErrorClick}>
+                        <ChungView style={[styles.errorIconContainer]}>
+                            <ChungImage
+                                source={require('../../images/error.png')}
+                                style={styles.errorIcon as any}
+                            />
+                        </ChungView>
+                    </TouchableWithoutFeedback>
+                )}
+                {rows! > 1 && count! > 0 && (
+                    <ChungView style={[styles!.count]}>
+                        <ChungText>
+                            {inputCount} / {count}
+                        </ChungText>
+                    </ChungView>
+                )}
+            </List.Item>
         );
     }
 
@@ -192,10 +186,6 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
 }
 
 const styles = StyleSheet.create({
-    container: {
-        borderBottomWidth: Styles.borderWidth,
-        borderBottomColor: Styles.borderColor,
-    },
     input: {
         fontSize: Styles.inputFontSize,
         lineHeight: Math.round(1.5 * Styles.headerFontSize),
