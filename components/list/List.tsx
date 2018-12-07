@@ -31,15 +31,23 @@ export default class List extends React.Component<ListProps, any> {
                         {
                             headerText && this.renderHeaderOrFooterContainer(headerText, headerTitleContainerStyle)
                         }
-                        <View style={styles.body}>
+                        <View style={{
+                            borderTopWidth: StyleSheet.hairlineWidth,
+                            borderTopColor: Styles.borderColor,
+                        }}>
                             {children}
-                            <View style={[styles.bodyBottomLine]}/>
+                            <View style={[{
+                                position: 'absolute',
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                height: 1,
+                                borderBottomWidth: StyleSheet.hairlineWidth,
+                                borderBottomColor: Styles.borderColor,
+                            }]}/>
                         </View>
                         {
-                            renderFooter &&
-                            <View style={styles.footer}>
-                                {renderFooter()}
-                            </View>
+                            renderFooter && renderFooter()
                         }
                         {
                             footerText && this.renderHeaderOrFooterContainer(footerText)
@@ -58,25 +66,3 @@ export default class List extends React.Component<ListProps, any> {
         )
     }
 }
-
-
-const styles = StyleSheet.create({
-    headerTitle: {
-        color: Styles.headerColor,
-        fontSize: Styles.headerFontSize
-    },
-    footer: {},
-    body: {
-        borderTopWidth: StyleSheet.hairlineWidth,
-        borderTopColor: Styles.borderColor,
-    },
-    bodyBottomLine: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 1,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: Styles.borderColor,
-    },
-});

@@ -5,12 +5,11 @@ import CustomModal, {ModalProps} from "../modal";
 import List from "../list"
 import Styles from "../style";
 import StringUtil from "../util/StringUtil";
-import {HintText} from "../hint-text";
 import Label from "../label";
 import WhiteSpace from "../white-space";
 import {ReactNode} from "react";
 import ChungText from "../chung-text";
-import ChungView from "../chung-view";
+import HintText from "../hint-text";
 
 export interface PickerModalProps extends ModalProps {
     data: PickerItem[];
