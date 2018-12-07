@@ -118,15 +118,13 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        let itemBorderStyle: StyleProp<ViewStyle> = {borderBottomColor: Styles.borderColor};
+        let itemBorderStyle: StyleProp<ViewStyle> = {borderBottomWidth:Styles.borderWidth,borderBottomColor: Styles.borderColor};
         if (disableBorder === "bottom") {
             itemBorderStyle = {borderBottomWidth: 0}
         } else if (disableBorder === "top") {
             itemBorderStyle = {borderTopWidth: 0}
         } else if (disableBorder === "all") {
             itemBorderStyle = {borderWidth: 0}
-        }else{
-            itemBorderStyle = {borderBottomWidth:Styles.borderWidth}
         }
 
         const itemView = (
