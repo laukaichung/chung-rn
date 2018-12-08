@@ -20,7 +20,7 @@ export class CardScreen extends React.Component<NavigationProps, State> {
             <UIContainer>
                 <Card marginVertical full>
                     <CardHeader title={<ChungText>Hello</ChungText>}/>
-                    <CardBody padding>
+                    <CardBody paddingHorizontal>
                         <ChungText>Body Text</ChungText>
                     </CardBody>
                     <CardFooter extra={(
@@ -32,7 +32,7 @@ export class CardScreen extends React.Component<NavigationProps, State> {
                 </Card>
                 <Card marginVertical>
                     <CardHeader title={<ChungText>Hello</ChungText>}/>
-                    <CardBody padding>
+                    <CardBody paddingHorizontal>
                         <ChungText>Body Text</ChungText>
                     </CardBody>
                     <CardFooter content={"Content"} extra={`Extra`}/>
