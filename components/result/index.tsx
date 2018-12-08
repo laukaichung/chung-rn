@@ -3,7 +3,6 @@ import {ImageURISource, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'rea
 import Button from '../button';
 import Styles from "../style";
 import ChungImage from "../chung-image";
-import Header from "../header";
 
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
@@ -13,6 +12,7 @@ export interface ResultNativeProps {
     message?: React.ReactNode;
     buttonText?: string;
     buttonType?: 'primary' | 'ghost';
+    showBorder?:boolean;
     onButtonPress?: () => void;
     marginHorizontal?: boolean
     type?: "error" | "success" | "warning"
@@ -32,6 +32,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             buttonText,
             onButtonPress,
             buttonType,
+            showBorder,
         } = this.props;
 
         let imgContent: JSX.Element | null = null;
@@ -55,7 +56,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             <View style={
                 [
                     styles.result,
-                    {borderColor: typeColor},
+                    showBorder && {borderColor: typeColor},
                     marginHorizontal && {marginHorizontal: Styles.margin},
                     style,
                 ]}>

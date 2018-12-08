@@ -84,7 +84,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             containerStyle,
             inputStyle,
             placeholder = "Enter here",
-            disableBorder,
+            hideBorder,
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
@@ -104,7 +104,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <List.Item disableBorder={disableBorder}
+            <List.Item hideBorder={hideBorder}
                        listItemStyle={containerStyle}>
                 {label && <Label marginVertical text={label}/>}
                 <TextInput

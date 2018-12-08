@@ -25,12 +25,12 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
     public render() {
         let {state, props} = this;
         let {isVisible, date} = state;
-        let {onConfirm, onCancel, label, disableBorder, renderDateValue} = props;
+        let {onConfirm, onCancel, label, hideBorder, renderDateValue} = props;
         let {isDarkMode} = ChungStyles;
         return (
 
             <List.Item
-                disableBorder={disableBorder}
+                hideBorder={hideBorder}
                 onPress={() => this.setState({isVisible: true})}
                 arrow="horizontal">
                 <Label text={label}/>

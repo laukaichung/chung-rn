@@ -28,12 +28,12 @@ export class ListScreen extends React.Component<NavigationProps> {
 
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={["top"]}>
+                        hideBorder={["top"]}>
                         <ChungText>No top border</ChungText>
                     </List.Item>
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={["top","left"]}>
+                        hideBorder={["top","left"]}>
                         <ChungText>No top left border</ChungText>
                     </List.Item>
 
@@ -41,25 +41,25 @@ export class ListScreen extends React.Component<NavigationProps> {
 
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={["all"]}>
+                        hideBorder={["all"]}>
                         <ChungText>No borders at all</ChungText>
                     </List.Item>
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={["all"]}>
+                        hideBorder={["all"]}>
                         <ChungText>No borders at all</ChungText>
                     </List.Item>
 
                     <WhiteSpace>
                         <List.Item
                             onLongPress={() => alert('dfdfdf')}
-                            disableBorder={["bottom"]}>
+                            hideBorder={["bottom"]}>
                             <ChungText>No Bottom border</ChungText>
                         </List.Item>
                         <WhiteSpace/>
                         <List.Item
                             onLongPress={() => alert('dfdfdf')}
-                            disableBorder={["bottom","left","right"]}>
+                            hideBorder={["bottom","left","right"]}>
                             <ChungText>No Bottom left right border</ChungText>
                         </List.Item>
                     </WhiteSpace>

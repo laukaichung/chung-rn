@@ -86,7 +86,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
     public render() {
         let {
             type,
-            disableBorder,
+            hideBorder,
             label,
             editable,
             clear,
@@ -119,7 +119,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
         return (
 
-            <List.Item multipleLine disableBorder={disableBorder}>
+            <List.Item multipleLine hideBorder={hideBorder}>
                 {
                     label && <Label marginVertical text={label}/>
                 }

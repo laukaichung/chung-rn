@@ -24,7 +24,7 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
     }
 
     public render() {
-        const {style, radioStyle, defaultChecked, disableBorder, checked, label, disabled, onChange} = this.props;
+        const {style, radioStyle, defaultChecked, hideBorder, checked, label, disabled, onChange} = this.props;
         const radioEl = (
             <Radio
                 ref={this.ref}
@@ -38,7 +38,7 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
 
         return (
             <List.Item
-                disableBorder={disableBorder}
+                hideBorder={hideBorder}
                 listItemStyle={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>

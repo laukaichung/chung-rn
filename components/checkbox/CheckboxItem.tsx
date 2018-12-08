@@ -26,14 +26,14 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
             disabled,
             label,
             extra,
-            disableBorder,
+            hideBorder,
             onChange,
         } = this.props;
 
         return (
 
             <List.Item
-                disableBorder={disableBorder}
+                hideBorder={hideBorder}
                 listItemStyle={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this._handleClick}
                 extra={<Checkbox
