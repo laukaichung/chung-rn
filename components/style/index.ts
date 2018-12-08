@@ -28,8 +28,8 @@ export default class Styles {
 
 
     static get badgeBackgroundColor(){
-        //return this.isDarkMode?"#d87000":"#f57c00"
-        return "#d87000"
+        //return this.isDarkMode?"#be6000":"#f57c00"
+        return "#cb6600"
     };
 
     static get warningColor(){

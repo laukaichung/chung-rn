@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {Image, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
+import {Image, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import {ReactNode} from "react";
+import ChungText from "../chung-text";
 
 type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -77,9 +78,9 @@ export default class Item extends React.Component<ListItemProps, any> {
             } else {
                 contentDom = (
                     <View style={[styles.column]}>
-                        <Text style={[styles.content]} {...numberOfLines}>
+                        <ChungText style={[styles.content]} {...numberOfLines}>
                             {children}
-                        </Text>
+                        </ChungText>
                     </View>
                 );
             }
@@ -89,9 +90,9 @@ export default class Item extends React.Component<ListItemProps, any> {
         if (extra) {
             extraDom = (
                 <View style={[styles.column]}>
-                    <Text style={[styles.extra]} {...numberOfLines}>
+                    <ChungText style={[styles.extra]} {...numberOfLines}>
                         {extra}
-                    </Text>
+                    </ChungText>
                 </View>
             );
             if (React.isValidElement(extra)) {
@@ -101,13 +102,13 @@ export default class Item extends React.Component<ListItemProps, any> {
                     extraChildren.forEach((el, index) => {
                         if (typeof el === 'string') {
                             tempExtraDom.push(
-                                <Text
+                                <ChungText
                                     {...numberOfLines}
                                     style={[styles.extra]}
                                     key={`${index}-children`}
                                 >
                                     {el}
-                                </Text>,
+                                </ChungText>,
                             );
                         } else {
                             tempExtraDom.push(el);
