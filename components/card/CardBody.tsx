@@ -16,7 +16,7 @@ export default class CardBody extends React.Component<CardBodyProps, any> {
         style={[
             styles.body,
             style,
-            {paddingHorizontal: paddingHorizontal && Styles.padding,marginVertical:marginVertical && ChungStyles.margin / 2}
+            {paddingHorizontal: paddingHorizontal && Styles.padding,marginVertical:marginVertical && ChungStyles.margin}
         ]} {...restProps} />;
   }
 }
