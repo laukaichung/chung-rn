@@ -167,6 +167,13 @@ export default class Styles {
     static buttonFontSizeSm= 12;
     static defaultButtonPressInTextColor = '#222222';
 
+    static primaryButtonTextColorLight = "#ffffff";
+
+    static primaryButtonTextColorDark = "#BDBDBD";
+
+    static get primaryButtonTextColor(){
+        return this.isDarkMode? this.primaryButtonTextColorDark:this.primaryButtonTextColorLight
+    }
 
     static borderColorDark = "#444444";
     static borderColorLight = "#d0d0d0";

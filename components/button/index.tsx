@@ -86,7 +86,10 @@ export default class Button extends React.Component<ButtonProps, State> {
                 backgroundColor: Styles.primaryColor,
                 borderColor: Styles.borderColor,
             });
-            indicatorColor = textColor = Styles.indicatorColor;
+
+            textColor = Styles.primaryButtonTextColor;
+
+            indicatorColor  = Styles.indicatorColor;
 
             textStyle.push({
                 color: textColor
