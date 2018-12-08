@@ -28,38 +28,39 @@ export class ListScreen extends React.Component<NavigationProps> {
 
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={"top"}>
+                        disableBorder={["top"]}>
                         <ChungText>No top border</ChungText>
                     </List.Item>
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={"top"}>
-                        <ChungText>No top border</ChungText>
+                        disableBorder={["top","left"]}>
+                        <ChungText>No top left border</ChungText>
                     </List.Item>
 
                     <WhiteSpace/>
 
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={"all"}>
+                        disableBorder={["all"]}>
                         <ChungText>No borders at all</ChungText>
                     </List.Item>
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        disableBorder={"all"}>
+                        disableBorder={["all"]}>
                         <ChungText>No borders at all</ChungText>
                     </List.Item>
 
                     <WhiteSpace>
                         <List.Item
                             onLongPress={() => alert('dfdfdf')}
-                            disableBorder={"bottom"}>
+                            disableBorder={["bottom"]}>
                             <ChungText>No Bottom border</ChungText>
                         </List.Item>
+                        <WhiteSpace/>
                         <List.Item
                             onLongPress={() => alert('dfdfdf')}
-                            disableBorder={"bottom"}>
-                            <ChungText>No Bottom border</ChungText>
+                            disableBorder={["bottom","left","right"]}>
+                            <ChungText>No Bottom left right border</ChungText>
                         </List.Item>
                     </WhiteSpace>
                 </ScrollView>

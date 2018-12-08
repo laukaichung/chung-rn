@@ -4,8 +4,10 @@ import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import {ReactNode} from "react";
 
+type DisableBorderOptions = "bottom" | "top" | "all" | "left" | "right"
+
 export interface ListItemCommonProps {
-    disableBorder?: "bottom" | "top" | "all" | "preserve";
+    disableBorder?: DisableBorderOptions[];
 }
 
 export interface ListItemProps extends ListItemCommonProps {
@@ -119,15 +121,31 @@ export default class Item extends React.Component<ListItemProps, any> {
         }
 
         let itemBorderStyle: StyleProp<ViewStyle>[] = [{
-            borderWidth:Styles.borderWidth,
+            borderWidth: Styles.borderWidth,
             borderColor: Styles.borderColor
         }];
-        if (disableBorder === "bottom") {
-            itemBorderStyle.push({borderBottomWidth: 0})
-        } else if (disableBorder === "top") {
-            itemBorderStyle.push({borderTopWidth: 0})
-        } else if (disableBorder === "all") {
-            itemBorderStyle.push({borderWidth: 0})
+
+        if(disableBorder) {
+
+            if (disableBorder.indexOf("bottom") > -1) {
+                itemBorderStyle.push({borderBottomWidth: 0})
+            }
+
+            if (disableBorder.indexOf("left") > -1) {
+                itemBorderStyle.push({borderLeftWidth: 0})
+            }
+
+            if (disableBorder.indexOf("right") > -1) {
+                itemBorderStyle.push({borderRightWidth: 0})
+            }
+
+            if (disableBorder.indexOf("top") > -1) {
+                itemBorderStyle.push({borderTopWidth: 0})
+            }
+
+            if (disableBorder.indexOf("all") > -1) {
+                itemBorderStyle.push({borderWidth: 0})
+            }
         }
 
         const itemView = (

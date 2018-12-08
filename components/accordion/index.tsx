@@ -4,7 +4,6 @@ import {Text, View} from "react-native";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Styles from "../style";
 import ChungImage from "../chung-image";
-import UIContext from "../ui-provider/UIContext";
 
 export interface AccordionPane {
     render: () => ReactNode
@@ -34,56 +33,52 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
         let {panes, customHeaderContainer} = this.props;
         let {activeIndices} = this.state;
         return (
-            <UIContext.Consumer>
+
+            <View>
                 {
-                    ({isDarkMode}) =>
-                        <View>
-                            {
-                                panes.map((p, idx) => {
-                                    let isActive = activeIndices.indexOf(idx) > -1;
-                                    return (
-                                        <React.Fragment key={idx}>
-                                            <CustomTouchableHighlight
-                                                onPress={() => {
-                                                    if (isActive) {
-                                                        activeIndices = activeIndices.filter(o => {
-                                                            return o != idx
-                                                        })
-                                                    } else {
-                                                        activeIndices.push(idx);
-                                                    }
-                                                    this.setState({activeIndices})
-                                                }}>
+                    panes.map((p, idx) => {
+                        let isActive = activeIndices.indexOf(idx) > -1;
+                        return (
+                            <React.Fragment key={idx}>
+                                <CustomTouchableHighlight
+                                    onPress={() => {
+                                        if (isActive) {
+                                            activeIndices = activeIndices.filter(o => {
+                                                return o != idx
+                                            })
+                                        } else {
+                                            activeIndices.push(idx);
+                                        }
+                                        this.setState({activeIndices})
+                                    }}>
+                                    {
+                                        customHeaderContainer ?
+                                            customHeaderContainer({pane: p, isActive}) :
+                                            <View style={[Styles.accordionHeaderStyle]}>
+                                                <Text style={Styles.accordionHeaderTextColor}>
+                                                    {p.title}
+                                                </Text>
                                                 {
-                                                    customHeaderContainer ?
-                                                        customHeaderContainer({pane: p, isActive}) :
-                                                        <View style={[Styles.accordionHeaderContainerStyle]}>
-                                                            <Text style={Styles.accordionHeaderTextColor}>
-                                                                {p.title}
-                                                            </Text>
-                                                            {
-                                                                isActive ?
-                                                                    <ChungImage
-                                                                        style={Styles.iconButtonStyle}
-                                                                        source={require('../../images/arrow-up.png')}/>
-                                                                    :
-                                                                    <ChungImage
-                                                                        style={Styles.iconButtonStyle}
-                                                                        source={require('../../images/arrow-down.png')}/>
-                                                            }
-                                                        </View>
+                                                    isActive ?
+                                                        <ChungImage
+                                                            style={Styles.iconButtonStyle}
+                                                            source={require('../../images/arrow-up.png')}/>
+                                                        :
+                                                        <ChungImage
+                                                            style={Styles.iconButtonStyle}
+                                                            source={require('../../images/arrow-down.png')}/>
                                                 }
-                                            </CustomTouchableHighlight>
-                                            {
-                                                isActive && p.render()
-                                            }
-                                        </React.Fragment>
-                                    )
-                                })
-                            }
-                        </View>
+                                            </View>
+                                    }
+                                </CustomTouchableHighlight>
+                                {
+                                    isActive && p.render()
+                                }
+                            </React.Fragment>
+                        )
+                    })
                 }
-            </UIContext.Consumer>
+            </View>
         )
     }
 }

@@ -83,6 +83,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             onErrorClick,
             containerStyle,
             inputStyle,
+            placeholder = "Enter here",
             disableBorder,
             ...restProps
         } = this.props;
@@ -108,6 +109,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                 {label && <Label marginVertical text={label}/>}
                 <TextInput
                     placeholderTextColor={Styles.placeholderTextColor}
+                    placeholder={placeholder}
                     clearButtonMode={clear ? 'while-editing' : 'never'}
                     underlineColorAndroid="transparent"
                     style={[

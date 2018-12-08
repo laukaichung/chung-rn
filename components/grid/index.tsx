@@ -66,7 +66,11 @@ export default class Grid extends React.Component<GridProps, any> {
                     ) : (
                         <Image source={{uri: dataItem.icon}} style={styles.icon}/>
                     )}
-                    <ChungText style={styles.text}>{dataItem.text}</ChungText>
+                    <ChungText style={{
+                        fontSize: Styles.fontSizeCaptionSm,
+                        color: Styles.textColor,
+                        marginTop: Styles.margin,
+                    }}>{dataItem.text}</ChungText>
                 </Flex>
             ));
 
@@ -176,10 +180,5 @@ export const styles = {
     icon: {
         width: Styles.iconSizeSm,
         height: Styles.iconSizeSm,
-    },
-    text: {
-        fontSize: Styles.fontSizeCaptionSm,
-        color: Styles.textBaseColor,
-        marginTop: Styles.margin,
     },
 };

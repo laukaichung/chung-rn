@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
-import {UIContext} from "../ui-provider/UIContext";
 import CustomTouchableHighlight from "../custom-touchable-highlight";
 
 export interface ButtonProps extends TouchableHighlightProps {
@@ -65,181 +64,173 @@ export default class Button extends React.Component<ButtonProps, State> {
         //         : buttonStyles[`${type}RawText`],
         // ) as any).color;
 
-        return (
 
-            <UIContext.Consumer>
-                {
-                    ({isDarkMode}) => {
+        let textStyle: TextStyle[] = [
+            {fontSize: size === "small" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
+        ];
 
-                        let textStyle:TextStyle[] = [
-                            {fontSize: size === "small" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
-                        ];
+        let indicatorColor: string;
+        let textColor: string;
 
-                        let indicatorColor:string;
-                        let textColor:string;
+        let wrapperStyle: ViewStyle[] = [{
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: Styles.radiusMd,
+            borderWidth: 1,
+            paddingVertical: size === "small" ? Styles.paddingSm : Styles.padding
+        }];
 
-                        let wrapperStyle: ViewStyle[] = [{
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: Styles.radiusMd,
-                            borderWidth: 1,
-                            paddingVertical:size === "small"?Styles.paddingSm : Styles.padding
-                        }];
+        if (type === "primary") {
 
-                        if (type === "primary") {
+            wrapperStyle.push({
+                backgroundColor: Styles.primaryColor,
+                borderColor: Styles.borderColor,
+            });
+            indicatorColor = textColor = Styles.indicatorColor;
 
-                            wrapperStyle.push({
-                                backgroundColor: Styles.primaryColor,
-                                borderColor: Styles.borderColor,
-                            });
-                            indicatorColor = textColor = Styles.indicatorColor;
+            textStyle.push({
+                color: textColor
+            });
 
-                            textStyle.push({
-                                color: textColor
-                            });
+            if (pressIn) {
 
-                            if(pressIn){
+                indicatorColor = textColor = `${Styles.whiteTextColor}4D`;
 
-                                indicatorColor = textColor = `${Styles.whiteTextColor}4D`;
+                textStyle.push({
+                    color: textColor
+                });
 
-                                textStyle.push({
-                                    color:textColor
-                                });
-
-                                if(activeStyle){
-                                    wrapperStyle.push({
-                                        backgroundColor: Styles.primaryColor,
-                                        borderColor: Styles.primaryColor,
-                                    });
-                                }
-                            }
-
-                            if (disabled) {
-
-                                wrapperStyle.push({
-                                    borderColor: Styles.primaryColor,
-                                });
-
-                                textStyle.push({
-                                    color: Styles.primaryColorDark
-                                })
-                            }
-
-                        } else if (type === "ghost") {
-
-                            wrapperStyle.push({
-                                backgroundColor: 'transparent',
-                                borderColor: Styles.primaryColor,
-                            });
-
-                            textStyle.push({color: Styles.primaryColor});
-
-                            indicatorColor = Styles.primaryColor;
-
-                            if(pressIn) {
-
-                                textStyle.push({
-                                    color: `${Styles.whiteTextColor}4D`
-                                });
-
-                                indicatorColor = `${Styles.whiteTextColor}4D`;
-
-                                if (activeStyle) {
-
-                                    wrapperStyle.push({
-                                        backgroundColor: 'transparent',
-                                        borderColor: Styles.primaryColor,
-                                    })
-
-                                }
-                            }
-
-                            if (disabled) {
-
-                                wrapperStyle.push({
-                                    borderStyle:"dashed",
-                                    borderColor:Styles.disabledBorderColor
-                                });
-
-                                textStyle.push({
-                                    color: Styles.disabledTextColor
-                                })
-                            }
-
-                        } else if (type === "default") {
-
-
-                            textStyle.push({
-                                color: Styles.textColor,
-                            });
-
-                            indicatorColor = Styles.textColor;
-
-                            wrapperStyle.push({
-                                backgroundColor: Styles.backgroundColor,
-                                borderColor: Styles.borderColor,
-                            });
-
-                            if (pressIn) {
-
-                                textStyle.push({
-                                    color: Styles.textBaseColor
-                                });
-
-                                indicatorColor = Styles.textBaseColor;
-
-                                if(activeStyle){
-                                    wrapperStyle.push({
-                                        backgroundColor: Styles.backgroundColor,
-                                        borderColor: Styles.borderColor,
-                                    });
-                                }
-                            }
-
-                            if (disabled) {
-
-                                wrapperStyle.push({
-                                    backgroundColor: Styles.disabledBackgroundColor,
-                                    borderColor: Styles.disabledBorderColor,
-                                });
-
-                                textStyle.push({
-                                    color:Styles.disabledTextColor
-                                })
-                            }
-                        }
-
-                        wrapperStyle.push(style as any);
-
-                        return (
-                            <CustomTouchableHighlight
-                                {...restProps}
-                                style={wrapperStyle}
-                                disabled={disabled}
-                                activeOpacity={1}
-                                onPress={(e?: any) => onPress && onPress(e)}
-                                onPressIn={this._onPressIn}
-                                onPressOut={this._onPressOut}
-                                onShowUnderlay={this._onShowUnderlay}
-                                onHideUnderlay={this._onHideUnderlay}
-                            >
-                                <View style={{flexDirection: 'row'}}>
-                                    {loading ? (
-                                        <ActivityIndicator
-                                            style={{marginRight: Styles.margin}}
-                                            animating
-                                            color={indicatorColor}
-                                            size="small"
-                                        />
-                                    ) : null}
-                                    <Text style={textStyle}>{children}</Text>
-                                </View>
-                            </CustomTouchableHighlight>
-                        )
-                    }
+                if (activeStyle) {
+                    wrapperStyle.push({
+                        backgroundColor: Styles.primaryColor,
+                        borderColor: Styles.primaryColor,
+                    });
                 }
-            </UIContext.Consumer>
-        );
+            }
+
+            if (disabled) {
+
+                wrapperStyle.push({
+                    borderColor: Styles.primaryColor,
+                });
+
+                textStyle.push({
+                    color: Styles.primaryColorDark
+                })
+            }
+
+        } else if (type === "ghost") {
+
+            wrapperStyle.push({
+                backgroundColor: 'transparent',
+                borderColor: Styles.primaryColor,
+            });
+
+            textStyle.push({color: Styles.primaryColor});
+
+            indicatorColor = Styles.primaryColor;
+
+            if (pressIn) {
+
+                textStyle.push({
+                    color: `${Styles.whiteTextColor}4D`
+                });
+
+                indicatorColor = `${Styles.whiteTextColor}4D`;
+
+                if (activeStyle) {
+
+                    wrapperStyle.push({
+                        backgroundColor: 'transparent',
+                        borderColor: Styles.primaryColor,
+                    })
+
+                }
+            }
+
+            if (disabled) {
+
+                wrapperStyle.push({
+                    borderStyle: "dashed",
+                    borderColor: Styles.disabledBorderColor
+                });
+
+                textStyle.push({
+                    color: Styles.disabledTextColor
+                })
+            }
+
+        } else if (type === "default") {
+
+
+            textStyle.push({
+                color: Styles.textColor,
+            });
+
+            indicatorColor = Styles.textColor;
+
+            wrapperStyle.push({
+                backgroundColor: Styles.backgroundColor,
+                borderColor: Styles.borderColor,
+            });
+
+            if (pressIn) {
+
+                textStyle.push({
+                    color: Styles.defaultButtonPressInTextColor
+                });
+
+                indicatorColor = Styles.defaultButtonPressInTextColor;
+
+                if (activeStyle) {
+                    wrapperStyle.push({
+                        backgroundColor: Styles.backgroundColor,
+                        borderColor: Styles.borderColor,
+                    });
+                }
+            }
+
+            if (disabled) {
+
+                wrapperStyle.push({
+                    backgroundColor: Styles.disabledBackgroundColor,
+                    borderColor: Styles.disabledBorderColor,
+                });
+
+                textStyle.push({
+                    color: Styles.disabledTextColor
+                })
+            }
+        }
+
+        wrapperStyle.push(style as any);
+
+        return (
+            <CustomTouchableHighlight
+                {...restProps}
+                style={wrapperStyle}
+                disabled={disabled}
+                activeOpacity={1}
+                onPress={(e?: any) => onPress && onPress(e)}
+                onPressIn={this._onPressIn}
+                onPressOut={this._onPressOut}
+                onShowUnderlay={this._onShowUnderlay}
+                onHideUnderlay={this._onHideUnderlay}
+            >
+                <View style={{flexDirection: 'row'}}>
+                    {loading ? (
+                        <ActivityIndicator
+                            style={{marginRight: Styles.margin}}
+                            animating
+                            color={indicatorColor}
+                            size="small"
+                        />
+                    ) : null}
+                    <Text style={textStyle}>{children}</Text>
+                </View>
+            </CustomTouchableHighlight>
+        )
+
     }
 
     private _onPressIn = (...arg: any[]) => {

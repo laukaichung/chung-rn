@@ -44,7 +44,7 @@ export default class CheckboxItem extends React.Component<ICheckboxItemNativePro
                     onChange={onChange}
                     disabled={disabled}
                 />}>
-                <Label>{label}</Label>{extra}
+                <Label style={disabled && {color:Styles.disabledTextColor}}>{label}</Label>{extra}
             </List.Item>
 
         );

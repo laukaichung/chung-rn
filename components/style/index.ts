@@ -11,7 +11,7 @@ export default class Styles {
     }
 
     static get placeholderTextColor(){
-        return "#a3a3a3"
+        return this.isDarkMode?"#747474":"#a3a3a3"
     }
 
     static darkestColor = "#000000";
@@ -51,8 +51,6 @@ export default class Styles {
         return this.primaryColor
     }
 
-    static textBaseColor = '#222222';
-
     static get listHeaderContainerStyle():ViewStyle{
         return {
             padding:Styles.padding,
@@ -64,9 +62,13 @@ export default class Styles {
         return this.whiteTextColor
     }
 
-    static get accordionHeaderContainerStyle():ViewStyle{
+    static accordionHeaderBackgroundColorDark = "#001c38";
+
+    //static accordionHeaderBackgroundColorLight = this.primaryColor
+
+    static get accordionHeaderStyle():ViewStyle{
         return {
-            backgroundColor:this.isDarkMode?this.primaryColorDark:this.primaryColor,
+            backgroundColor:this.isDarkMode?this.accordionHeaderBackgroundColorDark:this.primaryColor,
             borderBottomColor:this.borderColor,
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -105,6 +107,7 @@ export default class Styles {
 
     static iconColorDark = "#c6c6c6";
     static iconColorLight = "#5e5e5e";
+
     static get iconColor(){
         return this.isDarkMode ? this.iconColorDark:this.iconColorLight;
     }
@@ -132,7 +135,7 @@ export default class Styles {
     };
 
     static get disabledTextColor(){
-        return this.isDarkMode?"#6c6c6c":"#909090"
+        return this.isDarkMode?"#6c6c6c":"#9a9a9a"
     };
 
     static disabledBorderColor = '#dadada';
@@ -160,13 +163,12 @@ export default class Styles {
 
     static borderWidth = 1;
 
-    static buttonHeight= 47;
     static buttonFontSize= 18;
-    static buttonHeightSm= 23;
     static buttonFontSizeSm= 12;
+    static defaultButtonPressInTextColor = '#222222';
+
 
     static borderColorDark = "#444444";
-
     static borderColorLight = "#d0d0d0";
 
     static get borderColor() {

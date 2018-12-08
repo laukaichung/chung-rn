@@ -118,69 +118,66 @@ export default class InputItem extends React.Component<InputItemProps, any> {
         }
 
         return (
-            <UIContext.Consumer>
+
+            <List.Item multipleLine disableBorder={disableBorder}>
                 {
-                    () =>
-                        <List.Item multipleLine disableBorder={disableBorder}>
-                            {
-                                label && <Label marginVertical text={label}/>
-                            }
-                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Input
-                                    placeholderTextColor={Styles.placeholderTextColor}
-                                    clearButtonMode={clear ? 'while-editing' : 'never'}
-                                    underlineColorAndroid="transparent"
-                                    ref={this.inputRef}
-                                    {...restProps}
-                                    {...valueProps}
-                                    style={[
-                                        styles.input,
-                                        {color: Styles.textColor, backgroundColor: Styles.extremeBackgroundColor},
-                                        error && Styles.errorColor]}
-                                    keyboardType={type}
-                                    onChange={event => this._onChange(event.nativeEvent.text)}
-                                    secureTextEntry={type === 'password'}
-                                    onBlur={this._onInputBlur}
-                                    onFocus={this._onInputFocus}
-                                />
-                                {(editable && clear && value && Platform.OS === 'android') ? (
-                                    <TouchableOpacity
-                                        style={[styles.clear]}
-                                        onPress={this._onInputClear}
-                                        hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
-                                    >
-                                        <Image
-                                            source={require('../../images/cross_w.png')}
-                                            style={{width: 12, height: 12}}
-                                        />
-                                    </TouchableOpacity>
-                                ) : null}
-                                {extra ? (
-                                    <TouchableWithoutFeedback onPress={onExtraClick}>
-                                        <View>
-                                            {typeof extra === 'string' ? (
-                                                <ChungText style={[styles.extra, extraStyle]}>{extra}</ChungText>
-                                            ) : (
-                                                extra
-                                            )}
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                ) : null}
-                                {error ? (
-                                    <TouchableWithoutFeedback onPress={onErrorClick}>
-                                        <View style={[styles.errorIconContainer]}>
-                                            <Image
-                                                source={require('../../images/error.png')}
-                                                style={styles.errorIcon as any}
-                                            />
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                ) : null}
-                            </View>
-                        </List.Item>
+                    label && <Label marginVertical text={label}/>
                 }
-            </UIContext.Consumer>
-        );
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Input
+                        placeholderTextColor={Styles.placeholderTextColor}
+                        clearButtonMode={clear ? 'while-editing' : 'never'}
+                        underlineColorAndroid="transparent"
+                        ref={this.inputRef}
+                        {...restProps}
+                        {...valueProps}
+                        style={[
+                            styles.input,
+                            {color: Styles.textColor, backgroundColor: Styles.extremeBackgroundColor},
+                            error && Styles.errorColor]}
+                        keyboardType={type}
+                        onChange={event => this._onChange(event.nativeEvent.text)}
+                        secureTextEntry={type === 'password'}
+                        onBlur={this._onInputBlur}
+                        onFocus={this._onInputFocus}
+                    />
+                    {(editable && clear && value && Platform.OS === 'android') ? (
+                        <TouchableOpacity
+                            style={[styles.clear]}
+                            onPress={this._onInputClear}
+                            hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
+                        >
+                            <Image
+                                source={require('../../images/cross_w.png')}
+                                style={{width: 12, height: 12}}
+                            />
+                        </TouchableOpacity>
+                    ) : null}
+                    {extra ? (
+                        <TouchableWithoutFeedback onPress={onExtraClick}>
+                            <View>
+                                {typeof extra === 'string' ? (
+                                    <ChungText style={[styles.extra, extraStyle]}>{extra}</ChungText>
+                                ) : (
+                                    extra
+                                )}
+                            </View>
+                        </TouchableWithoutFeedback>
+                    ) : null}
+                    {error ? (
+                        <TouchableWithoutFeedback onPress={onErrorClick}>
+                            <View style={[styles.errorIconContainer]}>
+                                <Image
+                                    source={require('../../images/error.png')}
+                                    style={styles.errorIcon as any}
+                                />
+                            </View>
+                        </TouchableWithoutFeedback>
+                    ) : null}
+                </View>
+            </List.Item>
+        )
+
     }
 
     public componentDidMount() {

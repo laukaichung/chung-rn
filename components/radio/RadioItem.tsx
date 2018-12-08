@@ -7,7 +7,6 @@ import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
 import Styles from "../style";
-import UIContext from "../ui-provider/UIContext";
 
 
 export interface RadioItemNativeProps extends RadioItemPropsType, ListItemCommonProps {
@@ -38,18 +37,14 @@ export default class RadioItem extends React.Component<RadioItemNativeProps> {
         );
 
         return (
-            <UIContext.Consumer>
-                {
-                    ()=>
-                    <List.Item
-                        disableBorder={disableBorder}
-                        listItemStyle={[style,disabled && {backgroundColor:Styles.disabledBackgroundColor}]}
-                        onPress={disabled ? undefined : this.handleClick}
-                        extra={radioEl}>
-                        <Label text={label}/>
-                    </List.Item>
-                }
-            </UIContext.Consumer>
+            <List.Item
+                disableBorder={disableBorder}
+                listItemStyle={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
+                onPress={disabled ? undefined : this.handleClick}
+                extra={radioEl}>
+                <Label style={disabled && {color:Styles.disabledTextColor}} text={label}/>
+            </List.Item>
+
         );
     }
 

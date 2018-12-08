@@ -1,25 +1,14 @@
 import * as React from 'react'
 import {Text, TextProps} from "react-native";
-import Styles from "../style";
-import {UIContext} from "../ui-provider/UIContext";
+import {ChungStyles} from "../index";
 
 interface ChungTextProps extends TextProps {
     children: any
-    color?:string;
 }
 
 export const ChungText = (props: ChungTextProps) => {
-    let {color} = props;
-    return (
-        <UIContext.Consumer>
-            {
-                ({theme})=> {
-                    color = color || Styles.textColor;
-                    return <Text {...props} style={[props.style, {lineHeight: 24}, {color}]}/>
-                }
-            }
-        </UIContext.Consumer>
-    )
+    return <Text {...props} style={[{color:ChungStyles.textColor},props.style, {lineHeight: 24}]}/>
+
 };
 
 export default ChungText;
