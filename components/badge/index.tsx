@@ -12,7 +12,6 @@ export interface BadgeNativeProps {
     text?: any;
 }
 
-
 export default class Badge extends React.Component<BadgeNativeProps, any> {
     static defaultProps = {
         size: 'small',

@@ -26,18 +26,17 @@ export default class Styles {
     static primaryColorLight = '#568fda';
     static primaryColor = "#0f62a8";
 
-
-    static get badgeBackgroundColor(){
-        //return this.isDarkMode?"#be6000":"#f57c00"
-        return "#cb6600"
-    };
+    static badgeBackgroundColor = "#cb6600";
 
     static get warningColor(){
         return this.isDarkMode?"#eea21b":"#ffcc00"
     }
 
+    static errorColorLight = "#cc3300";
+    static errorColorDark = "#ea4732";
+
     static get errorColor(){
-        return this.isDarkMode?"#cc3300":"#ea4732"
+        return this.isDarkMode?this.errorColorLight:this.errorColorDark;
     }
 
     static iconSizeSm = 16;
@@ -48,7 +47,7 @@ export default class Styles {
     static indicatorColor = '#BDBDBD';
 
     static get hintTextDefaultTextColor(){
-        return this.primaryColor
+        return this.isDarkMode ? this.primaryColorLight: this.primaryColor
     }
 
     static get listHeaderContainerStyle():ViewStyle{
@@ -64,11 +63,11 @@ export default class Styles {
 
     static accordionHeaderBackgroundColorDark = "#001c38";
 
-    //static accordionHeaderBackgroundColorLight = this.primaryColor
+    static accordionHeaderBackgroundColorLight = "#0f62a8";
 
     static get accordionHeaderStyle():ViewStyle{
         return {
-            backgroundColor:this.isDarkMode?this.accordionHeaderBackgroundColorDark:this.primaryColor,
+            backgroundColor:this.isDarkMode?this.accordionHeaderBackgroundColorDark:this.accordionHeaderBackgroundColorLight,
             borderBottomColor:this.borderColor,
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -130,8 +129,11 @@ export default class Styles {
     };
     static whiteTextColor= '#ffffff';
 
+    static disabledBackgroundColorDark = "#868686";
+    static disabledBackgroundColorLight = "#bcbcbc";
+
     static get disabledBackgroundColor() {
-        return this.isDarkMode?"#868686":"#bcbcbc"
+        return this.isDarkMode?this.disabledBackgroundColorDark:this.disabledBackgroundColorLight
     };
 
     static get disabledTextColor(){
