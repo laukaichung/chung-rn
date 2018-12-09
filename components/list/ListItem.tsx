@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingRight: Styles.padding,
         //paddingVertical: Styles.paddingLg,
-        minHeight: Styles.listItemHeight,
+        //minHeight: Styles.listItemHeight,
     },
     thumb: {
         width: Styles.iconSizeMd,

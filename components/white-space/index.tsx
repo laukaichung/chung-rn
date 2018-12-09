@@ -7,20 +7,22 @@ interface WhiteSpaceProps {
     children?:ReactNode;
     size?:"sm"|"md"|"lg"
     center?:boolean;
-    containerStyle?:StyleProp<ViewStyle>
+    style?:StyleProp<ViewStyle>
 }
 
-const WhiteSpace = ({children,size,center,containerStyle}: WhiteSpaceProps) => {
+const WhiteSpace = ({children,size,center,style}: WhiteSpaceProps) => {
+    let containerStyles:Array<StyleProp<ViewStyle>> = [];
 
-    let style = styles.whiteSpaceMd;
+    containerStyles.push(styles.whiteSpaceMd);
     if(size === "sm"){
-        style = styles.whiteSpaceSm;
+        containerStyles.push(styles.whiteSpaceSm);
     }else if(size === "lg"){
-        style = styles.whiteSpaceLg
+        containerStyles.push(styles.whiteSpaceLg)
     }
+    containerStyles.push(style);
 
     return (
-        <View style={[containerStyle,style,center ? {flex: 1, justifyContent: 'center', alignItems:'center'}:null]}>{children}</View>
+        <View style={[center && {flex: 1, justifyContent: 'center', alignItems:'center'},containerStyles]}>{children}</View>
     )
 };
 
