@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingRight: Styles.padding,
-        paddingVertical: Styles.paddingLg,
+        //paddingVertical: Styles.paddingLg,
         minHeight: Styles.listItemHeight,
     },
     thumb: {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
         marginLeft: Styles.margin,
     },
     multipleLine: {
-        paddingVertical: Styles.margin,
+        paddingVertical: Styles.padding,
     },
     multipleThumb: {
         width: Styles.iconSizeMd,

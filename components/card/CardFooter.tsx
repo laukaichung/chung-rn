@@ -3,7 +3,6 @@ import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "../style";
 import ChungText from "../chung-text";
-import UIContext from "../ui-provider/UIContext";
 
 export interface CardFooterProps {
     style?: StyleProp<ViewStyle>;
@@ -41,7 +40,8 @@ export default class CardFooter extends React.Component<CardFooterProps, any> {
 
 const styles = StyleSheet.create({
     extraContainer: {
-        flex: 1
+        flex: 1,
+        alignItems:'flex-end'
     },
     footerContainer: {
         flexDirection: 'row',
@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
         fontSize: Styles.fontSize,
     },
     extraText: {
-        textAlign: 'right',
         fontSize: Styles.fontSize,
     },
 });
