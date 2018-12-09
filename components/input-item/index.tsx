@@ -22,12 +22,10 @@ type InputEventHandler = (value?: string) => void;
 export type KeyboardType =
     'decimal-pad'
     | 'phone-pad'
-    | 'number-pad'
     | 'numeric'
     | 'email-address'
     | 'default'
     | 'password'
-    | 'bankCard'
 
 
 export interface InputItemProps extends ListItemCommonProps {
@@ -107,14 +105,14 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                 defaultValue,
             };
         }
+        let inputType = type;
+        if(type === "decimal-pad"){
+            inputType = "numeric"
+        }
 
         const extraStyle = {
             width: typeof extra === 'string' && (extra as string).length > 0 ? (extra as string).length * 10 : 0,
         };
-
-        if (type === "bankCard") {
-            type = 'number-pad';
-        }
 
         return (
 
@@ -139,6 +137,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                         secureTextEntry={type === 'password'}
                         onBlur={this._onInputBlur}
                         onFocus={this._onInputFocus}
+                        type={inputType}
                     />
                     {(editable && clear && value && Platform.OS === 'android') ? (
                         <TouchableOpacity
@@ -193,15 +192,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
     private _onChange = (text: string) => {
         const {onChange, type} = this.props;
-        const maxLength = this.props.maxLength as number;
         switch (type) {
-            case 'bankCard':
-                text = text.replace(/\D/g, '');
-                if (maxLength > 0) {
-                    text = text.substring(0, maxLength);
-                }
-                text = text.replace(/\D/g, '').replace(/(....)(?=.)/g, '$1 ');
-                break;
             case 'phone-pad':
                 text = text.replace(/\D/g, '').substring(0, 11);
                 const valueLen = text.length;
@@ -211,8 +202,11 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                     text = `${text.substr(0, 3)} ${text.substr(3, 4)} ${text.substr(7)}`;
                 }
                 break;
-            case 'password':
+            case 'numeric':
+                text = parseInt(text) as any;
                 break;
+            case 'decimal-pad':
+                text = parseNumber(text) as any;
             default:
                 break;
         }
@@ -242,6 +236,15 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
 }
 
+
+function parseNumber(str: any): number {
+    str = String(str);
+    if (str.indexOf('.') > -1) {
+        return parseFloat(str);
+    } else {
+        return parseInt(str);
+    }
+}
 
 const styles = StyleSheet.create({
     label:{

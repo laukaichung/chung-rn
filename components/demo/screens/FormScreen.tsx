@@ -7,32 +7,44 @@ import RadioItem from "../../radio/RadioItem";
 import DateTimePickerModal from "../../date-time-picker-modal";
 import TextAreaItem from "../../textarea-item";
 import UIContainer from "../../ui-provider/UIContainer";
+import {ScrollView} from "react-native";
 
 
 export default class FormScreen extends React.Component<NavigationProps> {
     render() {
         return (
             <UIContainer>
-                <List>
-                    <InputItem label={"Input"}
-                               error
-                               extra={"Hello"}
-                               placeholder={"Some Holder"}/>
+                <ScrollView>
+                    <List>
+                        <InputItem label={"Input"}
+                                   error
+                                   extra={"Hello"}
+                                   placeholder={"Some Holder"}/>
 
-                    <TextAreaItem rows={2} label="Text Area"/>
+                        <InputItem label={"Numeric Input"}
+                                   type={"numeric"}
+                                   onChange={(val) => console.log(val)}
+                                   placeholder={"Enter Int Val"}/>
 
+                        <InputItem label={"Float Input"}
+                                   type={"decimal-pad"}
+                                   onChange={(val) => console.log(val)}
+                                   placeholder={"Enter Float Val"}/>
 
-                    <CheckboxItem label={"Checkbox"}/>
-                    <RadioItem label={"Radio"}/>
+                        <TextAreaItem rows={2} label="Text Area"/>
 
-                    <CheckboxItem disabled label={"Disabled Checkbox"}/>
-                    <RadioItem disabled label={"Disabled Radio"}/>
+                        <CheckboxItem label={"Checkbox"}/>
+                        <RadioItem label={"Radio"}/>
 
-                    <DateTimePickerModal
-                        label={"Select Date"}
-                        onCancel={() => console.log('cancel')}
-                        onConfirm={(date) => console.log({date})}/>
-                </List>
+                        <CheckboxItem disabled label={"Disabled Checkbox"}/>
+                        <RadioItem disabled label={"Disabled Radio"}/>
+
+                        <DateTimePickerModal
+                            label={"Select Date"}
+                            onCancel={() => console.log('cancel')}
+                            onConfirm={(date) => console.log({date})}/>
+                    </List>
+                </ScrollView>
             </UIContainer>
         )
     }

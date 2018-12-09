@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Platform, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {Platform, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "../style";
 import ChungText from "../chung-text";
 
