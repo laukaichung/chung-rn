@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import Styles from "../style";
 import ListItem from "./ListItem";
+
+type HideBorderOptions = "bottom" | "top" | "all"
 
 export interface ListProps {
     style?: StyleProp<ViewStyle>;
@@ -10,6 +12,7 @@ export interface ListProps {
     headerTitleContainerStyle?: StyleProp<ViewStyle>
     headerText?: string;
     footerText?: string;
+    hideBorder?: HideBorderOptions[]
     renderFooter?: () => ReactNode
 }
 
@@ -18,7 +21,7 @@ export default class List extends React.Component<ListProps, any> {
     public static Item = ListItem;
 
     public render() {
-        const {children, style, renderHeader, headerText, footerText, headerTitleContainerStyle, renderFooter, ...restProps} = this.props;
+        const {children, style, hideBorder = [],renderHeader, headerText, footerText, headerTitleContainerStyle, renderFooter, ...restProps} = this.props;
         return (
 
             <View {...restProps as any} style={style}>
@@ -28,10 +31,12 @@ export default class List extends React.Component<ListProps, any> {
                 {
                     headerText && this.renderHeaderOrFooterContainer(headerText, headerTitleContainerStyle)
                 }
+
                 <View style={{
-                    borderTopWidth: StyleSheet.hairlineWidth,
+                    borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 && Styles.borderWidth,
                     borderTopColor: Styles.borderColor,
                 }}>
+
                     {children}
                     <View style={[{
                         position: 'absolute',
@@ -39,7 +44,7 @@ export default class List extends React.Component<ListProps, any> {
                         left: 0,
                         right: 0,
                         height: 1,
-                        borderBottomWidth: StyleSheet.hairlineWidth,
+                        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 && Styles.borderWidth,
                         borderBottomColor: Styles.borderColor,
                     }]}/>
                 </View>

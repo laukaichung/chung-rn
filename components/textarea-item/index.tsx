@@ -89,7 +89,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
-        const {inputCount, height} = this.state;
+        const {inputCount} = this.state;
 
         let valueProps;
         if ('value' in this.props) {
@@ -121,7 +121,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                             color: error ? Styles.errorColor : Styles.textColor,
                             paddingRight: error ? 2 * Styles.paddingLg : 0,
                         },
-                        {height: Math.max(45, height)},
+                        //{height: Math.max(45, height)},
                         inputStyle,
 
                     ]}
@@ -129,7 +129,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                     {...valueProps}
                     onChange={event => this.onChange(event)}
                     onContentSizeChange={this.onContentSizeChange}
-                    multiline={rows! > 1 || autoHeight}
+                    multiline={rows > 1 || autoHeight}
                     numberOfLines={rows}
                     maxLength={maxLength}
                 />
@@ -162,9 +162,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             inputCount: text.length,
         });
 
-        if (onChange) {
-            onChange(text);
-        }
+        if (onChange) onChange(text);
     };
 
     onContentSizeChange = (event: {

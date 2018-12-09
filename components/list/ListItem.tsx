@@ -5,7 +5,7 @@ import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import {ReactNode} from "react";
 import ChungText from "../chung-text";
 
-type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
+export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
 export interface ListItemCommonProps {
     hideBorder?: HideBorderOptions[];
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingRight: Styles.padding,
         //paddingVertical: Styles.paddingLg,
-        //minHeight: Styles.listItemHeight,
+        minHeight: Styles.listItemHeight,
     },
     thumb: {
         width: Styles.iconSizeMd,
