@@ -148,6 +148,8 @@ export default class Styles {
 
     static listItemHeight=44;
 
+    static inputSingleRowHeight = 44;
+
     static inputFontColor='#686868';
     static inputFontSize=17;
 

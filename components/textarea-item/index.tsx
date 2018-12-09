@@ -88,7 +88,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
-        const {inputCount} = this.state;
+        const {inputCount,height} = this.state;
 
         let valueProps;
         if ('value' in this.props) {
@@ -120,7 +120,8 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
                             color: error ? Styles.errorColor : Styles.textColor,
                             paddingRight: error ? 2 * Styles.paddingLg : 0,
                         },
-                        //{height: Math.max(45, height)},
+                        //todo untested
+                        {height: Math.max(Styles.inputSingleRowHeight, height)},
                         inputStyle,
 
                     ]}
