@@ -17,6 +17,7 @@ import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
 import UIContext from "../ui-provider/UIContext";
 import ChungText from "../chung-text";
+import {ChungStyles} from "../index";
 
 type InputEventHandler = (value?: string) => void;
 
@@ -121,7 +122,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
             <List.Item multipleLine hideBorder={hideBorder}>
                 {
-                    label && <Label marginVertical text={label}/>
+                    label && <Label style={styles.label} text={label}/>
                 }
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Input
@@ -245,6 +246,9 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
 
 const styles = StyleSheet.create({
+    label:{
+        marginBottom: ChungStyles.margin
+    },
     text: {
         marginRight: Styles.margin,
         textAlignVertical: 'center',
