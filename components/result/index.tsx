@@ -32,7 +32,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             buttonText,
             onButtonPress,
             buttonType,
-            showBorder,
+            showBorder = false,
         } = this.props;
 
         let imgContent: JSX.Element | null = null;
@@ -56,7 +56,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             <View style={
                 [
                     styles.result,
-                    showBorder && {borderColor: typeColor},
+                    showBorder && {borderColor: typeColor,borderWidth:Styles.borderWidth},
                     marginHorizontal && {marginHorizontal: Styles.margin},
                     style,
                 ]}>
@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     result: {
         alignItems: 'center',
         paddingVertical: Styles.paddingXl,
-        borderWidth: Styles.borderWidth
     },
     imgWrap: {
         margin: 0,
