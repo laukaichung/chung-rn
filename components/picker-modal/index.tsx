@@ -18,7 +18,7 @@ export interface PickerModalProps extends ModalProps {
     hint?: string;
     displayTextAsValue?: boolean;
     columnNum?: number;
-    customLabelElement?:ReactNode
+    customLabelElement?: ReactNode
     // closeModalAfterOptionSelected?: boolean;
 }
 
@@ -85,11 +85,12 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         {customLabelElement || <Label text={label}/>}
                         {
                             displayValues.length > 0 &&
-                            <WhiteSpace>
+                            <React.Fragment>
+                                <WhiteSpace/>
                                 <ChungText>
                                     {displayValues.join(' , ')}
                                 </ChungText>
-                            </WhiteSpace>
+                            </React.Fragment>
                         }
                     </List.Item>
                 }>

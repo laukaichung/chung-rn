@@ -4,7 +4,7 @@ import {NavigationProps} from "../demotype";
 import Container from "../../ui-provider/UIContainer";
 import ChungText from "../../chung-text";
 import WhiteSpace from "../../white-space";
-import {ScrollView} from "react-native";
+import {ScrollView, View} from "react-native";
 
 export class ListScreen extends React.Component<NavigationProps> {
     render() {
@@ -50,19 +50,14 @@ export class ListScreen extends React.Component<NavigationProps> {
                         <ChungText>No borders at all</ChungText>
                     </List.Item>
 
-                    <WhiteSpace>
-                        <List.Item
-                            onLongPress={() => alert('dfdfdf')}
-                            hideBorder={["bottom"]}>
-                            <ChungText>No Bottom border</ChungText>
-                        </List.Item>
-                        <WhiteSpace/>
-                        <List.Item
-                            onLongPress={() => alert('dfdfdf')}
-                            hideBorder={["bottom","left","right"]}>
-                            <ChungText>No Bottom left right border</ChungText>
-                        </List.Item>
-                    </WhiteSpace>
+                    <List.Item
+                        bottomExtraView={(
+                            <View style={{width:100,height:100,backgroundColor:"red"}}/>
+                        )}
+                        onLongPress={() => alert('dfdfdf')}>
+                        <ChungText>Extra Bottom View</ChungText>
+                    </List.Item>
+
                 </ScrollView>
             </Container>
         )

@@ -31,7 +31,6 @@ import UIContext from "../ui-provider/UIContext";
 import Styles from "../style";
 import ResultScreen from "./screens/ResultScreen";
 import {DrawerScreen} from "./screens/DrawerScreen";
-import {ChungStyles} from "../index";
 
 const StackNavigator = createStackNavigator(
     {
@@ -58,11 +57,11 @@ const StackNavigator = createStackNavigator(
         initialRouteName: screenKeys.home,
         defaultNavigationOptions: ({navigation}) => {
 
-            let isDarkMode = ChungStyles.mode === "dark";
+            let isDarkMode = Styles.mode === "dark";
             return {
-                headerStyle: isDarkMode ? {backgroundColor: ChungStyles.extremeBackgroundColor} : {},
-                headerTitleStyle: isDarkMode ? {color: ChungStyles.textColor} : {},
-                headerTintColor:ChungStyles.textColor,
+                headerStyle: isDarkMode ? {backgroundColor: Styles.extremeBackgroundColor} : {},
+                headerTitleStyle: isDarkMode ? {color: Styles.textColor} : {},
+                headerTintColor:Styles.textColor,
                 headerRight: (
                     <View>
                         <UIContext.Consumer>

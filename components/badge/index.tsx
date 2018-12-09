@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Platform, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import Styles from "../style";
+import ChungText from "../chung-text";
 
 export interface BadgeNativeProps {
     style?: StyleProp<ViewStyle>;
@@ -44,11 +45,9 @@ export default class Badge extends React.Component<BadgeNativeProps, any> {
         const fakeStyles = (styles as any) as { [key: string]: ViewStyle };
         const badgeCls = corner ? 'textCorner' : 'textDom';
         const contentDom = !dot ? (
-            <View
-                {...restProps}
-                style={[styles[badgeCls], fakeStyles[`${badgeCls}${size}`]]}
+            <View {...restProps} style={[styles[badgeCls], fakeStyles[`${badgeCls}${size}`]]}
             >
-                <Text style={[styles.text]}>{text}</Text>
+                <ChungText style={[styles.text]}>{text}</ChungText>
             </View>
         ) : (
             <View {...restProps} style={[styles.dot, fakeStyles[`dotSize${size}`]]}/>

@@ -15,9 +15,7 @@ import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
-import UIContext from "../ui-provider/UIContext";
 import ChungText from "../chung-text";
-import {ChungStyles} from "../index";
 
 type InputEventHandler = (value?: string) => void;
 
@@ -247,7 +245,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
 const styles = StyleSheet.create({
     label:{
-        marginBottom: ChungStyles.margin
+        marginBottom: Styles.margin
     },
     text: {
         marginRight: Styles.margin,

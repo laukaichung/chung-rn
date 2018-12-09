@@ -1,5 +1,4 @@
 import * as React from 'react'
-import {View} from 'react-native'
 import ActivityIndicator from "../../activity-indicator";
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";

@@ -14,8 +14,6 @@ import {ListItemCommonProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
-import {ChungStyles} from "../index";
-import WhiteSpace from "../white-space";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -107,10 +105,10 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
 
         return (
             <List.Item hideBorder={hideBorder}
-                       listItemStyle={containerStyle}>
+                       style={containerStyle}>
                 {label && <Label marginVertical text={label}/>}
                 <TextInput
-                    keyboardAppearance={ChungStyles.isDarkMode?"dark":"default"}
+                    keyboardAppearance={Styles.isDarkMode?"dark":"default"}
                     placeholderTextColor={Styles.placeholderTextColor}
                     placeholder={placeholder}
                     clearButtonMode={clear ? 'while-editing' : 'never'}

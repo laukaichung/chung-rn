@@ -4,9 +4,7 @@ import List from "../list/List";
 import Label from "../label";
 import {ListItemCommonProps} from "../list/ListItem";
 import ChungText from "../chung-text";
-import UIContext from "../ui-provider/UIContext";
 import Styles from "../style";
-import {ChungStyles} from "../index";
 
 export interface DateTimePickerModalProps extends DateTimePickerProps, ListItemCommonProps {
     label: string;
@@ -26,7 +24,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
         let {state, props} = this;
         let {isVisible, date} = state;
         let {onConfirm, onCancel, label, hideBorder, renderDateValue} = props;
-        let {isDarkMode} = ChungStyles;
+        let {isDarkMode} = Styles;
         return (
 
             <List.Item

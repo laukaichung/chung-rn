@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {StyleProp, TouchableWithoutFeedback, View, ViewStyle} from 'react-native';
+import {StyleProp, TouchableWithoutFeedback, ViewStyle} from 'react-native';
 import ChungView from "../chung-view";
 
 export interface FlexItemProps {

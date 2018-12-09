@@ -25,7 +25,8 @@ export interface ListItemProps extends ListItemCommonProps {
     platform?: 'android' | 'ios';
     onPress?: () => void;
     onLongPress?: () => void;
-    listItemStyle?: StyleProp<ViewStyle>;
+    style?: StyleProp<ViewStyle>;
+    bottomExtraView?: ReactNode;
 }
 
 export default class Item extends React.Component<ListItemProps, any> {
@@ -42,7 +43,8 @@ export default class Item extends React.Component<ListItemProps, any> {
             hideBorder,
             wrap,
             align,
-            listItemStyle,
+            bottomExtraView,
+            style,
             ...restProps
         } = this.props;
 
@@ -126,7 +128,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             borderColor: Styles.borderColor
         }];
 
-        if(hideBorder) {
+        if (hideBorder) {
 
             if (hideBorder.indexOf("bottom") > -1) {
                 itemBorderStyle.push({borderBottomWidth: 0})
@@ -150,34 +152,31 @@ export default class Item extends React.Component<ListItemProps, any> {
         }
 
         const itemView = (
-            <View {...restProps}
-                  style={[
-                      styles.item,
-                      !thumb && {paddingVertical: Styles.padding},
-                      itemBorderStyle,
-                      listItemStyle,
-                  ]}>
-                {typeof thumb === 'string' ? (
-                    <Image
-                        source={{uri: thumb}}
-                        style={[styles.thumb, multipleLine && styles.multipleThumb] as any}
-                    />
-                ) : (
-                    thumb
-                )}
-                <View
-                    style={[
-                        styles.line,
-                        multipleLine && styles.multipleLine,
-                        multipleLine && alignStyle,
-                    ]}
-                >
-                    {contentDom}
-                    {extraDom}
-                    {arrow
-                        ? (arrEnum as any)[arrow] || <View style={styles.arrow}/>
-                        : null}
+            <View {...restProps} style={[itemBorderStyle,{paddingVertical: Styles.padding,paddingLeft: Styles.padding},style]}>
+                <View style={[styles.item]}>
+                    {typeof thumb === 'string' ? (
+                        <Image
+                            source={{uri: thumb}}
+                            style={[styles.thumb, multipleLine && styles.multipleThumb] as any}
+                        />
+                    ) : (
+                        thumb
+                    )}
+                    <View
+                        style={[
+                            styles.line,
+                            multipleLine && styles.multipleLine,
+                            multipleLine && alignStyle,
+                        ]}
+                    >
+                        {contentDom}
+                        {extraDom}
+                        {arrow
+                            ? (arrEnum as any)[arrow] || <View style={styles.arrow}/>
+                            : null}
+                    </View>
                 </View>
+                {bottomExtraView}
             </View>
         );
 
@@ -236,7 +235,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         alignItems: 'center',
         flexDirection: 'row',
-        paddingLeft: Styles.padding,
     },
     arrow: {
         width: 8,

@@ -4,7 +4,6 @@ import CardBody from './CardBody';
 import CardFooter from './CardFooter';
 import CardHeader from './CardHeader';
 import Styles from "../style";
-import {ChungStyles} from "../index";
 
 export interface CardProps {
     style?: StyleProp<ViewStyle>;
@@ -20,7 +19,7 @@ export default class Card extends React.Component<CardProps, any> {
 
     public render() {
         const {style = {}, full = false, children, marginVertical = true, ...restProps} = this.props;
-        const cardStyle = full ? styles.full : {margin: ChungStyles.margin};
+        const cardStyle = full ? styles.full : {margin: Styles.margin};
         const childDom = React.Children.map(children, child =>
             React.cloneElement(child as React.ReactElement<any>, {styles}),
         );

@@ -60,9 +60,6 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                     <Button type="ghost" disabled onPress={() => {}}>
                         Diabled Ghost Button
                     </Button>
-
-
-
                 </WingBlank>
                 <List>
                     <List.Item arrow="horizontal">
