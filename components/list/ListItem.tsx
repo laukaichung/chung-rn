@@ -153,6 +153,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             <View {...restProps}
                   style={[
                       styles.item,
+                      !thumb && {paddingVertical: Styles.padding},
                       itemBorderStyle,
                       listItemStyle,
                   ]}>

@@ -15,6 +15,7 @@ import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
 import {ChungStyles} from "../index";
+import WhiteSpace from "../white-space";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
