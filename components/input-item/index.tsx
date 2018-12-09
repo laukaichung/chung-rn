@@ -206,7 +206,15 @@ export default class InputItem extends React.Component<InputItemProps, any> {
                 text = parseInt(text) as any;
                 break;
             case 'decimal-pad':
-                text = parseNumber(text) as any;
+                /**
+                 * Only turn the value to int if the end isn't "."
+                 * If the value ends with ".",
+                 * this value is either invalid and incomplete. If you parseFloat this incomplete value, it would strip away the dot.
+                 */
+                if(text && text[text.length - 1] !== "."){
+                    text = parseNumber(text) as any;
+                }
+                break
             default:
                 break;
         }
