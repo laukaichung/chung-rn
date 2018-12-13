@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import RNModal from "react-native-modal";
-import {Keyboard, StyleSheet} from 'react-native'
+import {Keyboard} from 'react-native'
 import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Header from "../header";
@@ -17,6 +17,8 @@ export interface ModalProps {
     buttonTrigger?: any;
     fullScreen?: boolean;
     paddingHorizontal?: boolean;
+    scrollable?:boolean
+    scrollableFixedHeight?:number
 }
 
 interface CustomModalCoreProps extends ModalProps {
@@ -42,7 +44,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     public render() {
         const {props, state} = this;
         const {isVisible} = state;
-        const {children, title, nonButtonTrigger, paddingHorizontal = true, fullScreen, buttonTrigger} = props;
+        const {children, title, nonButtonTrigger,scrollable,scrollableFixedHeight, paddingHorizontal = true, fullScreen, buttonTrigger} = props;
         return (
             <React.Fragment>
                 {
@@ -64,9 +66,14 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                             isVisible &&
                             <ChungView style={
                                 [
-                                    styles.container,
                                     paddingHorizontal && {paddingHorizontal: Styles.padding},
-                                    {backgroundColor: Styles.modalBackgroundColor}
+                                    {
+                                        backgroundColor: Styles.modalBackgroundColor,
+                                        paddingVertical: Styles.padding
+
+                                    },
+                                    scrollable ? {height:scrollableFixedHeight || 400}:{minHeight:100}
+
                                 ]}>
                                 {title && <Header center marginVertical text={title}/>}
                                 {children({closeModal: this._closeModal})}
@@ -108,10 +115,10 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     };
 
 }
-
-const styles = StyleSheet.create({
-    container: {
-        minHeight: 100,
-        paddingVertical: Styles.padding
-    },
-});
+//
+// const styles = StyleSheet.create({
+//     container: {
+//         minHeight: 100,
+//         paddingVertical: Styles.padding
+//     },
+// });
