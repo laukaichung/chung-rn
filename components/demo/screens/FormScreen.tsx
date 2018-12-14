@@ -31,7 +31,10 @@ export default class FormScreen extends React.Component<NavigationProps> {
                                    onChange={(val) => console.log(val)}
                                    placeholder={"Enter Float Val"}/>
 
-                        <TextAreaItem rows={2} label="Text Area"/>
+                        <TextAreaItem placeholder={`sda dsffsd fsdfsdsfd sfdsdf sdf sdf sfd fdsfsdfsdsdf sfdsfd sdf sdfsd f sdfsdf sd fds`}
+                                      rows={5}
+                                      autoHeight
+                                      label="Text Area"/>
 
                         <CheckboxItem label={"Checkbox"}/>
                         <RadioItem label={"Radio"}/>

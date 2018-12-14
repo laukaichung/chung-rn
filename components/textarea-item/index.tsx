@@ -3,7 +3,7 @@ import {
     NativeSyntheticEvent,
     StyleSheet,
     TextInput,
-    TextInputChangeEventData,
+    TextInputChangeEventData, TextInputContentSizeChangeEventData,
     TouchableWithoutFeedback,
     ViewStyle,
 } from 'react-native';
@@ -103,6 +103,8 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
 
         const maxLength = count! > 0 ? count : undefined;
 
+        console.log(height);
+
         return (
             <List.Item hideBorder={hideBorder}
                        style={containerStyle}>
@@ -165,19 +167,32 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
         if (onChange) onChange(text);
     };
 
-    onContentSizeChange = (event: {
-        nativeEvent: { contentSize: { width: number; height: number } };
-    }) => {
+    onContentSizeChange = (event:NativeSyntheticEvent<TextInputContentSizeChangeEventData>) => {
+
         let height;
         const {autoHeight, onContentSizeChange} = this.props;
+        const {inputCount} = this.state;
         const rows = this.props.rows as number;
-        if (autoHeight) {
+
+        /**
+         * If the placeholder string spans a few lines, it is suitable to display the textarea with more than one rows.
+         * Use `inputCount` to make autoHeight disabled when the field is empty so the user can read a long placeholder string.
+         */
+        if (autoHeight && inputCount > 0) {
             height = event.nativeEvent.contentSize.height;
+
         } else if (rows > 1) {
+
+            console.log('onContentSizeChange','rows');
+
             height = 6 * rows * 4;
         } else {
+
+            console.log('onContentSizeChange','default');
+
             height = Styles.listItemHeight;
         }
+
 
         this.setState({height});
 
