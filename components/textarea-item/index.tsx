@@ -103,8 +103,6 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
 
         const maxLength = count! > 0 ? count : undefined;
 
-        console.log(height);
-
         return (
             <List.Item hideBorder={hideBorder}
                        style={containerStyle}>
@@ -183,12 +181,8 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
 
         } else if (rows > 1) {
 
-            console.log('onContentSizeChange','rows');
-
             height = 6 * rows * 4;
         } else {
-
-            console.log('onContentSizeChange','default');
 
             height = Styles.listItemHeight;
         }
