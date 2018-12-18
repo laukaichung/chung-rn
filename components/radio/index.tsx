@@ -1,6 +1,6 @@
-import RadioItem from "./RadioItem";
+import RadioListItem from "./RadioListItem";
 import Radio from "./Radio";
 
-Radio.RadioItem = RadioItem;
+Radio.RadioItem = RadioListItem;
 
 export default Radio;

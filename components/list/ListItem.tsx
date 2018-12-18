@@ -27,6 +27,7 @@ export interface ListItemProps extends ListItemCommonProps {
     onLongPress?: () => void;
     style?: StyleProp<ViewStyle>;
     bottomExtraView?: ReactNode;
+
 }
 
 export default class Item extends React.Component<ListItemProps, any> {

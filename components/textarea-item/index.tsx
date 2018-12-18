@@ -3,18 +3,18 @@ import {
     NativeSyntheticEvent,
     StyleSheet,
     TextInput,
-    TextInputChangeEventData, TextInputContentSizeChangeEventData,
+    TextInputChangeEventData,
+    TextInputContentSizeChangeEventData,
     TouchableWithoutFeedback,
     ViewStyle,
 } from 'react-native';
 import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
-import {ListItemCommonProps} from "../list/ListItem";
+import {ListItemProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
-import {ReactNode} from "react";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -25,11 +25,10 @@ function fixControlledValue(value?: string) {
 
 export type TextAreaEventHandle = (val?: string) => void;
 
-export interface TextareaItemNativeProps extends ListItemCommonProps {
+export interface TextareaItemNativeProps {
     last?: boolean;
     label?: string;
     onContentSizeChange?: (e: any) => void;
-    containerStyle?: ViewStyle;
     inputStyle?: ViewStyle;
     maxLength?: number;
     name?: string;
@@ -48,8 +47,7 @@ export interface TextareaItemNativeProps extends ListItemCommonProps {
     onChange?: TextAreaEventHandle;
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
-    bottomExtraView?:ReactNode;
-
+    listItemProps?:ListItemProps
 }
 
 interface State {
@@ -83,11 +81,9 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             count = 0,
             autoHeight = false,
             onErrorClick,
-            containerStyle,
             inputStyle,
-            bottomExtraView,
+            listItemProps = {},
             placeholder = "Enter here",
-            hideBorder,
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
@@ -107,9 +103,9 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <List.Item hideBorder={hideBorder}
-                       bottomExtraView={bottomExtraView}
-                       style={containerStyle}>
+            <List.Item multipleLine
+                       {...listItemProps}
+            >
                 {label && <Label marginVertical text={label}/>}
                 <TextInput
                     keyboardAppearance={Styles.isDarkMode?"dark":"default"}

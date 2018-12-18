@@ -15,7 +15,7 @@ export interface RadioItemNativeProps extends RadioItemPropsType, ListItemCommon
     label: string;
 }
 
-export default class RadioItem extends React.Component<RadioItemNativeProps> {
+export default class RadioListItem extends React.Component<RadioItemNativeProps> {
     private ref: RefObject<Radio>;
 
     public constructor(props) {

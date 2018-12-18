@@ -2,8 +2,8 @@ import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import InputItem from "../../input-item";
 import List from "../../list/List";
-import CheckboxItem from "../../checkbox/CheckboxItem";
-import RadioItem from "../../radio/RadioItem";
+import CheckboxListItem from "../../checkbox/CheckboxListItem";
+import RadioListItem from "../../radio/RadioListItem";
 import DateTimePickerModal from "../../date-time-picker-modal";
 import TextAreaItem from "../../textarea-item";
 import UIContainer from "../../ui-provider/UIContainer";
@@ -36,11 +36,11 @@ export default class FormScreen extends React.Component<NavigationProps> {
                                       autoHeight
                                       label="Text Area"/>
 
-                        <CheckboxItem label={"Checkbox"}/>
-                        <RadioItem label={"Radio"}/>
+                        <CheckboxListItem label={"Checkbox"}/>
+                        <RadioListItem label={"Radio"}/>
 
-                        <CheckboxItem disabled label={"Disabled Checkbox"}/>
-                        <RadioItem disabled label={"Disabled Radio"}/>
+                        <CheckboxListItem disabled label={"Disabled Checkbox"}/>
+                        <RadioListItem disabled label={"Disabled Radio"}/>
 
                         <DateTimePickerModal
                             label={"Select Date"}

@@ -17,7 +17,7 @@ Properties | Descrition | Type | Default
 | disabled        |  whether is been disabled       | Boolean |  false  |
 | onChange        | callback when check status is changed | (e: Object): void |     |
 
-### Checkbox.CheckboxItem
+### Checkbox.CheckboxListItem
 
 The encapsulation about `Checkbox` based on `List.Item`, the property `thumb` of `List.Item` will be passed to `Checkbox`, while other properties remain the same.
 
@@ -25,4 +25,4 @@ Other APIs are identical with `Checkbox`.
 
 ### Checkbox.AgreeItem
 
-Almost the same as CheckboxItem and be used for special scenes. See demo for details.
+Almost the same as CheckboxListItem and be used for special scenes. See demo for details.

@@ -14,7 +14,7 @@ export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, ListIte
     label: string
 }
 
-export default class CheckboxItem extends React.Component<ICheckboxItemNativeProps, any> {
+export default class CheckboxListItem extends React.Component<ICheckboxItemNativeProps, any> {
     private refCheckbox: RefObject<Checkbox> = React.createRef();
 
     public render() {

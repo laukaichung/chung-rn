@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Image, ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import {CheckboxPropsType} from './PropsType';
-import CheckboxItem from "./CheckboxItem";
+import CheckboxListItem from "./CheckboxListItem";
 import AgreeItem from "./AgreeItem";
 import Styles from "../style";
 import ChungView from "../chung-view";
@@ -16,7 +16,7 @@ interface State {
 }
 
 export default class Checkbox extends React.Component<ICheckboxNativeProps, State> {
-    static CheckboxItem = CheckboxItem;
+    static CheckboxItem = CheckboxListItem;
     static AgreeItem =  AgreeItem;
 
     public constructor(props: CheckboxPropsType, context: any) {

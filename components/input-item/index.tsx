@@ -8,13 +8,12 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     View,
-    ViewStyle,
 } from 'react-native';
 import Input from './Input';
 import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
-import {ListItemCommonProps} from "../list/ListItem";
+import {ListItemProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 
 type InputEventHandler = (value?: string) => void;
@@ -44,7 +43,6 @@ export interface InputItemProps {
     maxLength?: number;
     extra?: ReactNode;
     error?: boolean;
-    containerStyle?: ViewStyle;
     labelNumber?: number;
     labelPosition?: 'left' | 'top';
     textAlign?: 'left' | 'center';
@@ -56,7 +54,7 @@ export interface InputItemProps {
     onBlur?: InputEventHandler;
     onVirtualKeyboardConfirm?: InputEventHandler;
     autoFocus?: boolean;
-    listItemProps?:ListItemCommonProps
+    listItemProps?:ListItemProps
 }
 
 function normalizeValue(value?: string) {

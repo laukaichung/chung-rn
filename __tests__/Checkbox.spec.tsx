@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {TouchableWithoutFeedback} from 'react-native';
-import CheckboxItem from "../components/checkbox/CheckboxItem";
+import CheckboxListItem from "../components/checkbox/CheckboxListItem";
 import Checkbox from "../components/checkbox/Checkbox";
 
 
@@ -10,7 +10,7 @@ describe(`Checkbox`, () => {
     let testRenderer: ReactTestRenderer;
     beforeAll(async () => {
         testRenderer = renderer.create((
-            <CheckboxItem
+            <CheckboxListItem
                 checked={true}
                 label={"Check this"}
                 onChange={()=>{}}/>
