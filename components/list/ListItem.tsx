@@ -156,7 +156,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                 <View style={[styles.item]}>
                     {
                         thumb &&
-                        <View style={{marginRight: ChungStyles.margin / 2}}>
+                        <View style={styles.listItemSpace}>
                             {
                                 typeof thumb === 'string' ? (
                                         <Image
@@ -176,7 +176,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                         ]}
                     >
                         {contentDom}
-                        {extraDom}
+                        {extraDom && <View style={styles.listItemSpace}>{extraDom}</View>}
                         {arrow
                             ? (arrEnum as any)[arrow] || <View style={styles.arrow}/>
                             : null}
@@ -232,6 +232,9 @@ const styles = StyleSheet.create({
     content: {
         textAlignVertical: 'center',
         paddingVertical: 15
+    },
+    listItemSpace:{
+        marginRight:ChungStyles.margin / 2
     },
     extra: {
         textAlign: 'right',
