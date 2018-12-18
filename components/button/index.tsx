@@ -2,6 +2,7 @@ import * as React from 'react';
 import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
 import CustomTouchableHighlight from "../custom-touchable-highlight";
+import ChungText from "../chung-text";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;

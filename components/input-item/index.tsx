@@ -28,7 +28,7 @@ export type KeyboardType =
     | 'password'
 
 
-export interface InputItemProps extends ListItemCommonProps {
+export interface InputItemProps {
     last?: boolean;
     label: string;
     onExtraClick?: (event: GestureResponderEvent) => void;
@@ -55,7 +55,8 @@ export interface InputItemProps extends ListItemCommonProps {
     onFocus?: InputEventHandler;
     onBlur?: InputEventHandler;
     onVirtualKeyboardConfirm?: InputEventHandler;
-    autoFocus?: boolean
+    autoFocus?: boolean;
+    listItemProps?:ListItemCommonProps
 }
 
 function normalizeValue(value?: string) {
@@ -83,7 +84,6 @@ export default class InputItem extends React.Component<InputItemProps, any> {
     public render() {
         let {
             type,
-            hideBorder,
             label,
             editable,
             clear,
@@ -91,6 +91,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
             extra,
             onExtraClick,
             onErrorClick,
+            listItemProps = {},
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
@@ -116,7 +117,7 @@ export default class InputItem extends React.Component<InputItemProps, any> {
 
         return (
 
-            <List.Item multipleLine hideBorder={hideBorder}>
+            <List.Item multipleLine {...listItemProps}>
                 {
                     label && <Label style={styles.label} text={label}/>
                 }

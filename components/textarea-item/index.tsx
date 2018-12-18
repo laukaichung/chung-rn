@@ -14,6 +14,7 @@ import {ListItemCommonProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
+import {ReactNode} from "react";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -47,6 +48,7 @@ export interface TextareaItemNativeProps extends ListItemCommonProps {
     onChange?: TextAreaEventHandle;
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
+    bottomExtraView?:ReactNode;
 
 }
 
@@ -83,6 +85,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
             onErrorClick,
             containerStyle,
             inputStyle,
+            bottomExtraView,
             placeholder = "Enter here",
             hideBorder,
             ...restProps
@@ -105,6 +108,7 @@ export default class TextAreaItem extends React.Component<TextareaItemNativeProp
 
         return (
             <List.Item hideBorder={hideBorder}
+                       bottomExtraView={bottomExtraView}
                        style={containerStyle}>
                 {label && <Label marginVertical text={label}/>}
                 <TextInput

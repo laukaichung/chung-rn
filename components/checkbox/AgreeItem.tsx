@@ -4,6 +4,7 @@ import Checkbox from './Checkbox';
 import {CheckboxPropsType} from './PropsType';
 import {RefObject} from "react";
 import Styles from "../style";
+import ChungText from "../chung-text";
 
 const refCheckbox = 'checkbox';
 

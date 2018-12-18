@@ -10,7 +10,6 @@ export interface FlexItemProps {
     onPressIn?: () => void;
     onPressOut?: () => void;
     style?: StyleProp<ViewStyle>;
-    marginRight?:boolean;
     disabled?: boolean;
     children?: ReactNode;
 }

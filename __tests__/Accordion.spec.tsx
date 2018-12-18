@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import Grid from "../components/grid";
 import Flex from "../components/flex/Flex";
-import {Text, TouchableHighlightProps} from 'react-native';
+import {Text} from 'react-native';
 import Accordion, {AccordionPane} from "../components/accordion";
 import CustomTouchableHighlight from "../components/custom-touchable-highlight";
 
