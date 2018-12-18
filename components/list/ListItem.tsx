@@ -4,6 +4,7 @@ import Styles from "../style";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import {ReactNode} from "react";
 import ChungText from "../chung-text";
+import {ChungStyles} from "../index";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -150,16 +151,23 @@ export default class Item extends React.Component<ListItemProps, any> {
         }
 
         const itemView = (
-            <View {...restProps} style={[itemBorderStyle,{paddingVertical: Styles.padding,paddingLeft: Styles.padding},style]}>
+            <View {...restProps}
+                  style={[itemBorderStyle, {paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
                 <View style={[styles.item]}>
-                    {typeof thumb === 'string' ? (
-                        <Image
-                            source={{uri: thumb}}
-                            style={[styles.thumb, multipleLine && styles.multipleThumb] as any}
-                        />
-                    ) : (
-                        thumb
-                    )}
+                    {
+                        thumb &&
+                        <View style={{marginRight: ChungStyles.margin / 2}}>
+                            {
+                                typeof thumb === 'string' ? (
+                                        <Image
+                                            source={{uri: thumb}}
+                                            style={[styles.thumb, multipleLine && styles.multipleThumb] as any}
+                                        />
+                                    ) :
+                                    thumb
+                            }
+                        </View>
+                    }
                     <View
                         style={[
                             styles.line,
