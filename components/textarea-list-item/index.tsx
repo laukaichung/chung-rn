@@ -55,7 +55,7 @@ interface State {
     height: number
 }
 
-export default class TextAreaItem extends React.Component<TextareaItemNativeProps, State> {
+export default class TextAreaListItem extends React.Component<TextareaItemNativeProps, State> {
 
     static defaultProps = {
         editable: true

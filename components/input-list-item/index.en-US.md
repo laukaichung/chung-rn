@@ -1,7 +1,7 @@
 ---
 category: Components
 type: Data Entry
-title: InputItem
+title: InputListItem
 ---
 
 A foundational component for inputting text into the app via a keyboard.
@@ -13,7 +13,7 @@ A foundational component for inputting text into the app via a keyboard.
 
 ## API
 
-**`InputItem` must wrapped by a [List](https://mobile.ant.design/components/list)**
+**`InputListItem` must wrapped by a [List](https://mobile.ant.design/components/list)**
 
 Properties | Description | Type | Default
 -----------|------------|------|--------
@@ -29,17 +29,17 @@ Properties | Description | Type | Default
 | onFocus    | callback that is called when the text input is focused | (val: string): void |  -  |
 | error       | whether to display error       | bool |  false  |
 | onErrorClick   | callback that is called when the error icon is clicked  | (e: Object): void |   |
-| extra       | the right content of `InputItem`   | string or node |  ''  |
+| extra       | the right content of `InputListItem`   | string or node |  ''  |
 | onExtraClick      | callback that is called when the extra content is clicked | (e: Object): void |  |
 | onVirtualKeyboardConfirm | callback that is called when "confirm" button of virtual keyboard is clicked | (val: string): void |  |
 | labelNumber  | number of label text, valid value is 2 to 7 | number | `5` |
 | locale   | 国际化，可覆盖全局`[LocaleProvider](https://mobile.ant.design/components/locale-provider)`的配置,  when`type`is`money`，can cunstom the keyboard confirm item's label | Object: { confirmLabel } |  无 |
 
-> More available react-native `InputItem` API can be found at [react-native TextInput](http://facebook.github.io/react-native/docs/textinput.html)
+> More available react-native `InputListItem` API can be found at [react-native TextInput](http://facebook.github.io/react-native/docs/textinput.html)
 
-> Note: `InputItem` does not support negative number if `type` is text, you can use `type=text` to do that.
+> Note: `InputListItem` does not support negative number if `type` is text, you can use `type=text` to do that.
 
-## InputItem Instance methods
+## InputListItem Instance methods
 
 Property | Description | Type | Default
 ----|-----|------|------

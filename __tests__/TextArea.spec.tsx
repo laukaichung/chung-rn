@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Image, TextInput, TouchableWithoutFeedback} from 'react-native';
-import TextAreaItem from "../components/textarea-item";
+import TextAreaListItem from "../components/textarea-list-item";
 
 const DEFAULT_VALUE = "hello";
 
@@ -10,7 +10,7 @@ describe(`TextArea`, () => {
     let testRenderer: ReactTestRenderer;
     beforeAll(async () => {
         testRenderer = renderer.create((
-            <TextAreaItem
+            <TextAreaListItem
                 rows={5}
                 defaultValue={DEFAULT_VALUE}
                 error={true}

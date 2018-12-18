@@ -65,7 +65,7 @@ function normalizeValue(value?: string) {
 }
 
 
-export default class InputItem extends React.Component<InputItemProps, any> {
+export default class InputListItem extends React.Component<InputItemProps, any> {
     public static defaultProps = {
         editable: true,
         clear: false,

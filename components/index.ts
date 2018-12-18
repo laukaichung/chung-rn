@@ -15,7 +15,7 @@ export {default as Header} from './header'
 export {default as HintText} from './hint-text'
 export {default as ImagePickerModal} from './image-picker-modal'
 export {default as CameraRollImageList} from './camera-roll-image-list'
-export {default as InputItem} from './input-item';
+export {default as InputListItem} from './input-list-item';
 export {default as Label} from './label';
 export {default as List} from './list';
 export {default as Modal} from './modal';
@@ -25,7 +25,7 @@ export {default as PausableGif} from './pausable-gif'
 export {default as Radio} from './radio';
 export {default as Result} from './result';
 export {default as Tabs} from './tabs';
-export {default as TextAreaItem} from './textarea-item';
+export {default as TextAreaListItem} from './textarea-list-item';
 export {default as ChungImage} from './chung-image';
 export {default as ChungText} from './chung-text';
 export {default as ChungView} from './chung-view';

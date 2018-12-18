@@ -1,11 +1,11 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import InputItem from "../../input-item";
+import InputListItem from "../../input-list-item";
 import List from "../../list/List";
 import CheckboxListItem from "../../checkbox/CheckboxListItem";
 import RadioListItem from "../../radio/RadioListItem";
 import DateTimePickerModal from "../../date-time-picker-modal";
-import TextAreaItem from "../../textarea-item";
+import TextAreaListItem from "../../textarea-list-item";
 import UIContainer from "../../ui-provider/UIContainer";
 import {ScrollView} from "react-native";
 
@@ -16,25 +16,25 @@ export default class FormScreen extends React.Component<NavigationProps> {
             <UIContainer>
                 <ScrollView>
                     <List>
-                        <InputItem label={"Input"}
-                                   error
-                                   extra={"Hello"}
-                                   placeholder={"Some Holder"}/>
+                        <InputListItem label={"Input"}
+                                       error
+                                       extra={"Hello"}
+                                       placeholder={"Some Holder"}/>
 
-                        <InputItem label={"Numeric Input"}
-                                   type={"numeric"}
-                                   onChange={(val) => console.log(val)}
-                                   placeholder={"Enter Int Val"}/>
+                        <InputListItem label={"Numeric Input"}
+                                       type={"numeric"}
+                                       onChange={(val) => console.log(val)}
+                                       placeholder={"Enter Int Val"}/>
 
-                        <InputItem label={"Float Input"}
-                                   type={"decimal-pad"}
-                                   onChange={(val) => console.log(val)}
-                                   placeholder={"Enter Float Val"}/>
+                        <InputListItem label={"Float Input"}
+                                       type={"decimal-pad"}
+                                       onChange={(val) => console.log(val)}
+                                       placeholder={"Enter Float Val"}/>
 
-                        <TextAreaItem placeholder={`sda dsffsd fsdfsdsfd sfdsdf sdf sdf sfd fdsfsdfsdsdf sfdsfd sdf sdfsd f sdfsdf sd fds`}
-                                      rows={5}
-                                      autoHeight
-                                      label="Text Area"/>
+                        <TextAreaListItem placeholder={`sda dsffsd fsdfsdsfd sfdsdf sdf sdf sfd fdsfsdfsdsdf sfdsfd sdf sdfsd f sdfsdf sd fds`}
+                                          rows={5}
+                                          autoHeight
+                                          label="Text Area"/>
 
                         <CheckboxListItem label={"Checkbox"}/>
                         <RadioListItem label={"Radio"}/>
