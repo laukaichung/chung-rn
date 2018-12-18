@@ -11,10 +11,10 @@ import {
 import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
-import {ListItemProps} from "../list/ListItem";
 import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
+import {FormListItemCommonProps} from "../type";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -25,7 +25,7 @@ function fixControlledValue(value?: string) {
 
 export type TextAreaEventHandle = (val?: string) => void;
 
-export interface TextareaItemNativeProps {
+export interface TextareaItemNativeProps extends FormListItemCommonProps{
     last?: boolean;
     label?: string;
     onContentSizeChange?: (e: any) => void;
@@ -47,7 +47,6 @@ export interface TextareaItemNativeProps {
     onChange?: TextAreaEventHandle;
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
-    listItemProps?:ListItemProps
 }
 
 interface State {

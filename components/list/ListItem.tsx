@@ -7,11 +7,7 @@ import ChungText from "../chung-text";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
-export interface ListItemCommonProps {
-    hideBorder?: HideBorderOptions[];
-}
-
-export interface ListItemProps extends ListItemCommonProps {
+export interface ListItemProps {
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
     multipleLine?: boolean;
@@ -27,6 +23,7 @@ export interface ListItemProps extends ListItemCommonProps {
     onLongPress?: () => void;
     style?: StyleProp<ViewStyle>;
     bottomExtraView?: ReactNode;
+    hideBorder?: HideBorderOptions[];
 
 }
 

@@ -5,11 +5,10 @@ import {RadioItemPropsType} from './PropsType';
 import Radio from "./Radio";
 import List from "../list/List";
 import Label from "../label";
-import {ListItemCommonProps} from "../list/ListItem";
 import Styles from "../style";
+import {FormListItemCommonProps} from "../type";
 
-
-export interface RadioItemNativeProps extends RadioItemPropsType, ListItemCommonProps {
+export interface RadioItemNativeProps extends RadioItemPropsType, FormListItemCommonProps {
     style?: StyleProp<ViewStyle>;
     radioStyle?: StyleProp<ImageStyle>;
     label: string;
@@ -24,7 +23,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
     }
 
     public render() {
-        const {style, radioStyle, defaultChecked, hideBorder, checked, label, disabled, onChange} = this.props;
+        const {style, radioStyle, defaultChecked, checked,listItemProps = {}, label, disabled, onChange} = this.props;
         const radioEl = (
             <Radio
                 ref={this.ref}
@@ -38,7 +37,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
 
         return (
             <List.Item
-                hideBorder={hideBorder}
+                {...listItemProps}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>

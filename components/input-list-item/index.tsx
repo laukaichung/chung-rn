@@ -13,8 +13,8 @@ import Input from './Input';
 import Styles from "../style";
 import List from "../list/List";
 import Label from "../label";
-import {ListItemProps} from "../list/ListItem";
 import ChungText from "../chung-text";
+import {FormListItemCommonProps} from "../type";
 
 type InputEventHandler = (value?: string) => void;
 
@@ -27,7 +27,7 @@ export type KeyboardType =
     | 'password'
 
 
-export interface InputItemProps {
+export interface InputItemProps extends FormListItemCommonProps {
     last?: boolean;
     label: string;
     onExtraClick?: (event: GestureResponderEvent) => void;
@@ -54,7 +54,6 @@ export interface InputItemProps {
     onBlur?: InputEventHandler;
     onVirtualKeyboardConfirm?: InputEventHandler;
     autoFocus?: boolean;
-    listItemProps?:ListItemProps
 }
 
 function normalizeValue(value?: string) {

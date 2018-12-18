@@ -8,9 +8,10 @@ import Grid from "../grid";
 import CustomModal from "../modal";
 import Button from "../button";
 import CameraRollImageList from "../camera-roll-image-list";
-import {CameraRollFile} from "../type";
+import {CameraRollFile, FormListItemCommonProps} from "../type";
+import {ListItemProps} from "../list/ListItem";
 
-interface ImagePickerModalProps {
+interface ImagePickerModalProps extends FormListItemCommonProps {
     images?: CameraRollFile[];
     onRemoveImages: (image: CameraRollFile) => void;
     onConfirm: (images: CameraRollFile[]) => void;
@@ -26,14 +27,14 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
     }
 
     public render() {
-        const {images, onRemoveImages, onConfirm,multiple} = this.props;
+        const {images, onRemoveImages,listItemProps = {}, onConfirm,multiple} = this.props;
         return (
             <React.Fragment>
                 <CustomModal
                     fullScreen
                     paddingHorizontal={false}
                     buttonTrigger={(
-                        <List.Item arrow="horizontal">
+                        <List.Item {...listItemProps} arrow="horizontal">
                             <Label text={"Select Images"}/>
                         </List.Item>
                     )}>

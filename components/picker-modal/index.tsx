@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {ScrollView, Text, StyleSheet, View} from "react-native";
+import {ReactNode} from 'react'
+import {ScrollView, StyleSheet, View} from "react-native";
 import Grid from "../grid";
 import CustomModal, {ModalProps} from "../modal";
 import List from "../list"
@@ -7,11 +8,11 @@ import Styles from "../style";
 import StringUtil from "../util/StringUtil";
 import Label from "../label";
 import WhiteSpace from "../white-space";
-import {ReactNode} from "react";
 import ChungText from "../chung-text";
 import HintText from "../hint-text";
+import {FormListItemCommonProps} from "../type";
 
-export interface PickerModalProps extends ModalProps {
+export interface PickerModalProps extends ModalProps, FormListItemCommonProps {
     data: PickerItem[];
     multiple?: boolean
     label: string,
@@ -19,7 +20,6 @@ export interface PickerModalProps extends ModalProps {
     displayTextAsValue?: boolean;
     columnNum?: number;
     customLabelElement?: ReactNode
-    // closeModalAfterOptionSelected?: boolean;
 }
 
 interface SelectOptionModel {
@@ -69,7 +69,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
     public render() {
         const {props, state} = this;
         let {selectedOptions} = state;
-        const {data, multiple, customLabelElement, hint, displayTextAsValue, label, onChange, columnNum = 3} = props;
+        const {data, multiple, customLabelElement, hint,listItemProps = {}, displayTextAsValue, label, onChange, columnNum = 3} = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
         });
@@ -80,6 +80,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                 {...props}
                 buttonTrigger={
                     <List.Item
+                        {...listItemProps}
                         multipleLine
                         arrow="horizontal">
                         {customLabelElement || <Label text={label}/>}

@@ -5,10 +5,10 @@ import Checkbox from './Checkbox';
 import {CheckboxItemPropsType} from './PropsType';
 import List from "../list/List";
 import Label from "../label";
-import {ListItemCommonProps} from "../list/ListItem";
 import Styles from "../style";
+import {FormListItemCommonProps} from "../type";
 
-export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, ListItemCommonProps {
+export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, FormListItemCommonProps {
     checkboxStyle?: StyleProp<ImageStyle>;
     style?: StyleProp<ViewStyle>;
     label: string
@@ -26,14 +26,14 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
             disabled,
             label,
             extra,
-            hideBorder,
+            listItemProps = {},
             onChange,
         } = this.props;
 
         return (
 
             <List.Item
-                hideBorder={hideBorder}
+                {...listItemProps}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this._handleClick}
                 extra={<Checkbox
