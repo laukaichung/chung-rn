@@ -1,8 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import {screenKeys} from "../data/ScreenKeys";
 import Button from "../../button";
-import {NavigationActions, StackActions} from "react-navigation";
 import ChungText from "../../chung-text";
 import List from "../../list";
 import Styles from "../../style";
@@ -23,7 +21,7 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
             <Container>
                 <WingBlank>
                     <ChungText>Chung Text</ChungText>
-                    <Header text={"Header"}/>
+                    <Header>Header</Header>
                     <UIContext.Consumer>
                         {
                             ({theme, toggleTheme}) => {

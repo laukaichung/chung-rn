@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import {Text} from 'react-native'
 import {Toast} from "../../index";
+import ChungText from "../../chung-text";
 
 export class ToastScreen extends React.Component<NavigationProps> {
     public render() {
         return (
-            <Text>Hello</Text>
+            <ChungText>Hello</ChungText>
         )
     }
 

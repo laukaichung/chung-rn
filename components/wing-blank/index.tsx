@@ -11,7 +11,7 @@ export interface WingBlankProps {
 class WingBlank extends React.Component<WingBlankProps, any> {
 
     public render() {
-        const {size = "lg", style, children} = this.props;
+        const {size = "md", style, children} = this.props;
         let margin = Styles.margin;
         if (size === "sm") {
             margin = Styles.marginSm
@@ -19,7 +19,7 @@ class WingBlank extends React.Component<WingBlankProps, any> {
             margin = Styles.marginLg;
         }
         return (
-            <View style={[{marginLeft: margin, marginRight: margin,marginVertical:margin}, style]}>
+            <View style={[{margin}, style]}>
                 {children}
             </View>
         );

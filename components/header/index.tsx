@@ -3,7 +3,6 @@ import {Text, TextStyle} from 'react-native'
 import Styles from "../style";
 
 interface HeaderProps {
-    text?: string
     color?: string
     center?: boolean
     marginVertical?: boolean
@@ -12,7 +11,7 @@ interface HeaderProps {
     children?: string;
 }
 
-export const Header = ({text, color, center, children, fontSize, style, marginVertical}: HeaderProps) => {
+export const Header = ({color, center, children, fontSize, style, marginVertical}: HeaderProps) => {
     return (
 
         <Text style={[
@@ -26,7 +25,7 @@ export const Header = ({text, color, center, children, fontSize, style, marginVe
             style
         ]
         }>
-            {children || text}
+            {children}
         </Text>
 
     )

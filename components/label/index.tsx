@@ -4,16 +4,15 @@ import Styles from "../style";
 import ChungText from "../chung-text";
 
 interface LabelProps {
-    text?: string
     marginVertical?:boolean
     children?:string;
     style?:StyleProp<TextStyle>;
 }
 
-const Label = ({text,marginVertical,children,style}: LabelProps) => {
+const Label = ({marginVertical,children,style}: LabelProps) => {
     return (
         <ChungText style={[styles.header,marginVertical && {marginVertical:Styles.margin},style]}>
-            {children || text}
+            {children}
         </ChungText>
     )
 };
