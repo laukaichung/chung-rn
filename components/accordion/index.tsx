@@ -4,7 +4,6 @@ import {Text, View} from "react-native";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight";
 import Styles from "../style";
 import ChungImage from "../chung-image";
-import ChungText from "../chung-text";
 
 export interface AccordionPane {
     render: () => ReactNode

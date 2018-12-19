@@ -57,6 +57,7 @@ export interface InputItemProps extends FormListItemCommonProps {
 }
 
 function normalizeValue(value?: string) {
+
     if (typeof value === 'undefined' || value === null) {
         return '';
     }
@@ -116,7 +117,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
 
             <List.Item multipleLine {...listItemProps}>
                 {
-                    label && <Label style={styles.label} text={label}/>
+                    label && <Label style={styles.label}>{label}</Label>
                 }
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Input
@@ -216,7 +217,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                 if(text && text[text.length - 1] !== "."){
                     text = parseNumber(text) as any;
                 }
-                break
+                break;
             default:
                 break;
         }

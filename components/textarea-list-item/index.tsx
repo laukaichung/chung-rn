@@ -105,7 +105,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
             <List.Item multipleLine
                        {...listItemProps}
             >
-                {label && <Label marginVertical text={label}/>}
+                {label && <Label marginVertical>{label}</Label>}
                 <TextInput
                     keyboardAppearance={Styles.isDarkMode?"dark":"default"}
                     placeholderTextColor={Styles.placeholderTextColor}

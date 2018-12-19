@@ -75,7 +75,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                                     scrollable ? {height:scrollableFixedHeight || 400}:{minHeight:100}
 
                                 ]}>
-                                {title && <Header center marginVertical text={title}/>}
+                                {title && <Header center marginVertical>{title}</Header>}
                                 {children({closeModal: this._closeModal})}
                             </ChungView>
 
