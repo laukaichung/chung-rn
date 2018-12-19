@@ -17,3 +17,4 @@ app.json
 tsconfig.*
 __tests__
 __tests__util
+__mocks__

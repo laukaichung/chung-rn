@@ -2,7 +2,6 @@ import * as React from 'react';
 import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
 import Styles from "../style";
 import CustomTouchableHighlight from "../custom-touchable-highlight";
-import ChungText from "../chung-text";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
@@ -78,7 +77,7 @@ export default class Button extends React.Component<ButtonProps, State> {
             justifyContent: 'center',
             borderRadius: Styles.radiusMd,
             borderWidth: 1,
-            paddingVertical: size === "small" ? Styles.paddingSm : Styles.padding
+            padding: size === "small" ? Styles.paddingSm : Styles.padding
         }];
 
         if (type === "primary") {

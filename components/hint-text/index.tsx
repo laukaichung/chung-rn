@@ -6,7 +6,7 @@ import ChungView from "../chung-view";
 import UIContext from "../ui-provider/UIContext";
 
 export interface HintTextProps {
-    children: string;
+    children: ReactNode;
     icon?: ReactNode;
     color?: string;
     containerStyle?: ViewStyle
