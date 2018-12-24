@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
+    Image,
     NativeSyntheticEvent,
     StyleSheet,
     TextInput,
     TextInputChangeEventData,
-    TextInputContentSizeChangeEventData,
+    TextInputContentSizeChangeEventData, TouchableOpacity,
     TouchableWithoutFeedback,
     ViewStyle,
 } from 'react-native';
@@ -35,7 +36,7 @@ export interface TextareaItemNativeProps extends FormListItemCommonProps{
     value?: string;
     defaultValue?: string;
     placeholder?: string;
-    clear?: boolean;
+    // clear?: boolean;
     rows: number;
     count?: number;
     error?: boolean;
@@ -47,6 +48,7 @@ export interface TextareaItemNativeProps extends FormListItemCommonProps{
     onChange?: TextAreaEventHandle;
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
+    onClear?:()=>void;
 }
 
 interface State {
@@ -75,8 +77,8 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
         const {
             rows = 1,
             label,
+            onClear,
             error = false,
-            clear = true,
             count = 0,
             autoHeight = false,
             onErrorClick,
@@ -102,15 +104,16 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <List.Item multipleLine
-                       {...listItemProps}
+            <List.Item
+                multipleLine
+                {...listItemProps}
             >
                 {label && <Label marginVertical>{label}</Label>}
                 <TextInput
                     keyboardAppearance={Styles.isDarkMode?"dark":"default"}
                     placeholderTextColor={Styles.placeholderTextColor}
                     placeholder={placeholder}
-                    clearButtonMode={clear ? 'while-editing' : 'never'}
+                    // clearButtonMode={clear ? 'while-editing' : 'never'}
                     underlineColorAndroid="transparent"
                     style={[
                         styles.input,
@@ -132,6 +135,30 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
                     numberOfLines={rows}
                     maxLength={maxLength}
                 />
+
+                {
+                    onClear &&
+                    <TouchableOpacity
+                        style={[
+                            {
+                                backgroundColor: Styles.indicatorColor,
+                                borderRadius: 15,
+                                padding: 2,
+                                position: "absolute",
+                                bottom: 5,
+                                right: 5
+                            }
+                        ]}
+                        onPress={onClear}
+                        hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
+                    >
+                        <Image
+                            source={require('../../images/cross_w.png')}
+                            style={{width: 12, height: 12}}
+                        />
+                    </TouchableOpacity>
+                }
+
                 {error && (
                     <TouchableWithoutFeedback onPress={onErrorClick}>
                         <ChungView style={[styles.errorIconContainer]}>

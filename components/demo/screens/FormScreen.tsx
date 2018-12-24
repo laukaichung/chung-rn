@@ -33,6 +33,7 @@ export default class FormScreen extends React.Component<NavigationProps> {
 
                         <TextAreaListItem placeholder={`sda dsffsd fsdfsdsfd sfdsdf sdf sdf sfd fdsfsdfsdsdf sfdsfd sdf sdfsd f sdfsdf sd fds`}
                                           rows={5}
+                                          onClear={()=>alert('clear!!')}
                                           autoHeight
                                           label="Text Area"/>
 
