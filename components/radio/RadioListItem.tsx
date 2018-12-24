@@ -41,7 +41,9 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>
-                <Label style={disabled && {color:Styles.disabledTextColor}} text={label}/>
+                <Label style={disabled && {color:Styles.disabledTextColor}}>
+                    {label}
+                </Label>
             </List.Item>
 
         );

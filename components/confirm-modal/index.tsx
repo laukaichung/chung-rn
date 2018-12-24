@@ -12,14 +12,13 @@ interface ConfirmModalProps extends ModalProps{
     onConfirmClick: () => void;
     onCancelClick?:()=>void;
     hint?: string
-    confirmTitle?: string
+    title?: string
 }
 
-const ConfirmModal = ({onConfirmClick, onCancelClick,hint, confirmTitle,...restProps}: ConfirmModalProps) => {
+const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: ConfirmModalProps) => {
     return (
         <Modal {...restProps}
-
-               title={confirmTitle || `Are you sure?`}>
+               title={title || `Are you sure?`}>
             {
                 ({closeModal}) =>
                     <ChungView>

@@ -10,7 +10,7 @@ describe(`ConfirmModal`, () => {
     beforeAll(async () => {
         testRenderer = renderer.create((
             <ConfirmModal onConfirmClick={()=>{}}
-                          confirmTitle={"Please Confirm"}
+                          title={"Please Confirm"}
                           buttonTrigger={<Button>Trigger Button</Button>}/>
         ));
     });

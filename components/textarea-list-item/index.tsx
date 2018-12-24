@@ -16,6 +16,7 @@ import ChungText from "../chung-text";
 import ChungView from "../chung-view";
 import ChungImage from "../chung-image";
 import {FormListItemCommonProps} from "../type";
+import ConfirmModal from "../confirm-modal";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -26,7 +27,7 @@ function fixControlledValue(value?: string) {
 
 export type TextAreaEventHandle = (val?: string) => void;
 
-export interface TextareaItemNativeProps extends FormListItemCommonProps{
+export interface TextareaItemNativeProps extends FormListItemCommonProps {
     last?: boolean;
     label?: string;
     onContentSizeChange?: (e: any) => void;
@@ -48,7 +49,7 @@ export interface TextareaItemNativeProps extends FormListItemCommonProps{
     onChange?: TextAreaEventHandle;
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
-    onClear?:()=>void;
+    onClear?: () => void;
 }
 
 interface State {
@@ -88,7 +89,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
-        const {inputCount,height} = this.state;
+        const {inputCount, height} = this.state;
 
         let valueProps;
         if ('value' in this.props) {
@@ -110,7 +111,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
             >
                 {label && <Label marginVertical>{label}</Label>}
                 <TextInput
-                    keyboardAppearance={Styles.isDarkMode?"dark":"default"}
+                    keyboardAppearance={Styles.isDarkMode ? "dark" : "default"}
                     placeholderTextColor={Styles.placeholderTextColor}
                     placeholder={placeholder}
                     // clearButtonMode={clear ? 'while-editing' : 'never'}
@@ -138,25 +139,29 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
 
                 {
                     onClear &&
-                    <TouchableOpacity
-                        style={[
-                            {
-                                backgroundColor: Styles.indicatorColor,
-                                borderRadius: 15,
-                                padding: 2,
-                                position: "absolute",
-                                bottom: 5,
-                                right: 5
-                            }
-                        ]}
-                        onPress={onClear}
-                        hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
-                    >
-                        <Image
-                            source={require('../../images/cross_w.png')}
-                            style={{width: 12, height: 12}}
-                        />
-                    </TouchableOpacity>
+                    <ConfirmModal
+                        buttonTrigger={(
+                            <TouchableOpacity
+                                style={[
+                                    {
+                                        backgroundColor: Styles.indicatorColor,
+                                        borderRadius: 15,
+                                        padding: 2,
+                                        position: "absolute",
+                                        bottom: 5,
+                                        right: 5
+                                    }
+                                ]}
+                                hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
+                            >
+                                <Image
+                                    source={require('../../images/cross_w.png')}
+                                    style={{width: 12, height: 12}}
+                                />
+                            </TouchableOpacity>
+                        )}
+                        title={`Are you sure you want to clear the content?`}
+                        onConfirmClick={onClear}/>
                 }
 
                 {error && (
@@ -191,7 +196,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
         if (onChange) onChange(text);
     };
 
-    onContentSizeChange = (event:NativeSyntheticEvent<TextInputContentSizeChangeEventData>) => {
+    onContentSizeChange = (event: NativeSyntheticEvent<TextInputContentSizeChangeEventData>) => {
 
         let height;
         const {autoHeight, onContentSizeChange} = this.props;

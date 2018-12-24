@@ -31,7 +31,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
                 {...listItemProps}
                 onPress={() => this.setState({isVisible: true})}
                 arrow="horizontal">
-                <Label text={label}/>
+                <Label>{label}</Label>
                 {date &&
                 <ChungText>{renderDateValue ? renderDateValue(date) : date.toDateString()}</ChungText>}
                 <DateTimePicker
