@@ -31,7 +31,6 @@ import UIContext from "../ui-provider/UIContext";
 import Styles from "../style";
 import ResultScreen from "./screens/ResultScreen";
 import {DrawerScreen} from "./screens/DrawerScreen";
-import CameraScreen from "./screens/CameraScreen";
 
 const StackNavigator = createStackNavigator(
     {
@@ -53,7 +52,6 @@ const StackNavigator = createStackNavigator(
         [screenKeys.toast]: ToastScreen,
         [screenKeys.oldTabs]: TabScreen,
         [screenKeys.result]: ResultScreen,
-        [screenKeys.camera]: CameraScreen
 
 
     },
