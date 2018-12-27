@@ -69,7 +69,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
                 renderItem={({item: image}) => {
                     let isSelected = selectedImages.find(o => o.uri === image.uri) != null;
                     let onSelected = (image: CameraRollFile) => {
-
+                        console.log({image});
                         let targetIdx = selectedImages.findIndex(o => o.uri === image.uri);
                         if(multiple) {
                             if (targetIdx > -1) {

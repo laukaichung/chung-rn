@@ -17,5 +17,6 @@ export const screenKeys = {
     cameraRollImageList:'cameraRollImageList',
     toast:'toast',
     oldTabs:'oldTabs',
-    result:'result'
+    result:'result',
+    camera:'camera',
 };
