@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Text, ViewStyle} from "react-native";
+import {Text, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
-import ChungView from "./ChungView";
+import Icon from "./Icon";
 
 export interface HintTextProps {
     children: ReactNode;
-    icon?: ReactNode;
+    icon?: string;
     color?: string;
     containerStyle?: ViewStyle
 }
@@ -14,19 +14,21 @@ export interface HintTextProps {
 const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
     color = color || Styles.hintTextDefaultTextColor;
     return (
-        <ChungView style={[
+        <View style={[
             {
                 borderColor: color,
                 borderWidth: 1,
                 padding: Styles.padding,
                 marginVertical: Styles.margin
             },
-            containerStyle
+            containerStyle,
+            Styles.inline
         ]}>
+            {icon && <Icon size={"sm"} color={color} style={{marginRight: Styles.margin}} name={icon}/>}
             <Text style={[{lineHeight: 24, color}]}>
-                {icon} {children}
+                {children}
             </Text>
-        </ChungView>
+        </View>
     )
 };
 
