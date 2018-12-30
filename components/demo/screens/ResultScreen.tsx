@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";
-import Result from "../../result";
-import WingBlank from "../../wing-blank";
-import WhiteSpace from "../../white-space";
+import Result from "../../result/Result";
+import WingBlank from "../../wing-blank/WingBlank";
+import WhiteSpace from "../../white-space/WhiteSpace";
 
 export default class ResultScreen extends React.Component<NavigationProps> {
     render() {

@@ -23,14 +23,15 @@ import {ModalScreen} from "./screens/ModalScreen";
 import {CameraRollImageList} from "./screens/CameraRollImageList";
 import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
 import {ToastScreen} from "./screens/ToastScreen";
-import UIProvider from "../ui-provider";
+import UIProvider from "../ui-provider/UIProvider";
 import {TabScreen} from "./screens/TabScreen";
 import {View} from "react-native";
-import Button from "../button";
+import Button from "../button/Button";
 import UIContext from "../ui-provider/UIContext";
-import Styles from "../style";
+import Styles from "../styles/Styles";
 import ResultScreen from "./screens/ResultScreen";
 import {DrawerScreen} from "./screens/DrawerScreen";
+
 
 const StackNavigator = createStackNavigator(
     {

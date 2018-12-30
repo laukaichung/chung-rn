@@ -1,11 +1,12 @@
 import * as React from 'react'
 import {Text} from 'react-native'
 import List from "../../list/List";
-import Badge from "../../badge";
+import Badge from "../../badge/Badge";
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";
 
 export class BadgeScreen extends React.Component<NavigationProps> {
+
     render() {
         return (
             <UIContainer>
@@ -20,4 +21,5 @@ export class BadgeScreen extends React.Component<NavigationProps> {
             </UIContainer>
         )
     }
+
 }

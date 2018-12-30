@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import Styles from "../style";
-import ChungText from "../chung-text";
+import Styles from "../styles/Styles";
+import ChungText from "../chung-text/ChungText";
 
 export interface CardFooterProps {
     style?: StyleProp<ViewStyle>;
@@ -11,6 +11,7 @@ export interface CardFooterProps {
 }
 
 export default class CardFooter extends React.Component<CardFooterProps, any> {
+
     public render() {
         const {content, extra, style = {}, ...restProps} = this.props;
         const contentDom =

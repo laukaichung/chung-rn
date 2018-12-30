@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Text,Image, View} from 'react-native';
-import Grid from "../components/grid";
+import Grid from "../components/grid/Grid";
 
 
 const data = [

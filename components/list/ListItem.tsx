@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {Image, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
-import Styles from "../style";
-import {CustomTouchableHighlight} from "../custom-touchable-highlight";
+import Styles from "../styles/Styles";
+import {CustomTouchableHighlight} from "../custom-touchable-highlight/CustomTouchableHighlight";
 import {ReactNode} from "react";
-import ChungText from "../chung-text";
+import ChungText from "../chung-text/ChungText";
+import {CustomIcon} from "../custom-icon/CustomIcon";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -14,7 +15,7 @@ export interface ListItemProps {
     children?: ReactNode;
     thumb?: ReactNode | null;
     extra?: ReactNode;
-    arrow?: 'horizontal' | 'down' | 'up' | 'empty' | '';
+    arrow?: 'right' | 'down' | 'up' ;
     wrap?: boolean;
     activeStyle?: React.CSSProperties;
     error?: boolean;
@@ -150,7 +151,8 @@ export default class Item extends React.Component<ListItemProps, any> {
         }
 
         const itemView = (
-            <View {...restProps} style={[itemBorderStyle,{paddingVertical: Styles.padding,paddingLeft: Styles.padding},style]}>
+            <View {...restProps}
+                  style={[itemBorderStyle, {paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
                 <View style={[styles.item]}>
                     {typeof thumb === 'string' ? (
                         <Image
@@ -169,9 +171,10 @@ export default class Item extends React.Component<ListItemProps, any> {
                     >
                         {contentDom}
                         {extraDom}
-                        {arrow
-                            ? (arrEnum as any)[arrow] || <View style={styles.arrow}/>
-                            : null}
+                        {
+                            arrow ?
+                                <CustomIcon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/> : null
+                        }
                     </View>
                 </View>
                 {bottomExtraView}
@@ -187,25 +190,6 @@ export default class Item extends React.Component<ListItemProps, any> {
         );
     }
 }
-
-
-const arrEnum = {
-    horizontal: (
-        <Image
-            source={require('../../images/arrow.png')}
-        />
-    ),
-    down: (
-        <Image
-            source={require('../../images/arrow-down.png')}
-        />
-    ),
-    up: (
-        <Image
-            source={require('../../images/arrow-up.png')}
-        />
-    ),
-};
 
 const styles = StyleSheet.create({
     line: {

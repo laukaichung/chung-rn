@@ -1,7 +1,7 @@
 import * as React from 'react'
-import CameraRollList from "../../camera-roll-image-list";
+import CameraRollList from "../../camera-roll-image-list/CameraRollImageList";
 import {View} from "react-native";
-import Button from "../../button";
+import Button from "../../button/Button";
 import {RefObject} from "react";
 import {CameraRollFile} from "../../type";
 import {NavigationProps} from "../demotype";

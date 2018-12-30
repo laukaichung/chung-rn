@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {RefObject} from 'react'
 import {ImageStyle, StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import Checkbox from './Checkbox';
 import {CheckboxItemPropsType} from './PropsType';
 import List from "../list/List";
-import Label from "../label";
-import Styles from "../style";
+import Label from "../label/Label";
+import Styles from "../styles/Styles";
 import {FormListItemCommonProps} from "../type";
+import Checkbox from "./CheckBox";
 
 export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, FormListItemCommonProps {
     checkboxStyle?: StyleProp<ImageStyle>;
@@ -15,6 +15,7 @@ export interface ICheckboxItemNativeProps extends CheckboxItemPropsType, FormLis
 }
 
 export default class CheckboxListItem extends React.Component<ICheckboxItemNativeProps, any> {
+
     private refCheckbox: RefObject<Checkbox> = React.createRef();
 
     public render() {
@@ -44,7 +45,8 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
                     onChange={onChange}
                     disabled={disabled}
                 />}>
-                <Label style={disabled && {color:Styles.disabledTextColor}}>{label}</Label>{extra}
+                <Label style={disabled && {color:Styles.disabledTextColor}}>{label}</Label>
+                {extra}
             </List.Item>
 
         );

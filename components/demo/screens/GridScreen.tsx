@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Grid from "../../grid";
+import Grid from "../../grid/Grid";
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";
 

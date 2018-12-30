@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import PickerModal, {PickerItem} from "../../picker-modal";
+import PickerModal, {PickerItem} from "../../picker-modal/PickerModal";
 import List from "../../list/List";
 import UIContainer from "../../ui-provider/UIContainer";
 
@@ -9,6 +9,7 @@ interface State {
 }
 
 export class PickerModalScreen extends React.Component<NavigationProps, State> {
+
     public state = {selectedOptions: []} as State;
 
     public render() {

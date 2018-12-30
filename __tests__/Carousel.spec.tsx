@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Text} from 'react-native';
-import Carousel from "../components/carousel";
+import Carousel from "../components/carousel/Carousel";
 
 
 describe(`Carousel`, () => {

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import {Image, ImageStyle, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
-import Styles from "../style";
-import ChungText from "../chung-text";
+import Styles from "../styles/Styles";
+import ChungText from "../chung-text/ChungText";
 
 export interface CardHeaderProps {
     style?: StyleProp<ViewStyle>;

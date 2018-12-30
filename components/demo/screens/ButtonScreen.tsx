@@ -1,16 +1,17 @@
 import * as React from 'react'
 import {View} from 'react-native'
-import Button from "../../button";
-import CustomModal from "../../modal";
+import Button from "../../button/Button";
+import CustomModal from "../../modal/Modal";
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";
-import ChungText from "../../chung-text";
+import ChungText from "../../chung-text/ChungText";
 
 interface State {
     modal: boolean
 }
 
 export class ButtonScreen extends React.Component<NavigationProps, State> {
+
     public state: State = {} as State;
 
     render() {

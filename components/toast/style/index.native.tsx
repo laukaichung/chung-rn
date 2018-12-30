@@ -1,5 +1,5 @@
 import { Platform, ViewStyle, ImageStyle, TextStyle } from 'react-native';
-import {Styles} from "../../style";
+import {Styles} from "../../styles/Styles";
 
 export interface IToastStyle {
   container: ViewStyle;

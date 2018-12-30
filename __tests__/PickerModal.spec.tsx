@@ -2,11 +2,11 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from "react-test-renderer";
 import {PickerModal} from "../components";
-import {PickerItem, PickerOption} from "../components/picker-modal";
-import Button, {ButtonProps} from "../components/button";
-import Modal from "../components/modal";
-import Styles from "../components/style";
-import Grid from "../components/grid";
+import {PickerItem, PickerOption} from "../components/picker-modal/PickerModal";
+import Button, {ButtonProps} from "../components/button/Button";
+import Modal from "../components/modal/Modal";
+import Styles from "../components/styles/Styles";
+import Grid from "../components/grid/Grid";
 import Flex from "../components/flex/Flex";
 import {Text} from 'react-native';
 

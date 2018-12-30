@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Animated} from 'react-native';
-import Progress from "../components/progress";
+import Progress from "../components/progress/Progress";
 
 describe(`Progress`, () => {
     let testRenderer: ReactTestRenderer;

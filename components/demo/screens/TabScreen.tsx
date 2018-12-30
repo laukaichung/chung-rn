@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import Tabs from "../../tabs";
+import Tabs from "../../tabs/Tabs";
 import Container from "../../ui-provider/UIContainer";
-import ChungView from "../../chung-view";
-import ChungText from "../../chung-text";
+import ChungView from "../../chung-view/ChungView";
+import ChungText from "../../chung-text/ChungText";
 
 export class TabScreen extends React.Component<NavigationProps> {
     render() {

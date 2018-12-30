@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
-import Styles from "../style";
+import Styles from "../styles/Styles";
 import ListItem from "./ListItem";
 
 type HideBorderOptions = "bottom" | "top" | "all"

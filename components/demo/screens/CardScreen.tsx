@@ -1,11 +1,11 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import Card from "../../card";
+import Card from "../../card/Card";
 import CardHeader from "../../card/CardHeader";
 import CardBody from "../../card/CardBody";
 import CardFooter from "../../card/CardFooter";
 import UIContainer from "../../ui-provider/UIContainer";
-import ChungText from "../../chung-text";
+import ChungText from "../../chung-text/ChungText";
 import {View} from "react-native";
 
 interface State {

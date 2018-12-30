@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import Index from "../../progress";
+import Index from "../../progress/Progress";
 import UIContainer from "../../ui-provider/UIContainer";
 
 

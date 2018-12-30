@@ -1,8 +1,8 @@
 import * as React from 'react'
-import Accordion from "../../accordion";
+import Accordion from "../../accordion/Accordion";
 import {NavigationProps} from "../demotype";
 import Container from "../../ui-provider/UIContainer";
-import ChungText from "../../chung-text";
+import ChungText from "../../chung-text/ChungText";
 
 export class AccordionScreen extends React.Component<NavigationProps> {
 

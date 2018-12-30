@@ -11,3 +11,9 @@ export interface CameraRollFile {
 export interface FormListItemCommonProps {
     listItemProps?:ListItemProps
 }
+
+export interface FormCommonProps {
+    hint?:string;
+    label:string;
+
+}

@@ -4,8 +4,8 @@ import {ImageStyle, StyleProp, ViewStyle} from 'react-native';
 import {RadioItemPropsType} from './PropsType';
 import Radio from "./Radio";
 import List from "../list/List";
-import Label from "../label";
-import Styles from "../style";
+import Label from "../label/Label";
+import Styles from "../styles/Styles";
 import {FormListItemCommonProps} from "../type";
 
 export interface RadioItemNativeProps extends RadioItemPropsType, FormListItemCommonProps {

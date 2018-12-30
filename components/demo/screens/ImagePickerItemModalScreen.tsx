@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import ImagePickerModal from "../../image-picker-modal";
+import ImagePickerModal from "../../image-picker-modal/ImagePickerModal";
 import List from "../../list/List";
 import {CameraRollFile} from "../../type";
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import Styles from "../style";
+import Styles from "../styles/Styles";
 
 export interface CardBodyProps {
   style?: StyleProp<ViewStyle>;

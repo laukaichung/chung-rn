@@ -3,7 +3,7 @@ import {ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View,
 import Checkbox from './Checkbox';
 import {CheckboxPropsType} from './PropsType';
 import {RefObject} from "react";
-import Styles from "../style";
+import Styles from "../styles/Styles";
 
 const refCheckbox = 'checkbox';
 

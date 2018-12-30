@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {Image, ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View,} from 'react-native';
 import {RadioPropsType} from './PropsType';
-import Styles from "../style";
+import Styles from "../styles/Styles";
+import RadioListItem from "./RadioListItem";
 
 export interface RadioNativeProps extends RadioPropsType {
     style?: StyleProp<ImageStyle>;
@@ -10,6 +11,7 @@ export interface RadioNativeProps extends RadioPropsType {
 interface State {
     checked:boolean
 }
+
 export default class Radio extends React.Component<RadioNativeProps, State> {
     public state = {} as State;
 
@@ -62,3 +64,5 @@ const styles = StyleSheet.create( {
         height: Styles.iconSizeSm * 0.8,
     }
 });
+
+Radio.RadioItem = RadioListItem;

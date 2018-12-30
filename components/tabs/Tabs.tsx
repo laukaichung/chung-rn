@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {DefaultTabBar as RMCDefaultTabBar, Tabs as RMCTabs,} from 'rmc-tabs/lib/index.native';
 import {Models, PropsType} from 'rmc-tabs';
-import Styles from "../style";
+import Styles from "../styles/Styles";
 
 interface TabsProps extends PropsType {
     /** render for replace the tab of tabbar. */

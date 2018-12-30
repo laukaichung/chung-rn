@@ -1,4 +1,3 @@
-
 export const screenKeys = {
     home:'home',
     accordion:'accordion',

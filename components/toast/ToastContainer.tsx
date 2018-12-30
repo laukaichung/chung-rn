@@ -7,7 +7,7 @@ import {
     Text,
     View,
 } from 'react-native';
-import Styles from "../style";
+import Styles from "../styles/Styles";
 
 export interface ToastProps {
     content: string;

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ChungThemeTypes} from "../style";
+import {ChungThemeTypes} from "../styles/Styles";
 
 export interface ThemeContextProps {
     theme:ChungThemeTypes;

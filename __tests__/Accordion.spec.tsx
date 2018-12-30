@@ -1,11 +1,11 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
-import Grid from "../components/grid";
+import Grid from "../components/grid/Grid";
 import Flex from "../components/flex/Flex";
 import {Text} from 'react-native';
-import Accordion, {AccordionPane} from "../components/accordion";
-import CustomTouchableHighlight from "../components/custom-touchable-highlight";
+import Accordion, {AccordionPane} from "../components/accordion/Accordion";
+import CustomTouchableHighlight from "../components/custom-touchable-highlight/CustomTouchableHighlight";
 
 interface PaneProps {
     text:string

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import ChungView from "../chung-view";
+import ChungView from "../chung-view/ChungView";
 import UIContext from "./UIContext";
-import Styles from "../style";
+import Styles from "../styles/Styles";
 
 const UIContainer = (props) => {
     return (

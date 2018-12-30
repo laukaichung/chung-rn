@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import {Toast} from "../../index";
-import ChungText from "../../chung-text";
+import ChungText from "../../chung-text/ChungText";
 
 export class ToastScreen extends React.Component<NavigationProps> {
     public render() {

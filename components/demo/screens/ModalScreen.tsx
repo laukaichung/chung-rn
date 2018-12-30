@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Button from "../../button";
-import ConfirmModal from "../../confirm-modal";
+import Button from "../../button/Button";
+import ConfirmModal from "../../confirm-modal/ConfirmModal";
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../ui-provider/UIContainer";
 
