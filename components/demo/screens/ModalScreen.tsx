@@ -1,8 +1,8 @@
 import * as React from 'react'
-import Button from "../../button/Button";
-import ConfirmModal from "../../confirm-modal/ConfirmModal";
+import Button from "../../Button";
+import ConfirmModal from "../../ConfirmModal";
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../ui-provider/UIContainer";
+import UIContainer from "../../UIContainer";
 
 
 export class ModalScreen extends React.Component<NavigationProps> {

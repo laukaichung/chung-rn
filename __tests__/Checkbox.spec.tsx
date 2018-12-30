@@ -2,8 +2,8 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {TouchableWithoutFeedback} from 'react-native';
-import CheckboxListItem from "../components/checkbox/CheckboxListItem";
-import Checkbox from "../components/checkbox/Checkbox";
+import CheckboxListItem from "../components/CheckboxListItem";
+import Checkbox from "../components/CheckBox";
 
 
 describe(`Checkbox`, () => {

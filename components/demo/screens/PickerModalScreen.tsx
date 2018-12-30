@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import PickerModal, {PickerItem} from "../../picker-modal/PickerModal";
-import List from "../../list/List";
-import UIContainer from "../../ui-provider/UIContainer";
+import PickerModal, {PickerItem} from "../../PickerModal";
+import List from "../../List";
+import UIContainer from "../../UIContainer";
 
 interface State {
     selectedOptions: PickerItem[]

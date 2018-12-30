@@ -1,4 +1,4 @@
-import {ListItemProps} from "./list/ListItem";
+import {ListItemProps} from "./ListItem";
 
 export interface CameraRollFile {
     uri: string;
@@ -15,5 +15,6 @@ export interface FormListItemCommonProps {
 export interface FormCommonProps {
     hint?:string;
     label:string;
+    invalidMessage?:string;
 
 }

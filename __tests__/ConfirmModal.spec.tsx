@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
-import ConfirmModal from "../components/confirm-modal/ConfirmModal";
-import Button, {ButtonProps} from "../components/button/Button";
+import ConfirmModal from "../components/ConfirmModal";
+import Button, {ButtonProps} from "../components/Button";
 
 
 describe(`ConfirmModal`, () => {

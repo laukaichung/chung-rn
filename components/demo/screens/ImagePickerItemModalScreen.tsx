@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import ImagePickerModal from "../../image-picker-modal/ImagePickerModal";
-import List from "../../list/List";
+import ImagePickerModal from "../../ImagePickerModal";
+import List from "../../List";
 import {CameraRollFile} from "../../type";
 
 interface State {

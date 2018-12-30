@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Image, TextInput, TouchableWithoutFeedback} from 'react-native';
-import TextAreaListItem from "../components/textarea-list-item/TextAreaListItem";
+import TextAreaListItem from "../components/TextAreaListItem";
 
 const DEFAULT_VALUE = "hello";
 

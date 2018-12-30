@@ -1,8 +1,8 @@
 import * as React from 'react'
-import ActivityIndicator from "../../activity-indicator/ActivityIndicator";
+import ActivityIndicator from "../../ActivityIndicator";
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../ui-provider/UIContainer";
-import WhiteSpace from "../../white-space/WhiteSpace";
+import UIContainer from "../../UIContainer";
+import WhiteSpace from "../../WhiteSpace";
 
 
 export class ActivityIndicatorScreen extends React.Component<NavigationProps> {

@@ -2,14 +2,14 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from "react-test-renderer";
 import {ActivityIndicator, PickerModal} from "../components";
-import {PickerItem, PickerOption} from "../components/picker-modal/PickerModal";
-import Button from "../components/button/Button";
-import Modal from "../components/modal/Modal";
-import Styles from "../components/styles/Styles";
-import Grid from "../components/grid/Grid";
-import Flex from "../components/flex/Flex";
+import {PickerItem, PickerOption} from "../components/PickerModal";
+import Button from "../components/Button";
+import Modal from "../components/Modal";
+import Styles from "../components/Styles";
+import Grid from "../components/Grid";
+import Flex from "../components/Flex";
 import {Text} from 'react-native';
-import Badge from "../components/badge/Badge";
+import Badge from "../components/Badge";
 
 
 describe(`Badge`, () => {

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Grid from "../../grid/Grid";
+import Grid from "../../Grid";
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../ui-provider/UIContainer";
+import UIContainer from "../../UIContainer";
 
 export class GridScreen extends React.Component<NavigationProps> {
     render() {

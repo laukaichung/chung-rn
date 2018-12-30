@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import List from "../../list/List";
-import TextAreaListItem from "../../textarea-list-item/TextAreaListItem";
-import InputListItem from "../../input-list-item/InputListItem";
-import UIContainer from "../../ui-provider/UIContainer";
-import ChungText from "../../chung-text/ChungText";
+import List from "../../List";
+import TextAreaListItem from "../../TextAreaListItem";
+import InputListItem from "../../InputListItem";
+import UIContainer from "../../UIContainer";
+import ChungText from "../../ChungText";
 
 
 export class TextAreaScreen extends React.Component<NavigationProps> {

@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Text} from 'react-native';
-import Card from "../components/card/Card";
+import Card from "../components/Card";
 
 const text = {
     header:'header',

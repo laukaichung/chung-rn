@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import Index from "../../progress/Progress";
-import UIContainer from "../../ui-provider/UIContainer";
+import Index from "../../Progress";
+import UIContainer from "../../UIContainer";
 
 
 export class ProgressScreen extends React.Component<NavigationProps> {

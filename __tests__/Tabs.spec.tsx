@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {Text} from 'react-native';
-import Tabs from "../components/tabs/Tabs";
+import Tabs from "../components/Tabs";
 
 describe(`Tabs`, () => {
     let testRenderer: ReactTestRenderer;

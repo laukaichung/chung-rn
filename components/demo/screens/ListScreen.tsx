@@ -1,9 +1,9 @@
 import * as React from 'react'
-import List from "../../list/List";
+import List from "../../List";
 import {NavigationProps} from "../demotype";
-import Container from "../../ui-provider/UIContainer";
-import ChungText from "../../chung-text/ChungText";
-import WhiteSpace from "../../white-space/WhiteSpace";
+import Container from "../../UIContainer";
+import ChungText from "../../ChungText";
+import WhiteSpace from "../../WhiteSpace";
 import {ScrollView, View} from "react-native";
 
 export class ListScreen extends React.Component<NavigationProps> {

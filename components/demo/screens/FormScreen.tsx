@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import InputListItem from "../../input-list-item/InputListItem";
-import List from "../../list/List";
-import CheckboxListItem from "../../checkbox/CheckboxListItem";
-import RadioListItem from "../../radio/RadioListItem";
-import DateTimePickerModal from "../../date-time-picker-modal/DateTimePickerModal";
-import TextAreaListItem from "../../textarea-list-item/TextAreaListItem";
-import UIContainer from "../../ui-provider/UIContainer";
+import InputListItem from "../../InputListItem";
+import List from "../../List";
+import CheckboxListItem from "../../CheckboxListItem";
+import RadioListItem from "../../RadioListItem";
+import DateTimePickerModal from "../../DateTimePickerModal";
+import TextAreaListItem from "../../TextAreaListItem";
+import UIContainer from "../../UIContainer";
 import {ScrollView} from "react-native";
 
 

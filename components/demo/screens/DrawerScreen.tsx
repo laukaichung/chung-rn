@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../ui-provider/UIContainer";
-import List from "../../list/List";
+import UIContainer from "../../UIContainer";
+import List from "../../List";
 import {screenKeys} from "../data/ScreenKeys";
-import ChungText from "../../chung-text/ChungText";
+import ChungText from "../../ChungText";
 import {NavigationActions} from "react-navigation";
 import {ScrollView} from "react-native";
 

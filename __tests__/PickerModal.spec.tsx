@@ -2,13 +2,14 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from "react-test-renderer";
 import {PickerModal} from "../components";
-import {PickerItem, PickerOption} from "../components/picker-modal/PickerModal";
-import Button, {ButtonProps} from "../components/button/Button";
-import Modal from "../components/modal/Modal";
-import Styles from "../components/styles/Styles";
-import Grid from "../components/grid/Grid";
-import Flex from "../components/flex/Flex";
+import {PickerItem, PickerOption} from "../components/PickerModal";
+import Button, {ButtonProps} from "../components/Button";
+import Modal from "../components/Modal";
+import Styles from "../components/Styles";
+import Grid from "../components/Grid";
+import Flex from "../components/Flex";
 import {Text} from 'react-native';
+import FlexItem from "../components/FlexItem";
 
 const data:PickerItem[] = [
     {
@@ -56,5 +57,5 @@ describe(`PickerModal`, () => {
 
 function getGridOption({testRenderer,index = 0}:{testRenderer:ReactTestRenderer,index:number}){
     const testInstance = testRenderer.root;
-    testInstance.findByType(Grid).findAllByType(Flex.Item)[index].props.onPress();
+    testInstance.findByType(Grid).findAllByType(FlexItem)[index].props.onPress();
 }

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {View} from 'react-native'
-import Button from "../../button/Button";
-import CustomModal from "../../modal/Modal";
+import Button from "../../Button";
+import CustomModal from "../../Modal";
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../ui-provider/UIContainer";
-import ChungText from "../../chung-text/ChungText";
+import UIContainer from "../../UIContainer";
+import ChungText from "../../ChungText";
 
 interface State {
     modal: boolean

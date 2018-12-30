@@ -2,8 +2,8 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {TouchableWithoutFeedback} from 'react-native';
-import RadioListItem from "../components/radio/RadioListItem";
-import Radio from "../components/radio/Radio";
+import RadioListItem from "../components/RadioListItem";
+import Radio from "../components/Radio";
 
 
 describe(`Radio`, () => {

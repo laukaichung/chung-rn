@@ -1,14 +1,14 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import Button from "../../button/Button";
-import ChungText from "../../chung-text/ChungText";
-import List from "../../list/List";
-import Styles from "../../styles/Styles";
-import WingBlank from "../../wing-blank/WingBlank";
-import Container from "../../ui-provider/UIContainer";
-import UIContext from "../../ui-provider/UIContext";
-import Header from "../../header/Header";
-import WhiteSpace from "../../white-space/WhiteSpace";
+import Button from "../../Button";
+import ChungText from "../../ChungText";
+import List from "../../List";
+import Styles from "../../Styles";
+import WingBlank from "../../WingBlank";
+import Container from "../../UIContainer";
+import UIContext from "../../UIContext";
+import Header from "../../Header";
+import WhiteSpace from "../../WhiteSpace";
 
 interface State {
 

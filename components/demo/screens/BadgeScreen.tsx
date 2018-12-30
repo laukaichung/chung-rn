@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {Text} from 'react-native'
-import List from "../../list/List";
-import Badge from "../../badge/Badge";
+import List from "../../List";
+import Badge from "../../Badge";
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../ui-provider/UIContainer";
+import UIContainer from "../../UIContainer";
 
 export class BadgeScreen extends React.Component<NavigationProps> {
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import {ActivityIndicator,Image} from 'react-native';
-import ToastContainer from "../components/toast/ToastContainer";
+import ToastContainer from "../components/ToastContainer";
 
 
 describe(`Loading Toast`, () => {
