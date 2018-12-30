@@ -8,7 +8,7 @@ interface Props {
     invalidMessage:string
 }
 
-export const FormInvalidHint = ({invalidMessage}: Props) => {
+const FormInvalidHint = ({invalidMessage}: Props) => {
     if (invalidMessage) {
         return (
             <View>
@@ -27,3 +27,5 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
     }
 });
+
+export default FormInvalidHint;
