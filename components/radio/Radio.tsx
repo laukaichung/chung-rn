@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {Image, ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View,} from 'react-native';
+import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import {RadioPropsType} from './PropsType';
 import Styles from "../styles/Styles";
 import RadioListItem from "./RadioListItem";
+import Icon from "../icon/Icon";
 
 export interface RadioNativeProps extends RadioPropsType {
     style?: StyleProp<ImageStyle>;
@@ -27,16 +28,10 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
     public render(): JSX.Element {
         const { style, disabled } = this.props;
         const checked = this.state.checked;
-        let imgSrc = undefined as any;
-        if (checked) {
-            imgSrc = disabled
-                ? require('../../images/radio-images/checked_disable.png')
-                : require('../../images/radio-images/checked.png');
-        }
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>
                 <View style={[styles.wrapper]}>
-                    <Image source={imgSrc} style={[styles.icon, style] as any} />
+                    <Icon name={checked?"check-circle-o":"circle-o"}/>
                 </View>
             </TouchableWithoutFeedback>
         );

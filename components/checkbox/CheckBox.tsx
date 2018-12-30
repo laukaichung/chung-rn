@@ -3,8 +3,7 @@ import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback,} from 'reac
 import {CheckboxPropsType} from './PropsType';
 import Styles from "../styles/Styles";
 import ChungView from "../chung-view/ChungView";
-import ChungImage from "../chung-image/ChungImage";
-import {CustomIcon} from "../custom-icon/CustomIcon";
+import Icon from "../icon/Icon";
 
 export interface ICheckboxNativeProps extends CheckboxPropsType {
     style?: StyleProp<ImageStyle>;
@@ -27,7 +26,7 @@ export default class Checkbox extends React.Component<ICheckboxNativeProps, Stat
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>
                 <ChungView style={[styles.wrapper]}>
-                    <CustomIcon name={disabled?"times-circle-o":checked?"check-circle-o":"circle-o"}/>
+                    <Icon name={disabled?"times-circle-o":checked?"check-circle-o":"circle-o"}/>
                 </ChungView>
             </TouchableWithoutFeedback>
         );

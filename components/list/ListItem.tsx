@@ -4,7 +4,7 @@ import Styles from "../styles/Styles";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight/CustomTouchableHighlight";
 import {ReactNode} from "react";
 import ChungText from "../chung-text/ChungText";
-import {CustomIcon} from "../custom-icon/CustomIcon";
+import Icon from "../icon/Icon";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -173,7 +173,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                         {extraDom}
                         {
                             arrow ?
-                                <CustomIcon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/> : null
+                                <Icon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/> : null
                         }
                     </View>
                 </View>

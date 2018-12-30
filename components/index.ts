@@ -5,13 +5,19 @@ export {default as Badge} from './badge/Badge';
 export {default as BoldTextView} from './bold-text-view/BoldTextView'
 export {default as Button} from './button/Button';
 export {default as Card} from './card/Card';
+export {default as CardHeader} from './card/CardHeader';
+export {default as CardBody} from './card/CardBody';
+export {default as CardFooter} from './card/CardFooter';
 export {default as Carousel} from './carousel/Carousel';
 export {default as Checkbox} from './checkbox/CheckBox';
 export {default as ConfirmModal} from './confirm-modal/ConfirmModal'
 export {default as ConfirmButton} from './confirm-button/ConfirmButton'
+export {default as Icon} from './icon/Icon'
+export {default as IconButton} from './icon/IconButton'
 export {default as CustomTouchableHighlight} from './custom-touchable-highlight/CustomTouchableHighlight'
 export {default as DateTimePickerModal} from './date-time-picker-modal/DateTimePickerModal';
 export {default as Flex} from './flex/Flex';
+export {default as FlexItem} from './flex/FlexItem'
 export {default as Grid} from './grid/Grid';
 export {default as Header} from './header/Header'
 export {default as HintText} from './hint-text/HintText'
@@ -20,6 +26,7 @@ export {default as CameraRollImageList} from './camera-roll-image-list/CameraRol
 export {default as InputListItem} from './input-list-item/InputListItem';
 export {default as Label} from './label/Label';
 export {default as List} from './list/List';
+export {default as ListItem} from './list/ListItem'
 export {default as Modal} from './modal/Modal';
 export {default as PickerModal} from './picker-modal/PickerModal'
 export {default as Progress} from './progress/Progress';

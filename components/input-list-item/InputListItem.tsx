@@ -143,18 +143,18 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                         onFocus={this._onInputFocus}
                         type={inputType}
                     />
-                    {(editable && clear && value && Platform.OS === 'android') ? (
-                        <TouchableOpacity
-                            style={[styles.clear]}
-                            onPress={this._onInputClear}
-                            hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}
-                        >
-                            <Image
-                                source={require('../../images/cross_w.png')}
-                                style={{width: 12, height: 12}}
-                            />
-                        </TouchableOpacity>
-                    ) : null}
+                    {/*{(editable && clear && value && Platform.OS === 'android') ? (*/}
+                        {/*<TouchableOpacity*/}
+                            {/*style={[styles.clear]}*/}
+                            {/*onPress={this._onInputClear}*/}
+                            {/*hitSlop={{top: 5, left: 5, bottom: 5, right: 5}}*/}
+                        {/*>*/}
+                            {/*<Image*/}
+                                {/*source={require('../../images/cross_w.png')}*/}
+                                {/*style={{width: 12, height: 12}}*/}
+                            {/*/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*) : null}*/}
                     {extra ? (
                         <TouchableWithoutFeedback onPress={onExtraClick}>
                             <View>

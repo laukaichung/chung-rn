@@ -13,6 +13,7 @@ import ActivityIndicator from "../activity-indicator/ActivityIndicator";
 import Styles from "../styles/Styles";
 import {CameraRollFile} from "../type";
 import ScreenUtil from "../util/ScreenUtil";
+import Icon from "../icon/Icon";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -194,65 +195,9 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
                     source={{uri: image.uri}}
                     style={{height: 100, width: ScreenUtil.fullWidth() / 3}}/>
                 {
-                    isSelected && <Image style={styles.marker as any}
-                                         source={require('../../images/image-picker-images/circle-check.png')}/>
+                    isSelected && <Icon color={Styles.primaryColor} size={"sm"} name={"check-circle-o"}/>
                 }
             </View>
         </TouchableOpacity>
     )
 };
-
-const styles = StyleSheet.create({
-    marker: {
-        position: 'absolute',
-        top: 5,
-        right: 5,
-        backgroundColor: 'transparent',
-        width: 25,
-        height: 25
-    },
-    wrapper: {
-        flexGrow: 1,
-        backgroundColor: Styles.backgroundColor
-    },
-    loader: {
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    row: {
-        flexDirection: 'row',
-        flex: 1,
-    },
-
-    statusBarBg: {
-        height: 5 * 4,
-    },
-    naviBar: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: '#d9d9d9',
-        height: 11 * 4,
-    },
-    barTitle: {
-        flex: 1,
-        textAlign: 'center',
-        fontWeight: '500',
-        marginLeft: 7 * 4,
-        fontSize: 16,
-    },
-    rightBtn: {
-        width: 14 * 4,
-        color: Styles.brandPrimary,
-        fontSize: 16,
-    },
-
-
-    // marker: {
-    //     position: 'absolute',
-    //     top: 5,
-    //     backgroundColor: 'transparent',
-    // },
-});

@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {StyleProp, TouchableOpacity} from "react-native";
 import Styles from "../styles/Styles";
 
-export interface CustomIconProps {
+export interface IconProps {
     color?: string;
     backgroundColor?: string;
     onPress?: (e?: any) => void;
@@ -13,7 +13,7 @@ export interface CustomIconProps {
     customSize?: number;
 }
 
-export const CustomIcon = (props: CustomIconProps) => {
+const Icon = (props: IconProps) => {
     let {size, customSize, onPress} = props;
     let sizeNo =
         customSize ? customSize :
@@ -22,7 +22,7 @@ export const CustomIcon = (props: CustomIconProps) => {
                     size === "xl" ? 60 : Styles.iconSizeMd;
     let {color} = props;
     if (Styles.isDarkMode && !color) color = '#c6c6c6';
-    let iconComponent = <Icon {...props}
+    let iconComponent = <FontAwesomeIcon {...props}
                               color={color}
                               size={sizeNo}/>;
     if (onPress) {
@@ -38,21 +38,7 @@ export const CustomIcon = (props: CustomIconProps) => {
     return iconComponent
 };
 
+export default Icon;
 
-export interface CustomIconButtonProps extends CustomIconProps {
-    text?: string
-    onPress: () => void;
-    disabled?: boolean;
-}
 
-export const CustomIconButton = (props: CustomIconButtonProps) => {
-    let {onPress, text} = props;
-    return (
-        <Icon.Button {...props}
-                     backgroundColor={props.backgroundColor || Styles.isDarkMode ? Styles.darkestColor : "#eeeeee"}
-                     color={props.color || Styles.iconColor}
-                     onPress={onPress}>
-            {text}
-        </Icon.Button>
-    )
-};
+

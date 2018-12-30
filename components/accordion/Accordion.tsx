@@ -3,8 +3,7 @@ import {ReactNode} from 'react'
 import {Text, View} from "react-native";
 import {CustomTouchableHighlight} from "../custom-touchable-highlight/CustomTouchableHighlight";
 import Styles from "../styles/Styles";
-import ChungImage from "../chung-image/ChungImage";
-import {CustomIcon} from "../custom-icon/CustomIcon";
+import Icon from "../icon/Icon";
 
 export interface AccordionPane {
     render: () => ReactNode
@@ -59,7 +58,7 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
                                                 <Text style={Styles.accordionHeaderTextColor}>
                                                     {p.title}
                                                 </Text>
-                                                <CustomIcon color={Styles.accordionIconColor}
+                                                <Icon color={Styles.accordionIconColor}
                                                             name={isActive?"angle-up":"angle-down"}/>
 
                                             </View>

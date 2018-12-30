@@ -8,6 +8,7 @@ import {
     View,
 } from 'react-native';
 import Styles from "../styles/Styles";
+import Icon from "../icon/Icon";
 
 export interface ToastProps {
     content: string;
@@ -21,9 +22,9 @@ export interface ToastProps {
 const iconType: {
     [key: string]: any;
 } = {
-    success: require('../../images/toast-images/success.png'),
-    fail: require('../../images/toast-images/fail.png'),
-    offline: require('../../images/toast-images/offline.png'),
+    success: "thumbs-o-up",
+    fail: "thumbs-o-down",
+    offline: "chain-broken"
 };
 
 
@@ -31,7 +32,6 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
     static defaultProps = {
         duration: 3,
         mask: true,
-        onClose() {},
     };
 
     anim: Animated.CompositeAnimation | null;
@@ -45,7 +45,6 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
 
     render() {
         const {type = '', content, mask} = this.props;
-
         let iconDom: React.ReactElement<any> | null = null;
         if (type === 'loading') {
             iconDom = (
@@ -59,7 +58,8 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
         } else if (type === 'info') {
             iconDom = null;
         } else {
-            iconDom = <Image source={iconType[type]} style={styles.image as any}/>;
+
+            iconDom = <Icon name={iconType[type]} size={"xl"}/>
         }
 
         return (

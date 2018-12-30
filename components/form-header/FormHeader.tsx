@@ -2,12 +2,12 @@ import * as React from 'react'
 import Modal from "../modal/Modal";
 import WingBlank from "../wing-blank/WingBlank";
 import ChungText from "../chung-text/ChungText";
-import {CustomIcon} from "../custom-icon/CustomIcon";
 import Flex from "../flex/Flex";
 import Styles from "../styles/Styles";
 import Label from "../label/Label";
 import ConfirmModal from "../confirm-modal/ConfirmModal";
 import FlexItem from "../flex/FlexItem";
+import Icon from "../icon/Icon";
 
 interface Props {
     hint?: string
@@ -17,7 +17,7 @@ interface Props {
     onErrorClick?: () => void;
 }
 
-const iconSize = Styles.labelFontSize
+const iconSize = Styles.labelFontSize;
 
 const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
     return (
@@ -35,7 +35,7 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
                     <Modal
                         buttonTrigger={(
                             <FlexItem>
-                                <CustomIcon customSize={iconSize} name={"info-circle"}/>
+                                <Icon customSize={iconSize} name={"info-circle"}/>
                             </FlexItem>
                         )}>
                         {
@@ -51,7 +51,7 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
             {
                 error && (
                     <FlexItem onPress={onErrorClick}>
-                        <CustomIcon color={"red"} customSize={iconSize} name={"exclamation-circle"}/>
+                        <Icon color={"red"} customSize={iconSize} name={"exclamation-circle"}/>
                     </FlexItem>
                 )
             }
@@ -61,7 +61,7 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
                 <ConfirmModal
                     buttonTrigger={(
                         <FlexItem>
-                            <CustomIcon customSize={iconSize} name={"eraser"}/>
+                            <Icon customSize={iconSize} name={"eraser"}/>
                         </FlexItem>
                     )}
                     title={`Are you sure you want to clear the content?`}

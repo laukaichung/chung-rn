@@ -3,7 +3,6 @@ import {ReactNode} from 'react'
 import {Text, ViewStyle} from "react-native";
 import Styles from "../styles/Styles";
 import ChungView from "../chung-view/ChungView";
-import UIContext from "../ui-provider/UIContext";
 
 export interface HintTextProps {
     children: ReactNode;

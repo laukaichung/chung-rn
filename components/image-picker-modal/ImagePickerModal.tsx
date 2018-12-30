@@ -9,7 +9,6 @@ import CustomModal from "../modal/Modal";
 import Button from "../button/Button";
 import CameraRollImageList from "../camera-roll-image-list/CameraRollImageList";
 import {CameraRollFile, FormListItemCommonProps} from "../type";
-import {ListItemProps} from "../list/ListItem";
 
 interface ImagePickerModalProps extends FormListItemCommonProps {
     images?: CameraRollFile[];
