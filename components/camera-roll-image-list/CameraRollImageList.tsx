@@ -1,19 +1,10 @@
 import * as React from 'react'
-import {
-    CameraRoll,
-    FlatList,
-    GetPhotosParamType,
-    Image,
-    Platform,
-    StyleSheet,
-    TouchableOpacity,
-    View
-} from "react-native";
+import {CameraRoll, FlatList, GetPhotosParamType, Image, Platform, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "../activity-indicator/ActivityIndicator";
-import Styles from "../styles/Styles";
 import {CameraRollFile} from "../type";
 import ScreenUtil from "../util/ScreenUtil";
 import Icon from "../icon/Icon";
+import {ChungStyles} from "../index";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -195,7 +186,10 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
                     source={{uri: image.uri}}
                     style={{height: 100, width: ScreenUtil.fullWidth() / 3}}/>
                 {
-                    isSelected && <Icon color={Styles.primaryColor} size={"sm"} name={"check-circle-o"}/>
+                    isSelected && <Icon color={"red"}
+                                        size={"sm"}
+                                        style={{position:"absolute",top:ChungStyles.margin,right:ChungStyles.margin}}
+                                        name={"check-circle-o"}/>
                 }
             </View>
         </TouchableOpacity>

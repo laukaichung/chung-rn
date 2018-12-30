@@ -19,7 +19,7 @@ export class ListScreen extends React.Component<NavigationProps> {
                         <List.Item
                             multipleLine
                             thumb={`https://www.gravatar.com/avatar/c397c57d2406dc110a9da249fc0d4292?s=32&d=identicon&r=PG&f=1`}
-                            arrow="horizontal">
+                            arrow="right">
                             <ChungText numberOfLines={5}>Hello, this is a list item g dfdfsfdsdfs dds df sdf sdf sdsf
                                 dfs
                                 dsf dsfd sfd sfdsf dfs ffgdfdgdgf fdg fgd fdgfdgfgd dfg fdfdg</ChungText>

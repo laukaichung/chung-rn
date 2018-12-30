@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Styles from "../styles/Styles";
 import Icon from "../icon/Icon";
+import WhiteSpace from "../white-space/WhiteSpace";
 
 export interface ToastProps {
     content: string;
@@ -76,6 +77,7 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                             ]}
                         >
                             {iconDom}
+                            <WhiteSpace/>
                             <Text style={styles.content}>{content}</Text>
                         </View>
                     </Animated.View>
