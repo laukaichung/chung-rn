@@ -15,7 +15,7 @@ import List from "./List";
 import ChungText from "./ChungText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
-import {InvalidInputView} from "./FormError";
+import {FormInvalidHint} from "./FormInvalidHint";
 
 
 type InputEventHandler = (value?: string) => void;
@@ -115,7 +115,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
         return (
 
             <List.Item multipleLine {...listItemProps}
-                       bottomExtraView={<InvalidInputView invalidMessage={invalidMessage}/>}
+                       bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
 
                 <FormHeader {...this.props}/>

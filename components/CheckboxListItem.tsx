@@ -6,7 +6,7 @@ import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import Checkbox from "./CheckBox";
-import {InvalidInputView} from "./FormError";
+import {FormInvalidHint} from "./FormInvalidHint";
 
 export interface OnChangeParams {
     target: {
@@ -48,7 +48,7 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
 
             <List.Item
                 {...listItemProps}
-                bottomExtraView={<InvalidInputView invalidMessage={invalidMessage}/>}
+                bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this._handleClick}
                 extra={<Checkbox

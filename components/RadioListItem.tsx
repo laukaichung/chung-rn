@@ -6,7 +6,7 @@ import List from "./List";
 import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
-import {InvalidInputView} from "./FormError";
+import {FormInvalidHint} from "./FormInvalidHint";
 
 
 export interface RadioItemPropsType extends RadioPropsType {
@@ -43,7 +43,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
         return (
             <List.Item
                 {...listItemProps}
-                bottomExtraView={<InvalidInputView invalidMessage={invalidMessage}/>}
+                bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>

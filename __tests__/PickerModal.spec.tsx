@@ -44,7 +44,7 @@ describe(`PickerModal`, () => {
         const testInstance = testRenderer.root;
         const modal = testInstance.findByType(Modal);
         const button = testInstance.findByType(Button);
-        let buttonProps:ButtonProps = button.props
+        let buttonProps:ButtonProps = button.props;
         buttonProps.onPress();
         // expect(modal.findAllByType(PickerOption).length).toBe(2);
         getGridOption({testRenderer,index:0});

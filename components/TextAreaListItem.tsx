@@ -13,7 +13,7 @@ import ChungText from "./ChungText";
 import ChungView from "./ChungView";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
-import {InvalidInputView} from "./FormError";
+import {FormInvalidHint} from "./FormInvalidHint";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -101,7 +101,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
             <List.Item
                 multipleLine
                 {...listItemProps}
-                bottomExtraView={<InvalidInputView invalidMessage={invalidMessage}/>}
+                bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
                 <FormHeader {...this.props}/>
                 <TextInput

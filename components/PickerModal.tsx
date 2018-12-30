@@ -9,14 +9,13 @@ import StringUtil from "./util/StringUtil";
 import WhiteSpace from "./WhiteSpace";
 import ChungText from "./ChungText";
 import HintText from "./HintText";
-import {FormListItemCommonProps} from "./type";
+import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
+import {FormInvalidHint} from "./FormInvalidHint";
 
-export interface PickerModalProps extends ModalProps, FormListItemCommonProps {
+export interface PickerModalProps extends ModalProps, FormCommonProps,FormListItemCommonProps {
     data: PickerItem[];
     multiple?: boolean
-    label: string,
-    hint?: string;
     displayTextAsValue?: boolean;
     columnNum?: number;
     customLabelElement?: ReactNode
@@ -67,7 +66,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
     public render() {
         const {props, state} = this;
         let {selectedOptions} = state;
-        const {data, multiple, customLabelElement, hint,listItemProps = {}, displayTextAsValue, label, onChange, columnNum = 3} = props;
+        const {invalidMessage,data, multiple, customLabelElement, hint,listItemProps = {}, displayTextAsValue, label, onChange, columnNum = 3} = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
         });
@@ -79,6 +78,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                 buttonTrigger={
                     <List.Item
                         {...listItemProps}
+                        bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                         multipleLine
                         arrow="right">
                         {customLabelElement || <FormHeader {...props}/>}

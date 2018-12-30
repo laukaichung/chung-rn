@@ -8,7 +8,7 @@ interface Props {
     invalidMessage:string
 }
 
-export const InvalidInputView = ({invalidMessage}: Props) => {
+export const FormInvalidHint = ({invalidMessage}: Props) => {
     if (invalidMessage) {
         return (
             <View>
