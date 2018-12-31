@@ -8,7 +8,6 @@ import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormInvalidHint from "./FormInvalidHint";
 
-
 export interface RadioItemPropsType extends RadioPropsType {
     radioProps?: object;
     onPress?: () => any;
