@@ -6,7 +6,7 @@ import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import Checkbox from "./CheckBox";
-import {FormInvalidHint} from "./FormInvalidHint";
+import FormInvalidHint from "./FormInvalidHint";
 
 export interface OnChangeParams {
     target: {

@@ -15,7 +15,7 @@ import List from "./List";
 import ChungText from "./ChungText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
-import {FormInvalidHint} from "./FormInvalidHint";
+import FormInvalidHint from "./FormInvalidHint";
 
 
 type InputEventHandler = (value?: string) => void;

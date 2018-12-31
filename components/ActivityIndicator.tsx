@@ -9,7 +9,10 @@ export interface ActivityIndicatorNativeProps {
     toast?: boolean;
     size?: 'large' | 'small';
     text?: string;
+    screenCenter?: boolean;
 }
+
+const toastSize = 100;
 
 export default class ActivityIndicator extends React.Component<ActivityIndicatorNativeProps, any> {
     static defaultProps = {
@@ -20,7 +23,7 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
     };
 
     public render() {
-        let {animating,toast} = this.props;
+        let {animating, toast} = this.props;
         if (animating) {
             return toast ? this._renderToast() : this._renderSpinner();
         }
@@ -31,7 +34,7 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
         let {text} = this.props;
         return (
             <View style={[styles.container]}>
-                <View style={[styles.innerContainer, {height: 89}]}>
+                <View style={[styles.innerContainer, {height: toastSize}]}>
                     <View style={[styles.wrapper]}>
                         <OriginalActivityIndicator color="white" size="large"/>
                         {text && <ChungText style={[styles.toast]}>{text}</ChungText>}
@@ -68,12 +71,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'transparent',
+
     },
     wrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 89,
-        height: 89,
+        width: toastSize,
+        height: toastSize,
         borderRadius: Styles.radiusSm,
         backgroundColor: Styles.modalBackgroundColorDark,
     },
@@ -91,5 +95,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-    },
+    }
 });

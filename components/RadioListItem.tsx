@@ -6,7 +6,7 @@ import List from "./List";
 import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
-import {FormInvalidHint} from "./FormInvalidHint";
+import FormInvalidHint from "./FormInvalidHint";
 
 
 export interface RadioItemPropsType extends RadioPropsType {

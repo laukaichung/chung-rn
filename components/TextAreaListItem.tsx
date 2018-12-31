@@ -13,7 +13,7 @@ import ChungText from "./ChungText";
 import ChungView from "./ChungView";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
-import {FormInvalidHint} from "./FormInvalidHint";
+import FormInvalidHint from "./FormInvalidHint";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {

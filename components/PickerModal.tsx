@@ -11,7 +11,7 @@ import ChungText from "./ChungText";
 import HintText from "./HintText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
-import {FormInvalidHint} from "./FormInvalidHint";
+import FormInvalidHint from "./FormInvalidHint";
 
 export interface PickerModalProps extends ModalProps, FormCommonProps,FormListItemCommonProps {
     data: PickerItem[];
