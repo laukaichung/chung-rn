@@ -60,8 +60,9 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
 
     public constructor(props: TextareaItemNativeProps) {
         super(props);
+        let {value} = props;
         this.state = {
-            inputCount: 0,
+            inputCount: value? value.length: 0,
             height:
                 props.rows !== undefined && props.rows > 1
                     ? 6 * props.rows * 4

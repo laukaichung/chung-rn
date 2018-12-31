@@ -5,7 +5,7 @@ import {StyleProp, TextStyle} from "react-native";
 interface BoldTextProps{
     children:any;
     fontSize?:number;
-    style:StyleProp<TextStyle>
+    style?:StyleProp<TextStyle>
 }
 
 const BoldTextView = (({children,style,fontSize}:BoldTextProps)=>{
