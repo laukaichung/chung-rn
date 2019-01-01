@@ -1,7 +1,6 @@
 import * as React from 'react'
 import DateTimePicker, {DateTimePickerProps} from 'react-native-modal-datetime-picker';
 import List from "./List";
-import Label from "./Label";
 import ChungText from "./ChungText";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
@@ -9,7 +8,7 @@ import FormHeader from "./FormHeader";
 
 export interface DateTimePickerModalProps extends DateTimePickerProps, FormListItemCommonProps,FormCommonProps {
     date?: Date
-    renderDateValue?: (date: Date) => string
+    renderDateValue?: (date: Date) => string;
 }
 
 interface State {
