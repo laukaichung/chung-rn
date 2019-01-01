@@ -3,6 +3,8 @@ import {ReactNode} from 'react'
 import {Text, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
+import FlexItem from "./FlexItem";
+import Flex from "./Flex";
 
 export interface HintTextProps {
     children: ReactNode;
@@ -14,7 +16,7 @@ export interface HintTextProps {
 const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
     color = color || Styles.hintTextDefaultTextColor;
     return (
-        <View style={[
+        <Flex style={[
             {
                 borderColor: color,
                 borderWidth: 1,
@@ -22,13 +24,14 @@ const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
                 marginVertical: Styles.margin
             },
             containerStyle,
-            Styles.inline
         ]}>
-            {icon && <Icon size={"sm"} color={color} style={{marginRight: Styles.margin}} name={icon}/>}
-            <Text style={[{lineHeight: 24, color}]}>
-                {children}
-            </Text>
-        </View>
+            {icon && <FlexItem><Icon color={color} style={{marginRight: Styles.margin}} name={icon}/></FlexItem>}
+            <FlexItem flex={4}>
+                <Text style={[{lineHeight: 24, color}]}>
+                    {children}
+                </Text>
+            </FlexItem>
+        </Flex>
     )
 };
 
