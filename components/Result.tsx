@@ -76,11 +76,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                 ) : null}
                 {children ? (
                     <View style={styles.message}>
-                        {typeof children === 'string' ? (
-                            <Text style={{color: typeColor}}>{children}</Text>
-                        ) : (
-                            children
-                        )}
+                        {children}
                     </View>
                 ) : null}
                 {buttonText ? (
@@ -122,7 +118,6 @@ const styles = StyleSheet.create({
     },
     message: {
         marginTop: Styles.marginLg,
-        paddingHorizontal: Styles.paddingLg,
     },
     buttonWrap: {
         flexDirection: 'row',
