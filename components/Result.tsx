@@ -11,7 +11,7 @@ export interface ResultNativeProps {
     icon?: string;
     iconSize?:IconSize;
     title?: React.ReactNode;
-    message?: React.ReactNode;
+    children?: React.ReactNode;
     buttonText?: string;
     buttonType?: 'primary' | 'ghost';
     showBorder?: boolean;
@@ -27,10 +27,11 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             style,
             type,
             icon,
+            children,
             imgUrl,
             title,
+            iconSize,
             marginHorizontal = true,
-            message,
             buttonText,
             onButtonPress,
             buttonType,
@@ -47,7 +48,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             );
         } else if (icon) {
             imgContent = (
-                <Icon name={icon} size={"xl"}/>
+                <Icon name={icon} size={iconSize || "xl"}/>
             )
         }
 
@@ -73,12 +74,12 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                         )}
                     </View>
                 ) : null}
-                {message ? (
+                {children ? (
                     <View style={styles.message}>
-                        {typeof message === 'string' ? (
-                            <Text style={{color: typeColor}}>{message}</Text>
+                        {typeof children === 'string' ? (
+                            <Text style={{color: typeColor}}>{children}</Text>
                         ) : (
-                            message
+                            children
                         )}
                     </View>
                 ) : null}
