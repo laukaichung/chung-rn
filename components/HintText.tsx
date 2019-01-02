@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Text, View, ViewStyle} from "react-native";
+import {Text, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
 import FlexItem from "./FlexItem";
@@ -26,7 +26,7 @@ const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
             containerStyle,
         ]}>
             {icon && <FlexItem><Icon color={color} style={{marginRight: Styles.margin}} name={icon}/></FlexItem>}
-            <FlexItem flex={4}>
+            <FlexItem flex={5}>
                 <Text style={[{lineHeight: 24, color}]}>
                     {children}
                 </Text>

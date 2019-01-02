@@ -3,13 +3,15 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {StyleProp, TouchableOpacity} from "react-native";
 import Styles from "./Styles";
 
+export type IconSize = "sm" | "md" | "lg" | "xl"
+
 export interface IconProps {
     color?: string;
     backgroundColor?: string;
     onPress?: (e?: any) => void;
     style?: StyleProp<any>
     name: string;
-    size?: "sm" | "md" | "lg" | "xl"
+    size?: IconSize
     customSize?: number;
 }
 

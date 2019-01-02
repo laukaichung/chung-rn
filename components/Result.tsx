@@ -3,16 +3,18 @@ import {ImageURISource, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'rea
 import Button from './Button';
 import Styles from "./Styles";
 import ChungImage from "./ChungImage";
+import Icon, {IconSize} from "./Icon";
 
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
     imgUrl?: string;
-    img?: React.ReactNode;
+    icon?: string;
+    iconSize?:IconSize;
     title?: React.ReactNode;
     message?: React.ReactNode;
     buttonText?: string;
     buttonType?: 'primary' | 'ghost';
-    showBorder?:boolean;
+    showBorder?: boolean;
     onButtonPress?: () => void;
     marginHorizontal?: boolean
     type?: "error" | "success" | "warning"
@@ -23,8 +25,8 @@ export default class Result extends React.Component<ResultNativeProps, any> {
     public render() {
         const {
             style,
-            img,
             type,
+            icon,
             imgUrl,
             title,
             marginHorizontal = true,
@@ -36,17 +38,17 @@ export default class Result extends React.Component<ResultNativeProps, any> {
         } = this.props;
 
         let imgContent: JSX.Element | null = null;
-        if (img) {
-            imgContent = <View style={styles.imgWrap}>{img}</View>;
-        } else if (imgUrl) {
+        if (imgUrl) {
             imgContent = (
-                <View style={styles.imgWrap}>
-                    <ChungImage
-                        source={imgUrl as ImageURISource | ImageURISource[]}
-                        style={styles.img as any}
-                    />
-                </View>
+                <ChungImage
+                    source={imgUrl as ImageURISource | ImageURISource[]}
+                    style={styles.img as any}
+                />
             );
+        } else if (icon) {
+            imgContent = (
+                <Icon name={icon} size={"xl"}/>
+            )
         }
 
         let typeColor = type === "error" ? Styles.errorColor :
@@ -56,10 +58,11 @@ export default class Result extends React.Component<ResultNativeProps, any> {
             <View style={
                 [
                     styles.result,
-                    showBorder && {borderColor: typeColor,borderWidth:Styles.borderWidth},
+                    showBorder && {borderColor: typeColor, borderWidth: Styles.borderWidth},
                     marginHorizontal && {marginHorizontal: Styles.margin},
                     style,
                 ]}>
+
                 {imgContent}
                 {title ? (
                     <View style={styles.title}>
