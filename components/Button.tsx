@@ -2,6 +2,7 @@ import * as React from 'react';
 import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
 import CustomTouchableHighlight from "./CustomTouchableHighlight";
+import Icon, {IconSize} from "./Icon";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
@@ -10,6 +11,8 @@ export interface ButtonProps extends TouchableHighlightProps {
     size?: 'large' | 'small';
     disabled?: boolean;
     loading?: boolean;
+    icon?: string;
+    iconSize?: IconSize
 }
 
 interface State {
@@ -34,6 +37,8 @@ export default class Button extends React.Component<ButtonProps, State> {
             disabled,
             children,
             style,
+            icon,
+            iconSize,
             activeStyle,
             onPress,
             loading,
@@ -89,7 +94,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
             textColor = Styles.primaryButtonTextColor;
 
-            indicatorColor  = Styles.indicatorColor;
+            indicatorColor = Styles.indicatorColor;
 
             textStyle.push({
                 color: textColor
@@ -221,15 +226,21 @@ export default class Button extends React.Component<ButtonProps, State> {
                 onHideUnderlay={this._onHideUnderlay}
             >
                 <View style={{flexDirection: 'row'}}>
-                    {loading ? (
-                        <ActivityIndicator
-                            style={{marginRight: Styles.margin}}
-                            animating
-                            color={indicatorColor}
-                            size="small"
-                        />
-                    ) : null}
-                    <Text style={textStyle}>{children}</Text>
+                    {
+                        loading ? (
+                            <ActivityIndicator
+                                style={{marginRight: Styles.margin}}
+                                animating
+                                color={indicatorColor}
+                                size="small"
+                            />
+                        ) : null}
+                    {
+                        icon ?
+                            <Text style={textStyle}><Icon size={iconSize || "sm"} name={icon}/> {children}</Text>
+                            :
+                            <Text style={textStyle}>{children}</Text>
+                    }
                 </View>
             </CustomTouchableHighlight>
         )

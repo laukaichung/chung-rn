@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         paddingVertical: Styles.paddingSm,
         paddingHorizontal: Styles.padding,
         alignItems: 'center',
-        borderBottomWidth: Styles.borderWidth,
+        //borderBottomWidth: Styles.borderWidth,
     },
     headerTitle: {
         flex: 1,

@@ -34,7 +34,6 @@ export {default as Progress} from './Progress';
 export {default as PausableGif} from './PausableGif'
 export {default as Radio} from './Radio';
 export {default as Result} from './Result';
-export {default as Tabs} from './Tabs';
 export {default as TextAreaListItem} from './TextAreaListItem';
 export {default as ChungImage} from './ChungImage';
 export {default as ChungText} from './ChungText';

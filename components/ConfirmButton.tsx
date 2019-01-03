@@ -15,7 +15,7 @@ const ConfirmButton = (props: ConfirmButtonProps) => {
             buttonTrigger={(
                 <Button
                     {...props}
-                    onPress={() => this.setState({modalVisible: true})}/>
+                />
             )}
             hint={confirmMessage}
             title={title}/>
