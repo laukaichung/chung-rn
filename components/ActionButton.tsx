@@ -31,7 +31,7 @@ const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon,iconC
                 Styles.centerItems
             ]}
         >
-            <Icon customSize={size * 0.6} color={iconColor} name={icon || "bars"}/>
+            <Icon customSize={size * 0.6} color={iconColor || "#ffffff"} name={icon || "bars"}/>
         </TouchableOpacity>
     )
 };
