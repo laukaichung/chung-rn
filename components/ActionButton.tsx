@@ -8,12 +8,13 @@ export interface ActionButtonProps {
     bottom?: number;
     right?: number
     size?: number
-    icon: string;
-    buttonBackgroundColor: string
+    icon?: string;
+    buttonBackgroundColor?: string
+    iconColor?:string;
     onPress?: () => void;
 }
 
-const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon, size = 56}: ActionButtonProps) => {
+const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon,iconColor, size = 56}: ActionButtonProps) => {
     return (
         <TouchableOpacity
             onPress={onPress}
@@ -30,7 +31,7 @@ const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon, size
                 Styles.centerItems
             ]}
         >
-            <Icon customSize={size * 0.6} name={icon || "bars"}/>
+            <Icon customSize={size * 0.6} color={iconColor} name={icon || "bars"}/>
         </TouchableOpacity>
     )
 };
