@@ -31,6 +31,7 @@ import UIContext from "../UIContext";
 import Styles from "../Styles";
 import ResultScreen from "./screens/ResultScreen";
 import {DrawerScreen} from "./screens/DrawerScreen";
+import {ActionButtonScreen} from "./screens/ActionButtonScreen";
 
 
 const StackNavigator = createStackNavigator(
@@ -51,13 +52,13 @@ const StackNavigator = createStackNavigator(
         [screenKeys.cameraRollImageList]: CameraRollImageList,
         [screenKeys.imagePickerItemModal]: ImagePickerItemModalScreen,
         [screenKeys.toast]: ToastScreen,
-        [screenKeys.oldTabs]: TabScreen,
+        [screenKeys.actionButton]: ActionButtonScreen,
         [screenKeys.result]: ResultScreen,
 
 
     },
     {
-        initialRouteName: screenKeys.form,
+        initialRouteName: screenKeys.actionButton,
         defaultNavigationOptions: ({navigation}) => {
 
             let isDarkMode = Styles.mode === "dark";

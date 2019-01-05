@@ -15,7 +15,7 @@ export const screenKeys = {
     imagePickerItemModal:'imagePickerItemModal',
     cameraRollImageList:'cameraRollImageList',
     toast:'toast',
-    oldTabs:'oldTabs',
+    actionButton:'actionButton',
     result:'result',
     camera:'camera',
 };

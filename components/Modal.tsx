@@ -7,7 +7,7 @@ import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
 import Header from "./Header";
 import ChungView from "./ChungView";
 
-interface ModalCallback {
+export interface ModalCallback {
     closeModal: () => void;
 }
 
