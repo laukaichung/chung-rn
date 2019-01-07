@@ -26,6 +26,8 @@ export default class Styles {
     static primaryColorLight = '#568fda';
     static primaryColor = "#0f62a8";
 
+    static secondaryColor = "#366b1d";
+
     static badgeBackgroundColor = "#cb6600";
 
     static get warningColor(){

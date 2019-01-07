@@ -1,18 +1,20 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Text, View} from "react-native";
+import {StyleProp, Text, TextStyle, View, ViewStyle} from "react-native";
 import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
 import Styles from "./Styles";
 import Icon from "./Icon";
 
 export interface AccordionPane {
     render: () => ReactNode
-    title: string
+    title: string;
 }
 
 interface AccordionContainerProps {
     panes: AccordionPane[]
     defaultIndices: number[]
+    headerStyle?:StyleProp<ViewStyle>
+    headerTextStyle?:StyleProp<TextStyle>
     customHeaderContainer?: (data: { pane: AccordionPane, isActive: boolean }) => ReactNode
 }
 
@@ -30,7 +32,7 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
 
     public render() {
 
-        let {panes, customHeaderContainer} = this.props;
+        let {panes, customHeaderContainer,headerStyle,headerTextStyle} = this.props;
         let {activeIndices} = this.state;
         return (
 
@@ -54,13 +56,11 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
                                     {
                                         customHeaderContainer ?
                                             customHeaderContainer({pane: p, isActive}) :
-                                            <View style={[Styles.accordionHeaderStyle]}>
-                                                <Text style={Styles.accordionHeaderTextColor}>
+                                            <View style={[Styles.accordionHeaderStyle,headerStyle]}>
+                                                <Text style={[Styles.accordionHeaderTextColor,headerTextStyle]}>
                                                     {p.title}
                                                 </Text>
-                                                <Icon color={Styles.accordionIconColor}
-                                                            name={isActive?"angle-up":"angle-down"}/>
-
+                                                <Icon color={Styles.accordionIconColor} name={isActive?"angle-up":"angle-down"}/>
                                             </View>
                                     }
                                 </CustomTouchableHighlight>

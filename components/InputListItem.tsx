@@ -1,14 +1,6 @@
 import * as React from 'react';
 import {ReactNode, RefObject} from 'react';
-import {
-    GestureResponderEvent,
-    Image,
-    Platform,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    View,
-} from 'react-native';
+import {StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import Input from './Input';
 import Styles from "./Styles";
 import List from "./List";
@@ -114,8 +106,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
 
         return (
 
-            <List.Item multipleLine {...listItemProps}
-                       bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
+            <List.Item multipleLine {...listItemProps} bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
 
                 <FormHeader {...this.props}/>

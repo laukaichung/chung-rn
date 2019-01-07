@@ -26,7 +26,7 @@ const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon,iconC
                     borderRadius: (size * 2) / 2,
                     width: size,
                     height: size,
-                    backgroundColor: buttonBackgroundColor || ChungStyles.primaryColor,
+                    backgroundColor: buttonBackgroundColor || ChungStyles.secondaryColor,
                 },
                 Styles.centerItems
             ]}
