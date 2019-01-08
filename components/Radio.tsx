@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import Styles from "./Styles";
-import RadioListItem from "./RadioListItem";
 import Icon from "./Icon";
 
 export interface RadioNativeProps extends RadioPropsType {
