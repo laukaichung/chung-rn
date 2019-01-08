@@ -39,7 +39,6 @@ export default class Item extends React.Component<ListItemProps, any> {
             onPress,
             hideBorder,
             wrap,
-            align,
             bottomExtraView,
             style,
             ...restProps
@@ -49,18 +48,6 @@ export default class Item extends React.Component<ListItemProps, any> {
         if (!wrap) {
             numberOfLines = {
                 numberOfLines: 1,
-            };
-        }
-
-        let alignStyle = {};
-
-        if (align === 'top') {
-            alignStyle = {
-                alignItems: 'flex-start',
-            };
-        } else if (align === 'bottom') {
-            alignStyle = {
-                alignItems: 'flex-end',
             };
         }
 

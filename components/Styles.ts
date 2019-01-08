@@ -65,7 +65,7 @@ export default class Styles {
 
     static accordionHeaderBackgroundColorDark = "#001c38";
 
-    static accordionHeaderBackgroundColorLight = "#0f62a8";
+    static accordionHeaderBackgroundColorLight = "#474747";
 
     static get accordionHeaderStyle():ViewStyle{
         return {
@@ -82,7 +82,7 @@ export default class Styles {
         return {
             fontWeight: "bold",
             fontSize: 20,
-            color: this.isDarkMode?this.textColor:this.whiteTextColor
+            color: this.whiteTextColor
         }
     }
 
