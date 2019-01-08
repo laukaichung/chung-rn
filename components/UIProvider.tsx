@@ -15,7 +15,7 @@ interface ChungContainerState extends ThemeContextProps {
 
 const UIAsyncStoreKeys = {
     theme:"theme"
-}
+};
 
 export default class UIProvider extends React.Component<ChungContainerProps, ChungContainerState> {
     public state: ChungContainerState = {fetchingStoreData: true} as ChungContainerState;
