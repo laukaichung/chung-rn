@@ -3,6 +3,7 @@ import {ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View,
 import Checkbox, {CheckboxProps} from './CheckBox';
 import {RefObject} from "react";
 import Styles from "./Styles";
+import ChungText from "./ChungText";
 
 const refCheckbox = 'checkbox';
 
@@ -30,7 +31,7 @@ export default class CheckBoxAgreeItem extends React.Component<AgreeItemNativePr
         let contentDom = !children ? null : React.isValidElement(children) ? (
             children
         ) : (
-            <Text>{children}</Text>
+            <ChungText>{children}</ChungText>
         );
 
         return (

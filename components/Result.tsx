@@ -1,21 +1,19 @@
 import * as React from 'react';
-import {ImageURISource, StyleProp, StyleSheet, Text, View, ViewStyle,} from 'react-native';
-import Button from './Button';
+import {ImageURISource, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
+import Button, {ButtonProps} from './Button';
 import Styles from "./Styles";
 import ChungImage from "./ChungImage";
-import Icon, {IconSize} from "./Icon";
+import Icon, {IconProps} from "./Icon";
+import ChungText from "./ChungText";
 
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
     imgUrl?: string;
-    icon?: string;
-    iconSize?:IconSize;
+    iconProps?:IconProps;
     title?: React.ReactNode;
     children?: React.ReactNode;
-    buttonText?: string;
-    buttonType?: 'primary' | 'ghost';
+    buttonProps?:ButtonProps;
     showBorder?: boolean;
-    onButtonPress?: () => void;
     marginHorizontal?: boolean
     type?: "error" | "success" | "warning"
 }
@@ -26,16 +24,13 @@ export default class Result extends React.Component<ResultNativeProps, any> {
         const {
             style,
             type,
-            icon,
             children,
             imgUrl,
+            iconProps,
             title,
-            iconSize,
             marginHorizontal = true,
-            buttonText,
-            onButtonPress,
-            buttonType,
             showBorder = false,
+            buttonProps
         } = this.props;
 
         let imgContent: JSX.Element | null = null;
@@ -46,9 +41,10 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                     style={styles.img as any}
                 />
             );
-        } else if (icon) {
+        } else if (iconProps) {
+            const {size} = iconProps;
             imgContent = (
-                <Icon name={icon} size={iconSize || "xl"}/>
+                <Icon {...iconProps} size={size || "xl"}/>
             )
         }
 
@@ -68,7 +64,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                 {title ? (
                     <View style={styles.title}>
                         {typeof title === 'string' ? (
-                            <Text style={{fontSize: Styles.headerFontSize, color: typeColor}}>{title}</Text>
+                            <ChungText style={{fontSize: Styles.headerFontSize, color: typeColor}}>{title}</ChungText>
                         ) : (
                             title
                         )}
@@ -79,15 +75,9 @@ export default class Result extends React.Component<ResultNativeProps, any> {
                         {children}
                     </View>
                 ) : null}
-                {buttonText ? (
+                {buttonProps ? (
                     <View style={styles.buttonWrap}>
-                        <Button
-                            style={styles.button}
-                            type={buttonType}
-                            onPress={onButtonPress}
-                        >
-                            {buttonText}
-                        </Button>
+                        <Button{...buttonProps}/>
                     </View>
                 ) : null}
             </View>

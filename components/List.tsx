@@ -3,6 +3,7 @@ import {ReactNode} from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
 import ListItem from "./ListItem";
+import ChungText from "./ChungText";
 
 type HideBorderOptions = "bottom" | "top" | "all"
 
@@ -61,7 +62,7 @@ export default class List extends React.Component<ListProps, any> {
     private renderHeaderOrFooterContainer(text: string, containerStyle?: StyleProp<ViewStyle>) {
         return (
             <View style={[Styles.listHeaderContainerStyle, containerStyle]}>
-                <Text style={{color: Styles.listHeaderTextColor, fontSize: Styles.headerFontSize}}>{text}</Text>
+                <ChungText style={{color: Styles.listHeaderTextColor, fontSize: Styles.headerFontSize}}>{text}</ChungText>
             </View>
         )
     }

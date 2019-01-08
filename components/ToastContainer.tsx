@@ -2,14 +2,14 @@ import * as React from 'react';
 import {
     ActivityIndicator,
     Animated,
-    Image, Platform,
+    Platform,
     StyleSheet,
-    Text,
     View,
 } from 'react-native';
 import Styles from "./Styles";
 import Icon from "./Icon";
 import WhiteSpace from "./WhiteSpace";
+import ChungText from "./ChungText";
 
 export interface ToastProps {
     content: string;
@@ -78,7 +78,7 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                         >
                             {iconDom}
                             <WhiteSpace/>
-                            <Text style={styles.content}>{content}</Text>
+                            <ChungText style={styles.content}>{content}</ChungText>
                         </View>
                     </Animated.View>
                 </View>

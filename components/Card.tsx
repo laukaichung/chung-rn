@@ -26,9 +26,15 @@ export default class Card extends React.Component<CardProps, any> {
         return (
             <View
                 style={[
-                    styles.card,
+                    {
+                        borderColor: Styles.borderColor,
+                        borderWidth: Styles.borderWidth,
+                        borderRadius: Styles.radiusMd,
+                        overflow: 'hidden',
+                        flexDirection: 'column',
+                        borderBottomWidth:2,
+                    },
                     cardStyle,
-                    {borderColor: Styles.borderColor},
                     style,
                     marginVertical && {marginVertical: Styles.margin}
                 ]}
@@ -40,12 +46,6 @@ export default class Card extends React.Component<CardProps, any> {
 }
 
 const styles = StyleSheet.create({
-    card: {
-        borderWidth: Styles.borderWidth,
-        borderRadius: Styles.radiusMd,
-        overflow: 'hidden',
-        flexDirection: 'column',
-    },
     full: {
         borderRadius: 0,
         borderLeftWidth: 0,

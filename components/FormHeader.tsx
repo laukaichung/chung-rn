@@ -8,6 +8,7 @@ import Label from "./Label";
 import ConfirmModal from "./ConfirmModal";
 import FlexItem from "./FlexItem";
 import Icon from "./Icon";
+import VerticalMiddleContainer from "./VerticalMiddleContainer";
 
 interface Props {
     hint?: string
@@ -24,49 +25,64 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
         <Flex style={{marginBottom: Styles.margin}}>
             {
                 label &&
-                <FlexItem flex={4}>
-                    <Label>
-                        {label}
-                    </Label>
-                </FlexItem>
-            }
-            {
-                hint && (
-                    <Modal
-                        buttonTrigger={(
-                            <FlexItem>
-                                <Icon customSize={iconSize} name={"info-circle"}/>
-                            </FlexItem>
-                        )}>
+                <FlexItem flex={2}>
+                    <VerticalMiddleContainer>
+                        <Label>
+                            {label}
+                        </Label>
                         {
-                            () => (
-                                <WingBlank marginVertical>
-                                    <ChungText>{hint}</ChungText>
-                                </WingBlank>
+                            hint && (
+                                <Modal
+                                    buttonTrigger={(
+                                        <WingBlank>
+                                            <Icon customSize={iconSize} name={"info-circle"}/>
+                                        </WingBlank>
+                                    )}>
+                                    {
+                                        () => (
+                                            <WingBlank marginVertical>
+                                                <ChungText>{hint}</ChungText>
+                                            </WingBlank>
+                                        )
+                                    }
+                                </Modal>
                             )
                         }
-                    </Modal>
-                )
-            }
-            {
-                error && (
-                    <FlexItem onPress={onErrorClick}>
-                        <Icon color={"red"} customSize={iconSize} name={"exclamation-circle"}/>
-                    </FlexItem>
-                )
-            }
+                    </VerticalMiddleContainer>
 
-            {
-                onClear &&
-                <ConfirmModal
-                    buttonTrigger={(
-                        <FlexItem>
-                            <Icon customSize={iconSize} name={"eraser"}/>
-                        </FlexItem>
-                    )}
-                    title={`Are you sure you want to clear the content?`}
-                    onConfirmClick={onClear}/>
+                </FlexItem>
             }
+            <FlexItem style={[
+                {
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end'
+                }
+            ]} flex={1}>
+                {
+                    error && (
+                        <WingBlank>
+                            <Icon color={"red"}
+                                  onPress={onErrorClick}
+                                  customSize={iconSize}
+                                  name={"exclamation-circle"}
+                            />
+                        </WingBlank>
+                    )
+                }
+                {
+                    onClear &&
+                    <ConfirmModal
+                        buttonTrigger={(
+                                <Icon customSize={iconSize}
+                                      style={{marginLeft:10}}
+                                      name={"eraser"}
+                                />
+                        )}
+                        title={`Are you sure you want to clear the content?`}
+                        onConfirmClick={onClear}
+                    />
+                }
+            </FlexItem>
 
         </Flex>
     )

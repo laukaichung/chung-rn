@@ -16,7 +16,6 @@ interface State {
 
 export class HomeScreen extends React.Component<NavigationProps, State> {
     public render() {
-        let {navigation} = this.props;
         return (
             <Container>
                 <WingBlank>
@@ -48,19 +47,9 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                     <Button type="primary" disabled onPress={() => {}}>
                         Diabled Primary Button
                     </Button>
-
-                    <WhiteSpace/>
-                    <Button type="ghost" onPress={() => {}}>
-                        Ghost Button
-                    </Button>
-                    <WhiteSpace/>
-
-                    <Button type="ghost" disabled onPress={() => {}}>
-                        Diabled Ghost Button
-                    </Button>
                 </WingBlank>
                 <List>
-                    <List.Item arrow="horizontal">
+                    <List.Item arrow="right">
                         <ChungText>List Item</ChungText>
                     </List.Item>
                 </List>

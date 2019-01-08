@@ -3,11 +3,12 @@ import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, 
 import Styles from "./Styles";
 import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import Icon, {IconSize} from "./Icon";
+import ChungText from "./ChungText";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
     onPress?: (_?: any) => void;
-    type?: 'primary' | 'warning' | 'ghost';
+    type?: 'primary';
     size?: 'lg' | 'sm';
     disabled?: boolean;
     loading?: boolean;
@@ -47,29 +48,6 @@ export default class Button extends React.Component<ButtonProps, State> {
 
         let {pressIn} = this.state;
 
-        // textStyle = [
-        //     buttonStyles[`${size}RawText`],
-        //     disabled && buttonStyles[`${type}DisabledRawText`],
-        //     this.state.pressIn && buttonStyles[`${type}HighlightText`],
-        // ];
-
-        // wrapperStyle = [
-        //     buttonStyles.wrapperStyle,
-        //     buttonStyles[`${size}Raw`],
-        //     buttonStyles[`${type}Raw`],
-        //     disabled && buttonStyles[`${type}DisabledRaw`],
-        //     this.state.pressIn && activeStyle && buttonStyles[`${type}Highlight`],
-        //     activeStyle && this.state.touchIt && activeStyle,
-        //     style,
-        // ];
-
-        // const indicatorColor = (StyleSheet.flatten(
-        //     this.state.pressIn
-        //         ? buttonStyles[`${type}HighlightText`]
-        //         : buttonStyles[`${type}RawText`],
-        // ) as any).color;
-
-
         let textStyle: TextStyle[] = [
             {fontSize: size === "sm" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
         ];
@@ -80,15 +58,20 @@ export default class Button extends React.Component<ButtonProps, State> {
         let wrapperStyle: ViewStyle[] = [{
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: Styles.radiusMd,
+            padding: size === "sm" ? Styles.paddingSm : Styles.padding,
             borderWidth: 1,
-            padding: size === "sm" ? Styles.paddingSm : Styles.padding
+            borderRadius: Styles.radiusMd,
+            elevation:4,
+            shadowOffset: { width: 1, height: 2 },
+            shadowColor: "grey",
+            shadowOpacity: 0.5,
+            shadowRadius: Styles.radiusMd,
         }];
 
         if (type === "primary") {
 
             wrapperStyle.push({
-                backgroundColor: Styles.primaryColor,
+                backgroundColor: Styles.primaryButtonBackgroundColor,
                 borderColor: Styles.borderColor,
             });
 
@@ -119,48 +102,7 @@ export default class Button extends React.Component<ButtonProps, State> {
             if (disabled) {
 
                 wrapperStyle.push({
-                    borderColor: Styles.primaryColor,
-                });
-
-                textStyle.push({
-                    color: Styles.primaryColorDark
-                })
-            }
-
-        } else if (type === "ghost") {
-
-            wrapperStyle.push({
-                backgroundColor: 'transparent',
-                borderColor: Styles.primaryColor,
-            });
-
-            textStyle.push({color: Styles.primaryColor});
-
-            indicatorColor = Styles.primaryColor;
-
-            if (pressIn) {
-
-                textStyle.push({
-                    color: `${Styles.whiteTextColor}4D`
-                });
-
-                indicatorColor = `${Styles.whiteTextColor}4D`;
-
-                if (activeStyle) {
-
-                    wrapperStyle.push({
-                        backgroundColor: 'transparent',
-                        borderColor: Styles.primaryColor,
-                    })
-
-                }
-            }
-
-            if (disabled) {
-
-                wrapperStyle.push({
-                    borderStyle: "dashed",
-                    borderColor: Styles.disabledBorderColor
+                    borderColor: Styles.disabledBorderColor,
                 });
 
                 textStyle.push({
@@ -237,9 +179,9 @@ export default class Button extends React.Component<ButtonProps, State> {
                         ) : null}
                     {
                         icon ?
-                            <Text style={textStyle}><Icon size={iconSize || "sm"} name={icon}/> {children}</Text>
+                            <ChungText style={textStyle}><Icon size={iconSize || "sm"} name={icon}/> {children}</ChungText>
                             :
-                            <Text style={textStyle}>{children}</Text>
+                            <ChungText style={textStyle}>{children}</ChungText>
                     }
                 </View>
             </CustomTouchableHighlight>

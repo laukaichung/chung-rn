@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {Text, TextStyle} from 'react-native'
 import Styles from "./Styles";
+import ChungText from "./ChungText";
 
 interface HeaderProps {
     color?: string
@@ -14,7 +15,7 @@ interface HeaderProps {
 export const Header = ({color, center, children, fontSize, style, marginVertical}: HeaderProps) => {
     return (
 
-        <Text style={[
+        <ChungText style={[
             {
                 color: color || Styles.textColor,
                 fontSize: fontSize || Styles.headerFontSize,
@@ -26,7 +27,7 @@ export const Header = ({color, center, children, fontSize, style, marginVertical
         ]
         }>
             {children}
-        </Text>
+        </ChungText>
 
     )
 };

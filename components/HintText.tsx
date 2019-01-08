@@ -5,6 +5,7 @@ import Styles from "./Styles";
 import Icon from "./Icon";
 import FlexItem from "./FlexItem";
 import Flex from "./Flex";
+import ChungText from "./ChungText";
 
 export interface HintTextProps {
     children: ReactNode;
@@ -27,9 +28,9 @@ const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
         ]}>
             {icon && <FlexItem><Icon color={color} style={{marginRight: Styles.margin}} name={icon}/></FlexItem>}
             <FlexItem flex={5}>
-                <Text style={[{lineHeight: 24, color}]}>
+                <ChungText style={[{color}]}>
                     {children}
-                </Text>
+                </ChungText>
             </FlexItem>
         </Flex>
     )

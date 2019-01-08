@@ -186,6 +186,10 @@ export default class Styles {
         return this.isDarkMode? this.primaryButtonTextColorDark:this.primaryButtonTextColorLight
     }
 
+    static get primaryButtonBackgroundColor(){
+        return this.isDarkMode? this.primaryColorDark:this.primaryColor
+    }
+
     static borderColorDark = "#444444";
     static borderColorLight = "#d0d0d0";
 
