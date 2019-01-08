@@ -16,7 +16,7 @@ export const Header = ({color, center, children, fontSize, style, marginVertical
 
         <Text style={[
             {
-                color: color || Styles.headerColor,
+                color: color || Styles.textColor,
                 fontSize: fontSize || Styles.headerFontSize,
                 fontWeight: "bold",
             },

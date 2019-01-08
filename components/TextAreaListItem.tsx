@@ -4,13 +4,12 @@ import {
     StyleSheet,
     TextInput,
     TextInputChangeEventData,
-    TextInputContentSizeChangeEventData,
+    TextInputContentSizeChangeEventData, View,
     ViewStyle,
 } from 'react-native';
 import Styles from "./Styles";
 import List from "./List";
 import ChungText from "./ChungText";
-import ChungView from "./ChungView";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
@@ -100,7 +99,6 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
 
         return (
             <List.Item
-                multipleLine
                 {...listItemProps}
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
@@ -131,11 +129,11 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
                     maxLength={maxLength}
                 />
                 {rows! > 1 && count! > 0 && (
-                    <ChungView style={[styles!.count]}>
+                    <View style={[styles!.count]}>
                         <ChungText>
                             {inputCount} / {count}
                         </ChungText>
-                    </ChungView>
+                    </View>
                 )}
             </List.Item>
         );

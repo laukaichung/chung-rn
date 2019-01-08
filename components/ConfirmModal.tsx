@@ -1,12 +1,11 @@
 import * as React from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import Modal, {ModalProps} from "./Modal";
 import WhiteSpace from "./WhiteSpace";
 import Flex from "./Flex";
 import Button from "./Button";
 import Styles from "./Styles";
 import ChungText from "./ChungText";
-import ChungView from "./ChungView";
 import FlexItem from "./FlexItem";
 
 interface ConfirmModalProps extends ModalProps{
@@ -22,7 +21,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: 
                title={title || `Are you sure?`}>
             {
                 ({closeModal}) =>
-                    <ChungView>
+                    <View>
                         {hint && (
                             <WhiteSpace>
                                 <ChungText>{hint}</ChungText>
@@ -48,7 +47,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: 
                                 </Button>
                             </FlexItem>
                         </Flex>
-                    </ChungView>
+                    </View>
             }
         </Modal>
     )

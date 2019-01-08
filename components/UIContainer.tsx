@@ -1,14 +1,14 @@
 import * as React from 'react'
-import ChungView from "./ChungView";
 import UIContext from "./UIContext";
 import Styles from "./Styles";
+import {View} from "react-native";
 
 const UIContainer = (props) => {
     return (
         <UIContext.Consumer>
             {
                 ({theme}) => {
-                    return (<ChungView {...props} style={{backgroundColor: Styles.backgroundColor,flex:1}}/>)
+                    return (<View {...props} style={{backgroundColor: Styles.backgroundColor,flex:1}}/>)
                 }
             }
         </UIContext.Consumer>

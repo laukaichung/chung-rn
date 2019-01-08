@@ -12,7 +12,6 @@ import {
     ViewStyle,
 } from 'react-native';
 import Styles from "./Styles";
-import ChungView from "./ChungView";
 import ChungText from "./ChungText";
 
 
@@ -88,9 +87,9 @@ const defaultPagination = (props: PaginationProps) => {
         );
     }
     return (
-        <ChungView style={[styles.pagination, styles[positionStyle]]}>
-            <ChungView style={{flexDirection}}>{arr}</ChungView>
-        </ChungView>
+        <View style={[styles.pagination, styles[positionStyle]]}>
+            <View style={{flexDirection}}>{arr}</View>
+        </View>
     );
 };
 
@@ -157,18 +156,18 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
             pages = childrenArray.map((page, i) => {
                 return (
                     // when vertical, use the height of the first child as the height of the Carousel
-                    <ChungView style={{width}} key={i} onLayout={i === 0 ? this.onChildLayout : () => {
+                    <View style={{width}} key={i} onLayout={i === 0 ? this.onChildLayout : () => {
                     }}>
                         {page}
-                    </ChungView>
+                    </View>
                 );
             });
         } else {
-            pages = <ChungView style={{width}} onLayout={this.onChildLayout}>{children}</ChungView>;
+            pages = <View style={{width}} onLayout={this.onChildLayout}>{children}</View>;
         }
 
         return (
-            <ChungView onLayout={this.onLayout} style={height > 0 ? {height} : {}}>
+            <View onLayout={this.onLayout} style={height > 0 ? {height} : {}}>
                 <ScrollView
                     ref={this.scrollviewRef}
                     {...this.props}
@@ -191,7 +190,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                     {pages}
                 </ScrollView>
                 {dots && this.renderDots(selectedIndex)}
-            </ChungView>
+            </View>
         );
     }
 

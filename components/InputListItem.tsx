@@ -106,7 +106,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
 
         return (
 
-            <List.Item multipleLine {...listItemProps} bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
+            <List.Item {...listItemProps} bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
 
                 <FormHeader {...this.props}/>

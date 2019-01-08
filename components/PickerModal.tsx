@@ -3,15 +3,14 @@ import {ReactNode} from 'react'
 import {ScrollView, StyleSheet, View} from "react-native";
 import Grid from "./Grid";
 import CustomModal, {ModalProps} from "./Modal";
-import List from "./List"
 import Styles from "./Styles";
 import StringUtil from "./util/StringUtil";
-import WhiteSpace from "./WhiteSpace";
 import ChungText from "./ChungText";
 import HintText from "./HintText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
+import {ListItem} from "./index";
 
 export interface PickerModalProps extends ModalProps, FormCommonProps,FormListItemCommonProps {
     data: PickerItem[];
@@ -76,22 +75,20 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                 title={multiple ? `Select multiple options` : `Select one option`}
                 {...props}
                 buttonTrigger={
-                    <List.Item
+                    <ListItem
                         {...listItemProps}
                         bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
-                        multipleLine
                         arrow="right">
                         {customLabelElement || <FormHeader {...props}/>}
                         {
                             displayValues.length > 0 &&
                             <React.Fragment>
-                                <WhiteSpace/>
                                 <ChungText>
                                     {displayValues.join(' , ')}
                                 </ChungText>
                             </React.Fragment>
                         }
-                    </List.Item>
+                    </ListItem>
                 }>
                 {
                     ({closeModal}) => {

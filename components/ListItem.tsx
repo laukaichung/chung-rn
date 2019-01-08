@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Image, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
-import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
+import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import {ReactNode} from "react";
 import ChungText from "./ChungText";
 import Icon from "./Icon";
@@ -11,7 +11,6 @@ export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 export interface ListItemProps {
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
-    multipleLine?: boolean;
     children?: ReactNode;
     thumb?: ReactNode | null;
     extra?: ReactNode;
@@ -34,7 +33,6 @@ export default class Item extends React.Component<ListItemProps, any> {
         const {
             children,
             onLongPress,
-            multipleLine,
             thumb,
             extra,
             arrow,
@@ -157,16 +155,14 @@ export default class Item extends React.Component<ListItemProps, any> {
                     {typeof thumb === 'string' ? (
                         <Image
                             source={{uri: thumb}}
-                            style={[styles.thumb, multipleLine && styles.multipleThumb] as any}
+                            style={[styles.thumb] as any}
                         />
                     ) : (
                         thumb
                     )}
                     <View
                         style={[
-                            styles.line,
-                            multipleLine && styles.multipleLine,
-                            multipleLine && alignStyle,
+                            styles.line
                         ]}
                     >
                         {contentDom}
@@ -207,7 +203,7 @@ const styles = StyleSheet.create({
     },
     content: {
         textAlignVertical: 'center',
-        paddingVertical: 15
+        paddingVertical: Styles.padding
     },
     extra: {
         textAlign: 'right',
@@ -228,13 +224,6 @@ const styles = StyleSheet.create({
         width: 13,
         height: 8,
         marginLeft: Styles.margin,
-    },
-    multipleLine: {
-        paddingVertical: Styles.padding,
-    },
-    multipleThumb: {
-        width: Styles.iconSizeMd,
-        height: Styles.iconSizeMd,
     },
     column: {
         flex: 1,

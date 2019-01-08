@@ -39,7 +39,6 @@ export {default as Result} from './Result';
 export {default as TextAreaListItem} from './TextAreaListItem';
 export {default as ChungImage} from './ChungImage';
 export {default as ChungText} from './ChungText';
-export {default as ChungView} from './ChungView';
 export {default as Toast} from './Toast';
 export {default as WhiteSpace} from './WhiteSpace';
 export {default as WingBlank} from './WingBlank';

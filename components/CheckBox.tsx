@@ -1,7 +1,6 @@
 import * as React from 'react'
-import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback,} from 'react-native';
+import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import Styles from "./Styles";
-import ChungView from "./ChungView";
 import Icon from "./Icon";
 import {OnChangeParams} from "./CheckboxListItem";
 
@@ -32,9 +31,9 @@ export default class Checkbox extends React.Component<ICheckboxNativeProps, Stat
         const {checked} = this.state;
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>
-                <ChungView style={[styles.wrapper]}>
+                <View style={[styles.wrapper]}>
                     <Icon name={disabled?"times-circle-o":checked?"check-circle-o":"circle-o"}/>
-                </ChungView>
+                </View>
             </TouchableWithoutFeedback>
         );
     }

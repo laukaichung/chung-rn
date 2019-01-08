@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {Image, StyleProp, StyleSheet, ViewStyle} from 'react-native';
+import {Image, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Carousel from './Carousel';
 import Styles from "./Styles";
 import {ReactNode} from "react";
 import Flex from "./Flex";
 import ScreenUtil from "./util/ScreenUtil";
-import ChungView from "./ChungView";
 import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 
@@ -146,7 +145,7 @@ export default class Grid extends React.Component<GridProps, any> {
                     }
                 }
                 pagesArr.push(
-                    <ChungView
+                    <View
                         key={pageIndex}
                         style={[
                             styles.grayBorderBox,
@@ -154,7 +153,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         ]}
                     >
                         {pageRows}
-                    </ChungView>,
+                    </View>,
                 );
             }
         }

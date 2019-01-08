@@ -1,7 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {StyleProp, TouchableWithoutFeedback, ViewStyle} from 'react-native';
-import ChungView from "./ChungView";
+import {StyleProp, TouchableWithoutFeedback, View, ViewStyle} from 'react-native';
 
 export interface FlexItemProps {
     flex?: number;
@@ -26,9 +25,9 @@ export default class FlexItem extends React.Component<FlexItemProps, any> {
         };
 
         const inner = (
-            <ChungView style={[flexItemStyle, style]} {...restProps}>
+            <View style={[flexItemStyle, style]} {...restProps}>
                 {children}
-            </ChungView>
+            </View>
         );
 
         const shouldWrapInTouchableComponent =
