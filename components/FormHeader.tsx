@@ -33,7 +33,7 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
                         {
                             hint && (
                                 <Modal
-                                    buttonTrigger={(
+                                    nonButtonTrigger={(
                                         <WingBlank>
                                             <Icon customSize={iconSize} name={"info-circle"}/>
                                         </WingBlank>
@@ -73,10 +73,11 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
                     onClear &&
                     <ConfirmModal
                         buttonTrigger={(
-                                <Icon customSize={iconSize}
-                                      style={{marginLeft:10}}
-                                      name={"eraser"}
-                                />
+                            <Icon
+                                customSize={iconSize}
+                                style={{marginLeft: 10}}
+                                name={"eraser"}
+                            />
                         )}
                         title={`Are you sure you want to clear the content?`}
                         onConfirmClick={onClear}

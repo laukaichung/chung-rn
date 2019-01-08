@@ -34,7 +34,7 @@ export default class List extends React.Component<ListProps, any> {
                 }
 
                 <View style={{
-                    borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 && Styles.borderWidth,
+                    borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth:null,
                     borderTopColor: Styles.borderColor,
                 }}>
 
@@ -45,7 +45,7 @@ export default class List extends React.Component<ListProps, any> {
                         left: 0,
                         right: 0,
                         height: 1,
-                        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 && Styles.borderWidth,
+                        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth:null,
                         borderBottomColor: Styles.borderColor,
                     }]}/>
                 </View>

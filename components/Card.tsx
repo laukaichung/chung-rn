@@ -29,11 +29,11 @@ export default class Card extends React.Component<CardProps, any> {
                 style={[
                     {
                         borderColor: Styles.borderColor,
-                        borderWidth: hideBorder && Styles.borderWidth,
+                        borderWidth: hideBorder ? Styles.borderWidth:null,
                         borderRadius: Styles.radiusMd,
                         overflow: 'hidden',
                         flexDirection: 'column',
-                        borderBottomWidth: hideBorder && 2,
+                        borderBottomWidth: hideBorder? 2:null,
                     },
                     cardStyle,
                     style,
