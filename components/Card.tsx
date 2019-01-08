@@ -9,6 +9,7 @@ export interface CardProps {
     style?: StyleProp<ViewStyle>;
     full?: boolean;
     marginVertical?: boolean;
+    hideBorder?:boolean
 
 }
 
@@ -18,7 +19,7 @@ export default class Card extends React.Component<CardProps, any> {
     static Footer = CardFooter;
 
     public render() {
-        const {style = {}, full = true, children, marginVertical = false, ...restProps} = this.props;
+        const {style = {}, full = true,hideBorder, children, marginVertical = false, ...restProps} = this.props;
         const cardStyle = full ? styles.full : {margin: Styles.margin};
         const childDom = React.Children.map(children, child =>
             React.cloneElement(child as React.ReactElement<any>, {styles}),
@@ -28,11 +29,11 @@ export default class Card extends React.Component<CardProps, any> {
                 style={[
                     {
                         borderColor: Styles.borderColor,
-                        borderWidth: Styles.borderWidth,
+                        borderWidth: hideBorder && Styles.borderWidth,
                         borderRadius: Styles.radiusMd,
                         overflow: 'hidden',
                         flexDirection: 'column',
-                        borderBottomWidth:2,
+                        borderBottomWidth: hideBorder && 2,
                     },
                     cardStyle,
                     style,
