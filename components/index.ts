@@ -48,3 +48,4 @@ export {default as ScreenUtil} from './util/ScreenUtil'
 export {default as UIProvider} from "./UIProvider"
 export {default as UIContainer} from "./UIContainer"
 export {default as UIContext} from "./UIContext"
+export {default as VerticalMiddleContainer} from "./VerticalMiddleContainer"

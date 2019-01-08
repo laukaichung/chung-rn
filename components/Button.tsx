@@ -8,7 +8,7 @@ export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
     onPress?: (_?: any) => void;
     type?: 'primary' | 'warning' | 'ghost';
-    size?: 'large' | 'small';
+    size?: 'lg' | 'sm';
     disabled?: boolean;
     loading?: boolean;
     icon?: string;
@@ -32,7 +32,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
     public render() {
         const {
-            size = 'large',
+            size = 'lg',
             type = 'default',
             disabled,
             children,
@@ -71,7 +71,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
 
         let textStyle: TextStyle[] = [
-            {fontSize: size === "small" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
+            {fontSize: size === "sm" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
         ];
 
         let indicatorColor: string;
@@ -82,7 +82,7 @@ export default class Button extends React.Component<ButtonProps, State> {
             justifyContent: 'center',
             borderRadius: Styles.radiusMd,
             borderWidth: 1,
-            padding: size === "small" ? Styles.paddingSm : Styles.padding
+            padding: size === "sm" ? Styles.paddingSm : Styles.padding
         }];
 
         if (type === "primary") {

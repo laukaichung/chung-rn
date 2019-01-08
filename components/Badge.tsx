@@ -5,7 +5,7 @@ import ChungText from "./ChungText";
 
 export interface BadgeNativeProps {
     style?: StyleProp<ViewStyle>;
-    size?: 'large' | 'small';
+    size?: 'lg' | 'sm';
     overflowCount?: number;
     corner?: boolean;
     dot?: boolean;
@@ -14,7 +14,7 @@ export interface BadgeNativeProps {
 
 export default class Badge extends React.Component<BadgeNativeProps, any> {
     static defaultProps = {
-        size: 'small',
+        size: 'sm',
         overflowCount: 99,
         dot: false,
         corner: false,

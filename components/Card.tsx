@@ -18,7 +18,7 @@ export default class Card extends React.Component<CardProps, any> {
     static Footer = CardFooter;
 
     public render() {
-        const {style = {}, full = false, children, marginVertical = true, ...restProps} = this.props;
+        const {style = {}, full = false, children, marginVertical = false, ...restProps} = this.props;
         const cardStyle = full ? styles.full : {margin: Styles.margin};
         const childDom = React.Children.map(children, child =>
             React.cloneElement(child as React.ReactElement<any>, {styles}),
