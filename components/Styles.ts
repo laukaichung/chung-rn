@@ -174,8 +174,8 @@ export default class Styles {
 
     static borderWidth = 1;
 
-    static buttonFontSize= 18;
-    static buttonFontSizeSm= 12;
+    static buttonFontSize= 12;
+    static buttonFontSizeLg= 18;
     static defaultButtonPressInTextColor = '#222222';
 
     static primaryButtonTextColorLight = "#ffffff";

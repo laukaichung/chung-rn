@@ -39,7 +39,8 @@ export default class Card extends React.Component<CardProps, any> {
                     style,
                     marginVertical && {marginVertical: Styles.margin}
                 ]}
-                {...restProps}>
+                {...restProps}
+            >
                 {childDom}
             </View>
         );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
+import {ActivityIndicator, StyleProp, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
 import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import Icon, {IconSize} from "./Icon";
@@ -9,7 +9,7 @@ export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
     onPress?: (_?: any) => void;
     type?: 'primary';
-    size?: 'lg' | 'sm';
+    size?: 'lg' | 'md';
     disabled?: boolean;
     loading?: boolean;
     icon?: string;
@@ -33,7 +33,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
     public render() {
         const {
-            size = 'lg',
+            size = 'md',
             type = 'default',
             disabled,
             children,
@@ -49,7 +49,7 @@ export default class Button extends React.Component<ButtonProps, State> {
         let {pressIn} = this.state;
 
         let textStyle: TextStyle[] = [
-            {fontSize: size === "sm" ? Styles.buttonFontSizeSm : Styles.buttonFontSize}
+            {fontSize: size === "lg" ? Styles.buttonFontSizeLg : Styles.buttonFontSize}
         ];
 
         let indicatorColor: string;
@@ -58,7 +58,7 @@ export default class Button extends React.Component<ButtonProps, State> {
         let wrapperStyle: ViewStyle[] = [{
             alignItems: 'center',
             justifyContent: 'center',
-            padding: size === "sm" ? Styles.paddingSm : Styles.padding,
+            padding: size === "lg" ? Styles.padding : Styles.paddingSm,
             borderWidth: 1,
             borderRadius: Styles.radiusMd,
             elevation:4,

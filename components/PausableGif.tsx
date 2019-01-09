@@ -18,8 +18,8 @@ export class PausableGif extends React.Component<PausableGifProps, PausableState
     public state: PausableState = {play: false};
 
     public render() {
-        let {play} = this.state;
-        let {pauseIcon,style,source} = this.props;
+        const {play} = this.state;
+        const {pauseIcon,style,source} = this.props;
         return (
             <CustomTouchableHighlight style={style} onPress={() => this.setState({play: !play})}>
                 <React.Fragment>

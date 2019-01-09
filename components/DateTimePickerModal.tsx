@@ -20,10 +20,10 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
     public state: State = {isVisible: false, date: this.props.date};
 
     public render() {
-        let {state, props} = this;
-        let {isVisible, date} = state;
-        let {onConfirm, onCancel,listItemProps = {}, renderDateValue} = props;
-        let {isDarkMode} = Styles;
+        const {state, props} = this;
+        const {isVisible, date} = state;
+        const {onConfirm, onCancel,listItemProps = {}, renderDateValue} = props;
+        const {isDarkMode} = Styles;
         return (
 
             <List.Item
