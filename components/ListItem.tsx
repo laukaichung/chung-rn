@@ -167,6 +167,7 @@ export default class Item extends React.Component<ListItemProps, any> {
         return (
             <CustomTouchableHighlight
                 onPress={onPress}
+                style={{flex:1}}
                 onLongPress={onLongPress}>
                 {itemView}
             </CustomTouchableHighlight>

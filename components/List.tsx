@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {StyleProp, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
 import ListItem from "./ListItem";
 import ChungText from "./ChungText";

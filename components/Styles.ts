@@ -1,4 +1,4 @@
-import {TextStyle, ViewStyle} from "react-native";
+import {Platform, TextStyle, ViewStyle} from "react-native";
 
 export type ChungThemeTypes = "dark"|"light"
 
@@ -8,6 +8,14 @@ export default class Styles {
 
     static get isDarkMode(){
         return this.mode === "dark";
+    }
+
+    static fontFamilyAndroid = "sans-serif-condensed";
+
+    static fontFamilyIOS = "AmericanTypewriter-Condensed";
+
+    static get fontFamily(){
+        return Platform.OS === "ios" ? this.fontFamilyIOS:this.fontFamilyAndroid;
     }
 
     static get placeholderTextColor(){
@@ -27,6 +35,7 @@ export default class Styles {
     static primaryColor = "#0f62a8";
 
     static secondaryColor = "#366b1d";
+
 
     static badgeBackgroundColor = "#cb6600";
 
@@ -100,6 +109,10 @@ export default class Styles {
     static padding = 10;
     static paddingLg= 15;
     static paddingXl= 21;
+
+    static get selectedTextColor(){
+        return this.secondaryColor;
+    }
 
     static get selectedBackgroundColor(){
         return this.isDarkMode? this.primaryColorDark:this.primaryColor
