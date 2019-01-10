@@ -23,6 +23,12 @@ export interface ListItemProps {
     onLongPress?: () => void;
     style?: StyleProp<ViewStyle>;
     bottomExtraView?: ReactNode;
+    /**
+     * ContainerFlex: Make {flex:1} available in CustomTouchableHighlight to make it fit the screen width automatically
+     * when it is used with numColumns in FlatList.
+     * Disable containerFlex for ActivityLogPanel.
+     */
+    containerFlex?:boolean
     hideBorder?: HideBorderOptions[];
 
 }
@@ -31,6 +37,7 @@ export default class Item extends React.Component<ListItemProps, any> {
 
     render() {
         const {
+            containerFlex = true,
             children,
             onLongPress,
             thumb,
@@ -167,7 +174,7 @@ export default class Item extends React.Component<ListItemProps, any> {
         return (
             <CustomTouchableHighlight
                 onPress={onPress}
-                style={{flex:1}}
+                style={[containerFlex && {flex:1}]}
                 onLongPress={onLongPress}>
                 {itemView}
             </CustomTouchableHighlight>
