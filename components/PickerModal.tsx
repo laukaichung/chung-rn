@@ -17,7 +17,7 @@ export interface PickerModalProps extends ModalProps, FormCommonProps, FormListI
     data: PickerItem[];
     multiple?: boolean
     displayTextAsValue?: boolean;
-    columnNum?: number;
+    numColumns?: number;
     customLabelElement?: ReactNode
 }
 
@@ -68,12 +68,13 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
         let {selectedOptions} = state;
         const {
             invalidMessage, data, multiple, customLabelElement,
-            hint, listItemProps = {}, displayTextAsValue, label, onChange, columnNum = DeviceInfo.isTablet()?4:3
+            hint, listItemProps = {}, displayTextAsValue, label, onChange, numColumns = DeviceInfo.isTablet()?4:3
         } = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
         });
 
+        console.log(numColumns);
         return (
             <CustomModal
                 title={multiple ? `Select multiple options` : `Select one option`}
@@ -100,7 +101,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         return (
                             <ScrollView style={styles.container}>
                                 {hint && <HintText>{hint}</HintText>}
-                                <Grid numColumns={columnNum}
+                                <Grid numColumns={numColumns}
                                       data={data}
                                       onPress={(option: PickerItem) => {
 

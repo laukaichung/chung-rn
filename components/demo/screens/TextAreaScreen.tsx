@@ -16,6 +16,7 @@ export class TextAreaScreen extends React.Component<NavigationProps> {
                         <ChungText>Hello</ChungText>
                     </List.Item>
                     <TextAreaListItem last
+                                      label={"Label"}
                                       placeholder={`Enter here`}
                                       rows={5}
                                       count={40}

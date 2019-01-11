@@ -50,7 +50,10 @@ export default class Grid extends React.Component<GridProps, any> {
             },
         } = this.props;
 
-        const numColumns = this.props.numColumns || DeviceInfo.isTablet()?tabletNumColumns:mobileNumColumns;
+        let numColumns = this.props.numColumns;
+        if(mobileNumColumns || tabletNumColumns){
+            numColumns =  DeviceInfo.isTablet()?tabletNumColumns:mobileNumColumns
+        }
 
         const dataLength = (data && data.length) || 0;
         const rowCount = Math.ceil(dataLength / numColumns);
