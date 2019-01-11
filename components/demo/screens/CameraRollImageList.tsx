@@ -5,7 +5,7 @@ import {View} from "react-native";
 import Button from "../../Button";
 import {CameraRollFile} from "../../type";
 import {NavigationProps} from "../demotype";
-import {PermissionUtil} from "../../util/PermissionUtil";
+import PermissionUtil from "../../util/PermissionUtil";
 
 interface Props {
     onConfirm: (files: CameraRollFile[]) => void

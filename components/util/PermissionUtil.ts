@@ -1,6 +1,6 @@
 import {PermissionsAndroid, Platform} from "react-native";
 
-export class PermissionUtil {
+export default class PermissionUtil {
 
     static async androidReadExteralStorage():Promise<{granted:boolean,error?:Error}> {
         if (Platform.OS === 'android') {
