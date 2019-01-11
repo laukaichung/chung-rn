@@ -19,7 +19,7 @@ interface DataItem {
 interface GridProps {
     itemStyle?: StyleProp<ViewStyle>;
     data?: Array<DataItem | undefined>;
-    hasLine?: boolean;
+    showBorder?: boolean;
     tabletNumColumns?: number;
     mobileNumColumns?:number;
     numColumns?:number
@@ -34,18 +34,16 @@ interface GridProps {
 
 export default class Grid extends React.Component<GridProps, any> {
     static defaultProps = {
-        data: [],
-        hasLine: true,
-        isCarousel: false,
-        carouselMaxRow: 2,
         itemStyle: {},
     };
 
     public render() {
         const {
-            data,
-            hasLine,
-            isCarousel,
+            data = [],
+            showBorder = false,
+            itemStyle = {},
+            carouselMaxRow = 2,
+            isCarousel = false,
             tabletNumColumns,
             mobileNumColumns,
             onPress = () => {
@@ -54,13 +52,10 @@ export default class Grid extends React.Component<GridProps, any> {
 
         const numColumns = this.props.numColumns || DeviceInfo.isTablet()?tabletNumColumns:mobileNumColumns;
 
-        const customItemStyle = this.props.itemStyle;
-        const carouselMaxRow = this.props.carouselMaxRow as number;
         const dataLength = (data && data.length) || 0;
         const rowCount = Math.ceil(dataLength / numColumns);
 
-        const renderItem =
-            this.props.renderItem ||
+        const renderItem = this.props.renderItem ||
             ((dataItem: DataItem, index: number) => (
                 <Flex
                     direction="column"
@@ -98,8 +93,8 @@ export default class Grid extends React.Component<GridProps, any> {
                             style={[
                                 styles.grayBorderBox,
                                 flexItemStyle,
-                                {borderLeftWidth: hasLine && j === 0 ? StyleSheet.hairlineWidth : 0},
-                                customItemStyle,
+                                {borderLeftWidth: showBorder && j === 0 ? Styles.borderWidth : 0},
+                                itemStyle,
                             ]}
                             onPress={() => onPress(el, dataIndex)}
                         >
@@ -113,8 +108,8 @@ export default class Grid extends React.Component<GridProps, any> {
                 }
             }
             const boxBorderStyle = {
-                borderTopWidth: hasLine && i === 0 ? StyleSheet.hairlineWidth : 0,
-                borderBottomWidth: hasLine ? StyleSheet.hairlineWidth : 0,
+                borderTopWidth: showBorder && i === 0 ? StyleSheet.hairlineWidth : 0,
+                borderBottomWidth: showBorder ? StyleSheet.hairlineWidth : 0,
             };
             rowsArr.push(
                 <Flex key={i} style={[styles.grayBorderBox, boxBorderStyle]}>
@@ -144,7 +139,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         }
                         pageRows.push(
                             <Flex key={rowIndex}
-                                  style={[styles.grayBorderBox, {borderBottomWidth: hasLine ? Styles.borderWidth : 0}]}>
+                                  style={[styles.grayBorderBox, {borderBottomWidth: showBorder ? Styles.borderWidth : 0}]}>
                                 {res}
                             </Flex>,
                         );
@@ -155,7 +150,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         key={pageIndex}
                         style={[
                             styles.grayBorderBox,
-                            {borderTopWidth: hasLine && pageIndex !== 0 ? StyleSheet.hairlineWidth : 0},
+                            {borderTopWidth: showBorder && pageIndex !== 0 ? StyleSheet.hairlineWidth : 0},
                         ]}
                     >
                         {pageRows}
@@ -176,7 +171,7 @@ export default class Grid extends React.Component<GridProps, any> {
     getFlexItemStyle(numColumns: number) {
         return {
             height: ScreenUtil.fullWidth() / numColumns,
-            borderRightWidth: this.props.hasLine ? StyleSheet.hairlineWidth : 0,
+            borderRightWidth: this.props.showBorder ? StyleSheet.hairlineWidth : 0,
         };
     }
 

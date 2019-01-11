@@ -17,6 +17,7 @@ interface ImagePickerModalProps extends FormListItemCommonProps {
     multiple?: boolean;
 }
 
+
 export default class ImagePickerModal extends React.Component<ImagePickerModalProps, any> {
     private ref: RefObject<CameraRollImageList>;
 
@@ -64,7 +65,6 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                         <Grid
                             tabletNumColumns={4}
                             mobileNumColumns={3}
-                            hasLine={false}
                             data={images}
                             renderItem={(file: CameraRollFile) => {
                                 return (
