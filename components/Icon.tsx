@@ -24,9 +24,13 @@ const Icon = (props: IconProps) => {
                     size === "xl" ? 60 : Styles.iconSizeMd;
     let {color} = props;
     if (Styles.isDarkMode && !color) color = '#c6c6c6';
-    let iconComponent = <FontAwesomeIcon {...props}
-                              color={color}
-                              size={sizeNo}/>;
+    let iconComponent = (
+        <FontAwesomeIcon
+            {...props}
+            color={color}
+            size={sizeNo}
+        />
+    );
     if (onPress) {
 
         return (

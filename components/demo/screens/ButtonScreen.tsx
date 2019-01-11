@@ -17,7 +17,7 @@ export class ButtonScreen extends React.Component<NavigationProps, State> {
     render() {
         return (
             <UIContainer>
-                <CustomModal title={"Title"} buttonTrigger={<Button size="sm" type="ghost">Hello</Button>}>
+                <CustomModal title={"Title"} buttonTrigger={<Button>Hello</Button>}>
                     {
                         () => {
                             return (

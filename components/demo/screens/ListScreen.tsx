@@ -9,7 +9,7 @@ import {ListItem} from "../../index";
 
 export class ListScreen extends React.Component<NavigationProps> {
 
-    render() {
+    public render() {
         return (
             <Container>
                 <ScrollView>
