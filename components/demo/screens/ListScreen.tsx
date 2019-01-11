@@ -6,6 +6,8 @@ import ChungText from "../../ChungText";
 import WhiteSpace from "../../WhiteSpace";
 import {ScrollView, View} from "react-native";
 import {ListItem} from "../../index";
+import Flex from "../../Flex";
+import FlexItem from "../../FlexItem";
 
 export class ListScreen extends React.Component<NavigationProps> {
 
@@ -29,6 +31,7 @@ export class ListScreen extends React.Component<NavigationProps> {
 
                     <List.Item
                         arrow="right"
+                        extra={<ChungText>Extra</ChungText>}
                         onLongPress={() => alert('dfdfdf')}
                         hideBorder={["top"]}>
                         <ChungText>No top border</ChungText>
@@ -60,11 +63,18 @@ export class ListScreen extends React.Component<NavigationProps> {
                         <ChungText>Extra Bottom View</ChungText>
                     </List.Item>
 
-                    <WhiteSpace center>
+                    <Flex>
+                        <FlexItem>
+                            <ListItem arrow="right">
+                                <ChungText>Center that</ChungText>
+                            </ListItem>
+                        </FlexItem>
+                        <FlexItem>
                             <ListItem arrow="right">
                                 <ChungText>Center this</ChungText>
                             </ListItem>
-                    </WhiteSpace>
+                        </FlexItem>
+                    </Flex>
 
                 </ScrollView>
             </Container>

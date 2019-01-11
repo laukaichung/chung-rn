@@ -1,12 +1,11 @@
 import * as React from 'react';
+import {ReactNode} from 'react';
 import {Image, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
 import CustomTouchableHighlight from "./CustomTouchableHighlight";
-import {ReactNode} from "react";
 import ChungText from "./ChungText";
 import Icon from "./Icon";
-import Flex from "./Flex";
-import FlexItem from "./FlexItem";
+import VerticalMiddleContainer from "./VerticalMiddleContainer";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -30,7 +29,6 @@ export interface ListItemProps {
      * when it is used with numColumns in FlatList.
      * Disable containerFlex for ActivityLogPanel.
      */
-    containerFlex?: boolean
     hideBorder?: HideBorderOptions[];
 
 }
@@ -39,7 +37,6 @@ export default class Item extends React.Component<ListItemProps, any> {
 
     render() {
         const {
-            containerFlex = true,
             children,
             onLongPress,
             thumb,
@@ -81,41 +78,6 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        let extraDom;
-        if (extra) {
-            extraDom = (
-                <View style={[styles.column]}>
-                    <ChungText style={[styles.extra]} {...numberOfLines}>
-                        {extra}
-                    </ChungText>
-                </View>
-            );
-            if (React.isValidElement(extra)) {
-                const extraChildren = (extra.props as any).children;
-                if (Array.isArray(extraChildren)) {
-                    const tempExtraDom: any[] = [];
-                    extraChildren.forEach((el, index) => {
-                        if (typeof el === 'string') {
-                            tempExtraDom.push(
-                                <ChungText
-                                    {...numberOfLines}
-                                    style={[styles.extra]}
-                                    key={`${index}-children`}
-                                >
-                                    {el}
-                                </ChungText>,
-                            );
-                        } else {
-                            tempExtraDom.push(el);
-                        }
-                    });
-                    extraDom = <View style={[styles.column]}>{tempExtraDom}</View>;
-                } else {
-                    extraDom = extra;
-                }
-            }
-        }
-
         let itemBorderStyle: StyleProp<ViewStyle>[] = [{
             borderWidth: Styles.borderWidth,
             borderColor: Styles.borderColor
@@ -123,56 +85,55 @@ export default class Item extends React.Component<ListItemProps, any> {
 
         if (hideBorder) {
 
-            if (hideBorder.indexOf("bottom") > -1) {
-                itemBorderStyle.push({borderBottomWidth: 0})
-            }
+            if (hideBorder.indexOf("bottom") > -1)
+                itemBorderStyle.push({borderBottomWidth: 0});
 
-            if (hideBorder.indexOf("left") > -1) {
-                itemBorderStyle.push({borderLeftWidth: 0})
-            }
 
-            if (hideBorder.indexOf("right") > -1) {
-                itemBorderStyle.push({borderRightWidth: 0})
-            }
+            if (hideBorder.indexOf("left") > -1)
+                itemBorderStyle.push({borderLeftWidth: 0});
 
-            if (hideBorder.indexOf("top") > -1) {
-                itemBorderStyle.push({borderTopWidth: 0})
-            }
 
-            if (hideBorder.indexOf("all") > -1) {
-                itemBorderStyle.push({borderWidth: 0})
-            }
+            if (hideBorder.indexOf("right") > -1)
+                itemBorderStyle.push({borderRightWidth: 0});
+
+
+            if (hideBorder.indexOf("top") > -1)
+                itemBorderStyle.push({borderTopWidth: 0});
+
+
+            if (hideBorder.indexOf("all") > -1)
+                itemBorderStyle.push({borderWidth: 0});
+
         }
 
         const itemView = (
             <View {...restProps}
                   style={[itemBorderStyle, {paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
                 <View style={{
-                    // flex: 1,
-                    padding:Styles.padding / 2,
+                    padding: Styles.padding / 2,
                     flexDirection: 'row',
                     flexWrap: 'wrap',
                     justifyContent: 'space-between'
                 }}>
                     {
                         typeof thumb === 'string' ? (
-                                <Image
-                                    source={{uri: thumb}}
-                                    style={[styles.thumb] as any}
-                                />
+                            <Image
+                                source={{uri: thumb}}
+                                style={[styles.thumb] as any}
+                            />
                         ) : thumb
 
 
                     }
                     {contentDom}
                     {
-                        <View style={[Styles.inline,{marginHorizontal:Styles.margin / 2}]}>
-                            {extraDom}
+                        (extra || arrow) &&
+                        <VerticalMiddleContainer style={[{marginHorizontal:Styles.margin}]}>
                             {
-                                arrow ?
-                                    <Icon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/> : null
+                                extra
                             }
-                        </View>
+                            {arrow && <Icon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/>}
+                        </VerticalMiddleContainer>
                     }
                 </View>
                 {bottomExtraView}
