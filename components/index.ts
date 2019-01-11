@@ -34,6 +34,7 @@ export {default as Modal} from './Modal';
 export {default as PickerModal} from './PickerModal'
 export {default as Progress} from './Progress';
 export {default as PausableGif} from './PausableGif'
+export {default as PermissionUtil} from './util/PermissionUtil';
 export {default as Radio} from './Radio';
 export {default as Result} from './Result';
 export {default as TextAreaListItem} from './TextAreaListItem';
