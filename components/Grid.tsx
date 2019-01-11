@@ -16,7 +16,7 @@ interface DataItem {
     [key: string]: any;
 }
 
-interface GridProps {
+export interface GridProps {
     itemStyle?: StyleProp<ViewStyle>;
     data?: Array<DataItem | undefined>;
     showBorder?: boolean;
@@ -50,7 +50,7 @@ export default class Grid extends React.Component<GridProps, any> {
             },
         } = this.props;
 
-        let numColumns = this.props.numColumns;
+        let numColumns = this.props.numColumns || 3;
         if(mobileNumColumns || tabletNumColumns){
             numColumns =  DeviceInfo.isTablet()?tabletNumColumns:mobileNumColumns
         }

@@ -3,6 +3,7 @@ import {NavigationProps} from "../demotype";
 import PickerModal, {PickerItem} from "../../PickerModal";
 import List from "../../List";
 import UIContainer from "../../UIContainer";
+import ChungText from "../../ChungText";
 
 interface State {
     selectedOptions: PickerItem[]
@@ -18,7 +19,15 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
                 <List>
                     <PickerModal
                         onChange={(selectedOptions) => this.setState({selectedOptions})}
-                        numColumns={3}
+                        gridProps={{
+                            mobileNumColumns:5,
+                            tabletNumColumns:4,
+                        }}
+                        renderPickerOption={(data)=>{
+                            return (
+                                <ChungText>!{data.option.text}!</ChungText>
+                            )
+                        }}
                         selectedOptions={this.state.selectedOptions}
                         data={[
                             {value: "A", text: "A Text"},

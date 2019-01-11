@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
 import {ScrollView, StyleSheet, View} from "react-native";
-import Grid from "./Grid";
+import Grid, {GridProps} from "./Grid";
 import CustomModal, {ModalProps} from "./Modal";
 import Styles from "./Styles";
 import StringUtil from "./util/StringUtil";
@@ -11,14 +11,14 @@ import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
-import DeviceInfo from 'react-native-device-info';
 
 export interface PickerModalProps extends ModalProps, FormCommonProps, FormListItemCommonProps {
     data: PickerItem[];
     multiple?: boolean
     displayTextAsValue?: boolean;
-    numColumns?: number;
-    customLabelElement?: ReactNode
+    gridProps:GridProps;
+    customLabelElement?: ReactNode;
+    renderPickerOption?:(data:{selectedOptions:PickerItem[],option:PickerItem})=>ReactNode
 }
 
 interface SelectOptionModel {
@@ -68,13 +68,14 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
         let {selectedOptions} = state;
         const {
             invalidMessage, data, multiple, customLabelElement,
-            hint, listItemProps = {}, displayTextAsValue, label, onChange, numColumns = DeviceInfo.isTablet()?4:3
+            hint, listItemProps = {}, displayTextAsValue, onChange,
+            gridProps,
+            renderPickerOption
         } = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
         });
 
-        console.log(numColumns);
         return (
             <CustomModal
                 title={multiple ? `Select multiple options` : `Select one option`}
@@ -101,32 +102,34 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         return (
                             <ScrollView style={styles.container}>
                                 {hint && <HintText>{hint}</HintText>}
-                                <Grid numColumns={numColumns}
-                                      data={data}
-                                      onPress={(option: PickerItem) => {
+                                <Grid
+                                    data={data}
+                                    onPress={(option: PickerItem) => {
 
-                                          let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
-                                          if (targetIdx > -1) {
-                                              selectedOptions.splice(targetIdx, 1);
-                                          } else {
-                                              if (multiple) {
-                                                  selectedOptions.push(option);
-                                              } else {
-                                                  selectedOptions = [option];
-                                              }
-                                          }
-                                          this.setState({
-                                              selectedOptions
-                                          });
+                                        let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
+                                        if (targetIdx > -1) {
+                                            selectedOptions.splice(targetIdx, 1);
+                                        } else {
+                                            if (multiple) {
+                                                selectedOptions.push(option);
+                                            } else {
+                                                selectedOptions = [option];
+                                            }
+                                        }
+                                        this.setState({
+                                            selectedOptions
+                                        });
 
-                                          onChange(selectedOptions);
-                                          if (!multiple) closeModal()
-                                      }}
-                                      renderItem={(option: PickerItem) => {
-                                          return (
-                                              <PickerOption selectedOptions={selectedOptions} option={option}/>
-                                          )
-                                      }}
+                                        onChange(selectedOptions);
+                                        if (!multiple) closeModal()
+                                    }}
+                                    renderItem={(option: PickerItem) => {
+                                        if(renderPickerOption) return renderPickerOption({selectedOptions,option});
+                                        return (
+                                            <PickerOption selectedOptions={selectedOptions} option={option}/>
+                                        )
+                                    }}
+                                    {...gridProps}
                                 />
                             </ScrollView>
                         )
