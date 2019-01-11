@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {ScrollView, StyleSheet, View} from "react-native";
+import {ScrollView, StyleProp, StyleSheet, TextStyle, View} from "react-native";
 import Grid, {GridProps} from "./Grid";
 import CustomModal, {ModalProps} from "./Modal";
 import Styles from "./Styles";
@@ -16,9 +16,9 @@ export interface PickerModalProps extends ModalProps, FormCommonProps, FormListI
     data: PickerItem[];
     multiple?: boolean
     displayTextAsValue?: boolean;
-    gridProps:GridProps;
+    gridProps?: GridProps;
     customLabelElement?: ReactNode;
-    renderPickerOption?:(data:{selectedOptions:PickerItem[],option:PickerItem})=>ReactNode
+    renderPickerOption?: (data: { selectedOptions: PickerItem[], option: PickerItem }) => ReactNode
 }
 
 interface SelectOptionModel {
@@ -38,15 +38,21 @@ export interface PickerItem {
 export interface PickerOptionProps {
     option: PickerItem
     selectedOptions: PickerItem[];
+    textStyle?: StyleProp<TextStyle>
 }
 
-export const PickerOption = ({option, selectedOptions}: PickerOptionProps) => {
+export const PickerOption = ({option, textStyle, selectedOptions}: PickerOptionProps) => {
     return (
         <View style={Styles.centerItems}>
-            <ChungText style={{
-                fontWeight: "bold",
-                color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedTextColor : Styles.textColor
-            }}>
+            <ChungText style={
+                [
+                    {
+                        fontWeight: "bold",
+                        color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedTextColor : Styles.textColor
+                    },
+                    textStyle
+                ]
+            }>
                 {StringUtil.capitalize(option.text)}
             </ChungText>
         </View>
@@ -124,7 +130,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                                         if (!multiple) closeModal()
                                     }}
                                     renderItem={(option: PickerItem) => {
-                                        if(renderPickerOption) return renderPickerOption({selectedOptions,option});
+                                        if (renderPickerOption) return renderPickerOption({selectedOptions, option});
                                         return (
                                             <PickerOption selectedOptions={selectedOptions} option={option}/>
                                         )
