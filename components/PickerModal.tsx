@@ -11,6 +11,7 @@ import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
+import DeviceInfo from 'react-native-device-info';
 
 export interface PickerModalProps extends ModalProps, FormCommonProps, FormListItemCommonProps {
     data: PickerItem[];
@@ -65,7 +66,10 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
     public render() {
         const {props, state} = this;
         let {selectedOptions} = state;
-        const {invalidMessage, data, multiple, customLabelElement, hint, listItemProps = {}, displayTextAsValue, label, onChange, columnNum = 3} = props;
+        const {
+            invalidMessage, data, multiple, customLabelElement,
+            hint, listItemProps = {}, displayTextAsValue, label, onChange, columnNum = DeviceInfo.isTablet()?4:3
+        } = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
         });
@@ -96,7 +100,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         return (
                             <ScrollView style={styles.container}>
                                 {hint && <HintText>{hint}</HintText>}
-                                <Grid columnNum={columnNum}
+                                <Grid numColumns={columnNum}
                                       data={data}
                                       onPress={(option: PickerItem) => {
 

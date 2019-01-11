@@ -62,7 +62,8 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                     images.length > 0 &&
                     <List.Item>
                         <Grid
-                            columnNum={3}
+                            tabletNumColumns={4}
+                            mobileNumColumns={3}
                             hasLine={false}
                             data={images}
                             renderItem={(file: CameraRollFile) => {

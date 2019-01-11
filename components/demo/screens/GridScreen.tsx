@@ -3,14 +3,17 @@ import Grid from "../../Grid";
 import {NavigationProps} from "../demotype";
 import UIContainer from "../../UIContainer";
 
+
 export class GridScreen extends React.Component<NavigationProps> {
+
     render() {
         return (
             <UIContainer>
                 <Grid
                     isCarousel
                     carouselMaxRow={1}
-                    columnNum={3}
+                    tabletNumColumns={4}
+                    mobileNumColumns={3}
                     data={[
                         {
                             text: 'ssss',

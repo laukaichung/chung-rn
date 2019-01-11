@@ -5,6 +5,8 @@ import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import {ReactNode} from "react";
 import ChungText from "./ChungText";
 import Icon from "./Icon";
+import Flex from "./Flex";
+import FlexItem from "./FlexItem";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -14,7 +16,7 @@ export interface ListItemProps {
     children?: ReactNode;
     thumb?: ReactNode | null;
     extra?: ReactNode;
-    arrow?: 'right' | 'down' | 'up' ;
+    arrow?: 'right' | 'down' | 'up';
     wrap?: boolean;
     activeStyle?: React.CSSProperties;
     error?: boolean;
@@ -28,7 +30,7 @@ export interface ListItemProps {
      * when it is used with numColumns in FlatList.
      * Disable containerFlex for ActivityLogPanel.
      */
-    containerFlex?:boolean
+    containerFlex?: boolean
     hideBorder?: HideBorderOptions[];
 
 }
@@ -145,27 +147,33 @@ export default class Item extends React.Component<ListItemProps, any> {
         const itemView = (
             <View {...restProps}
                   style={[itemBorderStyle, {paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
-                <View style={[styles.item]}>
-                    {typeof thumb === 'string' ? (
-                        <Image
-                            source={{uri: thumb}}
-                            style={[styles.thumb] as any}
-                        />
-                    ) : (
-                        thumb
-                    )}
-                    <View
-                        style={[
-                            styles.line
-                        ]}
-                    >
-                        {contentDom}
-                        {extraDom}
-                        {
-                            arrow ?
-                                <Icon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/> : null
-                        }
-                    </View>
+                <View style={{
+                    // flex: 1,
+                    padding:Styles.padding / 2,
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between'
+                }}>
+                    {
+                        typeof thumb === 'string' ? (
+                                <Image
+                                    source={{uri: thumb}}
+                                    style={[styles.thumb] as any}
+                                />
+                        ) : thumb
+
+
+                    }
+                    {contentDom}
+                    {
+                        <View style={[Styles.inline,{marginHorizontal:Styles.margin / 2}]}>
+                            {extraDom}
+                            {
+                                arrow ?
+                                    <Icon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/> : null
+                            }
+                        </View>
+                    }
                 </View>
                 {bottomExtraView}
             </View>
@@ -174,7 +182,6 @@ export default class Item extends React.Component<ListItemProps, any> {
         return (
             <CustomTouchableHighlight
                 onPress={onPress}
-                style={[containerFlex && {flex:1}]}
                 onLongPress={onLongPress}>
                 {itemView}
             </CustomTouchableHighlight>
@@ -184,9 +191,9 @@ export default class Item extends React.Component<ListItemProps, any> {
 
 const styles = StyleSheet.create({
     line: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
+        //flex: 1,
+        //flexDirection: 'row',
+        //alignItems: 'center',
         paddingRight: Styles.padding,
         //paddingVertical: Styles.paddingLg,
         minHeight: Styles.listItemHeight,

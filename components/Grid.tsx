@@ -7,6 +7,7 @@ import Flex from "./Flex";
 import ScreenUtil from "./util/ScreenUtil";
 import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
+import DeviceInfo from 'react-native-device-info';
 
 interface DataItem {
     icon?: any;
@@ -19,7 +20,9 @@ interface GridProps {
     itemStyle?: StyleProp<ViewStyle>;
     data?: Array<DataItem | undefined>;
     hasLine?: boolean;
-    columnNum?: number;
+    tabletNumColumns?: number;
+    mobileNumColumns?:number;
+    numColumns?:number
     isCarousel?: boolean;
     carouselMaxRow?: number;
     onPress?: (dataItem: DataItem | undefined, itemIndex: number) => void;
@@ -34,7 +37,6 @@ export default class Grid extends React.Component<GridProps, any> {
         data: [],
         hasLine: true,
         isCarousel: false,
-        columnNum: 4,
         carouselMaxRow: 2,
         itemStyle: {},
     };
@@ -44,14 +46,18 @@ export default class Grid extends React.Component<GridProps, any> {
             data,
             hasLine,
             isCarousel,
+            tabletNumColumns,
+            mobileNumColumns,
             onPress = () => {
             },
         } = this.props;
-        const columnNum = this.props.columnNum as number;
+
+        const numColumns = this.props.numColumns || DeviceInfo.isTablet()?tabletNumColumns:mobileNumColumns;
+
         const customItemStyle = this.props.itemStyle;
         const carouselMaxRow = this.props.carouselMaxRow as number;
         const dataLength = (data && data.length) || 0;
-        const rowCount = Math.ceil(dataLength / columnNum);
+        const rowCount = Math.ceil(dataLength / numColumns);
 
         const renderItem =
             this.props.renderItem ||
@@ -77,13 +83,13 @@ export default class Grid extends React.Component<GridProps, any> {
                 </Flex>
             ));
 
-        const flexItemStyle = this.getFlexItemStyle(columnNum);
+        const flexItemStyle = this.getFlexItemStyle(numColumns);
         const rowsArr: any[] = [];
 
         for (let i = 0; i < rowCount; i++) {
             const rowArr: any[] = [];
-            for (let j = 0; j < columnNum; j++) {
-                const dataIndex = i * columnNum + j;
+            for (let j = 0; j < numColumns; j++) {
+                const dataIndex = i * numColumns + j;
                 if (dataIndex < dataLength) {
                     const el = data && data[dataIndex];
                     rowArr.push(
@@ -128,7 +134,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         pageRows.push(rowsArr[rowIndex]);
                     } else {
                         const res: any = [];
-                        for (let jjj = 0; jjj < columnNum; jjj++) {
+                        for (let jjj = 0; jjj < numColumns; jjj++) {
                             res.push(
                                 <FlexItem
                                     key={jjj}
@@ -167,9 +173,9 @@ export default class Grid extends React.Component<GridProps, any> {
         );
     }
 
-    getFlexItemStyle(columnNum: number) {
+    getFlexItemStyle(numColumns: number) {
         return {
-            height: ScreenUtil.fullWidth() / columnNum,
+            height: ScreenUtil.fullWidth() / numColumns,
             borderRightWidth: this.props.hasLine ? StyleSheet.hairlineWidth : 0,
         };
     }

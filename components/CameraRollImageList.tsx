@@ -5,6 +5,7 @@ import {CameraRollFile} from "./type";
 import ScreenUtil from "./util/ScreenUtil";
 import Icon from "./Icon";
 import {ChungStyles} from ".";
+import DeviceInfo from 'react-native-device-info';
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -49,7 +50,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
             <FlatList
                 removeClippedSubviews={true}
                 initialNumToRender={10}
-                numColumns={3}
+                numColumns={DeviceInfo.isTablet()?4:3}
                 onEndReached={() => {
                     if (!noMore) this.fetch()
                 }}
@@ -167,6 +168,8 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
             console.log('Camera Roll Image Fetching Error:', err)
         }
     }
+
+
 }
 
 interface ImageItemProps {
@@ -189,9 +192,14 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
                     isSelected && <Icon color={"red"}
                                         size={"sm"}
                                         style={{position:"absolute",top:ChungStyles.margin,right:ChungStyles.margin}}
-                                        name={"check-circle-o"}/>
+                                        name={"check-circle-o"}
+                    />
                 }
             </View>
         </TouchableOpacity>
     )
+
+
 };
+
+
