@@ -9,6 +9,18 @@ interface State {
     selectedOptions: PickerItem[]
 }
 
+
+const options = [
+    {value: "A", text: "Afsd  Text fdsfdsfds"},
+    {value: "B", text: "B adsds sda Text"},
+    {value: "A", text: "A Text"},
+    {value: "B", text: "B Text"},
+    {value: "A", text: "A Text"},
+    {value: "B", text: "B Text"},
+    {value: "A", text: "A Text"},
+    {value: "Z", text: "Z Text"}
+]
+
 export class PickerModalScreen extends React.Component<NavigationProps, State> {
 
     public state = {selectedOptions: []} as State;
@@ -20,7 +32,19 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
                     <PickerModal
                         onChange={(selectedOptions) => this.setState({selectedOptions})}
                         gridProps={{
-                            mobileNumColumns:5,
+                            mobileNumColumns:3,
+                            tabletNumColumns:4,
+                        }}
+                        selectedOptions={this.state.selectedOptions}
+                        data={options}
+                        multiple
+                        hint={"This is hint text"}
+                        label={"Normal"}
+                    />
+                    <PickerModal
+                        onChange={(selectedOptions) => this.setState({selectedOptions})}
+                        gridProps={{
+                            mobileNumColumns:3,
                             tabletNumColumns:4,
                         }}
                         renderPickerOption={(data)=>{
@@ -29,19 +53,10 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
                             )
                         }}
                         selectedOptions={this.state.selectedOptions}
-                        data={[
-                            {value: "A", text: "A Text"},
-                            {value: "B", text: "B Text"},
-                            {value: "A", text: "A Text"},
-                            {value: "B", text: "B Text"},
-                            {value: "A", text: "A Text"},
-                            {value: "B", text: "B Text"},
-                            {value: "A", text: "A Text"},
-                            {value: "Z", text: "Z Text"}
-                        ]}
+                        data={options}
                         multiple
                         hint={"This is hint text"}
-                        label={"Select"}
+                        label={"Custom option component"}
                     />
                 </List>
             </UIContainer>

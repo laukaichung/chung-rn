@@ -43,16 +43,18 @@ export interface PickerOptionProps {
 
 export const PickerOption = ({option, textStyle, selectedOptions}: PickerOptionProps) => {
     return (
-        <View style={Styles.centerItems}>
-            <ChungText style={
-                [
-                    {
-                        fontWeight: "bold",
-                        color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedTextColor : Styles.textColor
-                    },
-                    textStyle
-                ]
-            }>
+        <View>
+            <ChungText
+                style={
+                    [
+                        {
+                            fontWeight: "bold",
+                            color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedTextColor : Styles.textColor,
+                            textAlign: "center"
+                        },
+                        textStyle
+                    ]
+                }>
                 {StringUtil.capitalize(option.text)}
             </ChungText>
         </View>
