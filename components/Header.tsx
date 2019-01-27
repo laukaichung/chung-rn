@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Text, TextStyle} from 'react-native'
+import {TextStyle} from 'react-native'
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 

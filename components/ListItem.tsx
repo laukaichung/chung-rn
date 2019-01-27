@@ -30,7 +30,6 @@ export interface ListItemProps {
      * Disable containerFlex for ActivityLogPanel.
      */
     hideBorder?: HideBorderOptions[];
-
 }
 
 export default class Item extends React.Component<ListItemProps, any> {

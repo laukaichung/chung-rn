@@ -15,6 +15,7 @@ export interface ActivityIndicatorNativeProps {
 const toastSize = 100;
 
 export default class ActivityIndicator extends React.Component<ActivityIndicatorNativeProps, any> {
+
     static defaultProps = {
         animating: true,
         color: 'gray',
