@@ -31,8 +31,8 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: 
                             <FlexItem style={styles.cancelButton}>
                                 <Button
                                     onPress={() => {
-                                        if(onCancelClick) onCancelClick();
                                         closeModal();
+                                        if(onCancelClick) onCancelClick();
                                     }}>
                                     Cancel
                                 </Button>
@@ -40,8 +40,10 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: 
                             <FlexItem>
                                 <Button
                                     onPress={() => {
-                                        onConfirmClick();
+                                        // todo test if close modal before submitting request could prevent memory leak:
+                                        // setState on unmounted Component
                                         closeModal();
+                                        onConfirmClick();
                                     }}>
                                     Confirm
                                 </Button>

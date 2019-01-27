@@ -130,7 +130,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
 
     public render() {
         const {width, height,offset, selectedIndex} = this.state;
-        const {dots, infinite, style,children} = this.props;
+        const {dots, infinite, style,children,vertical,bounces} = this.props;
 
         if (!children) {
             return (
@@ -171,9 +171,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                 <ScrollView
                     ref={this.scrollviewRef}
                     {...this.props}
-                    horizontal={!this.props.vertical}
+                    horizontal={!vertical}
                     pagingEnabled
-                    bounces={!!this.props.bounces}
+                    bounces={!!bounces}
                     scrollEventThrottle={100}
                     removeClippedSubviews={false}
                     automaticallyAdjustContentInsets={false}
@@ -182,11 +182,10 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={style}
                     contentOffset={offset}
-                    {...{
-                        onScrollBeginDrag: this.onScrollBegin,
-                        onMomentumScrollEnd: this.onScrollEnd,
-                        onScrollEndDrag: this.onScrollEndDrag
-                    }}>
+                    onScrollBeginDrag={this.onScrollBegin}
+                    onMomentumScrollEnd={this.onScrollEnd}
+                    onScrollEndDrag={this.onScrollEndDrag}
+                >
                     {pages}
                 </ScrollView>
                 {dots && this.renderDots(selectedIndex)}

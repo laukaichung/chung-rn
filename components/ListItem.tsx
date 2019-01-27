@@ -132,7 +132,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                             {
                                 extra
                             }
-                            {arrow && <Icon size={"lg"} name={`angle-${arrow}`}/> || <View style={styles.arrow}/>}
+                            {arrow && <Icon size={"lg"} name={`angle-${arrow}`}/>}
                         </VerticalMiddleContainer>
                     }
                 </View>
@@ -176,17 +176,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         alignItems: 'center',
         flexDirection: 'row',
-    },
-    arrow: {
-        width: 8,
-        height: 13,
-        marginLeft: Styles.margin,
-        marginTop: Styles.marginSm,
-    },
-    arrowV: {
-        width: 13,
-        height: 8,
-        marginLeft: Styles.margin,
     },
     column: {
         flex: 1,

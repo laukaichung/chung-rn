@@ -153,7 +153,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         key={pageIndex}
                         style={[
                             styles.grayBorderBox,
-                            {borderTopWidth: showBorder && pageIndex !== 0 ? StyleSheet.hairlineWidth : 0},
+                            {borderTopWidth: showBorder && pageIndex !== 0 ? Styles.borderWidth : 0},
                         ]}
                     >
                         {pageRows}
@@ -174,7 +174,7 @@ export default class Grid extends React.Component<GridProps, any> {
     getFlexItemStyle(numColumns: number) {
         return {
             height: ScreenUtil.fullWidth() / numColumns,
-            borderRightWidth: this.props.showBorder ? StyleSheet.hairlineWidth : 0,
+            borderRightWidth: this.props.showBorder ? Styles.borderWidth : 0,
         };
     }
 
