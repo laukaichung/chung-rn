@@ -3,12 +3,12 @@ import {ReactNode} from 'react';
 import Modal, {ModalCallback} from "./Modal";
 import ActionButton, {ActionButtonProps} from "./ActionButton";
 
-interface ActionButtonModal extends ActionButtonProps{
+interface ActionButtonModal{
     children: (payload: ModalCallback) => ReactNode
-
+    actionButtonProps:ActionButtonProps
 }
 
- const ActionButtonModal = ({children,...actionButtonProps}:ActionButtonModal)=> {
+ const ActionButtonModal = ({children,actionButtonProps}:ActionButtonModal)=> {
      return (
             <Modal buttonTrigger={<ActionButton {...actionButtonProps}/>}>
                 {
