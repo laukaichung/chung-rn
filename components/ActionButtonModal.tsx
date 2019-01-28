@@ -5,7 +5,7 @@ import ActionButton, {ActionButtonProps} from "./ActionButton";
 
 interface ActionButtonModal{
     children: (payload: ModalCallback) => ReactNode
-    actionButtonProps:ActionButtonProps
+    actionButtonProps?:ActionButtonProps
 }
 
  const ActionButtonModal = ({children,actionButtonProps = {}}:ActionButtonModal)=> {
