@@ -8,7 +8,7 @@ interface ActionButtonModal{
     actionButtonProps:ActionButtonProps
 }
 
- const ActionButtonModal = ({children,actionButtonProps}:ActionButtonModal)=> {
+ const ActionButtonModal = ({children,actionButtonProps = {}}:ActionButtonModal)=> {
      return (
             <Modal buttonTrigger={<ActionButton {...actionButtonProps}/>}>
                 {
