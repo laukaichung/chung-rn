@@ -11,11 +11,11 @@ const ConfirmButton = (props: ConfirmButtonProps) => {
     const {confirmMessage, onPress, title} = props;
     return (
         <ConfirmModal
-            onConfirmClick={onPress}
+            onConfirm={onPress}
             buttonTrigger={(
                 <Button{...props}/>
             )}
-            hint={confirmMessage}
+            onConfirmMessage={confirmMessage}
             title={title}
         />
     )

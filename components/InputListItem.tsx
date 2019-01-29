@@ -249,7 +249,6 @@ const styles = StyleSheet.create({
     },
     extra: {
         marginLeft: Styles.marginSm,
-        fontSize: Styles.subheaderFontSize,
         color: '#888',
     },
     errorIconContainer: {

@@ -8,23 +8,23 @@ import Styles from "./Styles";
 import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 
-interface ConfirmModalProps extends ModalProps{
-    onConfirmClick: () => void;
-    onCancelClick?:()=>void;
-    hint?: string
+export interface ConfirmModalProps extends ModalProps{
+    onConfirm: () => void;
+    onCancel?:()=>void;
+    onConfirmMessage?: string
     title?: string
 }
 
-const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: ConfirmModalProps) => {
+const ConfirmModal = ({onConfirm, onCancel,onConfirmMessage, title,...restProps}: ConfirmModalProps) => {
     return (
         <Modal {...restProps}
                title={title || `Are you sure?`}>
             {
                 ({closeModal}) =>
                     <View>
-                        {hint && (
+                        {onConfirmMessage && (
                             <WhiteSpace>
-                                <ChungText>{hint}</ChungText>
+                                <ChungText>{onConfirmMessage}</ChungText>
                             </WhiteSpace>
                         )}
                         <Flex style={styles.footerContainer}>
@@ -32,7 +32,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: 
                                 <Button
                                     onPress={() => {
                                         closeModal();
-                                        if(onCancelClick) onCancelClick();
+                                        if(onCancel) onCancel();
                                     }}>
                                     Cancel
                                 </Button>
@@ -43,7 +43,7 @@ const ConfirmModal = ({onConfirmClick, onCancelClick,hint, title,...restProps}: 
                                         // todo test if close modal before submitting request could prevent memory leak:
                                         // setState on unmounted Component
                                         closeModal();
-                                        onConfirmClick();
+                                        onConfirm();
                                     }}>
                                     Confirm
                                 </Button>

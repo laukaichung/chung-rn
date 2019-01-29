@@ -80,7 +80,7 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
                             />
                         )}
                         title={`Are you sure you want to clear the content?`}
-                        onConfirmClick={onClear}
+                        onConfirm={onClear}
                     />
                 }
             </FlexItem>

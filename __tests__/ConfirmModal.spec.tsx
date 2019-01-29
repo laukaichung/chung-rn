@@ -9,7 +9,7 @@ describe(`ConfirmModal`, () => {
     let testRenderer: ReactTestRenderer;
     beforeAll(async () => {
         testRenderer = renderer.create((
-            <ConfirmModal onConfirmClick={()=>{}}
+            <ConfirmModal onConfirm={()=>{}}
                           title={"Please Confirm"}
                           buttonTrigger={<Button>Trigger Button</Button>}/>
         ));

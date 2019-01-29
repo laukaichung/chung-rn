@@ -2,6 +2,7 @@ import * as React from 'react'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {StyleProp, TouchableOpacity} from "react-native";
 import Styles from "./Styles";
+import ConfirmModal, {ConfirmModalProps} from "./ConfirmModal";
 
 export type IconSize = "sm" | "md" | "lg" | "xl"
 
@@ -13,10 +14,11 @@ export interface IconProps {
     name: string;
     size?: IconSize
     customSize?: number;
+    onConfirmProps?: ConfirmModalProps
 }
 
 const Icon = (props: IconProps) => {
-    const {size, customSize, onPress} = props;
+    const {size, customSize, onConfirmProps, onPress} = props;
     let {color} = props;
     let sizeNo =
         customSize ? customSize :
@@ -31,7 +33,19 @@ const Icon = (props: IconProps) => {
             size={sizeNo}
         />
     );
-    if (onPress) {
+
+    if(onConfirmProps){
+
+        return (
+            <ConfirmModal
+                {...onConfirmProps}
+                buttonTrigger={(
+                    iconComponent
+                )}
+            />
+        )
+
+    }else if (onPress) {
         return (
             <TouchableOpacity onPress={onPress}>
                 {iconComponent}

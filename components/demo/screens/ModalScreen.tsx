@@ -10,8 +10,8 @@ export class ModalScreen extends React.Component<NavigationProps> {
         return (
             <UIContainer>
                 <ConfirmModal buttonTrigger={<Button>Confirm Button</Button>}
-                              hint={"fsdj fksdsdfs dfdsffdsfsds fdsfd ds fdfs sf d"}
-                              onConfirmClick={()=>alert('Confirmed')}>
+                              onConfirmMessage={"fsdj fksdsdfs dfdsffdsfsds fdsfd ds fdfs sf d"}
+                              onConfirm={()=>alert('Confirmed')}>
                 </ConfirmModal>
             </UIContainer>
         )

@@ -10,6 +10,8 @@ export default class Styles {
         return this.mode === "dark";
     }
 
+    static lineHeight = 28;
+
     static fontFamilyAndroid = "sans-serif-condensed";
 
     static fontFamilyIOS = "AmericanTypewriter-Condensed";
@@ -102,7 +104,6 @@ export default class Styles {
     static marginSm = 5;
 
     static fontSize = 14;
-    static subheaderFontSize =  15;
     static headerFontSize = 19;
     static labelFontSize = 18;
 
@@ -236,4 +237,10 @@ export default class Styles {
         justifyContent: 'center',
         flexDirection: 'row',
     } as ViewStyle
+
+    static textBaseStyle = {
+        fontFamily: Styles.fontFamily,
+        color:Styles.textColor,
+        lineHeight: Styles.lineHeight
+    } as TextStyle
 }

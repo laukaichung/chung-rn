@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     },
     content: {
         color: Styles.whiteTextColor,
-        fontSize: Styles.subheaderFontSize,
     },
     image: {
         width: Styles.iconSizeLg,
