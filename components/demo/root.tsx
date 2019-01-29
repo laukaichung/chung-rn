@@ -24,7 +24,6 @@ import {CameraRollImageList} from "./screens/CameraRollImageList";
 import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
 import {ToastScreen} from "./screens/ToastScreen";
 import UIProvider from "../UIProvider";
-import {TabScreen} from "./screens/TabScreen";
 import {View} from "react-native";
 import Button from "../Button";
 import UIContext from "../UIContext";
@@ -54,11 +53,9 @@ const StackNavigator = createStackNavigator(
         [screenKeys.toast]: ToastScreen,
         [screenKeys.actionButton]: ActionButtonScreen,
         [screenKeys.result]: ResultScreen,
-
-
     },
     {
-        initialRouteName: screenKeys.pickerModal,
+        initialRouteName: screenKeys.list,
         defaultNavigationOptions: ({navigation}) => {
 
             let isDarkMode = Styles.mode === "dark";

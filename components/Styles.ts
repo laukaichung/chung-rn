@@ -230,4 +230,10 @@ export default class Styles {
         flexWrap: 'wrap'
     }
 
+    static swipeableContainer = {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    } as ViewStyle
 }

@@ -14,6 +14,7 @@ export {default as Carousel} from './Carousel';
 export {default as Checkbox} from './CheckBox';
 export {default as ConfirmModal} from './ConfirmModal'
 export {default as ConfirmButton} from './ConfirmButton'
+export {default as CustomSwipeable} from './CustomSwipeable'
 export {default as Icon} from './Icon'
 export {default as IconButton} from './IconButton'
 export {default as CustomTouchableHighlight} from './CustomTouchableHighlight'

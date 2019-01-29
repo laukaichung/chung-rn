@@ -16,13 +16,13 @@ export interface IconProps {
 }
 
 const Icon = (props: IconProps) => {
-    let {size, customSize, onPress} = props;
+    const {size, customSize, onPress} = props;
+    let {color} = props;
     let sizeNo =
         customSize ? customSize :
             size === "sm" ? Styles.iconSizeSm :
                 size === "lg" ? Styles.iconSizeLg :
                     size === "xl" ? 60 : Styles.iconSizeMd;
-    let {color} = props;
     if (Styles.isDarkMode && !color) color = '#c6c6c6';
     let iconComponent = (
         <FontAwesomeIcon
@@ -32,19 +32,25 @@ const Icon = (props: IconProps) => {
         />
     );
     if (onPress) {
-
         return (
-            <TouchableOpacity onPress={props.onPress}>
+            <TouchableOpacity onPress={onPress}>
                 {iconComponent}
             </TouchableOpacity>
         )
-
     }
 
     return iconComponent
 };
 
-export default Icon;
+export class StatefulIcon extends React.Component<IconProps>{
+    public render(){
+        return (
+            <Icon {...this.props}/>
+        )
+    }
+}
 
+
+export default Icon;
 
 

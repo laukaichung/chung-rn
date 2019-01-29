@@ -8,6 +8,7 @@ import {ScrollView, View} from "react-native";
 import {ListItem} from "../../index";
 import Flex from "../../Flex";
 import FlexItem from "../../FlexItem";
+import CustomSwipeable from "../../CustomSwipeable";
 
 export class ListScreen extends React.Component<NavigationProps> {
 
@@ -29,7 +30,6 @@ export class ListScreen extends React.Component<NavigationProps> {
                         </ListItem>
                     </List>
                     <WhiteSpace/>
-
                     <List.Item
                         arrow="right"
                         extra={<ChungText>Extra</ChungText>}
@@ -39,31 +39,53 @@ export class ListScreen extends React.Component<NavigationProps> {
                     </List.Item>
                     <List.Item
                         onLongPress={() => alert('dfdfdf')}
-                        hideBorder={["top", "left"]}>
-                        <ChungText>No top left border</ChungText>
-                    </List.Item>
-
-                    <WhiteSpace/>
-
-                    <List.Item
-                        onLongPress={() => alert('dfdfdf')}
                         hideBorder={["all"]}>
-                        <ChungText>No borders at all</ChungText>
-                    </List.Item>
-                    <List.Item
-                        onLongPress={() => alert('dfdfdf')}
-                        hideBorder={["all"]}>
-                        <ChungText>No borders at all</ChungText>
+                        <ChungText>No all borders</ChungText>
                     </List.Item>
 
                     <List.Item
                         bottomExtraView={(
                             <View style={{width: 100, height: 100, backgroundColor: "red"}}/>
                         )}
-                        onLongPress={() => alert('dfdfdf')}>
+                        onLongPress={() => alert('dfdfdf')}
+                    >
                         <ChungText>Extra Bottom View</ChungText>
                     </List.Item>
-
+                    <List.Item
+                        swipeableProps={{
+                            rightMenuList: [
+                                {
+                                    name: "clock-o",
+                                    onPress: ()=> alert('ggffg')
+                                }
+                            ],
+                            leftMenuList: [
+                                {
+                                    name: "trash",
+                                    onPress: ()=> alert('ggffg')
+                                }
+                            ]
+                        }}
+                    >
+                        <ChungText>Swipeable list item</ChungText>
+                    </List.Item>
+                    <CustomSwipeable
+                        rightMenuList={[
+                            {
+                                name: "clock-o",
+                                onPress: ()=> alert('clock-o')
+                            }
+                        ]}
+                    >
+                        <List.Item
+                            bottomExtraView={(
+                                <View style={{width: 100, height: 100, backgroundColor: "red"}}/>
+                            )}
+                            onLongPress={() => alert('dfdfdf')}
+                        >
+                            <ChungText>Swipeable with Extra Bottom View</ChungText>
+                        </List.Item>
+                    </CustomSwipeable>
                     <Flex>
                         <FlexItem>
                             <ListItem arrow="right">
@@ -76,7 +98,6 @@ export class ListScreen extends React.Component<NavigationProps> {
                             </ListItem>
                         </FlexItem>
                     </Flex>
-
                 </ScrollView>
             </Container>
         )

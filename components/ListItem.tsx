@@ -6,6 +6,7 @@ import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import ChungText from "./ChungText";
 import Icon, {IconProps} from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
+import CustomSwipeable, {CustomSwipeableProps} from "./CustomSwipeable";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
 
@@ -24,7 +25,8 @@ export interface ListItemProps {
     onLongPress?: () => void;
     style?: StyleProp<ViewStyle>;
     bottomExtraView?: ReactNode;
-    iconProps?: IconProps
+    iconProps?: IconProps;
+    swipeableProps?: CustomSwipeableProps
     /**
      * ContainerFlex: Make {flex:1} available in CustomTouchableHighlight to make it fit the screen width automatically
      * when it is used with numColumns in FlatList.
@@ -48,6 +50,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             wrap,
             bottomExtraView,
             style,
+            swipeableProps,
             ...restProps
         } = this.props;
 
@@ -79,31 +82,31 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        let itemBorderStyle: StyleProp<ViewStyle>[] = [{
-            borderWidth: Styles.borderWidth,
+        let itemBorderStyle: StyleProp<ViewStyle> = {
+            borderBottomWidth: Styles.borderWidth,
+            borderTopWidth: Styles.borderWidth,
             borderColor: Styles.borderColor
-        }];
+        };
 
         if (hideBorder) {
 
             if (hideBorder.indexOf("bottom") > -1)
-                itemBorderStyle.push({borderBottomWidth: 0});
+                itemBorderStyle.borderBottomWidth = 0;
 
-
-            if (hideBorder.indexOf("left") > -1)
-                itemBorderStyle.push({borderLeftWidth: 0});
-
-
-            if (hideBorder.indexOf("right") > -1)
-                itemBorderStyle.push({borderRightWidth: 0});
+            // if (hideBorder.indexOf("left") > -1)
+            //     itemBorderStyle.borderLeftWidth = 0;
+            //
+            //
+            // if (hideBorder.indexOf("right") > -1)
+            //     itemBorderStyle.borderRightWidth = 0;
 
 
             if (hideBorder.indexOf("top") > -1)
-                itemBorderStyle.push({borderTopWidth: 0});
+                itemBorderStyle.borderTopWidth = 0
 
 
             if (hideBorder.indexOf("all") > -1)
-                itemBorderStyle.push({borderWidth: 0});
+                itemBorderStyle.borderWidth = 0
 
         }
 
@@ -113,7 +116,6 @@ export default class Item extends React.Component<ListItemProps, any> {
                 <View style={{
                     padding: Styles.padding / 2,
                     flexDirection: 'row',
-                    //flexWrap: 'wrap',
                     flex: 1,
                     justifyContent: 'space-between',
                 }}
@@ -134,7 +136,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                             {
                                 extra
                             }
-                            {arrow && <Icon size={"lg"} name={`angle-${arrow}`}/>}
+                            {arrow && <Icon name={`angle-${arrow}`}/>}
                         </VerticalMiddleContainer>
                     }
                 </View>
@@ -142,13 +144,28 @@ export default class Item extends React.Component<ListItemProps, any> {
             </View>
         );
 
-        return (
+        const listItem = (
             <CustomTouchableHighlight
                 onPress={onPress}
                 onLongPress={onLongPress}>
                 {itemView}
             </CustomTouchableHighlight>
         );
+
+        if(swipeableProps){
+            return (
+                <CustomSwipeable
+                    rightContainerStyle={itemBorderStyle}
+                    leftContainerStyle={itemBorderStyle}
+                    {...swipeableProps}
+                >
+                    {listItem}
+                </CustomSwipeable>
+            )
+
+        }else {
+            return listItem
+        }
     }
 }
 
