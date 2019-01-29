@@ -79,11 +79,12 @@ export default class Styles {
     static get accordionHeaderStyle():ViewStyle{
         return {
             backgroundColor:this.isDarkMode?this.accordionHeaderBackgroundColorDark:this.accordionHeaderBackgroundColorLight,
-            borderBottomColor:this.borderColor,
             flexDirection: 'row',
             justifyContent: 'space-between',
             padding: 10,
-            borderBottomWidth: 1,
+            //borderBottomWidth: 1,
+            //borderBottomColor:this.borderColor,
+
         }
     }
 

@@ -33,22 +33,25 @@ export default class List extends React.Component<ListProps, any> {
                     headerText && this.renderHeaderOrFooterContainer(headerText, headerTitleContainerStyle)
                 }
 
-                <View style={{
-                    borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth : null,
-                    borderTopColor: Styles.borderColor,
-                }}
+                <View
+                    // style={{
+                    //     borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth : null,
+                    //     borderTopColor: Styles.borderColor,
+                    // }}
                 >
 
                     {children}
-                    <View style={[{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: 1,
-                        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth : null,
-                        borderBottomColor: Styles.borderColor,
-                    }]}/>
+                    {/*<View*/}
+                    {/*    style={[{*/}
+                    {/*        position: 'absolute',*/}
+                    {/*        bottom: 0,*/}
+                    {/*        left: 0,*/}
+                    {/*        right: 0,*/}
+                    {/*        height: 1,*/}
+                    {/*        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth : null,*/}
+                    {/*        borderBottomColor: Styles.borderColor,*/}
+                    {/*    }]}*/}
+                    {/*/>*/}
                 </View>
                 {
                     renderFooter && renderFooter()
