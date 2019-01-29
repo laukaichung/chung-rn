@@ -116,7 +116,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                 <View style={{
                     padding: Styles.padding / 2,
                     flexDirection: 'row',
-                    flex: 1,
+                    flexWrap: "wrap",
                     justifyContent: 'space-between',
                 }}
                 >
