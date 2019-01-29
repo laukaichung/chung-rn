@@ -47,6 +47,7 @@ export {default as WingBlank} from './WingBlank';
 export {default as ChungStyles} from './Styles'
 export {default as ScreenUtil} from './util/ScreenUtil'
 export {default as UIProvider} from "./UIProvider"
+export {default as Portal} from "./portal/Portal";
 export {default as UIContainer} from "./UIContainer"
 export {default as UIContext} from "./UIContext"
 export {default as VerticalMiddleContainer} from "./VerticalMiddleContainer"
