@@ -58,7 +58,7 @@ const StackNavigator = createStackNavigator(
 
     },
     {
-        initialRouteName: screenKeys.list,
+        initialRouteName: screenKeys.pickerModal,
         defaultNavigationOptions: ({navigation}) => {
 
             let isDarkMode = Styles.mode === "dark";

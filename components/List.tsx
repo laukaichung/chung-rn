@@ -22,7 +22,7 @@ export default class List extends React.Component<ListProps, any> {
     public static Item = ListItem;
 
     public render() {
-        const {children, style, hideBorder = [],renderHeader, headerText, footerText, headerTitleContainerStyle, renderFooter, ...restProps} = this.props;
+        const {children, style, hideBorder = [], renderHeader, headerText, footerText, headerTitleContainerStyle, renderFooter, ...restProps} = this.props;
         return (
 
             <View {...restProps as any} style={style}>
@@ -34,9 +34,10 @@ export default class List extends React.Component<ListProps, any> {
                 }
 
                 <View style={{
-                    borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth:null,
+                    borderTopWidth: hideBorder.indexOf("top") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth : null,
                     borderTopColor: Styles.borderColor,
-                }}>
+                }}
+                >
 
                     {children}
                     <View style={[{
@@ -45,7 +46,7 @@ export default class List extends React.Component<ListProps, any> {
                         left: 0,
                         right: 0,
                         height: 1,
-                        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth:null,
+                        borderBottomWidth: hideBorder.indexOf("bottom") === -1 && hideBorder.indexOf("all") === -1 ? Styles.borderWidth : null,
                         borderBottomColor: Styles.borderColor,
                     }]}/>
                 </View>
@@ -62,7 +63,8 @@ export default class List extends React.Component<ListProps, any> {
     private renderHeaderOrFooterContainer(text: string, containerStyle?: StyleProp<ViewStyle>) {
         return (
             <View style={[Styles.listHeaderContainerStyle, containerStyle]}>
-                <ChungText style={{color: Styles.listHeaderTextColor, fontSize: Styles.headerFontSize}}>{text}</ChungText>
+                <ChungText
+                    style={{color: Styles.listHeaderTextColor, fontSize: Styles.headerFontSize}}>{text}</ChungText>
             </View>
         )
     }

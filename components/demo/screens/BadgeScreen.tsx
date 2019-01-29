@@ -1,5 +1,4 @@
 import * as React from 'react'
-import {Text} from 'react-native'
 import List from "../../List";
 import Badge from "../../Badge";
 import {NavigationProps} from "../demotype";

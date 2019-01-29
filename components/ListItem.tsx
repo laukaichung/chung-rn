@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {Image, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
+import {StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
 import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import ChungText from "./ChungText";
-import Icon from "./Icon";
+import Icon, {IconProps} from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
 
 export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
@@ -13,7 +13,7 @@ export interface ListItemProps {
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
     children?: ReactNode;
-    thumb?: ReactNode | null;
+    thumb?: ReactNode;
     extra?: ReactNode;
     arrow?: 'right' | 'down' | 'up';
     wrap?: boolean;
@@ -24,6 +24,7 @@ export interface ListItemProps {
     onLongPress?: () => void;
     style?: StyleProp<ViewStyle>;
     bottomExtraView?: ReactNode;
+    iconProps?: IconProps
     /**
      * ContainerFlex: Make {flex:1} available in CustomTouchableHighlight to make it fit the screen width automatically
      * when it is used with numColumns in FlatList.
@@ -41,6 +42,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             thumb,
             extra,
             arrow,
+            iconProps,
             onPress,
             hideBorder,
             wrap,
@@ -111,23 +113,24 @@ export default class Item extends React.Component<ListItemProps, any> {
                 <View style={{
                     padding: Styles.padding / 2,
                     flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    justifyContent: 'space-between'
-                }}>
+                    //flexWrap: 'wrap',
+                    flex: 1,
+                    justifyContent: 'space-between',
+                }}
+                >
                     {
-                        typeof thumb === 'string' ? (
-                            <Image
-                                source={{uri: thumb}}
-                                style={[styles.thumb] as any}
-                            />
-                        ) : thumb
-
-
+                        (thumb || iconProps) &&
+                        <VerticalMiddleContainer style={{marginRight: Styles.margin}}>
+                            {thumb}
+                            {
+                                iconProps && <Icon {...iconProps}/>
+                            }
+                        </VerticalMiddleContainer>
                     }
                     {contentDom}
                     {
                         (extra || arrow) &&
-                        <VerticalMiddleContainer style={[{marginHorizontal:Styles.margin}]}>
+                        <VerticalMiddleContainer style={[{marginLeft: Styles.margin}]}>
                             {
                                 extra
                             }

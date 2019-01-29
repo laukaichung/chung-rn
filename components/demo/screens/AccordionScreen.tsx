@@ -38,7 +38,8 @@ export class AccordionScreen extends React.Component<NavigationProps> {
                             }
                         }
                     ]}
-                    defaultIndices={[0]}/>
+                    defaultIndices={[0]}
+                />
             </Container>
         )
     }

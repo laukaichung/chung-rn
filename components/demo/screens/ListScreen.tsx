@@ -20,8 +20,9 @@ export class ListScreen extends React.Component<NavigationProps> {
                         footerText={"Footer"}
                     >
                         <ListItem
-                            thumb={`https://www.gravatar.com/avatar/c397c57d2406dc110a9da249fc0d4292?s=32&d=identicon&r=PG&f=1`}
-                            arrow="right">
+                            iconProps={{name: "trash"}}
+                            arrow="right"
+                        >
                             <ChungText numberOfLines={5}>Hello, this is a list item g dfdfsfdsdfs dds df sdf sdf sdsf
                                 dfs
                                 dsf dsfd sfd sfdsf dfs ffgdfdgdgf fdg fgd fdgfdgfgd dfg fdfdg</ChungText>

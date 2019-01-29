@@ -11,6 +11,7 @@ import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
+import WhiteSpace from "./WhiteSpace";
 
 export interface PickerModalProps extends ModalProps, FormCommonProps, FormListItemCommonProps {
     data: PickerItem[];
@@ -92,15 +93,14 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     <ListItem
                         {...listItemProps}
                         bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
-                        arrow="right">
+                        arrow="right"
+                    >
                         {customLabelElement || <FormHeader {...props}/>}
                         {
                             displayValues.length > 0 &&
-                            <React.Fragment>
-                                <ChungText>
-                                    {displayValues.join(' , ')}
-                                </ChungText>
-                            </React.Fragment>
+                            <ChungText>
+                                {displayValues.join(' , ')}
+                            </ChungText>
                         }
                     </ListItem>
                 }
@@ -109,7 +109,15 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     ({closeModal}) => {
                         return (
                             <ScrollView style={styles.container}>
-                                {hint && <HintText>{hint}</HintText>}
+                                {
+                                    hint &&
+                                    <WhiteSpace>
+                                        <HintText>
+                                            {hint}
+                                        </HintText>
+                                    </WhiteSpace>
+                                }
+                                <WhiteSpace size="lg"/>
                                 <Grid
                                     data={data}
                                     onPress={(option: PickerItem) => {
