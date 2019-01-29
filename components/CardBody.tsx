@@ -23,7 +23,6 @@ export default class CardBody extends React.Component<CardBodyProps, any> {
                 ]} {...restProps}
             />
         )
-
     }
 }
 

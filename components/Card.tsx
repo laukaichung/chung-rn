@@ -10,14 +10,12 @@ export interface CardProps {
     full?: boolean;
     marginVertical?: boolean;
     hideBorder?:boolean
-
 }
 
 export default class Card extends React.Component<CardProps, any> {
     static Header = CardHeader;
     static Body = CardBody;
     static Footer = CardFooter;
-
     public render() {
         const {style = {}, full = true,hideBorder, children, marginVertical = false, ...restProps} = this.props;
         const cardStyle = full ? styles.full : {margin: Styles.margin};

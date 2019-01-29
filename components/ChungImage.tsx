@@ -5,7 +5,6 @@ const ChungImage = (props:ImageProps)=>{
     return (
         <Image {...props}/>
     )
-
 };
 
 //

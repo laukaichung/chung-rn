@@ -23,7 +23,6 @@ import {ModalScreen} from "./screens/ModalScreen";
 import {CameraRollImageList} from "./screens/CameraRollImageList";
 import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
 import {ToastScreen} from "./screens/ToastScreen";
-import UIProvider from "../UIProvider";
 import {View} from "react-native";
 import Button from "../Button";
 import UIContext from "../UIContext";
@@ -31,6 +30,7 @@ import Styles from "../Styles";
 import ResultScreen from "./screens/ResultScreen";
 import {DrawerScreen} from "./screens/DrawerScreen";
 import {ActionButtonScreen} from "./screens/ActionButtonScreen";
+import ChungProvider from "../ChungProvider";
 
 
 const StackNavigator = createStackNavigator(
@@ -55,7 +55,7 @@ const StackNavigator = createStackNavigator(
         [screenKeys.result]: ResultScreen,
     },
     {
-        initialRouteName: screenKeys.list,
+        initialRouteName: screenKeys.toast,
         defaultNavigationOptions: ({navigation}) => {
 
             let isDarkMode = Styles.mode === "dark";
@@ -112,9 +112,9 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <UIProvider>
+            <ChungProvider>
                 <AppContainer/>
-            </UIProvider>
+            </ChungProvider>
         )
     }
 }

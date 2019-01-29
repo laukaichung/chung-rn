@@ -1,33 +1,21 @@
 import * as React from 'react';
-import {
-    ActivityIndicator,
-    Animated,
-    Platform,
-    StyleSheet,
-    View,
-} from 'react-native';
+import {ActivityIndicator, Animated, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
-import Icon from "./Icon";
+import Icon, {IconProps} from "./Icon";
 import WhiteSpace from "./WhiteSpace";
 import ChungText from "./ChungText";
+
+export type ToastType = "success" | "fail" | "loading" | "bottomInfo"
 
 export interface ToastProps {
     content: string;
     duration?: number;
     onClose?: () => void;
     mask?: boolean;
-    type?: string;
+    type?: ToastType;
     onAnimationEnd?: () => void;
+    iconProps?: IconProps
 }
-
-const iconType: {
-    [key: string]: any;
-} = {
-    success: "thumbs-o-up",
-    fail: "thumbs-o-down",
-    offline: "chain-broken"
-};
-
 
 export default class ToastContainer extends React.Component<ToastProps, any> {
     static defaultProps = {
@@ -44,9 +32,18 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
         };
     }
 
-    render() {
-        const {type = '', content, mask} = this.props;
+    public render() {
+        const {type = "info", content, iconProps, mask = true} = this.props;
         let iconDom: React.ReactElement<any> | null = null;
+        let containerStyle: ViewStyle = {
+            flex: 1,
+            backgroundColor: 'transparent',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: Styles.toastZIndex,
+        };
+
+
         if (type === 'loading') {
             iconDom = (
                 <ActivityIndicator
@@ -56,16 +53,22 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                     size="large"
                 />
             );
-        } else if (type === 'info') {
-            iconDom = null;
-        } else {
 
-            iconDom = <Icon name={iconType[type]} size={"xl"}/>
+        } else if (type === "success" || type === "fail") {
+            iconDom = (
+                <Icon
+                    {...iconProps}
+                    size={"xl"}
+                />
+            )
+        } else if (type === "bottomInfo"){
+            containerStyle.justifyContent = "flex-end";
+            containerStyle.marginBottom = Styles.margin
         }
 
         return (
             <View
-                style={[styles.container]}
+                style={containerStyle}
                 pointerEvents={mask ? undefined : 'box-none'}
             >
                 <View style={[styles.innerContainer]}>
@@ -74,11 +77,22 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                             style={[
                                 styles.innerWrap,
                                 iconDom ? styles.iconToast : styles.textToast,
+                                {
+                                    backgroundColor: Styles.isDarkMode ? Styles.primaryColorDark : "grey",
+                                }
                             ]}
                         >
-                            {iconDom}
-                            <WhiteSpace/>
-                            <ChungText style={styles.content}>{content}</ChungText>
+                            {
+                                iconDom && (
+                                    <React.Fragment>
+                                        {iconDom}
+                                        <WhiteSpace/>
+                                    </React.Fragment>
+                                )
+                            }
+                            <ChungText style={styles.content}>
+                                {content}
+                            </ChungText>
                         </View>
                     </Animated.View>
                 </View>
@@ -123,23 +137,11 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: Platform.OS === 'ios' ? 64 : 54,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: Styles.toastZIndex,
-    },
     innerContainer: {
         backgroundColor: 'transparent',
     },
     innerWrap: {
         alignItems: 'center',
-        backgroundColor: Styles.modalBackgroundColorDark,
         minWidth: 100,
     },
     iconToast: {
@@ -164,4 +166,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: Styles.padding,
     },
-})
+});

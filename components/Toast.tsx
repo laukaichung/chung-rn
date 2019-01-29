@@ -1,80 +1,44 @@
 import * as React from 'react';
-import * as topView from 'rn-topview';
-import ToastContainer from './ToastContainer';
+import ToastContainer, {ToastProps} from './ToastContainer';
+import Portal from "./portal/Portal";
+import {Omit} from "react-navigation";
 
-function notice(
-    content: string,
-    type: string,
-    duration = 3,
-    onClose: (() => void) | undefined,
-    mask = true,
-) {
-    topView.remove();
-
-    function animationEnd() {
-        topView.remove();
-    }
-
-    topView.set(
+function notice(props:Omit<ToastProps, "onAnimationEnd">) {
+    const key = Portal.add(
         <ToastContainer
-            content={content}
-            duration={duration}
-            onClose={onClose}
-            type={type}
-            mask={mask}
-            onAnimationEnd={animationEnd}
+            {...props}
+            onAnimationEnd={() => Portal.remove(key)}
         />,
     );
+    return key;
 }
 
 export default {
     SHORT: 3,
     LONG: 8,
-    show(content: string, duration?: number, mask?: boolean) {
-        return notice(content, 'info', duration, () => {
-        }, mask);
-    },
-    info(
-        content: string,
-        duration?: number,
-        onClose?: () => void,
-        mask?: boolean,
-    ) {
-        return notice(content, 'info', duration, onClose, mask);
+    show(props: ToastProps) {
+        return notice(props);
     },
     success(
-        content: string,
-        duration?: number,
-        onClose?: () => void,
-        mask?: boolean,
+        props: ToastProps
     ) {
-        return notice(content, 'success', duration, onClose, mask);
+        return notice({...props,
+            type: "success",
+            iconProps: {name: "thumbs-up"}
+        });
     },
     fail(
-        content: string,
-        duration?: number,
-        onClose?: () => void,
-        mask?: boolean,
+        props: ToastProps
     ) {
-        return notice(content, 'fail', duration, onClose, mask);
+        return notice({...props,
+            type: "fail",
+            iconProps: {name: "thumbs-down"}
+        });
     },
-    offline(
-        content: string,
-        duration?: number,
-        onClose?: () => void,
-        mask?: boolean,
-    ) {
-        return notice(content, 'offline', duration, onClose, mask);
+    loading(props: ToastProps) {
+        return notice({...props, type: "loading"});
     },
-    loading(
-        content: string,
-        duration?: number,
-        onClose?: () => void,
-        mask?: boolean,
-    ) {
-        return notice(content, 'loading', duration, onClose, mask);
-    },
-    hide() {
-        topView.remove();
-    },
+    bottomInfo(props: ToastProps){
+        return notice({...props, type: "bottomInfo", mask: false})
+    }
 };

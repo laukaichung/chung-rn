@@ -12,11 +12,8 @@ export interface AgreeItemNativeProps extends CheckboxProps {
     style?: StyleProp<ViewStyle>;
 }
 
-
 export default class CheckBoxAgreeItem extends React.Component<AgreeItemNativeProps, any> {
-
-    private refCheckbox: RefObject<Checkbox> = React.createRef()
-
+    private refCheckbox: RefObject<Checkbox> = React.createRef();
     public render(): JSX.Element {
         let {
             style,
