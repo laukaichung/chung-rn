@@ -10,10 +10,10 @@ import DeviceInfo from 'react-native-device-info';
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
     // groupType?: CameraRollGroupType;
-    multiple?:boolean;
+    multiple?: boolean;
     renderImage?: (props: { image: CameraRollFile, onSelected: (image: CameraRollFile) => void, isSelected: boolean }) => any;
-    defaultSelectedImages?:CameraRollFile[];
-    onItemSelected?:(image:CameraRollFile)=>void;
+    defaultSelectedImages?: CameraRollFile[];
+    onItemSelected?: (image: CameraRollFile, allImages: CameraRollFile[]) => void;
     // maxSelectedImageNo?:number;
 }
 
@@ -42,7 +42,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
     }
 
     public render() {
-        const {renderImage,multiple = true,onItemSelected} = this.props;
+        const {renderImage, multiple = true, onItemSelected} = this.props;
         let {initialLoading, images, noMore, selectedImages} = this.state;
         if (initialLoading) return (<ActivityIndicator toast text={"Loading"}/>);
 
@@ -50,7 +50,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
             <FlatList
                 removeClippedSubviews={true}
                 initialNumToRender={10}
-                numColumns={DeviceInfo.isTablet()?4:3}
+                numColumns={DeviceInfo.isTablet() ? 4 : 3}
                 onEndReached={() => {
                     if (!noMore) this.fetch()
                 }}
@@ -62,26 +62,26 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
                 renderItem={({item: image}) => {
                     let isSelected = selectedImages.find(o => o.uri === image.uri) != null;
                     let onSelected = (image: CameraRollFile) => {
-                        console.log({image});
+                        //console.log({image});
                         let targetIdx = selectedImages.findIndex(o => o.uri === image.uri);
-                        if(multiple) {
+                        if (multiple) {
                             if (targetIdx > -1) {
                                 selectedImages.splice(targetIdx, 1)
                             } else {
                                 selectedImages.push(image)
                             }
-                        }else{
+                        } else {
 
-                            if(targetIdx > -1){
+                            if (targetIdx > -1) {
                                 selectedImages = [];
-                            }else{
+                            } else {
                                 selectedImages = [image]
                             }
                         }
 
                         this.setState({selectedImages});
 
-                        if(onItemSelected) onItemSelected(image);
+                        if (onItemSelected) onItemSelected(image, selectedImages);
                     };
 
                     if (renderImage) {
@@ -114,7 +114,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
         this.setState({selectedImages: selectedImages.filter(o => o.uri != image.uri)})
     }
 
-    public _setSelectedImages(selectedImages:CameraRollFile[]){
+    public _setSelectedImages(selectedImages: CameraRollFile[]) {
         this.setState({selectedImages})
     }
 
@@ -138,10 +138,10 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
                 */
             } as GetPhotosParamType;
 
-            if(lastCursor) params.after = lastCursor;
+            if (lastCursor) params.after = lastCursor;
 
             // If you add groupTypes in Android, it would throw `groupTypes is not supported` error
-            if(Platform.OS === "ios") params.groupTypes = "SavedPhotos";
+            if (Platform.OS === "ios") params.groupTypes = "SavedPhotos";
 
             let data = await CameraRoll.getPhotos(params);
 
@@ -189,10 +189,12 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
                     source={{uri: image.uri}}
                     style={{height: 100, width: ScreenUtil.fullWidth() / 3}}/>
                 {
-                    isSelected && <Icon color={"red"}
-                                        size={"sm"}
-                                        style={{position:"absolute",top:ChungStyles.margin,right:ChungStyles.margin}}
-                                        name={"check-circle-o"}
+                    isSelected &&
+                    <Icon
+                        color={"red"}
+                        size={"sm"}
+                        style={{position: "absolute", top: ChungStyles.margin, right: ChungStyles.margin}}
+                        name={"check-circle-o"}
                     />
                 }
             </View>
