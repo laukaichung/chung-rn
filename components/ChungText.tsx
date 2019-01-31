@@ -7,14 +7,14 @@ interface ChungTextProps extends TextProps {
 }
 
 export const ChungText = ({style = {}, ...restProps}: ChungTextProps) => {
-    let newStyle = null;
-    if(Array.isArray(style)){
-        newStyle = [Styles.textBaseStyle].concat(style as any)
-    }else{
-        newStyle = Object.assign({},Styles.textBaseStyle,style)
-    }
+    // let newStyle = null;
+    // if(Array.isArray(style)){
+    //     newStyle = [Styles.textBaseStyle].concat(style as any)
+    // }else{
+    //     newStyle = Object.assign({},Styles.textBaseStyle,style)
+    // }
 
-    return <Text {...restProps} style={newStyle}/>
+    return <Text {...restProps} style={[Styles.textBaseStyle, style]}/>
 
 };
 

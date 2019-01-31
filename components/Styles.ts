@@ -236,11 +236,13 @@ export default class Styles {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-    } as ViewStyle
+    } as ViewStyle;
 
-    static textBaseStyle = {
-        fontFamily: Styles.fontFamily,
-        color:Styles.textColor,
-        lineHeight: Styles.lineHeight
-    } as TextStyle
+    static get textBaseStyle(): TextStyle{
+        return {
+            fontFamily: Styles.fontFamily,
+            color: Styles.textColor,
+            lineHeight: Styles.lineHeight
+        }
+    }
 }
