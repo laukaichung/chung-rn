@@ -14,7 +14,17 @@ export const ChungText = ({style = {}, ...restProps}: ChungTextProps) => {
     //     newStyle = Object.assign({},Styles.textBaseStyle,style)
     // }
 
-    return <Text {...restProps} style={[Styles.textBaseStyle, style]}/>
+    return <Text {...restProps} style={
+        [
+            {
+                fontFamily: Styles.fontFamily,
+                color: Styles.textColor,
+                lineHeight: Styles.lineHeight
+            },
+            style
+        ]
+    }
+    />
 
 };
 
