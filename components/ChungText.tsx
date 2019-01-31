@@ -6,8 +6,8 @@ interface ChungTextProps extends TextProps {
     children: any
 }
 
-export const ChungText = (props: ChungTextProps) => {
-    return <Text {...props} style={[Styles.textBaseStyle, {fontFamily: Styles.fontFamily}, props.style]}/>
+export const ChungText = ({style = {}, ...restProps}: ChungTextProps) => {
+    return <Text {...restProps} style={Object.assign({},Styles.textBaseStyle, style)}/>
 
 };
 

@@ -239,6 +239,7 @@ export default class Styles {
     } as ViewStyle
 
     static textBaseStyle = {
+        fontFamily: Styles.fontFamily,
         color:Styles.textColor,
         lineHeight: Styles.lineHeight
     } as TextStyle
