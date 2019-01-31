@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Text, TextProps} from "react-native";
+import {Text, TextProps, StyleSheet} from "react-native";
 import Styles from "./Styles";
 
 interface ChungTextProps extends TextProps {
@@ -21,7 +21,7 @@ export const ChungText = ({style = {}, ...restProps}: ChungTextProps) => {
                 color: Styles.textColor,
                 lineHeight: Styles.lineHeight
             },
-            style
+            StyleSheet.flatten(style)
         ]
     }
     />
