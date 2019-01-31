@@ -238,11 +238,11 @@ export default class Styles {
         flexDirection: 'row',
     } as ViewStyle;
 
-    static get textBaseStyle(): TextStyle{
-        return {
-            fontFamily: Styles.fontFamily,
-            color: Styles.textColor,
-            lineHeight: Styles.lineHeight
-        }
-    }
+    // static get textBaseStyle(): TextStyle{
+    //     return {
+    //         fontFamily: Styles.fontFamily,
+    //         color: Styles.textColor,
+    //         lineHeight: Styles.lineHeight
+    //     }
+    // }
 }
