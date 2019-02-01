@@ -4,15 +4,16 @@ import {
     StyleSheet,
     TextInput,
     TextInputChangeEventData,
-    TextInputContentSizeChangeEventData, View,
+    TextInputContentSizeChangeEventData,
+    View,
     ViewStyle,
 } from 'react-native';
 import Styles from "./Styles";
-import List from "./List";
 import ChungText from "./ChungText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
+import {ListItem} from "./index";
 
 function fixControlledValue(value?: string) {
     if (typeof value === 'undefined' || value === null) {
@@ -98,7 +99,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
         const maxLength = count! > 0 ? count : undefined;
 
         return (
-            <List.Item
+            <ListItem
                 {...listItemProps}
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
@@ -135,7 +136,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
                         </ChungText>
                     </View>
                 )}
-            </List.Item>
+            </ListItem>
         );
     }
 

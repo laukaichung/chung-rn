@@ -24,23 +24,10 @@ const removeType = 'ANT_DESIGN_MOBILE_RN_REMOVE_PORTAL';
 // fix react native web does not support DeviceEventEmitter
 const TopViewEventEmitter = DeviceEventEmitter || new NativeEventEmitter();
 
-class PortalGuard {
-    private nextKey = 10000;
-    add = (e: React.ReactNode) => {
-        const key = this.nextKey++;
-        TopViewEventEmitter.emit(addType, e, key);
-        return key;
-    };
-    remove = (key: number) => TopViewEventEmitter.emit(removeType, key);
-}
-/**
- * portal
- */
-export const portal = new PortalGuard();
+
 /**
  * Portal host renders all of its children `Portal` elements.
  * For example, you can wrap a screen in `Portal.Host` to render items above the screen.
- * If you're using the `Provider` component, it already includes `Portal.Host`.
  *
  * ## Usage
  * ```js
@@ -61,9 +48,13 @@ export const portal = new PortalGuard();
  *
  * Here any `Portal` elements under `<App />` are rendered alongside `<App />` and will appear above `<App />` like a `Modal`.
  */
+
+// todo Portal won't render components when the portal.add() is added on the first screen.
+// Try putting ChungAlertScreen as initial route and you will see the alert won't get rendered.
+// One temporary salutation is to use setTimeout() to delay the portal.add() function.
+
 export default class PortalHost extends React.Component<PortalHostProps> {
     static displayName = 'Portal.Host';
-
     _nextKey = 0;
     _queue: Operation[] = [];
     _manager?: PortalManager;
@@ -71,10 +62,8 @@ export default class PortalHost extends React.Component<PortalHostProps> {
     componentDidMount() {
         const manager = this._manager;
         const queue = this._queue;
-
         TopViewEventEmitter.addListener(addType, this._mount);
         TopViewEventEmitter.addListener(removeType, this._unmount);
-
         while (queue.length && manager) {
             const action = queue.pop();
             if (!action) {
@@ -93,6 +82,7 @@ export default class PortalHost extends React.Component<PortalHostProps> {
                     break;
             }
         }
+        this.setState({mounted: true})
     }
     componentWillUnmount() {
         TopViewEventEmitter.removeListener(addType, this._mount);
@@ -162,3 +152,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
+
+class PortalGuard {
+    private nextKey = 10000;
+    add = (e: React.ReactNode) => {
+        const key = this.nextKey++;
+        TopViewEventEmitter.emit(addType, e, key);
+        return key;
+    };
+    remove = (key: number) => TopViewEventEmitter.emit(removeType, key);
+}
+/**
+ * portal
+ */
+export const portal = new PortalGuard();

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {RefObject} from 'react'
 import {ImageStyle, StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import List from "./List";
 import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import Checkbox from "./CheckBox";
 import FormInvalidHint from "./FormInvalidHint";
+import {ListItem} from "./index";
 
 export interface OnChangeParams {
     target: {
@@ -46,7 +46,7 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
 
         return (
 
-            <List.Item
+            <ListItem
                 {...listItemProps}
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
@@ -61,7 +61,7 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
                 />}>
                 <Label style={disabled && {color:Styles.disabledTextColor}}>{label}</Label>
                 {extra}
-            </List.Item>
+            </ListItem>
 
         );
     }

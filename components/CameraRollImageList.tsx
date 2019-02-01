@@ -1,11 +1,12 @@
 import * as React from 'react'
-import {CameraRoll, FlatList, GetPhotosParamType, Image, Platform, TouchableOpacity, View} from "react-native";
+import {CameraRoll, FlatList, GetPhotosParamType, Platform, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "./ActivityIndicator";
 import {CameraRollFile} from "./type";
 import ScreenUtil from "./util/ScreenUtil";
 import Icon from "./Icon";
 import {ChungStyles} from ".";
 import DeviceInfo from 'react-native-device-info';
+import FastImage from "react-native-fast-image";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -183,9 +184,9 @@ const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
     return (
         <TouchableOpacity
             onPress={() => onSelected(image)}>
-            <View style={{flex: 1}}>
-                <Image
-                    resizeMethod="resize"
+            <View style={{flex: 1, margin: 1}}>
+                <FastImage
+                    resizeMode={FastImage.resizeMode.cover}
                     source={{uri: image.uri}}
                     style={{height: 100, width: ScreenUtil.fullWidth() / 3}}/>
                 {

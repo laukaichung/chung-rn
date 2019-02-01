@@ -10,6 +10,6 @@ interface ChungProviderProps {
 const ChungProvider = ({children}: ChungProviderProps) =>
     <UIProvider>
         <Portal.Host>{children}</Portal.Host>
-    </UIProvider>
+    </UIProvider>;
 
 export default ChungProvider;

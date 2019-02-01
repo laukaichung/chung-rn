@@ -9,6 +9,7 @@ import CustomModal from "./Modal";
 import Button from "./Button";
 import CameraRollImageList from "./CameraRollImageList";
 import {CameraRollFile, FormListItemCommonProps} from "./type";
+import {ListItem} from "./index";
 
 interface ImagePickerModalProps extends FormListItemCommonProps {
     images?: CameraRollFile[];
@@ -34,9 +35,9 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                     fullScreen
                     paddingHorizontal={false}
                     buttonTrigger={(
-                        <List.Item {...listItemProps} arrow="right">
+                        <ListItem {...listItemProps} arrow="right">
                             <Label>Select Images</Label>
-                        </List.Item>
+                        </ListItem>
                     )}>
                     {
                         ({closeModal}) => {
@@ -61,7 +62,7 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                 </CustomModal>
                 {
                     images.length > 0 &&
-                    <List.Item>
+                    <ListItem>
                         <Grid
                             tabletNumColumns={4}
                             mobileNumColumns={3}
@@ -71,7 +72,8 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                                     <View style={[styles.item, styles.size]}>
                                         <Image source={{uri: file.uri}}
                                                resizeMethod="resize"
-                                               style={[styles.size, styles.image] as any}/>
+                                               style={[styles.size, styles.image] as any}
+                                        />
                                         <TouchableOpacity
                                             onPress={() => {
                                                 this.ref.current._removeSelectedImage(file);
@@ -86,7 +88,7 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                             }}
 
                         />
-                    </List.Item>
+                    </ListItem>
                 }
             </React.Fragment>
         );

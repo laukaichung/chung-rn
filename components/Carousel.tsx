@@ -14,7 +14,6 @@ import {
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 
-
 export interface CarouselProps {
     bounces?: boolean;
     onScrollBeginDrag?: (

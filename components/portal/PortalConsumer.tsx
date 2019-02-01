@@ -20,10 +20,12 @@ export default class PortalConsumer extends React.Component<PortalConsumerProps>
     }
 
     componentDidUpdate() {
+        console.log(this._key);
         this.props.manager.update(this._key, this.props.children);
     }
 
     componentWillUnmount() {
+        console.log(this._key);
         this.props.manager.unmount(this._key);
     }
 

@@ -14,7 +14,7 @@ interface ChungContainerState extends ThemeContextProps {
 
 
 const UIAsyncStoreKeys = {
-    theme:"theme"
+    theme: "theme"
 };
 
 export default class UIProvider extends React.Component<ChungContainerProps, ChungContainerState> {
@@ -43,7 +43,8 @@ export default class UIProvider extends React.Component<ChungContainerProps, Chu
                 },
                 isDarkMode: theme === "dark"
             } as ThemeContextProps
-            }>
+            }
+            >
                 {this.props.children}
             </UIContext.Provider>
         )

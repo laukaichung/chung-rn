@@ -3,11 +3,11 @@ import {ReactNode, RefObject} from 'react';
 import {StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import Input from './Input';
 import Styles from "./Styles";
-import List from "./List";
 import ChungText from "./ChungText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
+import {ListItem} from "./index";
 
 
 type InputEventHandler = (value?: string) => void;
@@ -106,7 +106,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
 
         return (
 
-            <List.Item {...listItemProps} bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
+            <ListItem {...listItemProps} bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
             >
 
                 <FormHeader {...this.props}/>
@@ -146,7 +146,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                         </TouchableWithoutFeedback>
                     ) : null}
                 </View>
-            </List.Item>
+            </ListItem>
         )
 
     }

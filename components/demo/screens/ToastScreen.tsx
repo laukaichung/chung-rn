@@ -51,4 +51,10 @@ export class ToastScreen extends React.Component<NavigationProps> {
         )
     }
 
+    public componentDidMount(): void {
+        Toast.show({
+            content: "show context",
+        })
+    }
+
 }

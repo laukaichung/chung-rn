@@ -2,11 +2,11 @@ import * as React from 'react';
 import {RefObject} from 'react';
 import {ImageStyle, StyleProp, ViewStyle} from 'react-native';
 import Radio, {RadioPropsType} from "./Radio";
-import List from "./List";
 import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormInvalidHint from "./FormInvalidHint";
+import {ListItem} from "./index";
 
 export interface RadioItemPropsType extends RadioPropsType {
     radioProps?: object;
@@ -40,7 +40,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
         );
 
         return (
-            <List.Item
+            <ListItem
                 {...listItemProps}
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
@@ -49,7 +49,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
                 <Label style={disabled && {color:Styles.disabledTextColor}}>
                     {label}
                 </Label>
-            </List.Item>
+            </ListItem>
 
         );
     }

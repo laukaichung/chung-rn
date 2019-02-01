@@ -1,7 +1,7 @@
 import * as React from 'react'
-import {ImageStyle, StyleProp, StyleSheet, Text, TouchableWithoutFeedback, View, ViewStyle,} from 'react-native';
+import {RefObject} from 'react'
+import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View, ViewStyle,} from 'react-native';
 import Checkbox, {CheckboxProps} from './CheckBox';
-import {RefObject} from "react";
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 

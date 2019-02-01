@@ -37,7 +37,6 @@ class Portal extends React.Component<PortalProps> {
     static remove = portal.remove;
     render() {
         const { children } = this.props;
-
         return (
             <PortalContext.Consumer>
                 {manager => (

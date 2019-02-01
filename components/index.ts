@@ -12,6 +12,7 @@ export {default as CardBody} from './CardBody';
 export {default as CardFooter} from './CardFooter';
 export {default as Carousel} from './Carousel';
 export {default as Checkbox} from './CheckBox';
+export {default as ChungAlert} from './ChungAlert';
 export {default as ConfirmModal} from './ConfirmModal'
 export {default as ConfirmButton} from './ConfirmButton'
 export {default as CustomSwipeable} from './CustomSwipeable'

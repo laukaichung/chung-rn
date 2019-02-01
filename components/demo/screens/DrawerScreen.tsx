@@ -4,7 +4,7 @@ import UIContainer from "../../UIContainer";
 import List from "../../List";
 import {screenKeys} from "../data/ScreenKeys";
 import ChungText from "../../ChungText";
-import {NavigationActions} from "react-navigation";
+import {NavigationActions, StackActions} from "react-navigation";
 import {ScrollView} from "react-native";
 
 interface DrawerScreenProps {
@@ -21,14 +21,16 @@ export class DrawerScreen extends React.Component<DrawerScreenProps> {
                     {
                         Object.keys(screenKeys).map((screen) => {
                             return (
-                                <List.Item key={screen} onPress={() => {
-                                    navigation.dispatch(
-                                        NavigationActions.navigate({
-                                            routeName: screen,
-                                        })
-                                    )
-
-                                }}>
+                                <List.Item
+                                    key={screen}
+                                    onPress={() => {
+                                        navigation.dispatch(
+                                            StackActions.push({
+                                                routeName: screen,
+                                            })
+                                        )
+                                    }}
+                                >
                                     <ChungText>{screen}</ChungText>
                                 </List.Item>
                             )
