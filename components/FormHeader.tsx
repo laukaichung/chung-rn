@@ -10,7 +10,7 @@ import FlexItem from "./FlexItem";
 import Icon from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
 
-interface Props {
+export interface FormHeaderProps {
     hint?: string
     label?: string;
     onClear?: () => void,
@@ -20,7 +20,7 @@ interface Props {
 
 const iconSize = Styles.labelFontSize;
 
-const FormHeader = ({hint, error, onErrorClick, onClear, label}: Props) => {
+const FormHeader = ({hint, error, onErrorClick, onClear, label}: FormHeaderProps) => {
     return (
         <Flex style={{marginBottom: Styles.margin}}>
             {

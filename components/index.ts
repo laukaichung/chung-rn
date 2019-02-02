@@ -23,6 +23,7 @@ export {default as DateTimePickerModal} from './DateTimePickerModal';
 export {default as Flex} from './Flex';
 export {default as FlexItem} from './FlexItem'
 export {default as FormInvalidHint} from './FormInvalidHint'
+export {default as FormHeader} from "./FormHeader";
 export {default as Grid} from './Grid';
 export {default as Header} from './Header'
 export {default as HintText} from './HintText'
