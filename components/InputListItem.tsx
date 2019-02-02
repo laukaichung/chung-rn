@@ -5,7 +5,7 @@ import Input from './Input';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
-import FormHeader from "./FormHeader";
+import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 
@@ -21,7 +21,7 @@ export type KeyboardType =
     | 'password'
 
 
-export interface InputItemProps extends FormCommonProps,FormListItemCommonProps {
+export interface InputItemProps extends FormCommonProps,FormListItemCommonProps, FormHeaderProps {
     last?: boolean;
     onExtraClick?: () => void;
     onErrorClick?: () => void;
@@ -32,7 +32,6 @@ export interface InputItemProps extends FormCommonProps,FormListItemCommonProps 
     value?: string;
     defaultValue?: string;
     placeholder?: string;
-    clear?: boolean;
     maxLength?: number;
     extra?: ReactNode;
     error?: boolean;
@@ -75,7 +74,6 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
     public render() {
         let {
             type,
-            clear,
             error,
             extra,
             invalidMessage,
@@ -114,7 +112,6 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Input
                         placeholderTextColor={Styles.placeholderTextColor}
-                        clearButtonMode={clear ? 'while-editing' : 'never'}
                         underlineColorAndroid="transparent"
                         ref={this.inputRef}
                         {...restProps}
