@@ -12,7 +12,7 @@ import VerticalMiddleContainer from "./VerticalMiddleContainer";
 
 export interface FormHeaderProps {
     hint?: string
-    label?: string;
+    label: string;
     onClear?: () => void,
     error?: boolean;
     onErrorClick?: () => void;
