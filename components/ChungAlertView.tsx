@@ -6,9 +6,9 @@ import ChungAlert from "./ChungAlert";
 interface ChungAlertViewProps {
     alertProps: ChungAlertProps;
 }
-export default class ChungAlertView extends React.Component<ChungAlertViewProps>{
-    private key:number;
 
+export default class ChungAlertView extends React.Component<ChungAlertViewProps>{
+    private key:number = null;
     public render(){
         return null;
     }
@@ -20,4 +20,5 @@ export default class ChungAlertView extends React.Component<ChungAlertViewProps>
     public componentWillUnmount(): void {
         Portal.remove(this.key)
     }
+
 }
