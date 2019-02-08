@@ -13,7 +13,7 @@ interface PausableState {
     play: boolean
 }
 
-export class PausableGif extends React.Component<PausableGifProps, PausableState> {
+export default class PausableGif extends React.Component<PausableGifProps, PausableState> {
 
     public state: PausableState = {play: false};
 
@@ -31,3 +31,4 @@ export class PausableGif extends React.Component<PausableGifProps, PausableState
         )
     }
 }
+
