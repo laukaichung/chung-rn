@@ -41,7 +41,7 @@ export default {
     bottomInfo(props: ToastProps){
         return notice({...props, type: "bottomInfo", mask: false})
     },
-    requireLogin(props: ToastProps){
+    requireLogin(props: ToastProps = {} as ToastProps){
         return notice({
             ...props,
             content: `Please log in first`,
