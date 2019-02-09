@@ -40,5 +40,14 @@ export default {
     },
     bottomInfo(props: ToastProps){
         return notice({...props, type: "bottomInfo", mask: false})
+    },
+    requireLogin(props: ToastProps){
+        return notice({
+            ...props,
+            content: `Please log in first`,
+            iconProps: {
+                name: "sign-in"
+            },
+        })
     }
 };
