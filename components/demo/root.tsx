@@ -33,7 +33,6 @@ import {ActionButtonScreen} from "./screens/ActionButtonScreen";
 import ChungProvider from "../ChungProvider";
 import ChungAlertScreen from "./screens/ChungAlertScreen";
 
-
 const StackNavigator = createStackNavigator(
     {
         [screenKeys.home]: HomeScreen,
@@ -92,7 +91,6 @@ const StackNavigator = createStackNavigator(
                 ),
             };
         }
-
     }
 );
 
@@ -107,11 +105,9 @@ const DrawerNavigator = createDrawerNavigator(
     }
 );
 
-
 const AppContainer = createAppContainer(DrawerNavigator);
 
 export default class App extends React.Component {
-
     render() {
         return (
             <ChungProvider>

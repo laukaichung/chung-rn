@@ -43,8 +43,8 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
             zIndex: Styles.toastZIndex,
         };
 
-
         if (type === 'loading') {
+
             iconDom = (
                 <ActivityIndicator
                     animating
@@ -54,16 +54,19 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                 />
             );
 
-        } else if (type === "success" || type === "fail") {
+        }  else if (type === "bottomInfo"){
+
+            containerStyle.justifyContent = "flex-end";
+            containerStyle.marginBottom = Styles.margin
+
+        } else if (iconProps) {
+
             iconDom = (
                 <Icon
                     {...iconProps}
                     size={"xl"}
                 />
             )
-        } else if (type === "bottomInfo"){
-            containerStyle.justifyContent = "flex-end";
-            containerStyle.marginBottom = Styles.margin
         }
 
         return (

@@ -3,7 +3,6 @@ import {TouchableOpacity} from "react-native";
 import {ChungStyles} from "./index";
 import Styles from "./Styles";
 import Icon from "./Icon";
-
 export interface ActionButtonProps {
     bottom?: number;
     right?: number
@@ -14,7 +13,7 @@ export interface ActionButtonProps {
     onPress?: () => void;
 }
 
-const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon,iconColor, size = 56}: ActionButtonProps) => {
+const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon,iconColor, size = Styles.iconSizeLg}: ActionButtonProps) => {
     return (
         <TouchableOpacity
             onPress={onPress}
