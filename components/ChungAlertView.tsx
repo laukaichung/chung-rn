@@ -4,7 +4,7 @@ import Portal from "./portal/Portal";
 import {OptionalExceptFor} from "./type";
 import {AsyncStorage} from "react-native";
 
-interface ChungAlertViewProps extends OptionalExceptFor<ChungAlertProps, "contentViews"> {
+interface ChungAlertViewProps extends OptionalExceptFor<ChungAlertProps, "view"> {
     storageKey: string;
 }
 

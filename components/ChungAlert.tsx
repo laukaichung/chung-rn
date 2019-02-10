@@ -5,12 +5,12 @@ import Portal from "./portal/Portal";
 
 export default class ChungAlert {
 
-    static add(props: OptionalExceptFor<ChungAlertProps, "contentViews">) {
+    static add(props: OptionalExceptFor<ChungAlertProps, "view">) {
         const key = Portal.add(
             <ChungAlertContainer
                 {...props}
                 onClose={ async (data) => {
-                    props.onClose(data)
+                    props.onClose(data);
                     Portal.remove(key)
                 }}
             />

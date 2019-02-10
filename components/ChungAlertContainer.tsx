@@ -12,7 +12,7 @@ interface OnClose {
 
 export interface ChungAlertProps {
     onClose: (data: OnClose) => void;
-    contentViews: ReactNode;
+    view: ReactNode;
     containerStyle?: ViewStyle;
 }
 
@@ -24,7 +24,7 @@ export default class ChungAlertContainer extends React.Component<ChungAlertProps
     public state: State = {shouldNotShow: false};
 
     public render() {
-        const {onClose, containerStyle, contentViews} = this.props;
+        const {onClose, containerStyle, view} = this.props;
         const {shouldNotShow} = this.state;
         return (
             <View
@@ -53,7 +53,7 @@ export default class ChungAlertContainer extends React.Component<ChungAlertProps
                         ]
                     }
                 >
-                    {contentViews}
+                    {view}
                     <WhiteSpace size="lg">
                         <Button
                             onPress={() => onClose({shouldNotShow})}
