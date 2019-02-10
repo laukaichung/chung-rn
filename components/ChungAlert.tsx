@@ -9,7 +9,10 @@ export default class ChungAlert {
         const key = Portal.add(
             <ChungAlertContainer
                 {...props}
-                onClose={() => Portal.remove(key)}
+                onClose={ async (data) => {
+                    props.onClose(data)
+                    Portal.remove(key)
+                }}
             />
         );
         return key;
