@@ -162,8 +162,6 @@ export default class Styles {
 
     static fontSizeCaptionSm= 12;
 
-    static brandPrimary='#108ee9';
-
     static listItemHeight=44;
 
     static inputSingleRowHeight = 44;
@@ -231,18 +229,7 @@ export default class Styles {
         flexWrap: 'wrap'
     }
 
-    static swipeableContainer = {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    } as ViewStyle;
-
-    // static get textBaseStyle(): TextStyle{
-    //     return {
-    //         fontFamily: Styles.fontFamily,
-    //         color: Styles.textColor,
-    //         lineHeight: Styles.lineHeight
-    //     }
-    // }
+    static actionButtonSizeSm = 40;
+    static actionButtonSizeMd = 48;
+    static actionButtonSizeLg = 56;
 }

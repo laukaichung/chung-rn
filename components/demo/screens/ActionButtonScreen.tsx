@@ -11,7 +11,7 @@ interface ActionButtonScreenProps {
 export const ActionButtonScreen = ({}: ActionButtonScreenProps) => {
     return (
         <Container>
-            <ChungText>fddssfdsdf </ChungText>
+            <ChungText>Action Button fdsfsddf </ChungText>
             <ActionButtonModal>
                 {
                     () => (

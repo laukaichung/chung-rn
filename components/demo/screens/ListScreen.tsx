@@ -53,39 +53,47 @@ export class ListScreen extends React.Component<NavigationProps> {
                     </List.Item>
                     <List.Item
                         swipeableProps={{
-                            rightMenuList: [
-                                {
-                                    name: "clock-o",
-                                    onPress: ()=> alert('ggffg')
-                                }
-                            ],
-                            leftMenuList: [
-                                {
-                                    name: "trash",
-                                    onPress: ()=> alert('ggffg')
-                                }
-                            ]
+                            rightView: (
+                                <ChungText>Swipe from the view!</ChungText>
+                            )
                         }}
                     >
                         <ChungText>Swipeable list item</ChungText>
                     </List.Item>
                     <CustomSwipeable
-                        rightMenuList={[
-                            {
-                                name: "clock-o",
-                                onPress: ()=> alert('clock-o')
-                            }
-                        ]}
+                        leftContainerStyle={
+                            {flex: 1, justifyContent: "flex-end", flexDirection: "row"}
+                        }
+                        leftView={(
+                            <View>
+                                <ChungText>
+                                    From the left!
+                                </ChungText>
+                            </View>
+                        )}
                     >
-                        <List.Item
-                            bottomExtraView={(
-                                <View style={{width: 100, height: 100, backgroundColor: "red"}}/>
-                            )}
-                            onLongPress={() => alert('dfdfdf')}
-                        >
-                            <ChungText>Swipeable with Extra Bottom View</ChungText>
+                        <List.Item>
+                            <ChungText>Swipeable from the left</ChungText>
                         </List.Item>
                     </CustomSwipeable>
+
+                    <CustomSwipeable
+                        rightContainerStyle={
+                            {flex: 1, justifyContent: "center", flexDirection: "row"}
+                        }
+                        rightView={(
+                            <View>
+                                <ChungText>
+                                    Swipe from the right.
+                                </ChungText>
+                            </View>
+                        )}
+                    >
+                        <List.Item>
+                            <ChungText>Swipeable custom view</ChungText>
+                        </List.Item>
+                    </CustomSwipeable>
+
                     <Flex>
                         <FlexItem>
                             <ListItem arrow="right">

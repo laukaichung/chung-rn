@@ -56,7 +56,7 @@ const StackNavigator = createStackNavigator(
         [screenKeys.chungAlert]: ChungAlertScreen
     },
     {
-        initialRouteName: screenKeys.result,
+        initialRouteName: screenKeys.actionButton,
         defaultNavigationOptions: ({navigation}) => {
 
             let isDarkMode = Styles.mode === "dark";

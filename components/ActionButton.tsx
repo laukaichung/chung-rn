@@ -1,38 +1,77 @@
 import * as React from 'react'
-import {TouchableOpacity} from "react-native";
-import {ChungStyles} from "./index";
+import {StyleProp, TouchableOpacity, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
+import DraggableActionButton from "./DraggableActionButton";
+
 export interface ActionButtonProps {
     bottom?: number;
     right?: number
     size?: number
     icon?: string;
-    buttonBackgroundColor?: string
-    iconColor?:string;
+    backgroundColor?: string
+    iconColor?: string;
     onPress?: () => void;
+    draggable?: boolean;
+    containerStyle?: StyleProp<ViewStyle>;
 }
 
-const ActionButton = ({bottom, onPress, buttonBackgroundColor, right, icon,iconColor, size = Styles.iconSizeLg}: ActionButtonProps) => {
-    return (
-        <TouchableOpacity
-            onPress={onPress}
-            style={[
-                {
-                    position: 'absolute',
-                    bottom: bottom || ChungStyles.margin * 4,
-                    right: right || ChungStyles.margin * 4,
-                    borderRadius: (size * 2) / 2,
-                    width: size,
-                    height: size,
-                    backgroundColor: buttonBackgroundColor || ChungStyles.secondaryColor,
-                },
-                Styles.centerItems
-            ]}
-        >
-            <Icon customSize={size * 0.6} color={iconColor || "#ffffff"} name={icon || "bars"}/>
-        </TouchableOpacity>
-    )
-};
+export default class ActionButton extends React.Component<ActionButtonProps> {
 
-export default ActionButton
+    public static defaultProps: ActionButtonProps = {
+        bottom: Styles.margin * 3,
+        right: Styles.margin * 3,
+        draggable: true,
+        backgroundColor: Styles.secondaryColor,
+        size: Styles.actionButtonSizeMd,
+    };
+
+    public render() {
+        const {
+            bottom, right, onPress, icon, iconColor, size,
+            draggable, backgroundColor,
+        } = this.props;
+
+        let containerStyle = this.props.containerStyle ||
+            {position: 'absolute', bottom, right, zIndex: Styles.toastZIndex}
+        ;
+
+        const iconView =
+            <View
+                style={
+                    [
+                        {
+                            borderRadius: (size * 2) / 2,
+                            width: size,
+                            height: size,
+                            backgroundColor,
+                        },
+                        Styles.centerItems
+                    ]
+                }
+            >
+                <Icon customSize={size * 0.6} color={iconColor || "#ffffff"} name={icon || "bars"}/>
+            </View>;
+
+        if (draggable) {
+            return (
+                <DraggableActionButton
+                    {...this.props}
+                    containerStyle={containerStyle}
+                    view={iconView}
+                />
+            )
+        }
+
+        return (
+            <TouchableOpacity
+                onPress={onPress}
+                style={containerStyle}
+            >
+                {iconView}
+            </TouchableOpacity>
+        )
+    }
+}
+
+
