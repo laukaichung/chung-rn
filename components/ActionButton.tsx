@@ -3,6 +3,8 @@ import {StyleProp, TouchableOpacity, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
 import Draggable from "./Draggable";
+import {StackActions} from "react-navigation";
+import push = StackActions.push;
 
 export interface ActionButtonProps {
     bottom?: number;

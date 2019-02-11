@@ -20,7 +20,6 @@ export default class PortalManager extends React.PureComponent<
         portals: [],
     };
     mount = (key: number, children: React.ReactNode) => {
-        console.log('portalKey',key);
         this.setState(state => ({
             portals: [...state.portals, { key, children }],
         }));

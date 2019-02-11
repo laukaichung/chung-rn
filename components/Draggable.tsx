@@ -23,6 +23,7 @@ export default class Draggable extends Component<Props, DraggableState> {
     public state: DraggableState = {loaded: false};
     private _translateXY = new Animated.ValueXY({x: 0, y: 0});
     private _lastOffset: OffsetState = {x: 0, y: 0};
+    private mounted: boolean;
     private _onGestureEvent = Animated.event(
         [
             {
@@ -81,6 +82,7 @@ export default class Draggable extends Component<Props, DraggableState> {
     }
 
     public async componentDidMount() {
+        this.mounted = true;
         const {storageKey} = this.props;
         if (storageKey) {
             const dataStr = await AsyncStorage.getItem(storageKey);
@@ -99,6 +101,12 @@ export default class Draggable extends Component<Props, DraggableState> {
                 }
             }
         }
-        this.setState({loaded: true})
+        if(this.mounted) {
+            this.setState({loaded: true})
+        }
+    }
+
+    public componentWillUnmount() {
+        this.mounted = false;
     }
 }
