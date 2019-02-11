@@ -1,68 +1,104 @@
 import * as React from "react"
 import {Component, ReactNode} from "react"
-import {Animated, StyleProp, View, ViewStyle} from "react-native";
-import {PanGestureHandler, RectButton, State,} from 'react-native-gesture-handler';
+import {Animated, AsyncStorage} from "react-native";
+import {PanGestureHandler, RectButton, State} from 'react-native-gesture-handler';
+import {Omit} from "react-navigation";
+import {ActionButtonProps} from "./ActionButton";
+import Toast from "./Toast";
 
-interface Props {
+interface Props extends Omit<ActionButtonProps, "draggable" | "iconColor" | "icon"> {
     view: ReactNode;
-    onPress?: () => void;
-    bottom?: number;
-    right?: number;
-    containerStyle: StyleProp<ViewStyle>
 }
 
-export default class DraggableActionButton extends Component<Props> {
-    private _translateX = new Animated.Value(0);
-    private _translateY = new Animated.Value(0);
-    private _lastOffset = {x: 0, y: 0};
+interface DraggableState {
+    loaded: boolean
+}
+
+interface OffsetState {
+    x: number;
+    y: number;
+}
+
+export default class DraggableActionButton extends Component<Props, DraggableState> {
+    public state: DraggableState = {loaded: false};
+    private _translateXY = new Animated.ValueXY({x: 0, y: 0});
+    private _lastOffset: OffsetState = {x: 0, y: 0};
     private _onGestureEvent = Animated.event(
         [
             {
                 nativeEvent: {
-                    translationX: this._translateX,
-                    translationY: this._translateY,
+                    translationX: this._translateXY.x,
+                    translationY: this._translateXY.y,
                 },
             },
         ],
         {useNativeDriver: false}
     );
 
-    private _onHandlerStateChange = event => {
-        if (event.nativeEvent.oldState === State.ACTIVE) {
-            this._lastOffset.x += event.nativeEvent.translationX;
-            this._lastOffset.y += event.nativeEvent.translationY;
-            this._translateX.setOffset(this._lastOffset.x);
-            this._translateX.setValue(0);
-            this._translateY.setOffset(this._lastOffset.y);
-            this._translateY.setValue(0);
+
+    private _onHandlerStateChange = async ({nativeEvent}) => {
+        if (nativeEvent.oldState === State.ACTIVE) {
+            this._lastOffset.x += nativeEvent.translationX;
+            this._lastOffset.y += nativeEvent.translationY;
+            this._translateXY.setOffset(this._lastOffset);
+            this._translateXY.setValue({x: 0, y: 0});
+            const {storageKey} = this.props;
+            if (storageKey) {
+                await AsyncStorage.setItem(storageKey, JSON.stringify(this._lastOffset));
+            }
         }
     };
 
-    render() {
+    public render() {
+        if (!this.state.loaded) {
+            return null;
+        }
         const {view, onPress, containerStyle} = this.props;
         return (
-            <View style={containerStyle}>
-                <PanGestureHandler
-                    {...this.props}
-                    onGestureEvent={this._onGestureEvent}
-                    onHandlerStateChange={this._onHandlerStateChange}
+            <PanGestureHandler
+                {...this.props}
+                onGestureEvent={this._onGestureEvent}
+                onHandlerStateChange={this._onHandlerStateChange}
+            >
+                <Animated.View
+                    style={[
+                        {
+                            transform: [
+                                {translateX: this._translateXY.x},
+                                {translateY: this._translateXY.y},
+                            ],
+
+                        },
+                        containerStyle,
+                    ]}
                 >
-                    <Animated.View
-                        style={[
-                            {
-                                transform: [
-                                    {translateX: this._translateX},
-                                    {translateY: this._translateY},
-                                ],
-                            },
-                        ]}
-                    >
-                        <RectButton onPress={onPress}>
-                            {view}
-                        </RectButton>
-                    </Animated.View>
-                </PanGestureHandler>
-            </View>
+                    <RectButton onPress={onPress}>
+                        {view}
+                    </RectButton>
+                </Animated.View>
+            </PanGestureHandler>
         );
+    }
+
+    public async componentDidMount() {
+        const {storageKey} = this.props;
+        if (storageKey) {
+            const dataStr = await AsyncStorage.getItem(storageKey);
+            if (dataStr) {
+                try {
+                    this._lastOffset = JSON.parse(dataStr);
+                    /*
+                     * The offset and values MUST be set in order as follows.
+                     * First setOffset, then setValue!
+                     */
+                    this._translateXY.setOffset(this._lastOffset);
+                    this._translateXY.setValue({x: 0, y: 0});
+
+                } catch (e) {
+                    Toast.fail({content: `Failure to parse the last X and Y positions for ActionButton`})
+                }
+            }
+        }
+        this.setState({loaded: true})
     }
 }

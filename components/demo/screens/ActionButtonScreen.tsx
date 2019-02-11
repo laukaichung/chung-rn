@@ -1,8 +1,10 @@
 import * as React from 'react'
-import {View} from "react-native";
+import {AsyncStorage, ScrollView, View} from "react-native";
 import Container from "../../UIContainer";
 import ChungText from "../../ChungText";
 import ActionButtonModal from "../../ActionButtonModal";
+import ActionButton from "../../ActionButton";
+import Button from "../../Button";
 
 interface ActionButtonScreenProps {
 
@@ -12,15 +14,15 @@ export const ActionButtonScreen = ({}: ActionButtonScreenProps) => {
     return (
         <Container>
             <ChungText>Action Button fdsfsddf </ChungText>
-            <ActionButtonModal>
-                {
-                    () => (
-                        <View>
-                            <ChungText>Hello</ChungText>
-                        </View>
-                    )
-                }
-            </ActionButtonModal>
+            <Button onPress={async () => {
+                await AsyncStorage.removeItem("chung_actionButton");
+            }}>
+                Remove
+            </Button>
+            <ActionButton
+                onPress={() => alert("dfdf")}
+                storageKey={"chung_actionButton"}
+            />
         </Container>
     )
 };

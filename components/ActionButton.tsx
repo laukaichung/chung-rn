@@ -14,6 +14,7 @@ export interface ActionButtonProps {
     onPress?: () => void;
     draggable?: boolean;
     containerStyle?: StyleProp<ViewStyle>;
+    storageKey?: string;
 }
 
 export default class ActionButton extends React.Component<ActionButtonProps> {
@@ -29,11 +30,11 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
     public render() {
         const {
             bottom, right, onPress, icon, iconColor, size,
-            draggable, backgroundColor,
+            draggable, backgroundColor, storageKey,
         } = this.props;
 
         let containerStyle = this.props.containerStyle ||
-            {position: 'absolute', bottom, right, zIndex: Styles.toastZIndex}
+            [{position: 'absolute', bottom, right, zIndex: Styles.toastZIndex}]
         ;
 
         const iconView =
@@ -45,8 +46,9 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                             width: size,
                             height: size,
                             backgroundColor,
+                            justifyContent: 'center',
+                            alignItems:'center'
                         },
-                        Styles.centerItems
                     ]
                 }
             >
@@ -58,7 +60,10 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                 <DraggableActionButton
                     {...this.props}
                     containerStyle={containerStyle}
-                    view={iconView}
+                    view={(
+                        iconView
+                    )}
+                    storageKey={storageKey}
                 />
             )
         }
@@ -72,6 +77,8 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
             </TouchableOpacity>
         )
     }
+
+
 }
 
 

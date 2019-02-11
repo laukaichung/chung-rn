@@ -1,6 +1,6 @@
 import * as React from 'react'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import {StyleProp, TouchableOpacity} from "react-native";
+import {StyleProp, TextStyle, TouchableOpacity} from "react-native";
 import Styles from "./Styles";
 import ConfirmModal, {ConfirmModalProps} from "./ConfirmModal";
 
@@ -10,7 +10,7 @@ export interface IconProps {
     color?: string;
     backgroundColor?: string;
     onPress?: (e?: any) => void;
-    style?: StyleProp<any>
+    style?: StyleProp<TextStyle>
     name: string;
     size?: IconSize
     customSize?: number;
