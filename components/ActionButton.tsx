@@ -2,7 +2,7 @@ import * as React from 'react'
 import {StyleProp, TouchableOpacity, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
-import DraggableActionButton from "./DraggableActionButton";
+import Draggable from "./Draggable";
 
 export interface ActionButtonProps {
     bottom?: number;
@@ -33,7 +33,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
             draggable, backgroundColor,
         } = this.props;
 
-        let containerStyle = this.props.containerStyle ||
+        const containerStyle = this.props.containerStyle ||
             [{
                 position: 'absolute', bottom, right,
 
@@ -45,7 +45,6 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
             }]
         ;
 
-        console.log(containerStyle)
         const iconView =
             <View
                 style={
@@ -66,7 +65,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
 
         if (draggable) {
             return (
-                <DraggableActionButton
+                <Draggable
                     {...this.props}
                     containerStyle={containerStyle}
                     view={(

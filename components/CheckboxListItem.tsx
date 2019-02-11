@@ -14,7 +14,7 @@ export interface OnChangeParams {
     };
 }
 
-export interface ICheckboxItemNativeProps extends FormCommonProps,FormListItemCommonProps {
+export interface ICheckboxItemNativeProps extends FormCommonProps, FormListItemCommonProps {
     checkboxStyle?: StyleProp<ImageStyle>;
     style?: StyleProp<ViewStyle>;
     extra?: React.ReactNode;
@@ -58,8 +58,9 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
                     checked={checked}
                     onChange={onChange}
                     disabled={disabled}
-                />}>
-                <Label style={disabled && {color:Styles.disabledTextColor}}>{label}</Label>
+                />}
+            >
+                <Label style={disabled && {color: Styles.disabledTextColor}}>{label}</Label>
                 {extra}
             </ListItem>
 

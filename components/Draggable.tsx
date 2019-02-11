@@ -19,7 +19,7 @@ interface OffsetState {
     y: number;
 }
 
-export default class DraggableActionButton extends Component<Props, DraggableState> {
+export default class Draggable extends Component<Props, DraggableState> {
     public state: DraggableState = {loaded: false};
     private _translateXY = new Animated.ValueXY({x: 0, y: 0});
     private _lastOffset: OffsetState = {x: 0, y: 0};

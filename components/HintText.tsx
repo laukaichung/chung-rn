@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Text, ViewStyle} from "react-native";
+import {ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
 import FlexItem from "./FlexItem";

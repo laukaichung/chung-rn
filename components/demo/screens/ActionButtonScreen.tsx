@@ -1,13 +1,11 @@
 import * as React from 'react'
-import {AsyncStorage, ScrollView, View} from "react-native";
+import {AsyncStorage} from "react-native";
 import Container from "../../UIContainer";
 import ChungText from "../../ChungText";
 import ActionButton from "../../ActionButton";
 import Button from "../../Button";
 
-interface ActionButtonScreenProps {
-
-}
+interface ActionButtonScreenProps {}
 
 export const ActionButtonScreen = ({}: ActionButtonScreenProps) => {
     return (

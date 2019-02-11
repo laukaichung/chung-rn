@@ -45,6 +45,9 @@ export interface TextareaItemNativeProps extends FormListItemCommonProps,FormCom
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
     onClear?: () => void;
+
+
+
 }
 
 interface State {

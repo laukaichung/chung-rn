@@ -95,7 +95,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                         arrow="right"
                     >
-                        {customLabelElement || <FormHeader {...props}/>}
+                        {customLabelElement || <FormHeader {...props} label={props.label}/>}
                         {
                             displayValues.length > 0 &&
                             <ChungText>

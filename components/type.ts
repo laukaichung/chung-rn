@@ -14,7 +14,7 @@ export interface FormListItemCommonProps {
 
 export interface FormCommonProps {
     hint?:string;
-    label?:string;
+    label:string;
     invalidMessage?:string;
 
 }
