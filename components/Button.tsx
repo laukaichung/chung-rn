@@ -61,7 +61,7 @@ export default class Button extends React.Component<ButtonProps, State> {
             padding: size === "lg" ? Styles.padding : Styles.paddingSm,
             borderWidth: 1,
             borderRadius: Styles.radiusMd,
-            elevation:4,
+            elevation:3,
             shadowOffset: { width: 1, height: 2 },
             shadowColor: "grey",
             shadowOpacity: 0.5,

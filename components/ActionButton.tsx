@@ -30,13 +30,22 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
     public render() {
         const {
             bottom, right, onPress, icon, iconColor, size,
-            draggable, backgroundColor, storageKey,
+            draggable, backgroundColor,
         } = this.props;
 
         let containerStyle = this.props.containerStyle ||
-            [{position: 'absolute', bottom, right, zIndex: Styles.toastZIndex}]
+            [{
+                position: 'absolute', bottom, right,
+
+                /* Set elevation to 10 as button uses elevation:3
+                 * Without this, the ActionButton would be overlapped by buttons.
+                 *Setting zIndex doesn't work when button has elevation
+                 */
+                elevation: 10
+            }]
         ;
 
+        console.log(containerStyle)
         const iconView =
             <View
                 style={
@@ -47,7 +56,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                             height: size,
                             backgroundColor,
                             justifyContent: 'center',
-                            alignItems:'center'
+                            alignItems: 'center'
                         },
                     ]
                 }
@@ -63,7 +72,6 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                     view={(
                         iconView
                     )}
-                    storageKey={storageKey}
                 />
             )
         }
