@@ -44,7 +44,6 @@ export default class Draggable extends Component<Props, DraggableState> {
         const {boundary: {bottom, top}, size} = this.props;
         if (nativeEvent.oldState === State.ACTIVE) {
             this._lastOffset.x += nativeEvent.translationX;
-            console.log(bottom)
             if(nativeEvent.absoluteY < (bottom) && nativeEvent.absoluteY > (top)) {
                 this._lastOffset.y += nativeEvent.translationY;
             }

@@ -12,10 +12,9 @@ export class AccordionScreen extends React.Component<NavigationProps> {
                 <Accordion
                     panes={[
                         {
-                            title: 'Title A ddsd',
+                            title: 'Title A',
                             render: () => {
                                 return (
-
                                     <ChungText>Title A</ChungText>
 
                                 )
@@ -33,7 +32,7 @@ export class AccordionScreen extends React.Component<NavigationProps> {
                             title: 'Title C',
                             render: () => {
                                 return (
-                                    <ChungText>Title C</ChungText>
+                                    <ChungText>Affronting discretion as do is announcing. Now months esteem oppose nearer enable too six. She numerous unlocked you perceive speedily. Affixed offence spirits or ye of offices between. Real on shot it were four an as. Absolute bachelor rendered six nay you juvenile. Vanity entire an chatty to. </ChungText>
                                 )
                             }
                         }

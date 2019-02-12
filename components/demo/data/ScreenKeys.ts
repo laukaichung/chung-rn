@@ -18,5 +18,6 @@ export const screenKeys = {
     actionButton:'actionButton',
     result:'result',
     camera:'camera',
-    chungAlert: 'chungAlert'
+    chungAlert: 'chungAlert',
+    test: "test",
 };

@@ -32,6 +32,7 @@ import {DrawerScreen} from "./screens/DrawerScreen";
 import {ActionButtonScreen} from "./screens/ActionButtonScreen";
 import ChungProvider from "../ChungProvider";
 import ChungAlertScreen from "./screens/ChungAlertScreen";
+import TestScreen from "./screens/TestScreen";
 
 const StackNavigator = createStackNavigator(
     {
@@ -53,10 +54,11 @@ const StackNavigator = createStackNavigator(
         [screenKeys.toast]: ToastScreen,
         [screenKeys.actionButton]: ActionButtonScreen,
         [screenKeys.result]: ResultScreen,
-        [screenKeys.chungAlert]: ChungAlertScreen
+        [screenKeys.chungAlert]: ChungAlertScreen,
+        [screenKeys.test]: TestScreen,
     },
     {
-        initialRouteName: screenKeys.actionButton,
+        initialRouteName: screenKeys.accordion,
         defaultNavigationOptions: ({navigation}) => {
 
             let isDarkMode = Styles.mode === "dark";
