@@ -8,10 +8,12 @@ import Toast from "./Toast";
 
 interface Props extends Omit<ActionButtonProps, "draggable" | "iconColor" | "icon"> {
     view: ReactNode;
+    boundary: {top: number, bottom: number};
 }
 
 interface DraggableState {
     loaded: boolean
+    enabled: boolean;
 }
 
 interface OffsetState {
@@ -20,10 +22,12 @@ interface OffsetState {
 }
 
 export default class Draggable extends Component<Props, DraggableState> {
-    public state: DraggableState = {loaded: false};
+    public state: DraggableState = {loaded: false, enabled: true};
     private _translateXY = new Animated.ValueXY({x: 0, y: 0});
     private _lastOffset: OffsetState = {x: 0, y: 0};
     private mounted: boolean;
+    private _translateXYListenerId: string;
+
     private _onGestureEvent = Animated.event(
         [
             {
@@ -33,11 +37,12 @@ export default class Draggable extends Component<Props, DraggableState> {
                 },
             },
         ],
-        {useNativeDriver: false}
+        {useNativeDriver: true}
     );
 
 
     private _onHandlerStateChange = async ({nativeEvent}) => {
+        console.log(nativeEvent);
         if (nativeEvent.oldState === State.ACTIVE) {
             this._lastOffset.x += nativeEvent.translationX;
             this._lastOffset.y += nativeEvent.translationY;
@@ -51,13 +56,15 @@ export default class Draggable extends Component<Props, DraggableState> {
     };
 
     public render() {
-        if (!this.state.loaded) {
+        const {loaded, enabled} = this.state;
+        if (!loaded) {
             return null;
         }
         const {view, onPress, containerStyle} = this.props;
         return (
             <PanGestureHandler
                 {...this.props}
+                enabled={enabled}
                 onGestureEvent={this._onGestureEvent}
                 onHandlerStateChange={this._onHandlerStateChange}
             >
@@ -83,6 +90,15 @@ export default class Draggable extends Component<Props, DraggableState> {
 
     public async componentDidMount() {
         this.mounted = true;
+        const {boundary: {top, bottom}} = this.props;
+        this._translateXYListenerId = this._translateXY.addListener(({x, y}) => {
+            console.log({y,bottom})
+            console.log(this._translateXY.getLayout())
+            if(y > bottom){
+                this.setState({enabled: false})
+            }
+        });
+
         const {storageKey} = this.props;
         if (storageKey) {
             const dataStr = await AsyncStorage.getItem(storageKey);
@@ -107,6 +123,8 @@ export default class Draggable extends Component<Props, DraggableState> {
     }
 
     public componentWillUnmount() {
+        this._translateXY.removeListener(this._translateXYListenerId);
         this.mounted = false;
+
     }
 }

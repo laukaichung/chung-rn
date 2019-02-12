@@ -3,8 +3,7 @@ import {StyleProp, TouchableOpacity, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
 import Draggable from "./Draggable";
-import {StackActions} from "react-navigation";
-import push = StackActions.push;
+import UIContext from "./UIContext";
 
 export interface ActionButtonProps {
     bottom?: number;
@@ -67,13 +66,20 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
 
         if (draggable) {
             return (
-                <Draggable
-                    {...this.props}
-                    containerStyle={containerStyle}
-                    view={(
-                        iconView
-                    )}
-                />
+
+                <UIContext.Consumer>
+                    {
+                        ({layoutHeight})=>
+                        <Draggable
+                            {...this.props}
+                            boundary={{bottom: layoutHeight, top: 0}}
+                            containerStyle={containerStyle}
+                            view={(
+                                iconView
+                            )}
+                        />
+                    }
+                </UIContext.Consumer>
             )
         }
 

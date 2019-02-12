@@ -3,6 +3,9 @@ import {Dimensions} from "react-native";
 type Orientations = "landscape"|"portrait"
 
 export default class ScreenUtil{
+
+    public static layoutSize = null;
+
     public static fullWidth(): number {
         return Dimensions.get('window').width
     }
