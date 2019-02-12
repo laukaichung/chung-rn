@@ -4,7 +4,7 @@ import UIContainer from "../../UIContainer";
 import List from "../../List";
 import {screenKeys} from "../data/ScreenKeys";
 import ChungText from "../../ChungText";
-import {NavigationActions, StackActions} from "react-navigation";
+import {StackActions} from "react-navigation";
 import {ScrollView} from "react-native";
 
 interface DrawerScreenProps {
@@ -16,7 +16,7 @@ export class DrawerScreen extends React.Component<DrawerScreenProps> {
     public render() {
         let {navigation: {navigation}} = this.props;
         return (
-            <UIContainer>
+            <UIContainer drawer>
                 <ScrollView>
                     {
                         Object.keys(screenKeys).map((screen) => {

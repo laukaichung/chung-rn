@@ -41,10 +41,11 @@ export default class Draggable extends Component<Props, DraggableState> {
 
     private _onHandlerStateChange = async ({nativeEvent}) => {
         console.log(nativeEvent);
-        const {boundary: {bottom, top}} = this.props;
+        const {boundary: {bottom, top}, size} = this.props;
         if (nativeEvent.oldState === State.ACTIVE) {
             this._lastOffset.x += nativeEvent.translationX;
-            if(nativeEvent.absoluteY < bottom &&  nativeEvent.absoluteY > top) {
+            console.log(bottom)
+            if(nativeEvent.absoluteY < (bottom) && nativeEvent.absoluteY > (top)) {
                 this._lastOffset.y += nativeEvent.translationY;
             }
             this._translateXY.setOffset(this._lastOffset);

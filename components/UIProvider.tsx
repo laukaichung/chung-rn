@@ -3,7 +3,6 @@ import {ReactNode} from 'react'
 import UIContext, {ThemeContextProps} from "./UIContext";
 import {AsyncStorage} from "react-native";
 import Styles, {ChungThemeTypes} from "./Styles";
-import ScreenUtil from "./util/ScreenUtil";
 
 interface ChungContainerProps {
     children: ReactNode
@@ -34,7 +33,7 @@ export default class UIProvider extends React.Component<ChungContainerProps, Chu
         }
         return (
             <UIContext.Provider value={{
-                theme,
+                ...this.state,
                 toggleTheme: async () => {
                     let newTheme: ChungThemeTypes = theme === "light" ? "dark" : "light";
                     Styles.mode = newTheme;
@@ -42,10 +41,9 @@ export default class UIProvider extends React.Component<ChungContainerProps, Chu
                     await AsyncStorage.setItem(UIAsyncStoreKeys.theme, newTheme);
                 },
                 isDarkMode: theme === "dark",
-                layoutHeight: ScreenUtil.fullHeight(),
-                setLayoutHeight: (layoutHeight)=>{
-                    this.setState({layoutHeight});
-                }
+                setLayout: (layout)=>{
+                    this.setState({...layout});
+                },
             } as ThemeContextProps
             }
             >

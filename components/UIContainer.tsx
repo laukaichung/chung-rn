@@ -2,20 +2,26 @@ import * as React from 'react'
 import UIContext from "./UIContext";
 import Styles from "./Styles";
 import {View} from "react-native";
+import ScreenUtil from "./util/ScreenUtil";
 
-const UIContainer = (props) => {
+interface Props {
+    drawer?: boolean;
+}
+
+const UIContainer = (props: Props) => {
     return (
         <UIContext.Consumer>
             {
-                ({theme, setLayoutHeight}) => {
+                ({theme, setLayout}) => {
                     return (
                         <View
                             {...props}
                             style={{backgroundColor: Styles.backgroundColor, flex: 1}}
-                            onLayout={({nativeEvent: {layout}})=>{
-                                console.log(layout);
-                                setLayoutHeight(layout.height);
-                            }}
+                            onLayout={
+                                !props.drawer ? ({nativeEvent: {layout}}) => {
+                                    const headerHeight = ScreenUtil.fullHeight() - layout.height;
+                                    setLayout({...layout, headerHeight});
+                                } : null}
                         />
                     )
                 }

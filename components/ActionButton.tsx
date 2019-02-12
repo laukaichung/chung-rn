@@ -4,6 +4,7 @@ import Styles from "./Styles";
 import Icon from "./Icon";
 import Draggable from "./Draggable";
 import UIContext from "./UIContext";
+import ScreenUtil from "./util/ScreenUtil";
 
 export interface ActionButtonProps {
     bottom?: number;
@@ -69,31 +70,34 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
 
                 <UIContext.Consumer>
                     {
-                        ({layoutHeight})=>
-                        <Draggable
-                            {...this.props}
-                            boundary={{bottom: layoutHeight, top: 120}}
-                            containerStyle={containerStyle}
-                            view={(
-                                iconView
-                            )}
-                        />
+                        ({height, headerHeight}) => {
+                            return (
+                                <Draggable
+                                    {...this.props}
+                                    boundary={{bottom: ScreenUtil.fullHeight(), top: headerHeight}}
+                                    containerStyle={containerStyle}
+                                    view={(
+                                        iconView
+                                    )}
+                                />
+                            )
+                        }
                     }
-                </UIContext.Consumer>
-            )
-        }
+                        </UIContext.Consumer>
+                        )
+                        }
 
-        return (
-            <TouchableOpacity
-                onPress={onPress}
-                style={containerStyle}
-            >
-                {iconView}
-            </TouchableOpacity>
-        )
-    }
+                        return (
+                        <TouchableOpacity
+                        onPress={onPress}
+                        style={containerStyle}
+                        >
+                        {iconView}
+                        </TouchableOpacity>
+                        )
+                        }
 
 
-}
+                        }
 
 
