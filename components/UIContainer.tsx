@@ -3,9 +3,11 @@ import UIContext from "./UIContext";
 import Styles from "./Styles";
 import {View} from "react-native";
 import ScreenUtil from "./util/ScreenUtil";
+import {ReactNode} from "react";
+import {SafeAreaView} from "react-navigation";
 
 interface Props {
-    drawer?: boolean;
+    children: ReactNode
 }
 
 const UIContainer = (props: Props) => {
@@ -18,11 +20,31 @@ const UIContainer = (props: Props) => {
                             {...props}
                             style={{backgroundColor: Styles.backgroundColor, flex: 1}}
                             onLayout={
-                                !props.drawer ? ({nativeEvent: {layout}}) => {
+                                ({nativeEvent: {layout}}) => {
                                     const headerHeight = ScreenUtil.fullHeight() - layout.height;
                                     setLayout({...layout, headerHeight});
-                                } : null}
+                                }
+                            }
                         />
+                    )
+                }
+            }
+        </UIContext.Consumer>
+    )
+};
+
+export const UIDrawerContainer = (props) => {
+    return (
+        <UIContext.Consumer>
+            {
+                () => {
+                    return (
+                        <SafeAreaView>
+                            <View
+                                {...props}
+                                style={{backgroundColor: Styles.backgroundColor, flex: 1}}
+                            />
+                        </SafeAreaView>
                     )
                 }
             }

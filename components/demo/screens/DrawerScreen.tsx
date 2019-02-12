@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../UIContainer";
+import {UIDrawerContainer} from "../../UIContainer";
 import List from "../../List";
 import {screenKeys} from "../data/ScreenKeys";
 import ChungText from "../../ChungText";
@@ -16,7 +16,7 @@ export class DrawerScreen extends React.Component<DrawerScreenProps> {
     public render() {
         let {navigation: {navigation}} = this.props;
         return (
-            <UIContainer drawer>
+            <UIDrawerContainer>
                 <ScrollView>
                     {
                         Object.keys(screenKeys).map((screen) => {
@@ -37,7 +37,7 @@ export class DrawerScreen extends React.Component<DrawerScreenProps> {
                         })
                     }
                 </ScrollView>
-            </UIContainer>
+            </UIDrawerContainer>
         )
     }
 
