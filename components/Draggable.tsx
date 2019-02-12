@@ -26,8 +26,6 @@ export default class Draggable extends Component<Props, DraggableState> {
     private _translateXY = new Animated.ValueXY({x: 0, y: 0});
     private _lastOffset: OffsetState = {x: 0, y: 0};
     private mounted: boolean;
-    private _translateXYListenerId: string;
-
     private _onGestureEvent = Animated.event(
         [
             {
@@ -43,9 +41,12 @@ export default class Draggable extends Component<Props, DraggableState> {
 
     private _onHandlerStateChange = async ({nativeEvent}) => {
         console.log(nativeEvent);
+        const {boundary: {bottom, top}} = this.props;
         if (nativeEvent.oldState === State.ACTIVE) {
             this._lastOffset.x += nativeEvent.translationX;
-            this._lastOffset.y += nativeEvent.translationY;
+            if(nativeEvent.absoluteY < bottom &&  nativeEvent.absoluteY > top) {
+                this._lastOffset.y += nativeEvent.translationY;
+            }
             this._translateXY.setOffset(this._lastOffset);
             this._translateXY.setValue({x: 0, y: 0});
             const {storageKey} = this.props;
@@ -90,14 +91,17 @@ export default class Draggable extends Component<Props, DraggableState> {
 
     public async componentDidMount() {
         this.mounted = true;
-        const {boundary: {top, bottom}} = this.props;
-        this._translateXYListenerId = this._translateXY.addListener(({x, y}) => {
-            console.log({y,bottom})
-            console.log(this._translateXY.getLayout())
-            if(y > bottom){
-                this.setState({enabled: false})
-            }
-        });
+        // const {boundary: {top, bottom}} = this.props;
+        // this._translateXYListenerId = this._translateXY.addListener(({x, y}) => {
+        //
+        //     if(this.absoluteY > bottom){
+        //         console.log('should stop!')
+        //         this.setState({enabled: false})
+        //     }
+        //     // if(y > bottom){
+        //     //     this.setState({enabled: false})
+        //     // }
+        // });
 
         const {storageKey} = this.props;
         if (storageKey) {
@@ -123,7 +127,7 @@ export default class Draggable extends Component<Props, DraggableState> {
     }
 
     public componentWillUnmount() {
-        this._translateXY.removeListener(this._translateXYListenerId);
+        // this._translateXY.removeListener(this._translateXYListenerId);
         this.mounted = false;
 
     }

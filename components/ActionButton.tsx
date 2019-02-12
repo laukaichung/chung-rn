@@ -72,7 +72,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                         ({layoutHeight})=>
                         <Draggable
                             {...this.props}
-                            boundary={{bottom: layoutHeight, top: 0}}
+                            boundary={{bottom: layoutHeight, top: 120}}
                             containerStyle={containerStyle}
                             view={(
                                 iconView
