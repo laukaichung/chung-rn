@@ -38,7 +38,6 @@ export default class Accordion extends React.Component<AccordionContainerProps, 
         const {panes, customHeaderContainer, fadeIn, headerStyle, headerTextStyle} = this.props;
         let {activeIndices} = this.state;
         return (
-
             <View>
                 {
                     panes.map((p, idx) => {

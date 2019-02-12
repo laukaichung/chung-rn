@@ -57,10 +57,10 @@ const StackNavigator = createStackNavigator(
         [screenKeys.chungAlert]: ChungAlertScreen,
         [screenKeys.test]: TestScreen,
     },
-    {
-        initialRouteName: screenKeys.accordion,
-        defaultNavigationOptions: ({navigation}) => {
 
+    {
+        initialRouteName: screenKeys.test,
+        defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {
                 headerStyle: isDarkMode ? {backgroundColor: Styles.extremeBackgroundColor} : {},

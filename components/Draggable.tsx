@@ -1,14 +1,14 @@
 import * as React from "react"
-import {Component, ReactNode} from "react"
-import {Animated, AsyncStorage} from "react-native";
+import {Component} from "react"
+import {Animated, AsyncStorage, StyleProp, ViewStyle} from "react-native";
 import {PanGestureHandler, RectButton, State} from 'react-native-gesture-handler';
-import {Omit} from "react-navigation";
-import {ActionButtonProps} from "./ActionButton";
 import Toast from "./Toast";
 
-interface Props extends Omit<ActionButtonProps, "draggable" | "iconColor" | "icon"> {
-    view: ReactNode;
-    boundary: {top: number, bottom: number};
+interface Props {
+    boundary?: {top: number, bottom: number};
+    containerStyle?: StyleProp<ViewStyle>;
+    storageKey?: string;
+    onPress?: () => void;
 }
 
 interface DraggableState {
@@ -40,11 +40,14 @@ export default class Draggable extends Component<Props, DraggableState> {
 
 
     private _onHandlerStateChange = async ({nativeEvent}) => {
-        console.log(nativeEvent);
-        const {boundary: {bottom, top}, size} = this.props;
+        const {boundary} = this.props;
         if (nativeEvent.oldState === State.ACTIVE) {
             this._lastOffset.x += nativeEvent.translationX;
-            if(nativeEvent.absoluteY < (bottom) && nativeEvent.absoluteY > (top)) {
+            if(boundary) {
+                if (nativeEvent.absoluteY < (boundary.bottom) && nativeEvent.absoluteY > (boundary.top)) {
+                    this._lastOffset.y += nativeEvent.translationY;
+                }
+            }else{
                 this._lastOffset.y += nativeEvent.translationY;
             }
             this._translateXY.setOffset(this._lastOffset);
@@ -61,7 +64,7 @@ export default class Draggable extends Component<Props, DraggableState> {
         if (!loaded) {
             return null;
         }
-        const {view, onPress, containerStyle} = this.props;
+        const {children, onPress, containerStyle} = this.props;
         return (
             <PanGestureHandler
                 {...this.props}
@@ -82,7 +85,7 @@ export default class Draggable extends Component<Props, DraggableState> {
                     ]}
                 >
                     <RectButton onPress={onPress}>
-                        {view}
+                        {children}
                     </RectButton>
                 </Animated.View>
             </PanGestureHandler>

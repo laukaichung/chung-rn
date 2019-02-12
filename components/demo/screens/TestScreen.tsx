@@ -1,73 +1,107 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import {View, StyleSheet, Animated, TouchableWithoutFeedback} from "react-native";
+import {Animated, Image, LayoutRectangle, View} from "react-native";
+import {PanGestureHandler, RectButton, State} from "react-native-gesture-handler";
 import ChungText from "../../ChungText";
-import ValueXY = Animated.ValueXY;
+import FadeIn from "../../FadeIn";
 
-export default class TestScreen extends React.Component<NavigationProps> {
-    moveAnimation: ValueXY;
-    constructor(props) {
-        super(props);
-        this.moveAnimation = new Animated.ValueXY({ x: 10, y: 450 })
-    }
+interface TestState {
+    targetIsVisible: boolean;
+    targetLayout?: LayoutRectangle;
 
-    _moveBall = () => {
-        Animated.sequence([
-            Animated.spring(this.moveAnimation, {
-                toValue: {x: 250, y: 10},
-                useNativeDriver: true
-            }),
-            Animated.spring(this.moveAnimation, {
-                toValue: {x: 100, y: 10},
-                useNativeDriver: true
-            }),
-        ]).start();
-    };
+}
 
-    render() {
+export default class TestScreen extends React.Component<NavigationProps, TestState> {
+    public state: TestState = {targetIsVisible: false}
+    private _translateXY = new Animated.ValueXY({x: 0, y: 0});
+    private _positionXY = new Animated.ValueXY({x: 0, y: 0});
+    private positionListener: string;
+
+    private _onGestureEvent = Animated.event(
+        [
+            {
+                nativeEvent: {
+                    translationX: this._translateXY.x,
+                    translationY: this._translateXY.y,
+                },
+            },
+        ],
+
+        {useNativeDriver: true}
+    );
+
+    public render() {
+        const {targetIsVisible} = this.state;
         return (
-            <View style={styles.container}>
-                <Animated.View style={
-                    [
-                        styles.tennisBall,
-                        {
-                            transform: [
-                                {translateX: this.moveAnimation.x},
-                                {translateY: this.moveAnimation.y},
-                            ],
+            <View style={{flex: 1}}>
+                <PanGestureHandler
+                    onGestureEvent={this._onGestureEvent}
+                    onHandlerStateChange={async ({nativeEvent}) => {
+                        const {state, translationX, absoluteY, absoluteX, translationY} = nativeEvent;
+                        console.log(nativeEvent);
+                        if (state === State.BEGAN || state === State.ACTIVE) {
+                            this._translateXY.setValue({x: translationX, y: translationY});
+                            this.setState({targetIsVisible: true})
+                        } else {
+                            this._translateXY.setValue({x: 0, y: 0});
+                            this.setState({targetIsVisible: false})
                         }
-                    ]
-                }>
-                    <TouchableWithoutFeedback style={styles.button} onPress={this._moveBall}>
-                        <ChungText style={styles.buttonText}>
-                            Press
-                        </ChungText>
-                    </TouchableWithoutFeedback>
-                </Animated.View>
+                        this._positionXY.setValue({x: absoluteX, y: absoluteY})
+                    }}
+                >
+                    <Animated.View
+                        style={[
+                            {
+                                transform: [
+                                    {translateX: this._translateXY.x},
+                                    {translateY: this._translateXY.y},
+                                ],
+                            },
+                            {
+                                zIndex: 100,
+                            }
+                        ]}
+                    >
+                        <Image
+                            style={{height: 100, width: 100}}
+                            source={{uri: "https://user-images.githubusercontent.com/7850794/39671125-2d702b42-510a-11e8-9aa4-4c43934b811a.png"}}
+                        />
+                    </Animated.View>
+                </PanGestureHandler>
+                {
+                    targetIsVisible &&
+                    <View
+                        onLayout={({nativeEvent: {layout}}) => {
+                            this.setState({targetLayout: layout});
+                        }}
+                        style={{
+                            backgroundColor: "red",
+                            width: 100,
+                            height: 100,
+                            position: "absolute",
+                            bottom: 0,
+                            right: 0
+                        }}
+                    >
+                        <ChungText>fdassdf</ChungText>
+                    </View>
+                }
+
             </View>
         );
     }
-}
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ecf0f1',
-    },
-    tennisBall: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'greenyellow',
-        borderRadius: 100,
-        width: 100,
-        height: 100,
-    },
-    button: {
-        paddingTop: 24,
-        paddingBottom: 24,
-    },
-    buttonText: {
-        fontSize: 24,
-        color: '#333',
+
+
+    componentDidMount() {
+        this.positionListener = this._positionXY.addListener(({x, y}) => {
+            const {targetLayout} = this.state;
+            if (targetLayout && (x >= targetLayout.x && y >= targetLayout.y)) {
+                alert("touched")
+            }
+        })
     }
-});
+
+    componentWillUnmount(): void {
+        this._translateXY.removeListener(this.positionListener)
+    }
+}

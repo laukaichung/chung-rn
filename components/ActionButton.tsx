@@ -32,7 +32,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
     public render() {
         const {
             bottom, right, onPress, icon, iconColor, size,
-            draggable, backgroundColor,
+            draggable, backgroundColor, storageKey,
         } = this.props;
 
         const containerStyle = this.props.containerStyle ||
@@ -73,31 +73,32 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                         ({height, headerHeight}) => {
                             return (
                                 <Draggable
-                                    {...this.props}
+                                    onPress={onPress}
+                                    storageKey={storageKey}
                                     boundary={{bottom: ScreenUtil.fullHeight(), top: headerHeight}}
                                     containerStyle={containerStyle}
-                                    view={(
-                                        iconView
-                                    )}
-                                />
+
+                                >
+                                    {iconView}
+                                </Draggable>
                             )
                         }
                     }
-                        </UIContext.Consumer>
-                        )
-                        }
+                </UIContext.Consumer>
+            )
+        }
 
-                        return (
-                        <TouchableOpacity
-                        onPress={onPress}
-                        style={containerStyle}
-                        >
-                        {iconView}
-                        </TouchableOpacity>
-                        )
-                        }
+        return (
+            <TouchableOpacity
+                onPress={onPress}
+                style={containerStyle}
+            >
+                {iconView}
+            </TouchableOpacity>
+        )
+    }
 
 
-                        }
+}
 
 
