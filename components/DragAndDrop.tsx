@@ -6,7 +6,6 @@ import ChungText from "./ChungText";
 interface TestState {
     targetIsVisible: boolean;
     targetLayout?: LayoutRectangle;
-
 }
 
 export default class DragAndDrop extends React.Component<{}, TestState> {
