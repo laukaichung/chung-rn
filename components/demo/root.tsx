@@ -59,7 +59,7 @@ const StackNavigator = createStackNavigator(
     },
 
     {
-        initialRouteName: screenKeys.test,
+        initialRouteName: screenKeys.progress,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {

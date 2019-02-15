@@ -1,7 +1,15 @@
 import * as React from 'react';
-import {ActivityIndicator, StyleProp, TextStyle, TouchableHighlightProps, View, ViewStyle,} from 'react-native';
+import {
+    ActivityIndicator,
+    Animated,
+    StyleProp,
+    TextStyle,
+    TouchableHighlightProps,
+    TouchableOpacity,
+    View,
+    ViewStyle,
+} from 'react-native';
 import Styles from "./Styles";
-import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import Icon, {IconSize} from "./Icon";
 import ChungText from "./ChungText";
 
@@ -17,18 +25,14 @@ export interface ButtonProps extends TouchableHighlightProps {
 }
 
 interface State {
-    pressIn: boolean,
-    touchIt: boolean
 }
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 export default class Button extends React.Component<ButtonProps, State> {
 
     public constructor(props: ButtonProps) {
         super(props);
-        this.state = {
-            pressIn: false,
-            touchIt: false,
-        };
     }
 
     public render() {
@@ -46,11 +50,10 @@ export default class Button extends React.Component<ButtonProps, State> {
             ...restProps
         } = this.props;
 
-        let {pressIn} = this.state;
-
         let textStyle: TextStyle[] = [
             {fontSize: size === "lg" ? Styles.buttonFontSizeLg : Styles.buttonFontSize}
         ];
+
 
         let indicatorColor: string;
         let textColor: string;
@@ -61,12 +64,15 @@ export default class Button extends React.Component<ButtonProps, State> {
             padding: size === "lg" ? Styles.padding : Styles.paddingSm,
             borderWidth: 1,
             borderRadius: Styles.radiusMd,
-            elevation:3,
-            shadowOffset: { width: 1, height: 2 },
-            shadowColor: "grey",
-            shadowOpacity: 0.5,
-            shadowRadius: Styles.radiusMd,
+            borderBottomWidth: 2,
+            borderBottomColor: "grey",
+            // elevation:2,
+            // shadowOffset: { width: 1, height: 2 },
+            // shadowColor: "grey",
+            // shadowOpacity: 0.5,
+            // shadowRadius: Styles.radiusMd,
         }];
+
 
         if (type === "primary") {
 
@@ -82,22 +88,6 @@ export default class Button extends React.Component<ButtonProps, State> {
             textStyle.push({
                 color: textColor
             });
-
-            if (pressIn) {
-
-                indicatorColor = textColor = `${Styles.whiteTextColor}4D`;
-
-                textStyle.push({
-                    color: textColor
-                });
-
-                if (activeStyle) {
-                    wrapperStyle.push({
-                        backgroundColor: Styles.primaryColor,
-                        borderColor: Styles.primaryColor,
-                    });
-                }
-            }
 
             if (disabled) {
 
@@ -124,22 +114,6 @@ export default class Button extends React.Component<ButtonProps, State> {
                 borderColor: Styles.borderColor,
             });
 
-            if (pressIn) {
-
-                textStyle.push({
-                    color: Styles.defaultButtonPressInTextColor
-                });
-
-                indicatorColor = Styles.defaultButtonPressInTextColor;
-
-                if (activeStyle) {
-                    wrapperStyle.push({
-                        backgroundColor: Styles.backgroundColor,
-                        borderColor: Styles.borderColor,
-                    });
-                }
-            }
-
             if (disabled) {
 
                 wrapperStyle.push({
@@ -156,16 +130,15 @@ export default class Button extends React.Component<ButtonProps, State> {
         wrapperStyle.push(style as any);
 
         return (
-            <CustomTouchableHighlight
+            <AnimatedTouchable
                 {...restProps}
                 style={wrapperStyle}
                 disabled={disabled}
-                activeOpacity={1}
-                onPress={(e?: any) => onPress && onPress(e)}
-                onPressIn={this._onPressIn}
-                onPressOut={this._onPressOut}
-                onShowUnderlay={this._onShowUnderlay}
-                onHideUnderlay={this._onHideUnderlay}
+                onPress={(e?: any) => {
+                    if (onPress) {
+                        onPress(e)
+                    }
+                }}
             >
                 <View style={{flexDirection: 'row'}}>
                     {
@@ -179,42 +152,13 @@ export default class Button extends React.Component<ButtonProps, State> {
                         ) : null}
                     {
                         icon ?
-                            <ChungText style={textStyle}><Icon size={iconSize || "sm"} name={icon}/> {children}</ChungText>
+                            <ChungText style={textStyle}><Icon size={iconSize || "sm"} name={icon}/> {children}
+                            </ChungText>
                             :
                             <ChungText style={textStyle}>{children}</ChungText>
                     }
                 </View>
-            </CustomTouchableHighlight>
+            </AnimatedTouchable>
         )
-
     }
-
-    private _onPressIn = (...arg: any[]) => {
-        this.setState({pressIn: true});
-        if (this.props.onPressIn) {
-            (this.props.onPressIn as any)(...arg);
-        }
-    };
-
-    private _onPressOut = (...arg: any[]) => {
-        this.setState({pressIn: false});
-        if (this.props.onPressOut) {
-            (this.props.onPressOut as any)(...arg);
-        }
-    };
-
-    private _onShowUnderlay = (...arg: any[]) => {
-        this.setState({touchIt: true});
-        if (this.props.onShowUnderlay) {
-            (this.props.onShowUnderlay as any)(...arg);
-        }
-    };
-
-    private _onHideUnderlay = (...arg: any[]) => {
-        this.setState({touchIt: false});
-        if (this.props.onHideUnderlay) {
-            (this.props.onHideUnderlay as any)(...arg);
-        }
-    };
-
 }
