@@ -103,7 +103,6 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     };
 
     private _onOpen = (e) => {
-        e.preventDefault()
         this.setState({isVisible: true})
     };
 
