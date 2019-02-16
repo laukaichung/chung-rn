@@ -2,7 +2,7 @@ import * as React from 'react'
 import {StyleProp, TouchableOpacity, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
-import Draggable from "./Draggable";
+import PersistentDraggable from "./PersistentDraggable";
 import UIContext from "./UIContext";
 import ScreenUtil from "./util/ScreenUtil";
 
@@ -72,7 +72,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
                     {
                         ({height, headerHeight}) => {
                             return (
-                                <Draggable
+                                <PersistentDraggable
                                     onPress={onPress}
                                     storageKey={storageKey}
                                     boundary={{bottom: ScreenUtil.fullHeight(), top: headerHeight}}
@@ -80,7 +80,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
 
                                 >
                                     {iconView}
-                                </Draggable>
+                                </PersistentDraggable>
                             )
                         }
                     }

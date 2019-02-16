@@ -1,14 +1,14 @@
 import * as React from 'react'
+import {ReactNode} from 'react'
 import UIContext from "./UIContext";
 import Styles from "./Styles";
 import {StyleProp, View, ViewStyle} from "react-native";
 import ScreenUtil from "./util/ScreenUtil";
-import {ReactNode} from "react";
 import {SafeAreaView} from "react-navigation";
 
 interface Props {
     children: ReactNode
-    style: StyleProp<ViewStyle>
+    style?: StyleProp<ViewStyle>
 }
 
 const UIContainer = ({style, ... restProps}: Props) => {

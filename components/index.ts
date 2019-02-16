@@ -21,6 +21,7 @@ export {default as Icon} from './Icon'
 export {default as IconButton} from './IconButton'
 export {default as CustomTouchableHighlight} from './CustomTouchableHighlight'
 export {default as DateTimePickerModal} from './DateTimePickerModal';
+export {default as Draggable} from "./Draggable"
 export {default as Flex} from './Flex';
 export {default as FlexItem} from './FlexItem'
 export {default as FormInvalidHint} from './FormInvalidHint'
@@ -39,6 +40,7 @@ export {default as PickerModal} from './PickerModal'
 export {default as Progress} from './Progress';
 export {default as PausableGif} from './PausableGif'
 export {default as PermissionUtil} from './util/PermissionUtil';
+export {default as PersistentDraggable} from "./PersistentDraggable"
 export {default as Radio} from './Radio';
 export {default as Result} from './Result';
 export {default as TextAreaListItem} from './TextAreaListItem';
