@@ -16,8 +16,8 @@ export interface ModalProps {
     buttonTrigger?: any;
     fullScreen?: boolean;
     paddingHorizontal?: boolean;
-    scrollable?:boolean
-    scrollableFixedHeight?:number
+    scrollable?: boolean
+    scrollableFixedHeight?: number
 }
 
 interface CustomModalCoreProps extends ModalProps {
@@ -43,7 +43,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     public render() {
         const {props, state} = this;
         const {isVisible} = state;
-        const {children, title, nonButtonTrigger,scrollable,scrollableFixedHeight, paddingHorizontal = true, fullScreen, buttonTrigger} = props;
+        const {children, title, nonButtonTrigger, scrollable, scrollableFixedHeight, paddingHorizontal = true, fullScreen, buttonTrigger} = props;
         return (
             <React.Fragment>
                 {
@@ -55,11 +55,12 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                 }
                 {
                     isVisible &&
-                    <RNModal onBackButtonPress={this._closeModal}
-                             style={fullScreen && {margin: 0}}
-                             supportedOrientations={['portrait', 'landscape']}
-                             isVisible={isVisible}
-                             onBackdropPress={this._closeModal}
+                    <RNModal
+                        onBackButtonPress={this._closeModal}
+                        style={fullScreen && {margin: 0}}
+                        supportedOrientations={['portrait', 'landscape']}
+                        isVisible={isVisible}
+                        onBackdropPress={this._closeModal}
                     >
                         {
                             isVisible &&
@@ -71,7 +72,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                                         paddingVertical: Styles.padding
 
                                     },
-                                    scrollable ? {height:scrollableFixedHeight || 400}:{minHeight:100}
+                                    scrollable ? {height: scrollableFixedHeight || 400} : {minHeight: 100}
 
                                 ]}>
                                 {title && <Header center marginVertical>{title}</Header>}
@@ -101,7 +102,8 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
         if (!this.keyboardIsShown) this.setState({isVisible: false})
     };
 
-    private _onOpen = () => {
+    private _onOpen = (e) => {
+        e.preventDefault()
         this.setState({isVisible: true})
     };
 
