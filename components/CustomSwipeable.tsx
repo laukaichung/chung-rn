@@ -1,15 +1,17 @@
 import * as React from 'react';
 import {ReactNode, RefObject} from 'react';
 import {Animated, ViewStyle} from 'react-native';
-import {RectButton} from 'react-native-gesture-handler';
+import {RectButton, GestureHandlerProperties} from 'react-native-gesture-handler';
 import Swipeable, {SwipeableProperties} from 'react-native-gesture-handler/Swipeable';
 import ScreenUtil from "./util/ScreenUtil";
 
-export interface CustomSwipeableProps extends SwipeableProperties {
+export interface CustomSwipeableProps extends SwipeableProperties, GestureHandlerProperties {
     rightView?: ReactNode;
     leftView?: ReactNode;
     rightContainerStyle?: ViewStyle;
-    leftContainerStyle?: ViewStyle
+    leftContainerStyle?: ViewStyle;
+    onRightViewPress?: ()=> void;
+    onLeftViewPress?: ()=> void;
 }
 
 export default class CustomSwipeable extends React.Component<CustomSwipeableProps> {
@@ -17,7 +19,10 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
     private swipeableRow: RefObject<Swipeable> = React.createRef();
 
     private _renderLeftActions = (progress, dragX) => {
-        const {leftView, renderLeftActions, leftContainerStyle} = this.props;
+        const {
+            leftView, renderLeftActions,
+            leftContainerStyle, onLeftViewPress,
+        } = this.props;
         const fullWidth = ScreenUtil.fullWidth();
         if (renderLeftActions) {
             return renderLeftActions(progress, dragX);
@@ -38,7 +43,10 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
                     ]}
                 >
                     <RectButton
-                        onPress={this._close}
+                        onPress={()=> {
+                            onLeftViewPress();
+                            this._close();
+                        }}
                     >
                         {leftView}
                     </RectButton>
@@ -49,7 +57,7 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
     };
 
     private _renderRightActions = (progress, dragX) => {
-        const {rightView, renderRightActions, rightContainerStyle} = this.props;
+        const {rightView, renderRightActions, rightContainerStyle, onRightViewPress} = this.props;
         const fullWidth = ScreenUtil.fullWidth();
         if (renderRightActions) {
 
@@ -73,7 +81,10 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
                     ]}
                 >
                     <RectButton
-                        onPress={this._close}
+                        onPress={()=>{
+                            onRightViewPress();
+                            this._close();
+                        }}
                     >
                         {rightView}
                     </RectButton>

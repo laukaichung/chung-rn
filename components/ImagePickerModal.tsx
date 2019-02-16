@@ -10,6 +10,7 @@ import Button from "./Button";
 import CameraRollImageList from "./CameraRollImageList";
 import {CameraRollFile, FormListItemCommonProps} from "./type";
 import {ListItem} from "./index";
+import FastImage from "react-native-fast-image";
 
 interface ImagePickerModalProps extends FormListItemCommonProps {
     images?: CameraRollFile[];
@@ -70,9 +71,10 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                             renderItem={(file: CameraRollFile) => {
                                 return (
                                     <View style={[styles.item, styles.size]}>
-                                        <Image source={{uri: file.uri}}
-                                               resizeMethod="resize"
-                                               style={[styles.size, styles.image] as any}
+                                        <FastImage
+                                            source={{uri: file.uri}}
+                                            resizeMode={FastImage.resizeMode.contain}
+                                            style={[styles.size, styles.image] as any}
                                         />
                                         <TouchableOpacity
                                             onPress={() => {

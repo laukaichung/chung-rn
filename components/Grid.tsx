@@ -8,6 +8,7 @@ import ScreenUtil from "./util/ScreenUtil";
 import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 import DeviceInfo from 'react-native-device-info';
+import FastImage from "react-native-fast-image";
 
 interface DataItem {
     icon?: any;
@@ -69,7 +70,7 @@ export default class Grid extends React.Component<GridProps, any> {
                     {React.isValidElement(dataItem.icon) ? (
                         dataItem.icon
                     ) : (
-                        <Image source={{uri: dataItem.icon}} style={styles.icon}/>
+                        <FastImage source={{uri: dataItem.icon}} style={styles.icon}/>
                     )}
                     <ChungText style={{
                         fontSize: Styles.fontSizeCaptionSm,

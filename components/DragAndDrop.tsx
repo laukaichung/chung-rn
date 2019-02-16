@@ -2,6 +2,7 @@ import * as React from 'react'
 import {Animated, Image, LayoutRectangle, View} from "react-native";
 import {PanGestureHandler, State} from "react-native-gesture-handler";
 import ChungText from "./ChungText";
+import FastImage from "react-native-fast-image";
 
 interface TestState {
     targetIsVisible: boolean;
@@ -59,7 +60,7 @@ export default class DragAndDrop extends React.Component<{}, TestState> {
                             }
                         ]}
                     >
-                        <Image
+                        <FastImage
                             style={{height: 100, width: 100}}
                             source={{uri: "https://user-images.githubusercontent.com/7850794/39671125-2d702b42-510a-11e8-9aa4-4c43934b811a.png"}}
                         />

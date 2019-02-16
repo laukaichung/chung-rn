@@ -9,7 +9,6 @@ interface DraggableProps {
 
 export default class Draggable extends React.Component<DraggableProps> {
     private translateXY = new Animated.ValueXY({x: 0, y: 0});
-
     private _onGestureEvent = Animated.event(
         [
             {
@@ -27,7 +26,7 @@ export default class Draggable extends React.Component<DraggableProps> {
         return (
             <PanGestureHandler
                 onGestureEvent={this._onGestureEvent}
-                onHandlerStateChange={async (e) => {
+                onHandlerStateChange={(e) => {
                     const {state, translationX, translationY} = e.nativeEvent;
                     if (state === State.BEGAN || state === State.ACTIVE) {
                         this.translateXY.setValue({x: translationX, y: translationY});
