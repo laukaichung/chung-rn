@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ReactNode, RefObject} from 'react';
 import {Animated, ViewStyle} from 'react-native';
-import {RectButton, GestureHandlerProperties} from 'react-native-gesture-handler';
+import {GestureHandlerProperties} from 'react-native-gesture-handler';
 import Swipeable, {SwipeableProperties} from 'react-native-gesture-handler/Swipeable';
 import ScreenUtil from "./util/ScreenUtil";
 

@@ -8,7 +8,7 @@ interface DraggableProps {
 }
 
 export default class Draggable extends React.Component<DraggableProps> {
-    private translateXY = new Animated.ValueXY({x: 0, y: 0});
+    public translateXY = new Animated.ValueXY({x: 0, y: 0});
     private _onGestureEvent = Animated.event(
         [
             {

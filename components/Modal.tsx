@@ -102,7 +102,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
         if (!this.keyboardIsShown) this.setState({isVisible: false})
     };
 
-    private _onOpen = (e) => {
+    private _onOpen = () => {
         this.setState({isVisible: true})
     };
 
