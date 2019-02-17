@@ -9,7 +9,7 @@ interface HeaderProps extends TextProps{
     marginVertical?: boolean
     style?: TextStyle
     fontSize?: number
-    children: string;
+    children: string[] | string;
 }
 
 export const Header = ({color, center, fontSize, style, marginVertical, ...textProps}: HeaderProps) => {

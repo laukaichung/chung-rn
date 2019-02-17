@@ -2,26 +2,26 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import RNModal from "react-native-modal";
 import {Keyboard, View} from 'react-native'
-import Styles from "./Styles";
 import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
-import Header from "./Header";
+import Styles from "./Styles";
 
 export interface ModalCallback {
     closeModal: () => void;
 }
 
 export interface ModalProps {
-    title?: string
+    // title?: string
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
-    paddingHorizontal?: boolean;
-    scrollable?: boolean
+    // paddingHorizontal?: boolean;
+    // scrollable?: boolean;
     scrollableFixedHeight?: number
 }
 
 interface CustomModalCoreProps extends ModalProps {
     children: (callback: ModalCallback) => ReactNode;
+
 
 }
 
@@ -43,7 +43,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     public render() {
         const {props, state} = this;
         const {isVisible} = state;
-        const {children, title, nonButtonTrigger, scrollable, scrollableFixedHeight, paddingHorizontal = true, fullScreen, buttonTrigger} = props;
+        const {children, nonButtonTrigger, fullScreen, scrollableFixedHeight, buttonTrigger} = props;
         return (
             <React.Fragment>
                 {
@@ -66,19 +66,14 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                             isVisible &&
                             <View style={
                                 [
-                                    paddingHorizontal && {paddingHorizontal: Styles.padding},
                                     {
                                         backgroundColor: Styles.modalBackgroundColor,
-                                        paddingVertical: Styles.padding
-
                                     },
-                                    scrollable ? {height: scrollableFixedHeight || 400} : {minHeight: 100}
-
-                                ]}>
-                                {title && <Header center marginVertical>{title}</Header>}
+                                    scrollableFixedHeight ? {height:scrollableFixedHeight || 400}:{minHeight:150}
+                                ]}
+                            >
                                 {children({closeModal: this._closeModal})}
                             </View>
-
                         }
                     </RNModal>
                 }
@@ -113,12 +108,5 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     private _keyboardDidHide = () => {
         this.timeoutId = setTimeout(() => this.keyboardIsShown = false, 150)
     };
-
 }
-//
-// const styles = StyleSheet.create({
-//     container: {
-//         minHeight: 100,
-//         paddingVertical: Styles.padding
-//     },
-// });
+
