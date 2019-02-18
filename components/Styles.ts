@@ -1,5 +1,4 @@
 import {Platform, TextStyle, ViewStyle} from "react-native";
-import {ChungStyles} from "./index";
 
 export type ChungThemeTypes = "dark"|"light"
 
@@ -11,11 +10,11 @@ export default class Styles {
         return this.mode === "dark";
     }
 
-    static lineHeight = 28;
+    static lineHeight = 25;
 
     static fontFamilyAndroid = "sans-serif-condensed";
 
-    static fontFamilyIOS = "AmericanTypewriter-Condensed";
+    static fontFamilyIOS = "Gurmukhi MN";
 
     static get fontFamily(){
         return Platform.OS === "ios" ? this.fontFamilyIOS:this.fontFamilyAndroid;

@@ -26,9 +26,23 @@ const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
             },
             containerStyle,
         ]}>
-            {icon && <FlexItem><Icon color={color} style={{marginRight: Styles.margin}} name={icon}/></FlexItem>}
+            {
+                icon &&
+                <FlexItem>
+                    <Icon color={color} style={{marginRight: Styles.margin}} name={icon}/>
+                </FlexItem>
+            }
             <FlexItem flex={5}>
-                <ChungText style={[{color}]}>
+                <ChungText
+                    style={
+                        [
+                            {
+                                color,
+                                lineHeight: Styles.lineHeight
+                            }
+                        ]
+                    }
+                >
                     {children}
                 </ChungText>
             </FlexItem>
