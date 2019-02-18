@@ -10,7 +10,7 @@ export default class Styles {
         return this.mode === "dark";
     }
 
-    static lineHeight = 25;
+    static lineHeight = 28;
 
     static fontFamilyAndroid = "sans-serif-condensed";
 
