@@ -17,7 +17,7 @@ export const Header = ({color, center, fontSize, style, marginVertical, ...textP
         <ChungText
             style={[
                 {
-                    color: color || Styles.textColor,
+                    color: color || Styles.fontColor,
                     fontSize: fontSize || Styles.headerFontSize,
                     fontWeight: "bold",
                 },

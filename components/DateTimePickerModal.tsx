@@ -44,8 +44,8 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
                         this.setState({isVisible: false})
                         if (onCancel) onCancel(null)
                     }}
-                    confirmTextStyle={isDarkMode ? {color: Styles.textColor} : null}
-                    cancelTextStyle={isDarkMode ? {color: Styles.textColor} : null}
+                    confirmTextStyle={isDarkMode ? {color: Styles.fontColor} : null}
+                    cancelTextStyle={isDarkMode ? {color: Styles.fontColor} : null}
                     datePickerContainerStyleIOS={isDarkMode ? {backgroundColor: Styles.backgroundColor} : null}
                     titleStyle={isDarkMode ? {color: Styles.headerColor} : null}
 

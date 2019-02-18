@@ -49,7 +49,7 @@ export default class Result extends React.Component<ResultNativeProps, any> {
         }
 
         let typeColor = type === "error" ? Styles.errorColor :
-            type === "warning" ? Styles.warningColor : Styles.textColor;
+            type === "warning" ? Styles.warningColor : Styles.fontColor;
 
         return (
             <View style={

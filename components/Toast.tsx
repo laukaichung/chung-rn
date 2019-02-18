@@ -45,6 +45,7 @@ export default {
         return notice({
             ...props,
             content: `Please log in first`,
+            mask: false,
             iconProps: {
                 name: "sign-in"
             },

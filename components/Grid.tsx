@@ -74,7 +74,7 @@ export default class Grid extends React.Component<GridProps, any> {
                     )}
                     <ChungText style={{
                         fontSize: Styles.fontSizeCaptionSm,
-                        color: Styles.textColor,
+                        color: Styles.fontColor,
                         marginTop: Styles.margin,
                     }}>
                         {dataItem.text}

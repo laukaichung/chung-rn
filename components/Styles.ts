@@ -1,4 +1,5 @@
 import {Platform, TextStyle, ViewStyle} from "react-native";
+import {ChungStyles} from "./index";
 
 export type ChungThemeTypes = "dark"|"light"
 
@@ -90,6 +91,15 @@ export default class Styles {
         }
     }
 
+    static get pickerModalSelectedBackgroundColor(){
+        return Styles.isDarkMode ? this.secondaryColor: "grey"
+    }
+
+    static get pickerModalSelectedFontColor(){
+        return Styles.isDarkMode? "#fff": "#fff"
+    }
+
+
     static get accordionHeaderTextColor():TextStyle{
         return {
             fontWeight: "bold",
@@ -129,6 +139,8 @@ export default class Styles {
         return this.isDarkMode ? this.iconColorDark:this.iconColorLight;
     }
 
+
+
     static get statusBarBackgroundColor(){
         return this.darkestColor;
     }
@@ -138,7 +150,7 @@ export default class Styles {
         return this.isDarkMode ? '#1d1d1d': '#ffffff'
     };
 
-    static get textColor(){
+    static get fontColor(){
         return this.isDarkMode ? '#ccc6c0':'#6d6d6d'
     };
 

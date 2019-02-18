@@ -1,12 +1,13 @@
 import * as React from 'react'
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import {StyleProp, TextStyle, TouchableOpacity} from "react-native";
 import Styles from "./Styles";
 import ConfirmModal, {ConfirmModalProps} from "./ConfirmModal";
+import {StyleProp, TextStyle, TouchableOpacity} from "react-native";
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import * as Animatable from "react-native-animatable";
 
 export type IconSize = "sm" | "md" | "lg" | "xl"
 
-export interface IconProps {
+export interface IconProps{
     color?: string;
     backgroundColor?: string;
     onPress?: (e?: any) => void;
@@ -14,57 +15,51 @@ export interface IconProps {
     name: string;
     size?: IconSize
     customSize?: number;
-    onConfirmProps?: ConfirmModalProps
+    onConfirmProps?: ConfirmModalProps;
 }
 
-const Icon = (props: IconProps) => {
-    const {size, customSize, onConfirmProps, onPress} = props;
-    let {color} = props;
-    let sizeNo =
-        customSize ? customSize :
-            size === "sm" ? Styles.iconSizeSm :
-                size === "lg" ? Styles.iconSizeLg :
-                    size === "xl" ? 60 : Styles.iconSizeMd;
-    if (Styles.isDarkMode && !color) color = '#c6c6c6';
-    let iconComponent = (
-        <FontAwesomeIcon
-            {...props}
-            color={color}
-            size={sizeNo}
-        />
-    );
+export default class Icon extends React.Component<IconProps> {
 
-    if(onConfirmProps){
+    public static Animated = Animatable.createAnimatableComponent(Icon);
 
-        return (
-            <ConfirmModal
-                {...onConfirmProps}
-                buttonTrigger={(
-                    iconComponent
-                )}
+    public render() {
+        const {props} = this;
+        const {size, customSize, onConfirmProps, onPress} = props;
+        let {color} = props;
+        let sizeNo =
+            customSize ? customSize :
+                size === "sm" ? Styles.iconSizeSm :
+                    size === "lg" ? Styles.iconSizeLg :
+                        size === "xl" ? 60 : Styles.iconSizeMd;
+        if (Styles.isDarkMode && !color) color = '#c6c6c6';
+        let iconComponent = (
+            <FontAwesomeIcon
+                {...props}
+                color={color}
+                size={sizeNo}
             />
-        )
+        );
 
-    }else if (onPress) {
-        return (
-            <TouchableOpacity onPress={onPress}>
-                {iconComponent}
-            </TouchableOpacity>
-        )
-    }
+        if (onConfirmProps) {
 
-    return iconComponent
-};
+            return (
+                <ConfirmModal
+                    {...onConfirmProps}
+                    buttonTrigger={(
+                        iconComponent
+                    )}
+                />
+            )
 
-export class StatefulIcon extends React.Component<IconProps>{
-    public render(){
-        return (
-            <Icon {...this.props}/>
-        )
+        } else if (onPress) {
+            return (
+                <TouchableOpacity onPress={onPress}>
+                    {iconComponent}
+                </TouchableOpacity>
+            )
+        }
+
+        return iconComponent
     }
 }
-
-
-export default Icon;
-
 

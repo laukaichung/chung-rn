@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
     ActivityIndicator,
-    Animated,
     StyleProp,
     TextStyle,
     TouchableHighlightProps,
@@ -10,8 +9,10 @@ import {
     ViewStyle,
 } from 'react-native';
 import Styles from "./Styles";
-import Icon, {IconSize} from "./Icon";
 import ChungText from "./ChungText";
+import WingBlank from "./WingBlank";
+import {ReactNode} from "react";
+import * as Animatable from "react-native-animatable";
 
 export interface ButtonProps extends TouchableHighlightProps {
     activeStyle?: StyleProp<ViewStyle>;
@@ -20,20 +21,16 @@ export interface ButtonProps extends TouchableHighlightProps {
     size?: 'lg' | 'md';
     disabled?: boolean;
     loading?: boolean;
-    icon?: string;
-    iconSize?: IconSize
+    icon?: ReactNode;
 }
 
 interface State {
-}
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+}
 
 export default class Button extends React.Component<ButtonProps, State> {
 
-    public constructor(props: ButtonProps) {
-        super(props);
-    }
+    public static Animated = Animatable.createAnimatableComponent(Button);
 
     public render() {
         const {
@@ -42,16 +39,19 @@ export default class Button extends React.Component<ButtonProps, State> {
             disabled,
             children,
             style,
-            icon,
-            iconSize,
             activeStyle,
             onPress,
+            icon,
             loading,
             ...restProps
         } = this.props;
 
+        const buttonFontSize = size === "lg" ? Styles.buttonFontSizeLg : Styles.buttonFontSize
+
         let textStyle: TextStyle[] = [
-            {fontSize: size === "lg" ? Styles.buttonFontSizeLg : Styles.buttonFontSize}
+            {
+                fontSize: buttonFontSize,
+            }
         ];
 
 
@@ -104,10 +104,10 @@ export default class Button extends React.Component<ButtonProps, State> {
 
 
             textStyle.push({
-                color: Styles.textColor,
+                color: Styles.fontColor,
             });
 
-            indicatorColor = Styles.textColor;
+            indicatorColor = Styles.fontColor;
 
             wrapperStyle.push({
                 backgroundColor: Styles.backgroundColor,
@@ -130,7 +130,7 @@ export default class Button extends React.Component<ButtonProps, State> {
         wrapperStyle.push(style as any);
 
         return (
-            <AnimatedTouchable
+            <TouchableOpacity
                 {...restProps}
                 style={wrapperStyle}
                 disabled={disabled}
@@ -151,14 +151,22 @@ export default class Button extends React.Component<ButtonProps, State> {
                             />
                         ) : null}
                     {
-                        icon ?
-                            <ChungText style={textStyle}><Icon size={iconSize || "sm"} name={icon}/> {children}
-                            </ChungText>
+                        icon?
+                            <View style={{flexDirection: "row"}}>
+                                {icon}
+                                <WingBlank>
+                                    <ChungText style={[textStyle]}>
+                                        {children}
+                                    </ChungText>
+                                </WingBlank>
+                            </View>
                             :
-                            <ChungText style={textStyle}>{children}</ChungText>
+                            <ChungText style={textStyle}>
+                                {children}
+                            </ChungText>
                     }
                 </View>
-            </AnimatedTouchable>
+            </TouchableOpacity>
         )
     }
 }

@@ -2,16 +2,15 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from "react-test-renderer";
 import {PickerModal} from "../components";
-import {PickerItem, PickerOption} from "../components/PickerModal";
 import Button, {ButtonProps} from "../components/Button";
 import Modal from "../components/Modal";
 import Styles from "../components/Styles";
 import Grid from "../components/Grid";
-import Flex from "../components/Flex";
 import {Text} from 'react-native';
 import FlexItem from "../components/FlexItem";
+import PickerOption, {PickerOptionData} from "../components/PickerOption";
 
-const data:PickerItem[] = [
+const data:PickerOptionData[] = [
     {
         text:"A",
         value:"A"

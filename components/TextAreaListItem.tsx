@@ -116,7 +116,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
                         styles.input,
                         {backgroundColor: Styles.extremeBackgroundColor},
                         {
-                            color: error ? Styles.errorColor : Styles.textColor,
+                            color: error ? Styles.errorColor : Styles.fontColor,
                             paddingRight: error ? 2 * Styles.paddingLg : 0,
                         },
                         //todo untested

@@ -119,7 +119,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                         style={[
                             styles.input,
                             {
-                                color: Styles.textColor,
+                                color: Styles.fontColor,
                                 backgroundColor: Styles.extremeBackgroundColor,
                                 height: Styles.inputSingleRowHeight,
                             },

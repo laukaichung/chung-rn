@@ -12,13 +12,13 @@ interface BoldTextProps extends TextProps{
     children: ReactNode;
 }
 
-const BoldTextView = (({style,center,fontSize,color,...textProps}:BoldTextProps)=>{
+const BoldText = (({style,center,fontSize,color,...textProps}:BoldTextProps)=>{
     return (
         <ChungText
-            style={[{fontSize,fontWeight:'bold',color:color || ChungStyles.textColor},center?{textAlign:"center"}:null,style]}
+            style={[{fontSize,fontWeight:'bold',color:color || ChungStyles.fontColor},center?{textAlign:"center"}:null,style]}
             {...textProps}
         />
     )
 });
 
-export default BoldTextView
+export default BoldText

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Animated, StyleProp, TextStyle, View, ViewStyle} from "react-native";
+import {StyleProp, TextStyle, View, ViewStyle} from "react-native";
 import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
 import Styles from "./Styles";
 import Icon from "./Icon";

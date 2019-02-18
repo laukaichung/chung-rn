@@ -4,7 +4,7 @@ export {default as ActionButton} from './ActionButton'
 export {default as ActionButtonModal} from './ActionButtonModal'
 export {default as ActivityIndicator} from './ActivityIndicator';
 export {default as Badge} from './Badge';
-export {default as BoldTextView} from './BoldTextView'
+export {default as BoldText} from './BoldText'
 export {default as Button} from './Button';
 export {default as Card} from './Card';
 export {default as CardHeader} from './CardHeader';

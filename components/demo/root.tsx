@@ -59,13 +59,13 @@ const StackNavigator = createStackNavigator(
     },
 
     {
-        initialRouteName: screenKeys.progress,
+        initialRouteName: screenKeys.test,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {
                 headerStyle: isDarkMode ? {backgroundColor: Styles.extremeBackgroundColor} : {},
-                headerTitleStyle: isDarkMode ? {color: Styles.textColor} : {},
-                headerTintColor:Styles.textColor,
+                headerTitleStyle: isDarkMode ? {color: Styles.fontColor} : {},
+                headerTintColor:Styles.fontColor,
                 headerRight: (
                     <View>
                         <UIContext.Consumer>

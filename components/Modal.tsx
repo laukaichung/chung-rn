@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import RNModal from "react-native-modal";
+import {ModalProps as RNModalProps} from "react-native-modal";
 import {Keyboard, View} from 'react-native'
 import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
 import Styles from "./Styles";
@@ -8,21 +9,15 @@ import Styles from "./Styles";
 export interface ModalCallback {
     closeModal: () => void;
 }
-
-export interface ModalProps {
-    // title?: string
+export interface ModalProps extends Partial<RNModalProps>{
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
-    // paddingHorizontal?: boolean;
-    // scrollable?: boolean;
     scrollableFixedHeight?: number
 }
 
 interface CustomModalCoreProps extends ModalProps {
     children: (callback: ModalCallback) => ReactNode;
-
-
 }
 
 interface State {
@@ -56,11 +51,13 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                 {
                     isVisible &&
                     <RNModal
+                        {...props}
                         onBackButtonPress={this._closeModal}
                         style={fullScreen && {margin: 0}}
                         supportedOrientations={['portrait', 'landscape']}
                         isVisible={isVisible}
                         onBackdropPress={this._closeModal}
+                        useNativeDriver={true}
                     >
                         {
                             isVisible &&

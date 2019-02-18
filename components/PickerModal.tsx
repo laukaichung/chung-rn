@@ -1,10 +1,7 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {ScrollView, StyleProp, StyleSheet, TextStyle, View} from "react-native";
-import Grid, {GridProps} from "./Grid";
+import {FlatList, TouchableOpacity} from "react-native";
 import CustomModal, {ModalProps} from "./Modal";
-import Styles from "./Styles";
-import StringUtil from "./util/StringUtil";
 import ChungText from "./ChungText";
 import HintText from "./HintText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
@@ -12,14 +9,17 @@ import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 import WhiteSpace from "./WhiteSpace";
+import Header from "./Header";
+import PickerOption, {PickerOptionData, PickerOptionProps} from "./PickerOption";
+import WingBlank from "./WingBlank";
 
 export interface PickerModalProps extends ModalProps, FormCommonProps, FormListItemCommonProps {
-    data: PickerItem[];
+    data: PickerOptionData[];
     multiple?: boolean
     displayTextAsValue?: boolean;
-    gridProps?: GridProps;
     customLabelElement?: ReactNode;
-    renderPickerOption?: (data: { selectedOptions: PickerItem[], option: PickerItem }) => ReactNode
+    pickerOptionProps?: Partial<PickerOptionProps>
+    renderPickerOption?: (data: { selectedOptions: PickerOptionData[], option: PickerOptionData }) => ReactNode
 }
 
 interface SelectOptionModel {
@@ -27,43 +27,12 @@ interface SelectOptionModel {
 }
 
 interface PickerModalCore extends PickerModalProps {
-    onChange: (options: PickerItem[]) => void;
-    selectedOptions: PickerItem[];
+    onChange: (options: PickerOptionData[]) => void;
+    selectedOptions: PickerOptionData[];
 }
-
-export interface PickerItem {
-    text: string,
-    value: any
-}
-
-export interface PickerOptionProps {
-    option: PickerItem
-    selectedOptions: PickerItem[];
-    textStyle?: StyleProp<TextStyle>
-}
-
-export const PickerOption = ({option, textStyle, selectedOptions}: PickerOptionProps) => {
-    return (
-        <View>
-            <ChungText
-                style={
-                    [
-                        {
-                            fontWeight: "bold",
-                            color: selectedOptions.findIndex(o => option.value === o.value) > -1 ? Styles.selectedTextColor : Styles.textColor,
-                            textAlign: "center"
-                        },
-                        textStyle
-                    ]
-                }>
-                {StringUtil.capitalize(option.text)}
-            </ChungText>
-        </View>
-    )
-};
 
 interface PickerModalState {
-    selectedOptions: PickerItem[];
+    selectedOptions: PickerOptionData[];
 }
 
 export default class PickerModal extends React.Component<PickerModalCore, PickerModalState> {
@@ -78,8 +47,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
         const {
             invalidMessage, data, multiple, customLabelElement,
             hint, listItemProps = {}, displayTextAsValue, onChange,
-            gridProps,
-            renderPickerOption
+            renderPickerOption, pickerOptionProps,
         } = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
@@ -87,7 +55,6 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
 
         return (
             <CustomModal
-                title={multiple ? `Select multiple options` : `Select one option`}
                 {...props}
                 buttonTrigger={
                     <ListItem
@@ -108,46 +75,60 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                 {
                     ({closeModal}) => {
                         return (
-                            <ScrollView style={styles.container}>
-                                {
-                                    hint &&
-                                    <WhiteSpace>
-                                        <HintText>
-                                            {hint}
-                                        </HintText>
-                                    </WhiteSpace>
-                                }
-                                <WhiteSpace size="lg"/>
-                                <Grid
-                                    data={data}
-                                    onPress={(option: PickerItem) => {
-
-                                        let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
-                                        if (targetIdx > -1) {
-                                            selectedOptions.splice(targetIdx, 1);
-                                        } else {
-                                            if (multiple) {
-                                                selectedOptions.push(option);
-                                            } else {
-                                                selectedOptions = [option];
+                                <FlatList
+                                    ListHeaderComponent={(
+                                        <WingBlank marginVertical>
+                                            <Header>
+                                                {multiple ? `Select multiple options` : `Select one option`}
+                                            </Header>
+                                            {
+                                                hint &&
+                                                <WhiteSpace>
+                                                    <HintText>
+                                                        {hint}
+                                                    </HintText>
+                                                </WhiteSpace>
                                             }
-                                        }
-                                        this.setState({
-                                            selectedOptions
-                                        });
-
-                                        onChange(selectedOptions);
-                                        if (!multiple) closeModal()
-                                    }}
-                                    renderItem={(option: PickerItem) => {
-                                        if (renderPickerOption) return renderPickerOption({selectedOptions, option});
+                                        </WingBlank>
+                                    )}
+                                    data={data}
+                                    keyExtractor={(item, index) => String(index)}
+                                    renderItem={({item: option}: { item: PickerOptionData }) => {
                                         return (
-                                            <PickerOption selectedOptions={selectedOptions} option={option}/>
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
+                                                    if (targetIdx > -1) {
+                                                        selectedOptions.splice(targetIdx, 1);
+                                                    } else {
+                                                        if (multiple) {
+                                                            selectedOptions.push(option);
+                                                        } else {
+                                                            selectedOptions = [option];
+                                                        }
+                                                    }
+                                                    this.setState({
+                                                        selectedOptions
+                                                    });
+
+                                                    onChange(selectedOptions);
+                                                    if (!multiple) closeModal()
+                                                }}
+                                            >
+                                                {
+                                                    renderPickerOption ?
+                                                        renderPickerOption({selectedOptions, option})
+                                                        :
+                                                        <PickerOption
+                                                            {...pickerOptionProps}
+                                                            selectedOptions={selectedOptions}
+                                                            option={option}
+                                                        />
+                                                }
+                                            </TouchableOpacity>
                                         )
                                     }}
-                                    {...gridProps}
                                 />
-                            </ScrollView>
                         )
                     }
                 }
@@ -160,7 +141,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
     }
 
     public static _convertModalOptions(data: SelectOptionModel) {
-        let list: PickerItem[] = [];
+        let list: PickerOptionData[] = [];
         for (let title in data) {
             list.push({text: title, value: data[title]});
         }
@@ -168,8 +149,3 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        paddingBottom: Styles.padding
-    }
-})
