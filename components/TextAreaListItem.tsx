@@ -45,9 +45,6 @@ export interface TextareaItemNativeProps extends FormListItemCommonProps,FormCom
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
     onClear?: () => void;
-
-
-
 }
 
 interface State {
@@ -104,7 +101,12 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
         return (
             <ListItem
                 {...listItemProps}
-                bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
+                bottomExtraView={(
+                    <React.Fragment>
+                        {listItemProps.bottomExtraView}
+                        <FormInvalidHint invalidMessage={invalidMessage}/>
+                    </React.Fragment>
+                )}
             >
                 <FormHeader {...this.props}/>
                 <TextInput

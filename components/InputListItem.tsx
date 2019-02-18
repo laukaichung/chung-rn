@@ -21,7 +21,7 @@ export type KeyboardType =
     | 'password'
 
 
-export interface InputItemProps extends FormCommonProps,FormListItemCommonProps, FormHeaderProps {
+export interface InputItemProps extends FormCommonProps, FormListItemCommonProps, FormHeaderProps {
     last?: boolean;
     onExtraClick?: () => void;
     onErrorClick?: () => void;
@@ -104,7 +104,14 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
 
         return (
 
-            <ListItem {...listItemProps} bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
+            <ListItem
+                {...listItemProps}
+                bottomExtraView={
+                    <React.Fragment>
+                        {listItemProps.bottomExtraView}
+                        <FormInvalidHint invalidMessage={invalidMessage}/>
+                    </React.Fragment>
+                }
             >
 
                 <FormHeader {...this.props}/>
