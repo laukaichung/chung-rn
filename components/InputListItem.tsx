@@ -9,7 +9,6 @@ import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 
-
 type InputEventHandler = (value?: string) => void;
 
 export type KeyboardType =
@@ -68,7 +67,6 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
         textAlign: 'left',
         last: false,
     };
-
     private inputRef: RefObject<Input> = React.createRef();
 
     public render() {
@@ -82,7 +80,6 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
-
         let valueProps;
         if ('value' in this.props) {
             valueProps = {
@@ -93,7 +90,9 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                 defaultValue,
             };
         }
+
         let inputType = type;
+
         if (type === "decimal-pad") {
             inputType = "numeric"
         }
@@ -103,7 +102,6 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
         };
 
         return (
-
             <ListItem
                 {...listItemProps}
                 bottomExtraView={
@@ -113,9 +111,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                     </React.Fragment>
                 }
             >
-
                 <FormHeader {...this.props}/>
-
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Input
                         placeholderTextColor={Styles.placeholderTextColor}

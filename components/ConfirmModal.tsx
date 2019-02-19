@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet} from 'react-native'
 import Modal, {ModalProps} from "./Modal";
 import WhiteSpace from "./WhiteSpace";
 import Flex from "./Flex";
@@ -7,6 +7,8 @@ import Button from "./Button";
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
+import WingBlank from "./WingBlank";
+import Header from "./Header";
 
 export interface ConfirmModalProps extends ModalProps{
     onConfirm: () => void;
@@ -17,11 +19,13 @@ export interface ConfirmModalProps extends ModalProps{
 
 const ConfirmModal = ({onConfirm, onCancel,onConfirmMessage, title,...restProps}: ConfirmModalProps) => {
     return (
-        <Modal {...restProps}
-               title={title || `Are you sure?`}>
+        <Modal {...restProps}>
             {
                 ({closeModal}) =>
-                    <View>
+                    <WingBlank style={{flex: 1, flexDirection:"column", justifyContent: "center"}}>
+                        <Header>
+                            {title || `Are you sure?`}
+                        </Header>
                         {onConfirmMessage && (
                             <WhiteSpace>
                                 <ChungText>{onConfirmMessage}</ChungText>
@@ -49,7 +53,7 @@ const ConfirmModal = ({onConfirm, onCancel,onConfirmMessage, title,...restProps}
                                 </Button>
                             </FlexItem>
                         </Flex>
-                    </View>
+                    </WingBlank>
             }
         </Modal>
     )
