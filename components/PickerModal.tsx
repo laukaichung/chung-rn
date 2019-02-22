@@ -58,6 +58,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                 {...props}
                 buttonTrigger={
                     <ListItem
+                        border
                         {...listItemProps}
                         bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                         arrow="right"

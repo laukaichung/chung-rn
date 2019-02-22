@@ -47,6 +47,7 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
         return (
 
             <ListItem
+                border
                 {...listItemProps}
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}

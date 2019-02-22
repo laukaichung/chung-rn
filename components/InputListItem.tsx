@@ -103,6 +103,7 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
 
         return (
             <ListItem
+                border
                 {...listItemProps}
                 bottomExtraView={
                     <React.Fragment>

@@ -100,6 +100,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
 
         return (
             <ListItem
+                border
                 {...listItemProps}
                 bottomExtraView={(
                     <React.Fragment>

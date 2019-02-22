@@ -41,6 +41,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
 
         return (
             <ListItem
+                border
                 {...listItemProps}
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}

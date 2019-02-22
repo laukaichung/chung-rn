@@ -27,6 +27,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
         return (
 
             <List.Item
+                border
                 {...listItemProps}
                 onPress={() => this.setState({isVisible: true})}
                 arrow="right">
