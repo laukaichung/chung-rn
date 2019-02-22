@@ -17,6 +17,7 @@ export {default as ChungAlertView} from './ChungAlertView';
 export {default as ConfirmModal} from './ConfirmModal'
 export {default as ConfirmButton} from './ConfirmButton'
 export {default as CustomSwipeable} from './CustomSwipeable'
+export {default as Divider} from './Divider';
 export {default as Icon} from './Icon'
 export {default as IconButton} from './IconButton'
 export {default as CustomTouchableHighlight} from './CustomTouchableHighlight'

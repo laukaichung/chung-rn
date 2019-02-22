@@ -102,7 +102,7 @@ export default class Item extends React.Component<ListItemProps, any> {
 
 
             if (hideBorder.indexOf("top") > -1)
-                itemBorderStyle.borderTopWidth = 0
+                itemBorderStyle.borderTopWidth = 0;
 
 
             if (hideBorder.indexOf("all") > -1)

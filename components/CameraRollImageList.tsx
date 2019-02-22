@@ -179,6 +179,9 @@ interface ImageItemProps {
     onSelected: (returnedImage: CameraRollFile) => void;
 }
 
+//todo The FastImage is unable to load IOS local images:
+// https://github.com/DylanVann/react-native-fast-image/issues/410
+
 const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
 
     return (

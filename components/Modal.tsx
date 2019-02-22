@@ -66,7 +66,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                                     {
                                         backgroundColor: Styles.modalBackgroundColor,
                                     },
-                                    scrollableFixedHeight ? {height:scrollableFixedHeight || 400}:{minHeight:150}
+                                    scrollableFixedHeight ? {height:scrollableFixedHeight || 400}:{minHeight:100}
                                 ]}
                             >
                                 {children({closeModal: this._closeModal})}
