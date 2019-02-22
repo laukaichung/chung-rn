@@ -90,23 +90,19 @@ export default class Item extends React.Component<ListItemProps, any> {
 
         if (hideBorder) {
 
-            if (hideBorder.indexOf("bottom") > -1)
+            if (hideBorder.indexOf("bottom") > -1) {
                 itemBorderStyle.borderBottomWidth = 0;
+            }
 
-            // if (hideBorder.indexOf("left") > -1)
-            //     itemBorderStyle.borderLeftWidth = 0;
-            //
-            //
-            // if (hideBorder.indexOf("right") > -1)
-            //     itemBorderStyle.borderRightWidth = 0;
-
-
-            if (hideBorder.indexOf("top") > -1)
+            if (hideBorder.indexOf("top") > -1) {
                 itemBorderStyle.borderTopWidth = 0;
+            }
 
+            if (hideBorder.indexOf("all") > -1) {
+                itemBorderStyle.borderTopWidth = 0;
+                itemBorderStyle.borderBottomWidth = 0;
+            }
 
-            if (hideBorder.indexOf("all") > -1)
-                itemBorderStyle.borderWidth = 0
 
         }
 

@@ -2,18 +2,19 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import RNModal from "react-native-modal";
 import {ModalProps as RNModalProps} from "react-native-modal";
-import {Keyboard, View} from 'react-native'
+import {Keyboard, StyleProp, View, ViewStyle} from 'react-native'
 import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
 import Styles from "./Styles";
 
 export interface ModalCallback {
     closeModal: () => void;
 }
-export interface ModalProps extends Partial<RNModalProps>{
+
+export interface ModalProps extends Partial<RNModalProps> {
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
-    scrollableFixedHeight?: number
+    containerStyle?: StyleProp<ViewStyle>
 }
 
 interface CustomModalCoreProps extends ModalProps {
@@ -38,7 +39,7 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
     public render() {
         const {props, state} = this;
         const {isVisible} = state;
-        const {children, nonButtonTrigger, fullScreen, scrollableFixedHeight, buttonTrigger} = props;
+        const {children, nonButtonTrigger, containerStyle, fullScreen, buttonTrigger} = props;
         return (
             <React.Fragment>
                 {
@@ -61,13 +62,16 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                     >
                         {
                             isVisible &&
-                            <View style={
-                                [
-                                    {
-                                        backgroundColor: Styles.modalBackgroundColor,
-                                    },
-                                    scrollableFixedHeight ? {height:scrollableFixedHeight || 400}:{minHeight:100}
-                                ]}
+                            <View
+                                style={
+                                    [
+                                        {
+                                            backgroundColor: Styles.modalBackgroundColor,
+                                            borderRadius: 5,
+                                        },
+                                        containerStyle,
+                                    ]
+                                }
                             >
                                 {children({closeModal: this._closeModal})}
                             </View>
