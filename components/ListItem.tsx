@@ -82,33 +82,31 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        let itemBorderStyle: StyleProp<ViewStyle> = {
-            borderBottomWidth: Styles.borderWidth,
-            borderTopWidth: Styles.borderWidth,
-            borderColor: Styles.borderColor
-        };
+        // let itemBorderStyle: StyleProp<ViewStyle> = {
+        //     borderBottomWidth: Styles.borderWidth,
+        //     borderTopWidth: Styles.borderWidth,
+        //     borderColor: Styles.borderColor
+        // };
 
-        if (hideBorder) {
-
-            if (hideBorder.indexOf("bottom") > -1) {
-                itemBorderStyle.borderBottomWidth = 0;
-            }
-
-            if (hideBorder.indexOf("top") > -1) {
-                itemBorderStyle.borderTopWidth = 0;
-            }
-
-            if (hideBorder.indexOf("all") > -1) {
-                itemBorderStyle.borderTopWidth = 0;
-                itemBorderStyle.borderBottomWidth = 0;
-            }
-
-
-        }
+        // if (hideBorder) {
+        //
+        //     if (hideBorder.indexOf("bottom") > -1) {
+        //         itemBorderStyle.borderBottomWidth = 0;
+        //     }
+        //
+        //     if (hideBorder.indexOf("top") > -1) {
+        //         itemBorderStyle.borderTopWidth = 0;
+        //     }
+        //
+        //     if (hideBorder.indexOf("all") > -1) {
+        //         itemBorderStyle.borderTopWidth = 0;
+        //         itemBorderStyle.borderBottomWidth = 0;
+        //     }
+        // }
 
         const itemView = (
             <View {...restProps}
-                  style={[itemBorderStyle, {paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
+                  style={[{paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
                 <View style={{
                     padding: Styles.padding / 2,
                     flexDirection: 'row',
@@ -151,8 +149,8 @@ export default class Item extends React.Component<ListItemProps, any> {
         if(swipeableProps){
             return (
                 <CustomSwipeable
-                    rightContainerStyle={itemBorderStyle}
-                    leftContainerStyle={itemBorderStyle}
+                    //rightContainerStyle={itemBorderStyle}
+                    //leftContainerStyle={itemBorderStyle}
                     {...swipeableProps}
                 >
                     {listItem}
