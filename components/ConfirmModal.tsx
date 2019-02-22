@@ -10,34 +10,43 @@ import FlexItem from "./FlexItem";
 import WingBlank from "./WingBlank";
 import Header from "./Header";
 
-export interface ConfirmModalProps extends ModalProps{
+export interface ConfirmModalProps extends ModalProps {
     onConfirm: () => void;
-    onCancel?:()=>void;
+    onCancel?: () => void;
     onConfirmMessage?: string
     title?: string
 }
 
-const ConfirmModal = ({onConfirm, onCancel,onConfirmMessage, title,...restProps}: ConfirmModalProps) => {
+const ConfirmModal = ({onConfirm, onCancel, onConfirmMessage, title, ...restProps}: ConfirmModalProps) => {
     return (
-        <Modal {...restProps}>
+        <Modal
+            {...restProps}
+        >
             {
                 ({closeModal}) =>
-                    <WingBlank style={{flex: 1, flexDirection:"column", justifyContent: "center"}}>
+                    <WingBlank
+                        style={{
+                            flex: 1, flexDirection: "column", justifyContent: "center"
+                        }}
+                    >
                         <Header>
                             {title || `Are you sure?`}
                         </Header>
-                        {onConfirmMessage && (
-                            <WhiteSpace>
-                                <ChungText>{onConfirmMessage}</ChungText>
-                            </WhiteSpace>
-                        )}
+                        {
+                            onConfirmMessage && (
+                                <WhiteSpace>
+                                    <ChungText>{onConfirmMessage}</ChungText>
+                                </WhiteSpace>
+                            )
+                        }
                         <Flex style={styles.footerContainer}>
                             <FlexItem style={styles.cancelButton}>
                                 <Button
                                     onPress={() => {
                                         closeModal();
-                                        if(onCancel) onCancel();
-                                    }}>
+                                        if (onCancel) onCancel();
+                                    }}
+                                >
                                     Cancel
                                 </Button>
                             </FlexItem>
@@ -63,8 +72,8 @@ const styles = StyleSheet.create({
     cancelButton: {
         marginRight: 5
     },
-    footerContainer:{
-        paddingVertical:Styles.paddingLg
+    footerContainer: {
+        paddingVertical: Styles.paddingLg
     }
 
 });

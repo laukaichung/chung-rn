@@ -11,6 +11,7 @@ const ConfirmButton = (props: ConfirmButtonProps) => {
     const {confirmMessage, onPress, title} = props;
     return (
         <ConfirmModal
+            containerStyle={{minHeight: 150}}
             onConfirm={onPress}
             buttonTrigger={(
                 <Button{...props}/>
