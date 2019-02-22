@@ -1,11 +1,11 @@
 import * as React from "react"
 import {StyleProp, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
-import {ReactNode} from "react";
+import {ReactElement} from "react";
 
 interface DividerProps {
     style?: StyleProp<ViewStyle>
-    children?: ReactNode;
+    children?: ReactElement<any>;
     disabled?: boolean;
 }
 

@@ -3,12 +3,14 @@ import Accordion from "../../Accordion";
 import {NavigationProps} from "../demotype";
 import Container from "../../UIContainer";
 import ChungText from "../../ChungText";
+import Divider from "../../Divider";
 
 export class AccordionScreen extends React.Component<NavigationProps> {
 
     render() {
         return (
             <Container>
+                <Divider/>
                 <Accordion
                     panes={[
                         {
