@@ -8,8 +8,6 @@ import Icon, {IconProps} from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
 import CustomSwipeable, {CustomSwipeableProps} from "./CustomSwipeable";
 
-export type HideBorderOptions = "bottom" | "top" | "all" | "left" | "right"
-
 export interface ListItemProps {
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
@@ -32,7 +30,7 @@ export interface ListItemProps {
      * when it is used with numColumns in FlatList.
      * Disable containerFlex for ActivityLogPanel.
      */
-    hideBorder?: HideBorderOptions[];
+    border?: boolean;
 }
 
 export default class Item extends React.Component<ListItemProps, any> {
@@ -46,10 +44,10 @@ export default class Item extends React.Component<ListItemProps, any> {
             arrow,
             iconProps,
             onPress,
-            hideBorder,
             wrap,
             bottomExtraView,
             style,
+            border,
             swipeableProps,
             ...restProps
         } = this.props;
@@ -82,31 +80,22 @@ export default class Item extends React.Component<ListItemProps, any> {
             }
         }
 
-        // let itemBorderStyle: StyleProp<ViewStyle> = {
-        //     borderBottomWidth: Styles.borderWidth,
-        //     borderTopWidth: Styles.borderWidth,
-        //     borderColor: Styles.borderColor
-        // };
-
-        // if (hideBorder) {
-        //
-        //     if (hideBorder.indexOf("bottom") > -1) {
-        //         itemBorderStyle.borderBottomWidth = 0;
-        //     }
-        //
-        //     if (hideBorder.indexOf("top") > -1) {
-        //         itemBorderStyle.borderTopWidth = 0;
-        //     }
-        //
-        //     if (hideBorder.indexOf("all") > -1) {
-        //         itemBorderStyle.borderTopWidth = 0;
-        //         itemBorderStyle.borderBottomWidth = 0;
-        //     }
-        // }
+        const itemBorderStyle: StyleProp<ViewStyle> = {
+            borderBottomWidth: Styles.borderWidth,
+            borderColor: Styles.borderColor
+        };
 
         const itemView = (
-            <View {...restProps}
-                  style={[{paddingVertical: Styles.padding, paddingLeft: Styles.padding}, style]}>
+            <View
+                {...restProps}
+                style={
+                    [
+                        border && itemBorderStyle,
+                        {paddingVertical: Styles.padding, paddingLeft: Styles.padding},
+                        style
+                    ]
+                }
+            >
                 <View style={{
                     padding: Styles.padding / 2,
                     flexDirection: 'row',
@@ -146,7 +135,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             </CustomTouchableHighlight>
         );
 
-        if(swipeableProps){
+        if (swipeableProps) {
             return (
                 <CustomSwipeable
                     //rightContainerStyle={itemBorderStyle}
@@ -157,7 +146,7 @@ export default class Item extends React.Component<ListItemProps, any> {
                 </CustomSwipeable>
             )
 
-        }else {
+        } else {
             return listItem
         }
     }
