@@ -4,6 +4,9 @@ import Styles from "./Styles";
 import Icon, {IconProps} from "./Icon";
 import WhiteSpace from "./WhiteSpace";
 import ChungText from "./ChungText";
+import * as Animatable from "react-native-animatable";
+import {createRef, RefObject} from "react";
+
 
 export type ToastType = "success" | "fail" | "loading" | "bottomInfo"
 
@@ -13,24 +16,16 @@ export interface ToastProps {
     onClose?: () => void;
     mask?: boolean;
     type?: ToastType;
-    onAnimationEnd?: () => void;
     iconProps?: IconProps
 }
 
 export default class ToastContainer extends React.Component<ToastProps, any> {
-    static defaultProps = {
-        duration: 3,
+    private animationRef: RefObject<any> = createRef();
+    private timeOut;
+    public static defaultProps = {
+        duration: 3000,
         mask: true,
     };
-
-    anim: Animated.CompositeAnimation | null;
-
-    constructor(props: ToastProps) {
-        super(props);
-        this.state = {
-            fadeAnim: new Animated.Value(0),
-        };
-    }
 
     public render() {
         const {type = "info", content, iconProps, mask = true} = this.props;
@@ -75,13 +70,13 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                 pointerEvents={mask ? undefined : 'box-none'}
             >
                 <View style={[styles.innerContainer]}>
-                    <Animated.View style={{opacity: this.state.fadeAnim}}>
+                    <Animatable.View ref={this.animationRef}>
                         <View
                             style={[
                                 styles.innerWrap,
                                 iconDom ? styles.iconToast : styles.textToast,
                                 {
-                                    backgroundColor: Styles.isDarkMode ? Styles.primaryColorDark : "grey",
+                                    backgroundColor: Styles.toastBackgroundColor,
                                 }
                             ]}
                         >
@@ -97,46 +92,36 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
                                 {content}
                             </ChungText>
                         </View>
-                    </Animated.View>
+                    </Animatable.View>
                 </View>
             </View>
         );
     }
 
-    componentDidMount() {
-        const {onClose, onAnimationEnd} = this.props;
-        const duration = this.props.duration as number;
-        const timing = Animated.timing;
-        if (this.anim) {
-            this.anim = null;
+    public async componentDidMount() {
+        const {duration, type, onClose} = this.props;
+        const {current} = this.animationRef;
+
+        if(type === "bottomInfo"){
+            await current.lightSpeedIn(500);
+            this.timeOut = setTimeout(async ()=>{
+                await current.lightSpeedOut(300);
+                onClose()
+            },duration)
+
+        }else {
+            await current.zoomIn(500);
+            this.timeOut = setTimeout(async ()=>{
+                await current.zoomOut(300);
+                onClose();
+            }, duration)
         }
-        const animArr = [
-            timing(this.state.fadeAnim, {toValue: 1, duration: 200}),
-            Animated.delay(duration * 1000),
-        ];
-        if (duration > 0) {
-            animArr.push(timing(this.state.fadeAnim, {toValue: 0, duration: 200}));
-        }
-        this.anim = Animated.sequence(animArr);
-        this.anim.start(() => {
-            if (duration > 0) {
-                this.anim = null;
-                if (onClose) {
-                    onClose();
-                }
-                if (onAnimationEnd) {
-                    onAnimationEnd();
-                }
-            }
-        });
     }
 
-    componentWillUnmount() {
-        if (this.anim) {
-            this.anim.stop();
-            this.anim = null;
-        }
+    public componentWillUnmount() {
+        clearTimeout(this.timeOut);
     }
+
 }
 
 const styles = StyleSheet.create({

@@ -183,6 +183,7 @@ export default class Styles {
     static radiusMd = 5;
     static radiusLg = 7;
 
+    static toastBackgroundColor = "#5d5d5d";
     static toastZIndex= 1999;
 
     static get modalBackgroundColor(){

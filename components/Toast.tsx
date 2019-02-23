@@ -1,13 +1,12 @@
 import * as React from 'react';
 import ToastContainer, {ToastProps} from './ToastContainer';
 import Portal from "./portal/Portal";
-import {Omit} from "react-navigation";
 
-function notice(props:Omit<ToastProps, "onAnimationEnd">) {
+function notice(props:ToastProps) {
     const key = Portal.add(
         <ToastContainer
             {...props}
-            onAnimationEnd={() => Portal.remove(key)}
+            onClose={() => Portal.remove(key)}
         />,
     );
     return key;
