@@ -1,7 +1,7 @@
 import * as React from "react"
 import ChungText from "../../ChungText";
 import UIContainer from "../../UIContainer";
-import ChungAlertView from "../../ChungAlertView";
+import ChungAlert from "../../ChungAlert";
 import {AsyncStorage} from "react-native";
 
 export interface ChungAlertScreenProps {}
@@ -14,7 +14,7 @@ export default class ChungAlertScreen extends React.Component<ChungAlertScreenPr
                 <ChungText>
                     Chung Alert!!!!!!!!!!
                 </ChungText>
-                <ChungAlertView
+                <ChungAlert
                     storageKey={"trial"}
                     view={(
                         <ChungText>
@@ -27,7 +27,7 @@ export default class ChungAlertScreen extends React.Component<ChungAlertScreenPr
     }
 
     /**
-     * Clear the previous stored ChungAlertView states in AsyncStorage
+     * Clear the previous stored ChungAlert states in AsyncStorage
      */
     async componentWillMount() {
         await AsyncStorage.clear();

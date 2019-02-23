@@ -45,11 +45,10 @@ export default class Styles {
         return this.isDarkMode?"#eea21b":"#ffcc00"
     }
 
-    static errorColorLight = "#cc3300";
-    static errorColorDark = "#ea4732";
+    static errorColorDark = "#e56572";
 
     static get errorColor(){
-        return this.isDarkMode?this.errorColorLight:this.errorColorDark;
+        return this.errorColorDark;
     }
 
     static iconSizeSm = 16;
