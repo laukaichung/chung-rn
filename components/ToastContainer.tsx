@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {ActivityIndicator, Animated, StyleSheet, View, ViewStyle,} from 'react-native';
+import {createRef, RefObject} from 'react';
+import {ActivityIndicator, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
 import Icon, {IconProps} from "./Icon";
 import WhiteSpace from "./WhiteSpace";
 import ChungText from "./ChungText";
 import * as Animatable from "react-native-animatable";
-import {createRef, RefObject} from "react";
 
 
 export type ToastType = "success" | "fail" | "loading" | "bottomInfo"
@@ -13,7 +13,7 @@ export type ToastType = "success" | "fail" | "loading" | "bottomInfo"
 export interface ToastProps {
     content: string;
     duration?: number;
-    onClose?: () => void;
+    onClose: () => void;
     mask?: boolean;
     type?: ToastType;
     iconProps?: IconProps
@@ -105,15 +105,15 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
         if(type === "bottomInfo"){
             await current.lightSpeedIn(500);
             this.timeOut = setTimeout(async ()=>{
-                await current.lightSpeedOut(300);
-                onClose()
+                await current.lightSpeedOut(500);
+                if(onClose) onClose()
             },duration)
 
         }else {
             await current.zoomIn(500);
             this.timeOut = setTimeout(async ()=>{
-                await current.zoomOut(300);
-                onClose();
+                await current.zoomOut(500);
+                if(onClose) onClose();
             }, duration)
         }
     }

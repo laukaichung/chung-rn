@@ -1,6 +1,6 @@
 import * as React from "react"
 import ChungText from "../../ChungText";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 import ChungAlert from "../../ChungAlert";
 import {AsyncStorage} from "react-native";
 
@@ -10,7 +10,7 @@ export default class ChungAlertScreen extends React.Component<ChungAlertScreenPr
 
     render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <ChungText>
                     Chung Alert!!!!!!!!!!
                 </ChungText>
@@ -22,7 +22,7 @@ export default class ChungAlertScreen extends React.Component<ChungAlertScreenPr
                         </ChungText>
                     )}
                 />
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 

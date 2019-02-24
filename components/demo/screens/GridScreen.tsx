@@ -1,14 +1,14 @@
 import * as React from 'react'
 import Grid from "../../Grid";
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 
 
 export class GridScreen extends React.Component<NavigationProps> {
 
     render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <Grid
                     isCarousel
                     carouselMaxRow={1}
@@ -53,7 +53,7 @@ export class GridScreen extends React.Component<NavigationProps> {
                         }
                         ]}
                 />
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 }

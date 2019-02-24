@@ -4,7 +4,7 @@ import Card from "../../Card";
 import CardHeader from "../../CardHeader";
 import CardBody from "../../CardBody";
 import CardFooter from "../../CardFooter";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 import ChungText from "../../ChungText";
 import {View} from "react-native";
 
@@ -17,7 +17,7 @@ export class CardScreen extends React.Component<NavigationProps, State> {
 
     public render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <Card full>
                     <CardHeader title={<ChungText>Hello</ChungText>}/>
                     <CardBody paddingHorizontal>
@@ -37,7 +37,7 @@ export class CardScreen extends React.Component<NavigationProps, State> {
                     </CardBody>
                     <CardFooter content={"Content"} extra={`Extra`}/>
                 </Card>
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 }

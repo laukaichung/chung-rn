@@ -6,14 +6,14 @@ import CheckboxListItem from "../../CheckboxListItem";
 import RadioListItem from "../../RadioListItem";
 import DateTimePickerModal from "../../DateTimePickerModal";
 import TextAreaListItem from "../../TextAreaListItem";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 import {ScrollView} from "react-native";
 
 
 export default class FormScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <ScrollView>
                     <List>
                         <InputListItem label={"Input"}
@@ -54,7 +54,7 @@ export default class FormScreen extends React.Component<NavigationProps> {
                             onConfirm={(date) => console.log({date})}/>
                     </List>
                 </ScrollView>
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 }

@@ -1,13 +1,13 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 import Result from "../../Result";
 import ChungText from "../../ChungText";
 
 export default class ResultScreen extends React.Component<NavigationProps> {
     render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <Result
                     title={"Warning"}
                     iconProps={{
@@ -19,7 +19,7 @@ export default class ResultScreen extends React.Component<NavigationProps> {
                         This is a message
                     </ChungText>
                 </Result>
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 }

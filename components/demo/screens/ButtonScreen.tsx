@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 import Button from "../../Button";
 import {View} from "react-native";
 
@@ -14,7 +14,7 @@ export class ButtonScreen extends React.Component<NavigationProps, State> {
 
     render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <View
                     style={{
                         flex: 1,
@@ -35,7 +35,7 @@ export class ButtonScreen extends React.Component<NavigationProps, State> {
                         Test Button
                     </Button>
                 </View>
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 }

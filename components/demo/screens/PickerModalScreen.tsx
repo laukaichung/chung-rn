@@ -2,7 +2,7 @@ import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import PickerModal from "../../PickerModal";
 import List from "../../List";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 import ChungText from "../../ChungText";
 import {ScrollView} from "react-native";
 import {PickerOptionData} from "../../PickerOption";
@@ -46,7 +46,7 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
     public render() {
         const {selectedOptions} = this.state;
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <ScrollView>
                     <List>
                         <PickerModal
@@ -75,7 +75,7 @@ export class PickerModalScreen extends React.Component<NavigationProps, State> {
                         />
                     </List>
                 </ScrollView>
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 }

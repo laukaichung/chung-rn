@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import {UIDrawerContainer} from "../../UIContainer";
+import {UIDrawerContainer} from "../../UIMainContainer";
 import List from "../../List";
 import {screenKeys} from "../data/ScreenKeys";
 import ChungText from "../../ChungText";

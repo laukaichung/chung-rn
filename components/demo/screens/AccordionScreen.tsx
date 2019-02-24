@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Accordion from "../../Accordion";
 import {NavigationProps} from "../demotype";
-import Container from "../../UIContainer";
+import Container from "../../UIMainContainer";
 import ChungText from "../../ChungText";
 import Divider from "../../Divider";
 

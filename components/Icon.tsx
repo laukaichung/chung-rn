@@ -4,6 +4,7 @@ import ConfirmModal, {ConfirmModalProps} from "./ConfirmModal";
 import {StyleProp, TextStyle, TouchableOpacity} from "react-native";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from "react-native-animatable";
+import WingBlank from "./WingBlank";
 
 export type IconSize = "sm" | "md" | "lg" | "xl"
 
@@ -13,6 +14,7 @@ export interface IconProps{
     onPress?: (e?: any) => void;
     style?: StyleProp<TextStyle>
     name: string;
+    wingBlank?: boolean;
     size?: IconSize
     customSize?: number;
     onConfirmProps?: ConfirmModalProps;
@@ -24,7 +26,7 @@ export default class Icon extends React.Component<IconProps> {
 
     public render() {
         const {props} = this;
-        const {size, customSize, onConfirmProps, onPress} = props;
+        const {size, customSize, wingBlank, onConfirmProps, onPress} = props;
         let {color} = props;
         let sizeNo =
             customSize ? customSize :
@@ -39,6 +41,14 @@ export default class Icon extends React.Component<IconProps> {
                 size={sizeNo}
             />
         );
+
+        if(wingBlank){
+            iconComponent = (
+                <WingBlank>
+                    {iconComponent}
+                </WingBlank>
+            )
+        }
 
         if (onConfirmProps) {
 

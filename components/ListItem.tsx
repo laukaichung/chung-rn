@@ -138,8 +138,8 @@ export default class Item extends React.Component<ListItemProps, any> {
         if (swipeableProps) {
             return (
                 <CustomSwipeable
-                    //rightContainerStyle={itemBorderStyle}
-                    //leftContainerStyle={itemBorderStyle}
+                    rightContainerStyle={itemBorderStyle}
+                    leftContainerStyle={itemBorderStyle}
                     {...swipeableProps}
                 >
                     {listItem}

@@ -11,7 +11,7 @@ interface Props {
     style?: StyleProp<ViewStyle>
 }
 
-const UIContainer = ({style, ... restProps}: Props) => {
+const UIMainContainer = ({style, ... restProps}: Props) => {
     return (
         <UIContext.Consumer>
             {
@@ -53,6 +53,6 @@ export const UIDrawerContainer = (props) => {
     )
 };
 
-export default UIContainer;
+export default UIMainContainer;
 
 

@@ -2,12 +2,12 @@ import * as React from 'react'
 import {NavigationProps} from "../demotype";
 import {Toast} from "../../index";
 import Button from "../../Button";
-import UIContainer from "../../UIContainer";
+import UIMainContainer from "../../UIMainContainer";
 
 export class ToastScreen extends React.Component<NavigationProps> {
     public render() {
         return (
-            <UIContainer>
+            <UIMainContainer>
                 <Button
                     onPress={() => {
                         Toast.show({
@@ -47,7 +47,7 @@ export class ToastScreen extends React.Component<NavigationProps> {
                 >
                     Fail Toast
                 </Button>
-            </UIContainer>
+            </UIMainContainer>
         )
     }
 

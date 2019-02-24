@@ -6,7 +6,9 @@ function notice(props:ToastProps) {
     const key = Portal.add(
         <ToastContainer
             {...props}
-            onClose={() => Portal.remove(key)}
+            onClose={() =>{
+                Portal.remove(key)
+            }}
         />,
     );
     return key;

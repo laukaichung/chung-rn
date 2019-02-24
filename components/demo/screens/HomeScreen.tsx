@@ -5,7 +5,7 @@ import ChungText from "../../ChungText";
 import List from "../../List";
 import Styles from "../../Styles";
 import WingBlank from "../../WingBlank";
-import Container from "../../UIContainer";
+import Container from "../../UIMainContainer";
 import UIContext from "../../UIContext";
 import Header from "../../Header";
 import WhiteSpace from "../../WhiteSpace";
