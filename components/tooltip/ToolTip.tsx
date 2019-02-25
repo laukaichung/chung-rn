@@ -1,6 +1,6 @@
 import * as React from "react"
 import {createRef, ReactNode, RefObject} from "react"
-import {LayoutRectangle, View} from "react-native";
+import {AsyncStorage, LayoutRectangle, View} from "react-native";
 import Styles from "../Styles";
 import Portal from "../portal/Portal";
 import ScreenUtil from "../util/ScreenUtil";
@@ -13,7 +13,8 @@ interface ToolTipProps {
     maxWidth?: number;
     backgroundColor?: string;
     show: boolean;
-    toolTipView: ReactNode
+    toolTipView: ReactNode;
+    storageKey?: string;
 }
 
 interface State {
@@ -146,6 +147,17 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                 }
             </React.Fragment>
         )
+    }
+
+    public async componentDidMount() {
+        const {storageKey} = this.props;
+        if(storageKey) {
+            const disable = await AsyncStorage.getItem(storageKey);
+            if(disable !== "true")
+            this.setState({
+                show: true
+            })
+        }
     }
 
     public componentWillUnmount() {
