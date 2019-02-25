@@ -3,6 +3,7 @@ import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "../Styles";
 
 export type ArrowDirection = "up" | "down" | "left" | "right" | "up-right" | "up-left" | "down-right" | "down-left";
+
 interface ToolTipArrowProps {
     direction: ArrowDirection;
     width: number;

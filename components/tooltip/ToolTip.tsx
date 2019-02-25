@@ -1,19 +1,19 @@
 import * as React from "react"
-import {createRef, RefObject} from "react"
+import {createRef, ReactNode, RefObject} from "react"
 import {LayoutRectangle, View} from "react-native";
-import ChungText from "../ChungText";
 import Styles from "../Styles";
 import Portal from "../portal/Portal";
 import ScreenUtil from "../util/ScreenUtil";
 import * as Animatable from "react-native-animatable";
 import ToolTipArrow, {ArrowDirection} from "./ToolTipArrow";
-import Button from "../Button";
+import Icon from "../Icon";
 
 interface ToolTipProps {
     children: any;
     maxWidth?: number;
     backgroundColor?: string;
     show: boolean;
+    toolTipView: ReactNode
 }
 
 interface State {
@@ -43,7 +43,8 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         const {
             children,
             maxWidth = ScreenUtil.fullWidth() * 0.7,
-            backgroundColor = "#eee"
+            backgroundColor = "#eee",
+            toolTipView,
         } = this.props;
 
         const positions = this._autoPosition();
@@ -66,7 +67,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                     }}
                 >
                     {children}
-
                 </View>
                 {
                     show &&
@@ -83,7 +83,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                         >
                             <View
                                 style={{
-
                                     padding: Styles.padding,
                                     borderRadius,
                                     backgroundColor,
@@ -105,12 +104,18 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                                     })
                                 }}
                             >
-                                <ChungText>
-                                    fdsdsfsdf fgd fds fd sfdf sdf ds fdsf dsf fgdg fdgfd gfdgdf
-                                </ChungText>
-                                <Button onPress={() => alert('hello')}>
-                                    Hello
-                                </Button>
+                                <View style={{
+                                    position: "absolute",
+                                    right: 5,
+                                    top: 5,
+                                }}>
+                                    <Icon
+                                        onPress={this._toggle}
+                                        name="times"
+                                        customSize={12}
+                                    />
+                                </View>
+                                {toolTipView}
                             </View>
                         </Animatable.View>
                         <Animatable.View
@@ -139,8 +144,8 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         clearTimeout(this.timeout);
     }
 
-    componentWillReceiveProps(nextProps: Readonly<ToolTipProps>, nextContext: any): void {
-        if(nextProps.show != this.props.show){
+    public componentWillReceiveProps(nextProps: Readonly<ToolTipProps>, nextContext: any): void {
+        if (nextProps.show != this.props.show) {
             this.setState({show: nextProps.show})
         }
     }
@@ -156,11 +161,22 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         let top = target.y - toolTip.height - (arrowHeight);
         let arrowX = target.x;
         let arrowY = target.y - arrowHeight - 1;
-        if(target.x + toolTip.width >= ScreenUtil.fullWidth()){
+
+        /**
+         * When the target view is on the right end of the screen,
+         * change the tooltip position so the content won't get overflown outside of the screen.
+         */
+        if (target.x + toolTip.width > ScreenUtil.fullWidth()) {
             left = (target.x + target.width) - toolTip.width;
             arrowX = target.x;
+        }
 
-        }else{
+        /**
+         * When the target view is on the left end of the screen and the tooltip content is too wide,
+         * change the tooltip position to avoid the overflown problem.
+         */
+
+        if(target.x - toolTip.width < 0){
             left = left < 0 ? 0 : left;
         }
 
@@ -184,11 +200,13 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         let arrowX = target.x;
         let arrowY = target.y + target.height;
 
-        if(target.x + toolTip.width >= ScreenUtil.fullWidth()){
+        if (target.x + toolTip.width > ScreenUtil.fullWidth()) {
+
             left = (target.x + target.width) - toolTip.width;
-            arrowX = target.x;
-        }else{
-            left = left < 0 ? 0 : left;
+        }
+
+        if(target.x - toolTip.width < 0){
+            left = 0
         }
 
         return {
@@ -218,7 +236,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         return this._topPosition();
     }
 
-    public _toggle(){
+    public _toggle = ()=> {
         const {show} = this.state;
         this.setState({show: !show})
     }
