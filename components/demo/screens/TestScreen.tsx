@@ -29,13 +29,13 @@ export default class TestScreen extends React.Component<NavigationProps, TestSta
                 <View style={{flex:1, flexDirection: "column", justifyContent: "flex-start"}}>
                     <Card>
                         <CardBody>
-                            <View style={{flexDirection: "row", justifyContent: "flex-start"}}>
+                            <View style={{flexDirection: "row", justifyContent: "center"}}>
                                 <View>
                                     <ToolTip
                                         toolTipView={(
                                             <React.Fragment>
                                                 <ChungText>
-                                                    fdsdsfsd
+                                                    fdsdsfsd asdsdadas ddas
                                                 </ChungText>
                                                 <WhiteSpace/>
                                                 <Button onPress={() => alert('hello')}>
@@ -44,7 +44,7 @@ export default class TestScreen extends React.Component<NavigationProps, TestSta
                                             </React.Fragment>
                                         )}
                                         ref={this.toolTipRef1}
-                                        show={false}
+                                        show={true}
                                     >
                                         <Button
                                             onPress={() => {

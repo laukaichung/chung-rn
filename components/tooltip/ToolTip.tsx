@@ -7,6 +7,7 @@ import ScreenUtil from "../util/ScreenUtil";
 import * as Animatable from "react-native-animatable";
 import ToolTipArrow, {ArrowDirection} from "./ToolTipArrow";
 import Icon from "../Icon";
+import {ChungStyles} from "../index";
 
 interface ToolTipProps {
     children: any;
@@ -17,7 +18,7 @@ interface ToolTipProps {
 }
 
 interface State {
-    toolTip?: LayoutRectangle;
+    toolTip?: Partial<LayoutRectangle>;
     target?: LayoutRectangle;
     show: boolean;
 }
@@ -34,16 +35,20 @@ const borderRadius = 2;
 
 export default class ToolTip extends React.Component<ToolTipProps, State> {
     private targetRef: RefObject<View> = createRef();
-    public state: State = {show: false, toolTip: {height: 0, width: 0, x: 0, y: 0}};
+    public state: State = {show: this.props.show};
     private arrowHeight = 10;
     private arrowWidth = 20;
     private timeout;
 
     public render() {
+
+        const fullWidth = ScreenUtil.fullWidth();
+        const fullHeight = ScreenUtil.fullHeight();
+
         const {
             children,
-            maxWidth = ScreenUtil.fullWidth() * 0.7,
-            backgroundColor = "#eee",
+            maxWidth = fullWidth * 0.7,
+            backgroundColor = ChungStyles.isDarkMode ? ChungStyles.primaryColor : "#eee",
             toolTipView,
         } = this.props;
 
@@ -73,12 +78,14 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                     <Portal>
                         <Animatable.View
                             useNativeDriver
-                            animation="fadeIn"
+                            animation={positions && "fadeIn"}
                             style={{
                                 position: "absolute",
-                                left: positions && positions.toolTipX,
-                                top: positions && positions.toolTipY,
-
+                                /**
+                                 * Hide the tooltip on load by setting its position to fullwidth and fullheight
+                                 */
+                                left: positions ? positions.toolTipX: fullWidth,
+                                top: positions ? positions.toolTipY: fullHeight,
                             }}
                         >
                             <View
@@ -89,10 +96,9 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                                     maxWidth,
                                 }}
                                 onLayout={({nativeEvent: {layout}}) => {
-                                    if (this.state.toolTip.height) {
+                                    if (this.state.toolTip) {
                                         return null;
                                     }
-
                                     this.setState({
                                         toolTip:
                                             {
@@ -104,15 +110,11 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                                     })
                                 }}
                             >
-                                <View style={{
-                                    position: "absolute",
-                                    right: 5,
-                                    top: 5,
-                                }}>
+                                <View style={{marginBottom: 5, flexDirection: "row", justifyContent: "flex-end"}}>
                                     <Icon
                                         onPress={this._toggle}
                                         name="times"
-                                        customSize={12}
+                                        customSize={14}
                                     />
                                 </View>
                                 {toolTipView}
@@ -120,11 +122,11 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                         </Animatable.View>
                         <Animatable.View
                             useNativeDriver
-                            animation="fadeIn"
+                            animation={positions && "fadeIn"}
                             style={{
                                 position: "absolute",
-                                left: positions && positions.arrowX,
-                                top: positions && positions.arrowY,
+                                left: positions ? positions.arrowX: fullWidth,
+                                top: positions ? positions.arrowY: fullHeight,
                             }}
                         >
                             <ToolTipArrow
@@ -176,7 +178,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
          * change the tooltip position to avoid the overflown problem.
          */
 
-        if(target.x - toolTip.width < 0){
+        if (target.x - toolTip.width < 0) {
             left = left < 0 ? 0 : left;
         }
 
@@ -192,9 +194,11 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _bottomPosition(): PositionResult {
         const {arrowHeight} = this;
         const {toolTip, target} = this.state;
-        if (!target) {
+        if (!target || !toolTip) {
             return null
         }
+        console.log({target});
+        console.log({toolTip});
         let left = target.x;
         let top = (target.y + target.height + arrowHeight);
         let arrowX = target.x;
@@ -205,7 +209,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
             left = (target.x + target.width) - toolTip.width;
         }
 
-        if(target.x - toolTip.width < 0){
+        if (target.x - toolTip.width < 0) {
             left = 0
         }
 
@@ -219,7 +223,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     }
 
     private _autoPosition(): PositionResult {
-        const fullWidth = ScreenUtil.fullWidth();
         const fullHeight = ScreenUtil.fullHeight();
         const {toolTip, target} = this.state;
         if (!target) {
@@ -236,7 +239,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         return this._topPosition();
     }
 
-    public _toggle = ()=> {
+    public _toggle = () => {
         const {show} = this.state;
         this.setState({show: !show})
     }
