@@ -102,7 +102,6 @@ const DrawerNavigator = createDrawerNavigator(
     },
     {
         drawerPosition: 'right',
-        drawerType: 'front',
         contentComponent: (navigation) => <DrawerScreen navigation={navigation}/>
     }
 );
