@@ -3,7 +3,6 @@ import {ReactNode} from 'react'
 import UIContext from "./UIContext";
 import Styles from "./Styles";
 import {StyleProp, View, ViewStyle} from "react-native";
-import ScreenUtil from "./util/ScreenUtil";
 import {SafeAreaView} from "react-navigation";
 
 interface Props {
@@ -11,21 +10,22 @@ interface Props {
     style?: StyleProp<ViewStyle>
 }
 
+
 const UIMainContainer = ({style, ... restProps}: Props) => {
     return (
         <UIContext.Consumer>
             {
-                ({theme, setLayout}) => {
+                ({theme}) => {
                     return (
                         <View
                             {...restProps}
                             style={[{backgroundColor: Styles.backgroundColor, flex: 1}, style]}
-                            onLayout={
-                                ({nativeEvent: {layout}}) => {
-                                    const headerHeight = ScreenUtil.fullHeight() - layout.height;
-                                    setLayout({...layout, headerHeight});
-                                }
-                            }
+                            // onLayout={
+                            //     ({nativeEvent: {layout}}) => {
+                            //         const headerHeight = ScreenUtil.fullHeight() - layout.height;
+                            //         setLayout({...layout, headerHeight});
+                            //     }
+                            // }
                         />
                     )
                 }

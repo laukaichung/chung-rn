@@ -41,9 +41,6 @@ export default class UIProvider extends React.Component<ChungContainerProps, Chu
                     await AsyncStorage.setItem(UIAsyncStoreKeys.theme, newTheme);
                 },
                 isDarkMode: theme === "dark",
-                setLayout: (layout)=>{
-                    this.setState({...layout});
-                },
             } as ThemeContextProps
             }
             >

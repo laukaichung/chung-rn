@@ -12,7 +12,7 @@ interface ToolTipProps {
     children: any;
     maxWidth?: number;
     backgroundColor?: string;
-    show: boolean;
+    show?: boolean;
     toolTipView: ReactNode;
     storageKey?: string;
     disabled?: boolean;
@@ -42,7 +42,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private arrowHeight = 10;
     private arrowWidth = 20;
     private timeout;
-    //private toggling: boolean;
 
     public render() {
 

@@ -3,7 +3,6 @@ import {StyleProp, TouchableOpacity, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
 import PersistentDraggable from "./PersistentDraggable";
-import UIContext from "./UIContext";
 import ScreenUtil from "./util/ScreenUtil";
 
 export interface ActionButtonProps {
@@ -68,23 +67,16 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
         if (draggable) {
             return (
 
-                <UIContext.Consumer>
-                    {
-                        ({height, headerHeight}) => {
-                            return (
-                                <PersistentDraggable
-                                    onPress={onPress}
-                                    storageKey={storageKey}
-                                    boundary={{bottom: ScreenUtil.fullHeight(), top: headerHeight}}
-                                    containerStyle={containerStyle}
+                <PersistentDraggable
+                    onPress={onPress}
+                    storageKey={storageKey}
+                    boundary={{bottom: ScreenUtil.fullHeight(), top: 80}}
+                    containerStyle={containerStyle}
 
-                                >
-                                    {iconView}
-                                </PersistentDraggable>
-                            )
-                        }
-                    }
-                </UIContext.Consumer>
+                >
+                    {iconView}
+                </PersistentDraggable>
+
             )
         }
 
