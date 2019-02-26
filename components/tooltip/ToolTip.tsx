@@ -15,6 +15,7 @@ interface ToolTipProps {
     show: boolean;
     toolTipView: ReactNode;
     storageKey?: string;
+    disabled?: boolean;
 }
 
 interface State {
@@ -37,7 +38,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private targetRef: RefObject<View> = createRef();
     private toolTipRef: RefObject<any> = createRef();
     private arrowRef: RefObject<any> = createRef();
-
     public state: State = {show: this.props.show};
     private arrowHeight = 10;
     private arrowWidth = 20;
@@ -45,6 +45,10 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     //private toggling: boolean;
 
     public render() {
+
+        if(this.props.disabled){
+            return this.props.children;
+        }
 
         const fullWidth = ScreenUtil.fullWidth();
         const fullHeight = ScreenUtil.fullHeight();
