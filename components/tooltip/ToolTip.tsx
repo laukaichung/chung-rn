@@ -16,6 +16,7 @@ interface ToolTipProps {
     toolTipView: ReactNode;
     storageKey?: string;
     disabled?: boolean;
+    onClose?: ()=>void;
 }
 
 interface State {
@@ -44,7 +45,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private timeout;
 
     public render() {
-
         if(this.props.disabled){
             return this.props.children;
         }
@@ -279,15 +279,28 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
 
     public _toggle = async () => {
         const {show} = this.state;
-        const newState = !show;
-        if(!newState) {
-            const end = await Promise.all([
+        const {onClose, storageKey} = this.props;
+        const shouldShow = !show;
+        if(!shouldShow) {
+            await Promise.all([
                 this.arrowRef.current.fadeOut(1000),
                 this.toolTipRef.current.fadeOut(1000)
             ]);
+
+            /**
+             * If the user provides the storage key, save the key on close so that this tooltip won't show again.
+             * Next time, when it finds that the key exists in componentDidMount, this tooltip won't show
+             */
+            if(storageKey){
+                await AsyncStorage.setItem(storageKey,String(true));
+            }
+
+            if(onClose){
+                onClose();
+            }
         }
 
-        this.setState({show: newState})
+        this.setState({show: shouldShow})
     }
 
     // computeTopGeometry: ComputeGeometry = (displayArea, fromRect, contentSize, arrowSize) => {
