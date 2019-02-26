@@ -13,7 +13,7 @@ export type ToastType = "success" | "fail" | "loading" | "bottomInfo"
 export interface ToastProps {
     content: string;
     duration?: number;
-    onClose: () => void;
+    onClose?: () => void;
     mask?: boolean;
     type?: ToastType;
     iconProps?: IconProps
