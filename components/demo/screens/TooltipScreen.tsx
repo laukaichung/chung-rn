@@ -11,7 +11,6 @@ import Button from "../../Button";
 import Card from "../../Card";
 import CardBody from "../../CardBody";
 import WhiteSpace from "../../WhiteSpace";
-import WingBlank from "../../WingBlank";
 
 interface TestState {
     targetIsVisible: boolean;
@@ -19,7 +18,7 @@ interface TestState {
 
 }
 
-export default class TestScreen extends React.Component<NavigationProps, TestState> {
+export default class TooltipScreen extends React.Component<NavigationProps, TestState> {
     private targetRef: RefObject<View> = createRef();
     private toolTipRef1: RefObject<ToolTip> = createRef();
     private toolTipRef2: RefObject<ToolTip> = createRef();
@@ -27,7 +26,7 @@ export default class TestScreen extends React.Component<NavigationProps, TestSta
     render() {
         return (
             <Container>
-                <View style={{flex: 1, flexDirection: "column", justifyContent: "center"}}>
+                <View style={{flex:1, flexDirection: "column", justifyContent: "center"}}>
                     <Card>
                         <CardBody>
                             <View style={{flexDirection: "row", justifyContent: "flex-end"}}>

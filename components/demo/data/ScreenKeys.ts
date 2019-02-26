@@ -19,5 +19,6 @@ export const screenKeys = {
     result:'result',
     camera:'camera',
     chungAlert: 'chungAlert',
+    tooltip: "tooltip",
     test: "test",
 };

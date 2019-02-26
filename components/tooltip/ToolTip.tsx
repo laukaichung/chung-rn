@@ -68,6 +68,10 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                          * https://stackoverflow.com/a/29842652/2598292
                          */
                         this.timeout = setTimeout(() => {
+                            if(this.timeout){
+                                clearTimeout(this.timeout)
+                            }
+
                             this.targetRef.current.measure((x, y, width, height, pageX, pageY) => {
                                 const target = {x: pageX, y: pageY, width, height};
                                 this.setState({target})
@@ -197,7 +201,12 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
          */
 
         if (target.x - toolTip.width < 0) {
-            left = left < 0 ? 0 : left;
+            const leftLeaningToolTipWidth = target.x - (toolTip.width / 2);
+            if(leftLeaningToolTipWidth > 0 ){
+                left = leftLeaningToolTipWidth
+            }else{
+                left = 0;
+            }
         }
 
         return {
@@ -212,11 +221,10 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _bottomPosition(): PositionResult {
         const {arrowHeight} = this;
         const {toolTip, target} = this.state;
+        const fullWidth = ScreenUtil.fullWidth();
         if (!target || !toolTip) {
             return null
         }
-        // console.log({target});
-        // console.log({toolTip});
         let left = target.x;
         let top = (target.y + target.height + arrowHeight);
         let arrowX = target.x;
@@ -228,7 +236,16 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         }
 
         if (target.x - toolTip.width < 0) {
-            left = 0
+
+            /**
+             * Change the tooltip position as it overflows out of the left end of the screen.
+             */
+            const leftLeaningToolTipWidth = target.x - (toolTip.width / 2);
+            if(leftLeaningToolTipWidth > 0 ){
+                left = leftLeaningToolTipWidth
+            }else{
+                left = 5;
+            }
         }
 
         return {
