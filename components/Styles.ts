@@ -214,6 +214,14 @@ export default class Styles {
         return this.isDarkMode? this.primaryColorDark:this.primaryColor
     }
 
+    static overlayBackgroundColorLight = 'rgba(170,175,192,0.7)';
+    static overlayBackgroundColorDark = 'rgba(54,51,55,0.7)';
+
+    static get overlayBackgroundColor(){
+        return this.isDarkMode ?  this.overlayBackgroundColorDark: this.overlayBackgroundColorLight;
+    }
+
+
     static borderColorDark = "#444444";
     static borderColorLight = "#d0d0d0";
 

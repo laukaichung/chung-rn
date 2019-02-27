@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import RNModal from "react-native-modal";
 import {ModalProps as RNModalProps} from "react-native-modal";
-import {Keyboard, StyleProp, View, ViewStyle} from 'react-native'
+import {Keyboard, StyleProp, TouchableOpacity, TouchableOpacityComponent, View, ViewStyle} from 'react-native'
 import {CustomTouchableHighlight} from "./CustomTouchableHighlight";
 import Styles from "./Styles";
 
@@ -45,9 +45,9 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
                 {
                     buttonTrigger ?
                         React.cloneElement(buttonTrigger, {onPress: this._onOpen}) :
-                        <CustomTouchableHighlight onPress={this._onOpen}>
+                        <TouchableOpacity onPress={this._onOpen}>
                             {nonButtonTrigger}
-                        </CustomTouchableHighlight>
+                        </TouchableOpacity>
                 }
                 {
                     isVisible &&

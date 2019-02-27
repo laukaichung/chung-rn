@@ -6,6 +6,7 @@ import Styles from "./Styles";
 import WhiteSpace from "./WhiteSpace";
 import Button from "./Button";
 import ChungText from "./ChungText";
+import Overlay from "./Overlay";
 
 interface ChungAlertViewProps {
     storageKey: string;
@@ -20,21 +21,23 @@ interface State {
 
 export default class ChungAlert extends React.Component<ChungAlertViewProps, State> {
     public state: State = {show: false, shouldNotShowVal: false};
+
     public render() {
         const {show, shouldNotShowVal} = this.state;
         if (!show) {
             return null;
         }
         const {containerStyle, view, storageKey} = this.props;
-        return (
-            <Portal>
+        const alertView = (
+            <Overlay
+                enabled
+                onPress={null}
+            >
                 <View
                     style={{
                         flex: 1,
-                        backgroundColor: 'transparent',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        zIndex: Styles.toastZIndex,
                     }}
                 >
                     <View
@@ -79,9 +82,9 @@ export default class ChungAlert extends React.Component<ChungAlertViewProps, Sta
                                     value={shouldNotShowVal}
                                     onValueChange={async (newShouldNotShowVal) => {
                                         this.setState({shouldNotShowVal: newShouldNotShowVal});
-                                        if(newShouldNotShowVal) {
+                                        if (newShouldNotShowVal) {
                                             await AsyncStorage.setItem(storageKey, String(newShouldNotShowVal));
-                                        }else{
+                                        } else {
                                             await AsyncStorage.removeItem(storageKey);
                                         }
 
@@ -91,6 +94,13 @@ export default class ChungAlert extends React.Component<ChungAlertViewProps, Sta
                         </WhiteSpace>
                     </View>
                 </View>
+            </Overlay>
+        );
+
+
+        return (
+            <Portal>
+                {alertView}
             </Portal>
         );
 

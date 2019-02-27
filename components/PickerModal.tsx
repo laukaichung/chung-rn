@@ -5,7 +5,7 @@ import CustomModal, {ModalProps} from "./Modal";
 import ChungText from "./ChungText";
 import HintText from "./HintText";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
-import FormHeader from "./FormHeader";
+import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 import WhiteSpace from "./WhiteSpace";
@@ -13,11 +13,11 @@ import Header from "./Header";
 import PickerOption, {PickerOptionData, PickerOptionProps} from "./PickerOption";
 import WingBlank from "./WingBlank";
 
-export interface PickerModalProps extends ModalProps, FormCommonProps, FormListItemCommonProps {
+export interface PickerModalProps extends ModalProps, FormCommonProps, FormListItemCommonProps, FormHeaderProps {
     data: PickerOptionData[];
     multiple?: boolean
     displayTextAsValue?: boolean;
-    customLabelElement?: ReactNode;
+    labelView?: ReactNode;
     pickerOptionProps?: Partial<PickerOptionProps>
     renderPickerOption?: (data: { selectedOptions: PickerOptionData[], option: PickerOptionData }) => ReactNode
 }
@@ -45,7 +45,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
         const {props, state} = this;
         let {selectedOptions} = state;
         const {
-            invalidMessage, data, multiple, customLabelElement,
+            invalidMessage, data, multiple, labelView,
             hint, listItemProps = {}, displayTextAsValue, onChange,
             renderPickerOption, pickerOptionProps,
         } = props;
@@ -63,7 +63,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                         bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                         arrow="right"
                     >
-                        {customLabelElement || <FormHeader {...props} label={props.label}/>}
+                        {labelView || <FormHeader {...props} label={props.label}/>}
                         {
                             displayValues.length > 0 &&
                             <ChungText>

@@ -14,6 +14,7 @@ import ScreenUtil from "../util/ScreenUtil";
 import * as Animatable from "react-native-animatable";
 import ToolTipArrow, {ArrowDirection} from "./ToolTipArrow";
 import Icon from "../Icon";
+import Overlay from "../Overlay";
 
 interface ToolTipProps {
     backgroundColor?: string;
@@ -82,14 +83,84 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         if (show) {
             const positions = this._autoPosition();
             toolTip = (
-                <TouchableWithoutFeedback
+                <Overlay
+                    enabled={overlay}
                     onPress={(e) => {
                         if (overlayOnClose) overlayOnClose();
                         if (shouldCloseOnOverlayClick) this._close(e);
                     }}
                 >
-                    <View
-                        style={
+                    <Animatable.View
+                        ref={this.toolTipRef}
+                        style={{
+                            position: "absolute",
+                            /**
+                             * Hide the tooltip on load by setting its position to fullwidth and fullheight
+                             */
+                            left: positions ? positions.toolTipX : fullWidth,
+                            top: positions ? positions.toolTipY : fullHeight,
+                            backgroundColor
+                        }}
+                        useNativeDriver
+                        animation={positions && "fadeIn"}
+                    >
+
+                        <View
+                            style={{
+                                padding: Styles.padding,
+                                borderRadius,
+                                backgroundColor,
+                                maxWidth,
+                            }}
+                            onLayout={({nativeEvent: {layout}}) => {
+                                if (this.state.toolTip) {
+                                    return null;
+                                }
+                                this.setState({
+                                    toolTip:
+                                        {
+                                            height: Math.ceil(layout.height),
+                                            width: Math.ceil(layout.width),
+                                            x: layout.x,
+                                            y: layout.y,
+                                        }
+                                })
+                            }}
+                        >
+                            <View style={{marginBottom: 5, flexDirection: "row", justifyContent: "flex-end"}}>
+                                <Icon
+                                    onPress={this._close}
+                                    name="times"
+                                    customSize={14}
+                                />
+                            </View>
+                            {view}
+                        </View>
+                    </Animatable.View>
+                    <Animatable.View
+                        ref={this.arrowRef}
+                        useNativeDriver
+                        animation={positions && "fadeIn"}
+                        style={{
+                            position: "absolute",
+                            left: positions ? positions.arrowX : fullWidth,
+                            top: positions ? positions.arrowY : fullHeight,
+                        }}
+                    >
+                        <ToolTipArrow
+                            direction={positions ? positions.arrowDirection : "up"}
+                            color={backgroundColor}
+                            width={this.arrowWidth}
+                            height={this.arrowHeight}
+                        />
+                    </Animatable.View>
+                </Overlay>
+            );
+        }
+
+        /**
+         * <View
+         style={
                             overlay && {
                                 flex: 1,
                                 position: 'absolute',
@@ -100,75 +171,9 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                                 height: "100%",
                                 ...overlayStyle,
                             }}
-                    >
-                        <Animatable.View
-                            ref={this.toolTipRef}
-                            style={{
-                                position: "absolute",
-                                /**
-                                 * Hide the tooltip on load by setting its position to fullwidth and fullheight
-                                 */
-                                left: positions ? positions.toolTipX : fullWidth,
-                                top: positions ? positions.toolTipY : fullHeight,
-                                backgroundColor
-                            }}
-                            useNativeDriver
-                            animation={positions && "fadeIn"}
-                        >
+         >
+         * */
 
-                            <View
-                                style={{
-                                    padding: Styles.padding,
-                                    borderRadius,
-                                    backgroundColor,
-                                    maxWidth,
-                                }}
-                                onLayout={({nativeEvent: {layout}}) => {
-                                    if (this.state.toolTip) {
-                                        return null;
-                                    }
-                                    this.setState({
-                                        toolTip:
-                                            {
-                                                height: Math.ceil(layout.height),
-                                                width: Math.ceil(layout.width),
-                                                x: layout.x,
-                                                y: layout.y,
-                                            }
-                                    })
-                                }}
-                            >
-                                <View style={{marginBottom: 5, flexDirection: "row", justifyContent: "flex-end"}}>
-                                    <Icon
-                                        onPress={this._close}
-                                        name="times"
-                                        customSize={14}
-                                    />
-                                </View>
-                                {view}
-                            </View>
-                        </Animatable.View>
-                        <Animatable.View
-                            ref={this.arrowRef}
-                            useNativeDriver
-                            animation={positions && "fadeIn"}
-                            style={{
-                                position: "absolute",
-                                left: positions ? positions.arrowX : fullWidth,
-                                top: positions ? positions.arrowY : fullHeight,
-                            }}
-                        >
-                            <ToolTipArrow
-                                direction={positions ? positions.arrowDirection : "up"}
-                                color={backgroundColor}
-                                width={this.arrowWidth}
-                                height={this.arrowHeight}
-                            />
-                        </Animatable.View>
-                    </View>
-                </TouchableWithoutFeedback>
-            );
-        }
 
         return (
             <React.Fragment>
@@ -207,11 +212,12 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         const {storageKey} = this.props;
         if (storageKey) {
             const disable = await AsyncStorage.getItem(storageKey);
-            console.log('storageKey',disable);
             this.setState({
                 show: disable !== "true",
                 loaded: true,
             })
+        } else {
+            this.setState({loaded: true})
         }
 
     }
@@ -228,7 +234,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
 
     private _getLeftPositions(): { toolTipX: number, arrowX: number } {
         const {toolTip, target} = this.state;
-
 
 
         let left = target.x;
@@ -291,15 +296,16 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _autoPosition(): PositionResult {
         const fullHeight = ScreenUtil.fullHeight();
         const {toolTip, target} = this.state;
+        const {arrowHeight} = this;
         console.log(this.state);
         if (!target || !toolTip) {
             return null
         }
-        if (target.y + target.height > fullHeight) {
+        if (target.y + target.height + arrowHeight >= fullHeight) {
             return this._topPosition();
         }
 
-        if (target.y - toolTip.height < 0) {
+        if (target.y - toolTip.height - arrowHeight <= 0) {
             return this._belowPosition();
         }
         return this._topPosition();
@@ -310,6 +316,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     };
 
     public _close = async (e) => {
+        console.log('close tooltip');
         const {onClose, storageKey} = this.props;
         await Promise.all([
             this.arrowRef.current.fadeOut(1000),
