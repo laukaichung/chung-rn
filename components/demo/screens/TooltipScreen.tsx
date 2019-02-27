@@ -29,6 +29,7 @@ export default class TooltipScreen extends React.Component<NavigationProps, Test
                                 <View>
                                     <ToolTip
                                         enabled
+                                        storageKey={"check it"}
                                         shouldCloseOnOverlayClick
                                         overlay
                                         view={(

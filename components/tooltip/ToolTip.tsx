@@ -34,6 +34,7 @@ interface State {
     toolTip?: Partial<LayoutRectangle>;
     target?: LayoutRectangle;
     show: boolean;
+    loaded: boolean;
 }
 
 interface PositionResult {
@@ -50,12 +51,19 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private targetRef: RefObject<View> = createRef();
     private toolTipRef: RefObject<any> = createRef();
     private arrowRef: RefObject<any> = createRef();
-    public state: State = {show: this.props.show};
+    public state: State = {
+        show: this.props.show,
+        loaded: false
+    };
     private arrowHeight = 10;
     private arrowWidth = 20;
     private timeout;
 
     public render() {
+        if (!this.state.loaded) {
+            return null;
+        }
+
         if (!this.props.enabled) {
             return this.props.children;
         }
@@ -69,10 +77,10 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
             view, overlay, overlayStyle, overlayOnClose,
             shouldCloseOnOverlayClick,
         } = this.props;
-        const positions = this._autoPosition();
         const {show} = this.state;
         let toolTip = null;
         if (show) {
+            const positions = this._autoPosition();
             toolTip = (
                 <TouchableWithoutFeedback
                     onPress={(e) => {
@@ -162,7 +170,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
             );
         }
 
-
         return (
             <React.Fragment>
                 <View
@@ -200,11 +207,13 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         const {storageKey} = this.props;
         if (storageKey) {
             const disable = await AsyncStorage.getItem(storageKey);
-            if (disable !== "true")
-                this.setState({
-                    show: true
-                })
+            console.log('storageKey',disable);
+            this.setState({
+                show: disable !== "true",
+                loaded: true,
+            })
         }
+
     }
 
     public componentWillUnmount() {
@@ -220,9 +229,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _getLeftPositions(): { toolTipX: number, arrowX: number } {
         const {toolTip, target} = this.state;
 
-        if (!target || !toolTip) {
-            return null
-        }
+
 
         let left = target.x;
         let arrowX = target.x;
@@ -260,9 +267,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _belowPosition(): PositionResult {
         const {arrowHeight} = this;
         const {toolTip, target} = this.state;
-        if (!target || !toolTip) {
-            return null
-        }
+
         return {
             toolTipY: (target.y + target.height + arrowHeight),
             arrowY: target.y + target.height + 1,
@@ -274,9 +279,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _topPosition(): PositionResult {
         const {arrowHeight} = this;
         const {toolTip, target} = this.state;
-        if (!target || !toolTip) {
-            return null
-        }
+
         return {
             toolTipY: target.y - toolTip.height - (arrowHeight),
             arrowY: target.y - arrowHeight - 1,
@@ -288,7 +291,8 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
     private _autoPosition(): PositionResult {
         const fullHeight = ScreenUtil.fullHeight();
         const {toolTip, target} = this.state;
-        if (!target) {
+        console.log(this.state);
+        if (!target || !toolTip) {
             return null
         }
         if (target.y + target.height > fullHeight) {
