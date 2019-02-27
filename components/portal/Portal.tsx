@@ -40,7 +40,9 @@ class Portal extends React.Component<PortalProps> {
         return (
             <PortalContext.Consumer>
                 {manager => (
-                    <PortalConsumer manager={manager}>{children}</PortalConsumer>
+                    <PortalConsumer manager={manager}>
+                        {children}
+                    </PortalConsumer>
                 )}
             </PortalContext.Consumer>
         );

@@ -5,12 +5,9 @@ import {LayoutRectangle, View} from "react-native";
 import Container from "../../UIMainContainer";
 import ToolTip from "../../tooltip/ToolTip";
 import ChungText from "../../ChungText";
-import Icon from "../../Icon";
-import ToolTipArrow from "../../tooltip/ToolTipArrow";
 import Button from "../../Button";
 import Card from "../../Card";
 import CardBody from "../../CardBody";
-import WhiteSpace from "../../WhiteSpace";
 
 interface TestState {
     targetIsVisible: boolean;
@@ -19,39 +16,38 @@ interface TestState {
 }
 
 export default class TooltipScreen extends React.Component<NavigationProps, TestState> {
-    private targetRef: RefObject<View> = createRef();
-    private toolTipRef1: RefObject<ToolTip> = createRef();
-    private toolTipRef2: RefObject<ToolTip> = createRef();
 
-    render() {
+    private toolTipRef1: RefObject<ToolTip> = createRef();
+
+    public render() {
         return (
             <Container>
                 <View style={{flex:1, flexDirection: "column", justifyContent: "center"}}>
                     <Card>
                         <CardBody>
-                            <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
+                            <View style={{flexDirection: "row", justifyContent: "center"}}>
                                 <View>
                                     <ToolTip
-                                        toolTipView={(
-                                            <React.Fragment>
+                                        enabled
+                                        shouldCloseOnOverlayClick
+                                        overlay
+                                        view={(
+                                            <View>
                                                 <ChungText>
                                                     fdsdsfsd asdsdadas ddas h gfghfgh gf h hgfhgfgfgh fgh
                                                 </ChungText>
                                                 <ChungText>
                                                     fdsdsfsd asdsdadas ddas h gfghfgh gf h hgfhgfgfgh fgh
                                                 </ChungText>
-                                                <WhiteSpace/>
-                                                <Button onPress={() => alert('hello')}>
-                                                    Hello
-                                                </Button>
-                                            </React.Fragment>
+                                                <Button onPress={()=> alert("ppp")}>Click This</Button>
+                                            </View>
                                         )}
                                         ref={this.toolTipRef1}
                                         show={true}
                                     >
                                         <Button
                                             onPress={() => {
-                                                this.toolTipRef1.current._toggle();
+                                                this.toolTipRef1.current._open();
                                             }}
                                         >
                                             Click

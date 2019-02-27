@@ -33,6 +33,7 @@ import {ActionButtonScreen} from "./screens/ActionButtonScreen";
 import ChungProvider from "../ChungProvider";
 import ChungAlertScreen from "./screens/ChungAlertScreen";
 import TestScreen from "./screens/TestScreen";
+import TooltipScreen from "./screens/TooltipScreen";
 
 const StackNavigator = createStackNavigator(
     {
@@ -55,11 +56,12 @@ const StackNavigator = createStackNavigator(
         [screenKeys.actionButton]: ActionButtonScreen,
         [screenKeys.result]: ResultScreen,
         [screenKeys.chungAlert]: ChungAlertScreen,
+        [screenKeys.tooltip]: TooltipScreen,
         [screenKeys.test]: TestScreen,
     },
 
     {
-        initialRouteName: screenKeys.test,
+        initialRouteName: screenKeys.tooltip,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {

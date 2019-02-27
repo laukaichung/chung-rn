@@ -1,80 +1,83 @@
 import * as React from 'react'
 import {createRef, RefObject} from 'react'
 import {NavigationProps} from "../demotype";
-import {LayoutRectangle, View} from "react-native";
+import {ScrollView, TouchableHighlight, View} from "react-native";
 import Container from "../../UIMainContainer";
-import ToolTip from "../../tooltip/ToolTip";
-import ChungText from "../../ChungText";
-import Icon from "../../Icon";
-import ToolTipArrow from "../../tooltip/ToolTipArrow";
-import Button from "../../Button";
 import Card from "../../Card";
-import CardBody from "../../CardBody";
+import ChungText from "../../ChungText";
 import WhiteSpace from "../../WhiteSpace";
-import WingBlank from "../../WingBlank";
 
 interface TestState {
-    targetIsVisible: boolean;
-    targetLayout?: LayoutRectangle;
+    isVisible: boolean
 
 }
 
 export default class TestScreen extends React.Component<NavigationProps, TestState> {
-    private targetRef: RefObject<View> = createRef();
-    private toolTipRef1: RefObject<ToolTip> = createRef();
-    private toolTipRef2: RefObject<ToolTip> = createRef();
+    public state: TestState = {isVisible: true};
 
-    render() {
+    public render() {
         return (
             <Container>
-                <View style={{flex: 1, flexDirection: "column", justifyContent: "center"}}>
-                    <Card>
-                        <CardBody>
-                            <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
-                                <View>
-                                    <ToolTip
-                                        toolTipView={(
-                                            <React.Fragment>
-                                                <ChungText>
-                                                    fdsdsfsd asdsdadas ddas h gfghfgh gf h hgfhgfgfgh fgh
-                                                </ChungText>
-                                                <ChungText>
-                                                    fdsdsfsd asdsdadas ddas h gfghfgh gf h hgfhgfgfgh fgh
-                                                </ChungText>
-                                                <WhiteSpace/>
-                                                <Button onPress={() => alert('hello')}>
-                                                    Hello
-                                                </Button>
-                                            </React.Fragment>
-                                        )}
-                                        ref={this.toolTipRef1}
-                                        show={true}
-                                    >
-                                        <Button
-                                            onPress={() => {
-                                                this.toolTipRef1.current._toggle();
-                                            }}
-                                        >
-                                            Click
-                                        </Button>
-                                    </ToolTip>
-                                </View>
-                            </View>
-                            <ChungText numberOfLines={3}>
-                                A Florida mom and pediatrician warned parents to better monitor their children’s
-                                internet
-                                activity after she found a disturbing clip that appeared to encourage children to harm
-                                themselves, inserted into gaming videos on YouTube and YouTube Kids. Dr. Free Hess, from
-                                Gainesville, Florida, found the 9-second-long suicide instructions sandwiched between
-                                clips
-                                of the Nintendo game Splatoon last week and shared it online to caution other parents.
-                                "Remember kids, sideways for attention, longways for results," a man said while
-                                demonstrating the cutting motion on his arm. "End it."
-                                The man, identified by CBS News as YouTuber Filthy Frank, has over 6.2...
-                            </ChungText>
-                        </CardBody>
-                    </Card>
-                </View>
+                <ScrollView>
+                    <View style={{flex: 1, flexDirection: "column", justifyContent: "center"}}>
+                        <Card>
+                        </Card>
+                    </View>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                    <ChungText>
+                        If neither fromRect or fromView are provided, the popover will float in the center of the screen.
+                        rect is an object with the following properties:object yourself, or import Popoverfrom 'react-native-popover-view and create a rect by calling new Rect(x, y, width, height).
+                        Likewise, size is an object with the following propertiesYou can create the object yourself, or import Popover from 'react-native-popover-view and create a rect by calling new Size(width, height).
+                    </ChungText>
+                    <WhiteSpace/>
+                </ScrollView>
             </Container>
         );
     }
