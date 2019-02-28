@@ -14,6 +14,7 @@ import Overlay, {OverlayProps} from "./Overlay";
 import Portal from "./portal/Portal";
 import * as Animatable from "react-native-animatable";
 import ScreenUtil from "./util/ScreenUtil";
+import {Omit} from "./type";
 
 export interface ModalCallback {
     closeModal: () => void;
@@ -37,6 +38,8 @@ interface State {
 export default class Modal extends React.Component<CustomModalCoreProps, State> {
 
     public state: State = {isVisible: false};
+
+    public static add = modalAdd;
 
     public render() {
         const {props, state} = this;
@@ -92,7 +95,7 @@ interface ModalContainerProps extends ModalProps {
     onClose: () => void;
 }
 
-class ModalContainer extends React.Component<ModalContainerProps> {
+export class ModalContainer extends React.Component<ModalContainerProps> {
     private keyboardDidHideListener;
     private keyboardDidShowListener;
     private keyboardIsShown: boolean;
@@ -187,4 +190,16 @@ class ModalContainer extends React.Component<ModalContainerProps> {
         this.timeoutId = setTimeout(() => this.keyboardIsShown = false, 150)
     };
 
+}
+
+
+function modalAdd(props: Omit<ModalContainerProps, "onClose">){
+    const key = Portal.add((
+        <ModalContainer
+            {...props}
+            onClose={()=>{
+                Portal.remove(key);
+            }}
+        />
+    ))
 }

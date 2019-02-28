@@ -21,3 +21,5 @@ export interface FormCommonProps {
 
 //https://stackoverflow.com/questions/52703321/make-some-properties-optional-in-a-typescript-type
 export type OptionalExceptFor<T, TRequired extends keyof T> = Partial<T> & Pick<T, TRequired>
+
+export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;

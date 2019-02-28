@@ -1,15 +1,15 @@
 import * as React from 'react'
-import {StyleSheet} from 'react-native'
-import Modal, {ModalProps} from "./Modal";
+import Modal, {ModalContainer, ModalProps} from "./Modal";
 import WhiteSpace from "./WhiteSpace";
 import Flex from "./Flex";
 import Button from "./Button";
-import Styles from "./Styles";
 import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 import WingBlank from "./WingBlank";
 import Header from "./Header";
 import {ChungStyles} from "./index";
+import Portal from "./portal/Portal";
+import {Omit} from "./type";
 
 export interface ConfirmModalProps extends ModalProps {
     onConfirm: () => void;
@@ -18,69 +18,109 @@ export interface ConfirmModalProps extends ModalProps {
     title?: string
 }
 
-const ConfirmModal = ({onConfirm, onCancel, onConfirmMessage, title, ...restProps}: ConfirmModalProps) => {
-    return (
-        <Modal
-            {...restProps}
-        >
-            {
-                ({closeModal}) =>
-                    <WingBlank
-                        style={{
-                            flex: 1, flexDirection: "column", justifyContent: "center"
-                        }}
-                    >
-                        <Header>
-                            {title || `Are you sure?`}
-                        </Header>
-                        {
-                            onConfirmMessage && (
-                                <WhiteSpace>
-                                    <ChungText>{onConfirmMessage}</ChungText>
-                                </WhiteSpace>
-                            )
-                        }
+class ConfirmModal extends React.Component<ConfirmModalProps> {
 
-                        <Flex style={{marginTop: ChungStyles.marginLg}}>
-                            <FlexItem>
-                                <Button
-                                    style={{marginRight: 5}}
-                                    onPress={() => {
-                                        closeModal();
-                                        if (onCancel) onCancel();
-                                    }}
-                                >
-                                    Cancel
-                                </Button>
-                            </FlexItem>
-                            <FlexItem>
-                                <Button
-                                    onPress={() => {
-                                        // todo test if close modal before submitting request could prevent memory leak:
-                                        // setState on unmounted Component
-                                        closeModal();
-                                        onConfirm();
-                                    }}
-                                >
-                                    Confirm
-                                </Button>
-                            </FlexItem>
-                        </Flex>
+    static add = addModal;
 
-                    </WingBlank>
-            }
-        </Modal>
-    )
-};
-
-const styles = StyleSheet.create({
-    cancelButton: {
-        marginRight: 5
-    },
-    footerContainer: {
-        paddingVertical: Styles.paddingLg
+    render() {
+        const {props} = this;
+        return (
+            <Modal {...props}>
+                {
+                    ({closeModal}) =>
+                        <ConfirmModalContainer
+                            {...props}
+                            onClose={closeModal}
+                        />
+                }
+            </Modal>
+        )
     }
+}
 
-});
+interface ConfirmModalContainerProps extends ConfirmModalProps {
+    onClose: () => void;
+}
+
+class ConfirmModalContainer extends React.Component<ConfirmModalContainerProps> {
+    render() {
+        const {onConfirm, onCancel, onConfirmMessage, title, onClose} = this.props;
+        return (
+            <WingBlank
+                style={{
+                    flex: 1,
+                    flexDirection: "column",
+                    justifyContent: "center",
+                }}
+            >
+                <Header>
+                    {title || `Are you sure?`}
+                </Header>
+                {
+                    onConfirmMessage && (
+                        <WhiteSpace>
+                            <ChungText>{onConfirmMessage}</ChungText>
+                        </WhiteSpace>
+                    )
+                }
+
+                <Flex style={{marginTop: ChungStyles.marginLg}}>
+                    <FlexItem>
+                        <Button
+                            style={{marginRight: 5}}
+                            onPress={() => {
+                                onClose();
+                                if (onCancel) onCancel();
+                            }}
+                        >
+                            Cancel
+                        </Button>
+                    </FlexItem>
+                    <FlexItem>
+                        <Button
+                            onPress={() => {
+                                onClose();
+                                onConfirm();
+                            }}
+                        >
+                            Confirm
+                        </Button>
+                    </FlexItem>
+                </Flex>
+            </WingBlank>
+        )
+    }
+}
+
+function addModal(props: Omit<ConfirmModalContainerProps, "onClose">) {
+
+    const key = Portal.add((
+        <ModalContainer
+            {...props}
+            onClose={()=> Portal.remove(key)}
+            children={() => (
+                <ConfirmModalContainer
+                    {...props}
+                    onClose={() => {
+                        Portal.remove(key);
+                    }}
+                />
+            )}
+        />
+    ))
+
+
+}
+
+//
+// const styles = StyleSheet.create({
+//     cancelButton: {
+//         marginRight: 5
+//     },
+//     footerContainer: {
+//         paddingVertical: Styles.paddingLg
+//     }
+//
+// });
 
 export default ConfirmModal;

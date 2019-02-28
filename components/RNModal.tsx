@@ -4,11 +4,11 @@ import RNModal, {ModalProps as RNModalProps} from "react-native-modal";
 import {Keyboard, StyleProp, TouchableOpacity, View, ViewStyle} from 'react-native'
 import Styles from "./Styles";
 
-export interface ModalCallback {
+interface ModalCallback {
     closeModal: () => void;
 }
 
-export interface ModalProps extends Partial<RNModalProps> {
+interface ModalProps extends Partial<RNModalProps> {
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
@@ -23,7 +23,7 @@ interface State {
     isVisible: boolean
 }
 
-export default class Modal extends React.Component<CustomModalCoreProps, State> {
+class RNModalWrapper extends React.Component<CustomModalCoreProps, State> {
     private keyboardDidHideListener;
     private keyboardDidShowListener;
     private keyboardIsShown: boolean;
