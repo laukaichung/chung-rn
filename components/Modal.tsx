@@ -112,7 +112,7 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
             >
                 <View
                     style={{
-                        flex: 1, flexDirection: "column", justifyContent: "center",
+                        flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "center,"
                     }}
                 >
                     <TouchableWithoutFeedback
@@ -132,8 +132,9 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
                                 style={
                                     [
                                         {
-                                            alignSelf: "center",
+                                            minHeight: ScreenUtil.fullHeight() * 0.3,
                                             maxHeight: ScreenUtil.fullHeight() * 0.5,
+                                            minWidth: ScreenUtil.fullWidth() * 0.5,
                                             maxWidth: ScreenUtil.fullWidth() * 0.8,
                                             backgroundColor: Styles.modalBackgroundColor,
                                             borderRadius: 5,
