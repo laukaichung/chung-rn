@@ -9,6 +9,7 @@ import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 import WingBlank from "./WingBlank";
 import Header from "./Header";
+import {ChungStyles} from "./index";
 
 export interface ConfirmModalProps extends ModalProps {
     onConfirm: () => void;
@@ -39,9 +40,11 @@ const ConfirmModal = ({onConfirm, onCancel, onConfirmMessage, title, ...restProp
                                 </WhiteSpace>
                             )
                         }
-                        <Flex style={styles.footerContainer}>
-                            <FlexItem style={styles.cancelButton}>
+
+                        <Flex style={{marginTop: ChungStyles.marginLg}}>
+                            <FlexItem>
                                 <Button
+                                    style={{marginRight: 5}}
                                     onPress={() => {
                                         closeModal();
                                         if (onCancel) onCancel();
@@ -57,11 +60,13 @@ const ConfirmModal = ({onConfirm, onCancel, onConfirmMessage, title, ...restProp
                                         // setState on unmounted Component
                                         closeModal();
                                         onConfirm();
-                                    }}>
+                                    }}
+                                >
                                     Confirm
                                 </Button>
                             </FlexItem>
                         </Flex>
+
                     </WingBlank>
             }
         </Modal>

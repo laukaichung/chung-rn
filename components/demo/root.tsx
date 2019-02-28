@@ -61,7 +61,7 @@ const StackNavigator = createStackNavigator(
     },
 
     {
-        initialRouteName: screenKeys.tooltip,
+        initialRouteName: screenKeys.modal,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {

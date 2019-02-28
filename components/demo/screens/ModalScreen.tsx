@@ -9,10 +9,11 @@ export class ModalScreen extends React.Component<NavigationProps> {
     render() {
         return (
             <UIMainContainer>
-                <ConfirmModal buttonTrigger={<Button>Confirm Button</Button>}
-                              onConfirmMessage={"fsdj fksdsdfs dfdsffdsfsds fdsfd ds fdfs sf d"}
-                              onConfirm={()=>alert('Confirmed')}>
-                </ConfirmModal>
+                <ConfirmModal
+                    buttonTrigger={<Button>Confirm Button</Button>}
+                    onConfirmMessage={"This is a demonstration of the modal component without the dependency of react-native-modal "}
+                    onConfirm={()=>alert('Confirmed')}
+                />
             </UIMainContainer>
         )
     }

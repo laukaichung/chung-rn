@@ -4,7 +4,7 @@ import ScreenUtil from "./util/ScreenUtil";
 import Styles from "./Styles";
 import {ReactNode} from "react";
 
-interface OverlayProps {
+export interface OverlayProps {
     onPress: (e?: GestureResponderEvent) => void;
     enabled: boolean;
     style?: StyleProp<ViewStyle>;
@@ -14,7 +14,7 @@ interface OverlayProps {
 
 const Overlay = ({style, enabled, children, onPress}: OverlayProps) => {
 
-    if(!enabled){
+    if (!enabled) {
         return children as any;
     }
 
