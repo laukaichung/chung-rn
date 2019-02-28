@@ -23,7 +23,7 @@ interface State {
     isVisible: boolean
 }
 
-class RNModalWrapper extends React.Component<CustomModalCoreProps, State> {
+export class RNModalWrapper extends React.Component<CustomModalCoreProps, State> {
     private keyboardDidHideListener;
     private keyboardDidShowListener;
     private keyboardIsShown: boolean;
