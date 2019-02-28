@@ -15,6 +15,7 @@ import Portal from "./portal/Portal";
 import * as Animatable from "react-native-animatable";
 import ScreenUtil from "./util/ScreenUtil";
 import {Omit} from "./type";
+import DeviceInfo from "react-native-device-info";
 
 export interface ModalCallback {
     closeModal: () => void;
@@ -104,52 +105,41 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
 
     public render() {
         const {children, containerStyle, overlayProps} = this.props;
+        const fullWidth = ScreenUtil.fullWidth();
         return (
             <Overlay
                 enabled
                 onPress={this._close}
+                style={{flex: 1, justifyContent: "center", alignItems: "center"}}
                 {...overlayProps}
             >
-                <View
-                    style={{
-                        flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "center,"
+                <TouchableWithoutFeedback
+                    onPress={(e) => {
+                        /**
+                         * Use this component to stop propagation from Overlay's onPress function,
+                         *  so when the user taps on the modal content, it won't get closed.
+                         */
+
+                        e.stopPropagation();
                     }}
                 >
-                    <TouchableWithoutFeedback
-                        onPress={(e) => {
-                            /**
-                             * Use this component to stop propagation from Overlay's onPress function,
-                             *  so when the user taps on the modal content, it won't get closed.
-                             */
-                            e.stopPropagation();
-                        }}
-                    >
-                        <Animatable.View
-                            ref={this.animationRef}
-                            animation="fadeInUp"
-                        >
-                            <View
-                                style={
-                                    [
-                                        {
-                                            minHeight: ScreenUtil.fullHeight() * 0.3,
-                                            maxHeight: ScreenUtil.fullHeight() * 0.5,
-                                            minWidth: ScreenUtil.fullWidth() * 0.5,
-                                            maxWidth: ScreenUtil.fullWidth() * 0.8,
-                                            backgroundColor: Styles.modalBackgroundColor,
-                                            borderRadius: 5,
-                                        },
-                                        containerStyle,
-                                    ]
-                                }
-                            >
+                    <Animatable.View
+                        ref={this.animationRef}
+                        animation="fadeInUp"
+                        style={
+                            [
                                 {
-                                    children()
-                                }
-                            </View>
-                        </Animatable.View>
-                    </TouchableWithoutFeedback>
-                </View>
+                                    width: DeviceInfo.isTablet() ? fullWidth * 0.6: fullWidth * 0.9,
+                                    backgroundColor: Styles.modalBackgroundColor,
+                                    borderRadius: 5,
+                                },
+                                containerStyle,
+                            ]
+                        }
+                    >
+                        {children()}
+                    </Animatable.View>
+                </TouchableWithoutFeedback>
             </Overlay>
         )
     }
@@ -194,11 +184,11 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
 }
 
 
-function modalAdd(props: Omit<ModalContainerProps, "onClose">){
+function modalAdd(props: Omit<ModalContainerProps, "onClose">) {
     const key = Portal.add((
         <ModalContainer
             {...props}
-            onClose={()=>{
+            onClose={() => {
                 Portal.remove(key);
             }}
         />

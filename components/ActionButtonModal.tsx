@@ -10,7 +10,9 @@ interface ActionButtonModal{
 
  const ActionButtonModal = ({children,actionButtonProps = {}}:ActionButtonModal)=> {
      return (
-            <Modal buttonTrigger={<ActionButton {...actionButtonProps}/>}>
+            <Modal
+                   buttonTrigger={<ActionButton {...actionButtonProps}/>}
+            >
                 {
                     (payload) => children(payload)
                 }
