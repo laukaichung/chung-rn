@@ -34,6 +34,7 @@ import ChungProvider from "../ChungProvider";
 import ChungAlertScreen from "./screens/ChungAlertScreen";
 import TestScreen from "./screens/TestScreen";
 import TooltipScreen from "./screens/TooltipScreen";
+import HintTextScreen from "./screens/HintTextScreen";
 
 const StackNavigator = createStackNavigator(
     {
@@ -58,10 +59,11 @@ const StackNavigator = createStackNavigator(
         [screenKeys.chungAlert]: ChungAlertScreen,
         [screenKeys.tooltip]: TooltipScreen,
         [screenKeys.test]: TestScreen,
+        [screenKeys.hint]: HintTextScreen,
     },
 
     {
-        initialRouteName: screenKeys.modal,
+        initialRouteName: screenKeys.hint,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {ViewStyle} from "react-native";
+import {View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
 import FlexItem from "./FlexItem";
@@ -17,36 +17,42 @@ export interface HintTextProps {
 const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
     color = color || Styles.hintTextDefaultTextColor;
     return (
-        <Flex style={[
-            {
-                borderColor: color,
-                borderWidth: 1,
-                padding: Styles.padding,
-                marginVertical: Styles.margin
-            },
-            containerStyle,
-        ]}>
+        <View
+            style={[
+                {
+                    padding: Styles.padding,
+                    marginVertical: Styles.margin,
+                    flexDirection: "row",
+                    justifyContent: "flex-start"
+                },
+                containerStyle,
+            ]}
+        >
             {
                 icon &&
-                <FlexItem>
-                    <Icon color={color} style={{marginRight: Styles.margin}} name={icon}/>
-                </FlexItem>
+                <View style={{justifyContent: "center"}}>
+                    <Icon
+                        color={color}
+                        style={{marginRight: Styles.margin}}
+                        name={icon}
+                    />
+                </View>
             }
-            <FlexItem flex={5}>
-                <ChungText
-                    style={
-                        [
-                            {
-                                color,
-                                lineHeight: Styles.lineHeight
-                            }
-                        ]
-                    }
-                >
-                    {children}
-                </ChungText>
-            </FlexItem>
-        </Flex>
+            <ChungText
+                style={
+                    [
+                        {
+                            color,
+                            lineHeight: Styles.lineHeight,
+                            flex: 1,
+                            flexWrap: "wrap",
+                        }
+                    ]
+                }
+            >
+                {children}
+            </ChungText>
+        </View>
     )
 };
 

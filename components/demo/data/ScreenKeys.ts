@@ -21,4 +21,5 @@ export const screenKeys = {
     chungAlert: 'chungAlert',
     tooltip: "tooltip",
     test: "test",
+    hint: "hint",
 };

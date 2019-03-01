@@ -7,7 +7,6 @@ import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 import WingBlank from "./WingBlank";
 import Header from "./Header";
-import {ChungStyles} from "./index";
 import Portal from "./portal/Portal";
 import {Omit} from "./type";
 
@@ -46,13 +45,7 @@ class ConfirmModalContainer extends React.Component<ConfirmModalContainerProps> 
     render() {
         const {onConfirm, onCancel, onConfirmMessage, title, onClose} = this.props;
         return (
-            <WingBlank
-                style={{
-                    flex: 1,
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
-            >
+            <WingBlank size="lg">
                 <Header>
                     {title || `Are you sure?`}
                 </Header>
@@ -63,30 +56,31 @@ class ConfirmModalContainer extends React.Component<ConfirmModalContainerProps> 
                         </WhiteSpace>
                     )
                 }
-
-                <Flex style={{marginTop: ChungStyles.marginLg}}>
-                    <FlexItem>
-                        <Button
-                            style={{marginRight: 5}}
-                            onPress={() => {
-                                onClose();
-                                if (onCancel) onCancel();
-                            }}
-                        >
-                            Cancel
-                        </Button>
-                    </FlexItem>
-                    <FlexItem>
-                        <Button
-                            onPress={() => {
-                                onClose();
-                                onConfirm();
-                            }}
-                        >
-                            Confirm
-                        </Button>
-                    </FlexItem>
-                </Flex>
+                <WhiteSpace>
+                    <Flex>
+                        <FlexItem>
+                            <Button
+                                style={{marginRight: 5}}
+                                onPress={() => {
+                                    onClose();
+                                    if (onCancel) onCancel();
+                                }}
+                            >
+                                Cancel
+                            </Button>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button
+                                onPress={() => {
+                                    onClose();
+                                    onConfirm();
+                                }}
+                            >
+                                Confirm
+                            </Button>
+                        </FlexItem>
+                    </Flex>
+                </WhiteSpace>
             </WingBlank>
         )
     }
@@ -97,7 +91,7 @@ function addModal(props: Omit<ConfirmModalContainerProps, "onClose">) {
     const key = Portal.add((
         <ModalContainer
             {...props}
-            onClose={()=> Portal.remove(key)}
+            onClose={() => Portal.remove(key)}
             children={() => (
                 <ConfirmModalContainer
                     {...props}

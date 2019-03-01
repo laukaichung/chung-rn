@@ -5,9 +5,9 @@ import {NavigationProps} from "../demotype";
 import UIMainContainer from "../../UIMainContainer";
 import WhiteSpace from "../../WhiteSpace";
 import Modal from "../../Modal";
-import {View} from "react-native";
 import ChungText from "../../ChungText";
 import WingBlank from "../../WingBlank";
+import HintText from "../../HintText";
 
 
 export class ModalScreen extends React.Component<NavigationProps> {

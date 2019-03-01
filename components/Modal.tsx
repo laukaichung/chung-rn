@@ -1,14 +1,6 @@
 import * as React from 'react';
 import {createRef, ReactNode, RefObject} from 'react';
-import {
-    BackHandler,
-    Keyboard,
-    StyleProp,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    View,
-    ViewStyle
-} from 'react-native'
+import {BackHandler, Keyboard, StyleProp, TouchableOpacity, TouchableWithoutFeedback, ViewStyle} from 'react-native'
 import Styles from "./Styles";
 import Overlay, {OverlayProps} from "./Overlay";
 import Portal from "./portal/Portal";
@@ -37,7 +29,7 @@ interface State {
 }
 
 export default class Modal extends React.Component<CustomModalCoreProps, State> {
-
+    private containerRef: RefObject<ModalContainer> = createRef();
     public state: State = {isVisible: false};
 
     public static add = modalAdd;
@@ -53,11 +45,12 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
             modalView = (
                 <Portal>
                     <ModalContainer
-                        onClose={this._closeModal}
+                        ref={this.containerRef}
+                        onClose={this._onClose}
                         {...props}
                     >
                         {
-                            () => children({closeModal: this._closeModal})
+                            () => children({closeModal: this._closeModalByChildren})
                         }
                     </ModalContainer>
                 </Portal>
@@ -84,9 +77,15 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
         this.setState({isVisible: true})
     };
 
-    private _closeModal = () => {
+    private _onClose = ()=>{
         this.setState({isVisible: false})
     }
+
+    private _closeModalByChildren = () => {
+        this.containerRef.current.fadeOut();
+        this._onClose();
+    }
+
 
 }
 
@@ -101,7 +100,7 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
     private keyboardDidShowListener;
     private keyboardIsShown: boolean;
     private timeoutId: any;
-    private animationRef: RefObject<any> = createRef();
+    public animationRef: RefObject<any> = createRef();
 
     public render() {
         const {children, containerStyle, overlayProps} = this.props;
@@ -167,10 +166,14 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
     private _close = async () => {
         // Don't close the modal when the keyboard is just closed.
         if (!this.keyboardIsShown) {
-            await this.animationRef.current.fadeOutDown(500);
+            await this.fadeOut();
             this.props.onClose();
         }
     };
+
+    public async fadeOut(){
+        await this.animationRef.current.fadeOutDown(500);
+    }
 
 
     private _keyboardDidShow = () => {
