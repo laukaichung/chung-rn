@@ -45,6 +45,7 @@ export interface TextareaItemNativeProps extends FormListItemCommonProps,FormCom
     onBlur?: TextAreaEventHandle;
     onFocus?: TextAreaEventHandle;
     onClear?: () => void;
+    disableHeader?: boolean;
 }
 
 interface State {
@@ -78,6 +79,7 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
             invalidMessage,
             autoHeight = false,
             inputStyle,
+            disableHeader,
             listItemProps = {},
             placeholder = "Enter here",
             ...restProps
@@ -109,7 +111,10 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
                     </React.Fragment>
                 )}
             >
-                <FormHeader {...this.props}/>
+                {
+                    !disableHeader &&
+                    <FormHeader {...this.props}/>
+                }
                 <TextInput
                     keyboardAppearance={Styles.isDarkMode ? "dark" : "default"}
                     placeholderTextColor={Styles.placeholderTextColor}

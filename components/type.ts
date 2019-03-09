@@ -9,7 +9,9 @@ export interface CameraRollFile {
 }
 
 export interface FormListItemCommonProps {
-    listItemProps?:ListItemProps
+    listItemProps?:ListItemProps;
+    disableHeader?: boolean;
+
 }
 
 export interface FormCommonProps {
