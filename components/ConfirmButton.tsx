@@ -1,22 +1,21 @@
 import * as React from 'react'
 import Button, {ButtonProps} from "./Button";
 import ConfirmModal from "./ConfirmModal";
+import {ReactNode} from "react";
 
 interface ConfirmButtonProps extends ButtonProps {
     confirmMessage?: string
     title?: string
-    buttonProps: ButtonProps;
+    button?: ReactNode
 }
 
 const ConfirmButton = (props: ConfirmButtonProps) => {
-    const {confirmMessage, buttonProps, onPress, title} = props;
+    const {confirmMessage, onPress, button, title} = props;
     return (
         <ConfirmModal
             containerStyle={{minHeight: 150}}
             onConfirm={onPress}
-            buttonTrigger={(
-                <Button {...buttonProps}/>
-            )}
+            buttonTrigger={button}
             onConfirmMessage={confirmMessage}
             title={title}
         />
