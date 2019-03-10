@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
+import {StyleProp, StyleSheet, TouchableOpacity, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
-import CustomTouchableHighlight from "./CustomTouchableHighlight";
 import ChungText from "./ChungText";
 import Icon, {IconProps} from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
@@ -127,11 +126,11 @@ export default class Item extends React.Component<ListItemProps, any> {
         );
 
         const listItem = (
-            <CustomTouchableHighlight
+            <TouchableOpacity
                 onPress={onPress}
                 onLongPress={onLongPress}>
                 {itemView}
-            </CustomTouchableHighlight>
+            </TouchableOpacity>
         );
 
         if (swipeableProps) {

@@ -73,7 +73,7 @@ export default class Grid extends React.Component<GridProps, any> {
                         <FastImage source={{uri: dataItem.icon}} style={styles.icon}/>
                     )}
                     <ChungText style={{
-                        fontSize: Styles.fontSizeCaptionSm,
+                        fontSize: Styles.fontSizeSm,
                         color: Styles.fontColor,
                         marginTop: Styles.margin,
                     }}>

@@ -38,7 +38,6 @@ export default class Styles {
 
     static secondaryColor = "#366b1d";
 
-
     static badgeBackgroundColor = "#cb6600";
 
     static get warningColor(){
@@ -111,6 +110,7 @@ export default class Styles {
     static margin = 10;
     static marginSm = 5;
 
+    static fontSizeSm= 11;
     static fontSize = 14;
     static headerFontSize = 19;
     static labelFontSize = 18;
@@ -136,8 +136,6 @@ export default class Styles {
     static get iconColor(){
         return this.isDarkMode ? this.iconColorDark:this.iconColorLight;
     }
-
-
 
     static get statusBarBackgroundColor(){
         return this.darkestColor;
@@ -169,8 +167,6 @@ export default class Styles {
     };
 
     static disabledBorderColor = '#dadada';
-
-    static fontSizeCaptionSm= 12;
 
     static listItemHeight=44;
 

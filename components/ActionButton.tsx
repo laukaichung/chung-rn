@@ -66,17 +66,15 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
 
         if (draggable) {
             return (
-
                 <PersistentDraggable
                     onPress={onPress}
                     storageKey={storageKey}
-                    boundary={{bottom: ScreenUtil.fullHeight(), top: 80}}
+                    boundary={{bottom: ScreenUtil.fullHeight(), top: 60}}
                     containerStyle={containerStyle}
 
                 >
                     {iconView}
                 </PersistentDraggable>
-
             )
         }
 

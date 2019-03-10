@@ -20,12 +20,6 @@ const UIMainContainer = ({style, ... restProps}: Props) => {
                         <View
                             {...restProps}
                             style={[{backgroundColor: Styles.backgroundColor, flex: 1}, style]}
-                            // onLayout={
-                            //     ({nativeEvent: {layout}}) => {
-                            //         const headerHeight = ScreenUtil.fullHeight() - layout.height;
-                            //         setLayout({...layout, headerHeight});
-                            //     }
-                            // }
                         />
                     )
                 }
