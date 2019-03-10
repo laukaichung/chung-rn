@@ -65,7 +65,7 @@
     "npm": "^6.9.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-native": "^0.57.8",
+    "react-native": "0.57.8",
     "react-navigation": "^3.3.2",
     "react-test-renderer": "16.6.0-alpha.8af6728",
     "reactotron-react-native": "^2.2.0",

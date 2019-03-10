@@ -4,7 +4,7 @@ import {PanGestureHandler, PanGestureHandlerStateChangeEvent, State} from "react
 import Styles from "./Styles";
 
 interface DraggableProps {
-    onDrag: (event: PanGestureHandlerStateChangeEvent)=>void;
+    onDrag?: (event: PanGestureHandlerStateChangeEvent)=>void;
 }
 
 export default class Draggable extends React.Component<DraggableProps> {
@@ -33,7 +33,7 @@ export default class Draggable extends React.Component<DraggableProps> {
                     } else {
                         this.translateXY.setValue({x: 0, y: 0});
                     }
-                    onDrag(e)
+                    if(onDrag) onDrag(e)
                 }}
             >
                 <Animated.View

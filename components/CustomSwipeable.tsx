@@ -1,13 +1,19 @@
 import * as React from 'react';
 import {ReactNode, RefObject} from 'react';
-import {Animated, ViewStyle} from 'react-native';
+import {Animated, View, ViewStyle} from 'react-native';
 import {GestureHandlerProperties} from 'react-native-gesture-handler';
 import Swipeable, {SwipeableProperties} from 'react-native-gesture-handler/Swipeable';
 import ScreenUtil from "./util/ScreenUtil";
 
+interface MenuItem {
+   view: ReactNode
+}
+
 export interface CustomSwipeableProps extends SwipeableProperties, GestureHandlerProperties {
     rightView?: ReactNode;
     leftView?: ReactNode;
+    rightMenu?: MenuItem[]
+    rightMenuButtonWidth: number;
     rightContainerStyle?: ViewStyle;
     leftContainerStyle?: ViewStyle;
 }
@@ -40,13 +46,7 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
                         leftContainerStyle
                     ]}
                 >
-                    {/*<RectButton*/}
-                    {/*    onPress={() => {*/}
-                    {/*        if (onLeftViewPress) onLeftViewPress();*/}
-                    {/*        this._close();*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                        {leftView}
+                    {leftView}
                 </Animated.View>
             );
         }
@@ -54,7 +54,9 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
     };
 
     private _renderRightActions = (progress, dragX) => {
-        const {rightView, renderRightActions, rightContainerStyle} = this.props;
+        const {rightView, renderRightActions,
+            rightContainerStyle, rightMenu, rightMenuButtonWidth = 80
+        } = this.props;
         const fullWidth = ScreenUtil.fullWidth();
         if (renderRightActions) {
 
@@ -80,6 +82,32 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
                     {rightView}
                 </Animated.View>
             );
+
+        }else if (rightMenu){
+            const buttonsTotalWidth = rightMenuButtonWidth * rightMenu.length;
+            return (
+                <View style={{ width: buttonsTotalWidth, flexDirection: 'row' }}>
+                    {
+                        rightMenu.map((o, index)=>{
+
+                            const trans = progress.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [buttonsTotalWidth - (rightMenuButtonWidth * index),  0],
+                            });
+
+                            return (
+                                <Animated.View
+                                    key={index}
+                                    style={{ flex: 1, transform: [{ translateX: trans }] }}
+                                >
+                                    {o.view}
+                                </Animated.View>
+                            )
+
+                        })
+                    }
+                </View>
+            )
         }
         return null;
     };

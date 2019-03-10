@@ -63,7 +63,7 @@ const StackNavigator = createStackNavigator(
     },
 
     {
-        initialRouteName: screenKeys.hint,
+        initialRouteName: screenKeys.list,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {
@@ -105,7 +105,7 @@ const DrawerNavigator = createDrawerNavigator(
         MainContent: StackNavigator
     },
     {
-        drawerPosition: 'right',
+        drawerPosition: 'left',
         contentComponent: (navigation) => <DrawerScreen navigation={navigation}/>
     }
 );

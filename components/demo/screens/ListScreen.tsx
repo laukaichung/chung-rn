@@ -6,9 +6,8 @@ import ChungText from "../../ChungText";
 import WhiteSpace from "../../WhiteSpace";
 import {ScrollView, View} from "react-native";
 import {ListItem} from "../../index";
-import Flex from "../../Flex";
-import FlexItem from "../../FlexItem";
 import CustomSwipeable from "../../CustomSwipeable";
+import {RectButton} from "react-native-gesture-handler";
 
 export class ListScreen extends React.Component<NavigationProps> {
 
@@ -30,28 +29,23 @@ export class ListScreen extends React.Component<NavigationProps> {
                         </ListItem>
                     </List>
                     <WhiteSpace/>
-                    <List.Item
+                    <ListItem
                         arrow="right"
                         extra={<ChungText>Extra</ChungText>}
                         onLongPress={() => alert('dfdfdf')}
-                        hideBorder={["top"]}>
+                    >
                         <ChungText>No top border</ChungText>
-                    </List.Item>
-                    <List.Item
-                        onLongPress={() => alert('dfdfdf')}
-                        hideBorder={["all"]}>
-                        <ChungText>No all borders</ChungText>
-                    </List.Item>
+                    </ListItem>
 
-                    <List.Item
+                    <ListItem
                         bottomExtraView={(
                             <View style={{width: 100, height: 100, backgroundColor: "red"}}/>
                         )}
                         onLongPress={() => alert('dfdfdf')}
                     >
                         <ChungText>Extra Bottom View</ChungText>
-                    </List.Item>
-                    <List.Item
+                    </ListItem>
+                    <ListItem
                         swipeableProps={{
                             rightView: (
                                 <ChungText>Swipe from the view!</ChungText>
@@ -59,7 +53,7 @@ export class ListScreen extends React.Component<NavigationProps> {
                         }}
                     >
                         <ChungText>Swipeable list item</ChungText>
-                    </List.Item>
+                    </ListItem>
                     <CustomSwipeable
                         leftContainerStyle={
                             {flex: 1, justifyContent: "flex-end", flexDirection: "row"}
@@ -94,18 +88,31 @@ export class ListScreen extends React.Component<NavigationProps> {
                         </List.Item>
                     </CustomSwipeable>
 
-                    <Flex>
-                        <FlexItem>
-                            <ListItem arrow="right">
-                                <ChungText>Center that</ChungText>
-                            </ListItem>
-                        </FlexItem>
-                        <FlexItem>
-                            <ListItem arrow="right">
-                                <ChungText>Center this</ChungText>
-                            </ListItem>
-                        </FlexItem>
-                    </Flex>
+
+                    <CustomSwipeable
+                        rightMenu={[
+
+                            {
+                                view: (
+                                    <RectButton
+                                        style={[ {
+                                            backgroundColor: "red",
+                                            alignItems: 'center',
+                                            flex: 1,
+                                            justifyContent: 'center',
+                                        }]}
+                                        onPress={()=> alert("ppp")}>
+                                        <ChungText>yyyyy</ChungText>
+                                    </RectButton>
+                                )
+                            }
+                        ]}
+                    >
+                        <List.Item>
+                            <ChungText>Swipeable custom view</ChungText>
+                        </List.Item>
+                    </CustomSwipeable>
+
                 </ScrollView>
             </Container>
         )
