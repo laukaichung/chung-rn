@@ -13,7 +13,7 @@ export interface CustomSwipeableProps extends SwipeableProperties, GestureHandle
     rightView?: ReactNode;
     leftView?: ReactNode;
     rightMenu?: MenuItem[]
-    rightMenuButtonWidth: number;
+    rightMenuButtonWidth?: number;
     rightContainerStyle?: ViewStyle;
     leftContainerStyle?: ViewStyle;
 }
