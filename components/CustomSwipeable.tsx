@@ -1,9 +1,39 @@
 import * as React from 'react';
 import {ReactNode, RefObject} from 'react';
 import {Animated, View, ViewStyle} from 'react-native';
-import {GestureHandlerProperties} from 'react-native-gesture-handler';
+import {GestureHandlerProperties, RectButton} from 'react-native-gesture-handler';
 import Swipeable, {SwipeableProperties} from 'react-native-gesture-handler/Swipeable';
 import ScreenUtil from "./util/ScreenUtil";
+import {ChungStyles} from "./index";
+import ChungText from "./ChungText";
+
+interface SwipeableMenuItemProps {
+    onPress: ()=>void;
+    text?: string;
+    view?: ReactNode
+}
+
+const SwipeableMenuItem = ({onPress, text, view}: SwipeableMenuItemProps)=>{
+    return (
+        <RectButton
+            style={[ {
+                backgroundColor: ChungStyles.secondaryColor,
+                alignItems: 'center',
+                flex: 1,
+                justifyContent: 'center',
+            }]}
+            onPress={onPress}
+        >
+            {
+                text &&
+                <ChungText style={{color: "#fff"}}>
+                    {text}
+                </ChungText>
+            }
+            {view}
+        </RectButton>
+    )
+};
 
 interface MenuItem {
    view: ReactNode
@@ -19,6 +49,8 @@ export interface CustomSwipeableProps extends SwipeableProperties, GestureHandle
 }
 
 export default class CustomSwipeable extends React.Component<CustomSwipeableProps> {
+
+    public static MenuItem = SwipeableMenuItem;
 
     private swipeableRow: RefObject<Swipeable> = React.createRef();
 
@@ -130,3 +162,4 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
         );
     }
 }
+
