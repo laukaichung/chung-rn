@@ -183,7 +183,7 @@ interface ImageItemProps {
 // https://github.com/DylanVann/react-native-fast-image/issues/410
 
 const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
-
+    console.log({image});
     return (
         <TouchableOpacity
             onPress={() => onSelected(image)}>

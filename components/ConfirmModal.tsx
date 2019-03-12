@@ -45,7 +45,7 @@ class ConfirmModalContainer extends React.Component<ConfirmModalContainerProps> 
     render() {
         const {onConfirm, onCancel, onConfirmMessage, title, onClose} = this.props;
         return (
-            <WingBlank size="lg">
+            <WingBlank style={{justifyContent: "center", padding: 20}} size="lg">
                 <Header>
                     {title || `Are you sure?`}
                 </Header>

@@ -34,12 +34,12 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
             <React.Fragment>
                 <CustomModal
                     fullScreen
-                    paddingHorizontal={false}
                     buttonTrigger={(
                         <ListItem {...listItemProps} arrow="right">
                             <Label>Select Images</Label>
                         </ListItem>
-                    )}>
+                    )}
+                >
                     {
                         ({closeModal}) => {
                             return (
@@ -53,9 +53,11 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                                                 Confirm
                                             </Button>
                                     </View>
-                                    <CameraRollImageList defaultSelectedImages={images}
-                                                         multiple={multiple}
-                                                         ref={this.ref}/>
+                                    <CameraRollImageList
+                                        defaultSelectedImages={images}
+                                        multiple={multiple}
+                                        ref={this.ref}
+                                    />
                                 </View>
                             )
                         }
