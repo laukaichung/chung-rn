@@ -11,4 +11,8 @@ export default class StringUtil {
             return str.slice(0, 1).toUpperCase() + str.slice(1)
     }
 
+    static getUrlExtension( url ) {
+        return url.split(/\#|\?/)[0].split('.').pop().trim();
+    }
+
 }

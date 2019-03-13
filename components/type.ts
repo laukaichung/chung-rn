@@ -6,6 +6,8 @@ export interface CameraRollFile {
     width: number;
     isStored?: boolean;
     type?: string
+    // IOS
+    //filename?: string
 }
 
 export interface FormListItemCommonProps {

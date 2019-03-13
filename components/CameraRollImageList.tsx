@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {CameraRoll, FlatList, GetPhotosParamType, Platform, TouchableOpacity, View} from "react-native";
+import {CameraRoll, FlatList, GetPhotosParamType, Image, Platform, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "./ActivityIndicator";
 import {CameraRollFile} from "./type";
 import ScreenUtil from "./util/ScreenUtil";
@@ -7,6 +7,7 @@ import Icon from "./Icon";
 import {ChungStyles} from ".";
 import DeviceInfo from 'react-native-device-info';
 import FastImage from "react-native-fast-image";
+import StringUtil from "./util/StringUtil";
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -179,18 +180,25 @@ interface ImageItemProps {
     onSelected: (returnedImage: CameraRollFile) => void;
 }
 
+
 //todo The FastImage is unable to load IOS local images:
 // https://github.com/DylanVann/react-native-fast-image/issues/410
 
+
 const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
-    console.log({image});
+    const {uri} = image;
     return (
         <TouchableOpacity
             onPress={() => onSelected(image)}>
             <View style={{flex: 1, margin: 1}}>
-                <FastImage
-                    resizeMode={FastImage.resizeMode.cover}
-                    source={{uri: image.uri}}
+                {
+                    /**
+                     * Unable to use <FastImage/> because it cannot load images from asset libaray in IOS
+                     */
+                }
+                <Image
+                    resizeMode={"contain"}
+                    source={{uri}}
                     style={{height: 100, width: ScreenUtil.fullWidth() / 3}}/>
                 {
                     isSelected &&
