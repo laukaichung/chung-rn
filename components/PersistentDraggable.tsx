@@ -1,8 +1,9 @@
 import * as React from "react"
 import {Component} from "react"
-import {Animated, AsyncStorage, StyleProp, ViewStyle} from "react-native";
+import {Animated, StyleProp, ViewStyle} from "react-native";
 import {PanGestureHandler, RectButton, State} from 'react-native-gesture-handler';
 import Toast from "./Toast";
+import AsyncStorage from '@react-native-community/async-storage';
 
 interface Props {
     boundary?: {top: number, bottom: number};
