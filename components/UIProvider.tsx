@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
 import UIContext, {ThemeContextProps} from "./UIContext";
-import {AsyncStorage} from "react-native";
 import Styles, {ChungThemeTypes} from "./Styles";
+import AsyncStorage from '@react-native-community/async-storage';
 
 interface ChungContainerProps {
     children: ReactNode

@@ -1,12 +1,13 @@
 import * as React from "react"
 import {ReactNode} from "react"
 import Portal from "./portal/Portal";
-import {AsyncStorage, Switch, View, ViewStyle} from "react-native";
+import {Switch, View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import WhiteSpace from "./WhiteSpace";
 import Button from "./Button";
 import ChungText from "./ChungText";
 import Overlay from "./Overlay";
+import AsyncStorage from '@react-native-community/async-storage';
 
 interface ChungAlertViewProps {
     storageKey: string;

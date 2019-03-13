@@ -2,7 +2,7 @@ import * as React from "react"
 import ChungText from "../../ChungText";
 import UIMainContainer from "../../UIMainContainer";
 import ChungAlert from "../../ChungAlert";
-import {AsyncStorage} from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 
 export interface ChungAlertScreenProps {}
 

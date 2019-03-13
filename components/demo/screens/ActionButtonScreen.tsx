@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {AsyncStorage} from "react-native";
 import Container from "../../UIMainContainer";
 import ChungText from "../../ChungText";
 import ActionButton from "../../ActionButton";
 import Button from "../../Button";
+import AsyncStorage from '@react-native-community/async-storage';
 
 interface ActionButtonScreenProps {}
 

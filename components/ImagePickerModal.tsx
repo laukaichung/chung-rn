@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {RefObject} from 'react';
-import {Image, PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import Styles from "./Styles";
-import List from "./List";
 import Label from "./Label";
 import Grid from "./Grid";
 import CustomModal from "./Modal";
