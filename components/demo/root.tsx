@@ -61,7 +61,6 @@ const StackNavigator = createStackNavigator(
         [screenKeys.test]: TestScreen,
         [screenKeys.hint]: HintTextScreen,
     },
-
     {
         initialRouteName: screenKeys.list,
         defaultNavigationOptions: ({navigation}) => {

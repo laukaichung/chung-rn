@@ -29,6 +29,7 @@ interface State {
 }
 
 export default class Modal extends React.Component<CustomModalCoreProps, State> {
+
     private containerRef: RefObject<ModalContainer> = createRef();
     public state: State = {isVisible: false};
 
@@ -79,10 +80,13 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
 
     private _onClose = ()=>{
         this.setState({isVisible: false})
-    }
+    };
 
     private _closeModalByChildren = () => {
-        this.containerRef.current.fadeOut();
+        const {current} = this.containerRef;
+        if(current) {
+            current.fadeOut();
+        }
         this._onClose();
     }
 

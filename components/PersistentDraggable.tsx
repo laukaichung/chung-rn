@@ -39,7 +39,6 @@ export default class PersistentDraggable extends Component<Props, DraggableState
         {useNativeDriver: true}
     );
 
-
     private _onHandlerStateChange = async ({nativeEvent}) => {
         const {boundary} = this.props;
         if (nativeEvent.oldState === State.ACTIVE) {
@@ -54,6 +53,7 @@ export default class PersistentDraggable extends Component<Props, DraggableState
             this._translateXY.setOffset(this._lastOffset);
             this._translateXY.setValue({x: 0, y: 0});
             const {storageKey} = this.props;
+
             if (storageKey) {
                 await AsyncStorage.setItem(storageKey, JSON.stringify(this._lastOffset));
             }
@@ -92,6 +92,7 @@ export default class PersistentDraggable extends Component<Props, DraggableState
             </PanGestureHandler>
         );
     }
+
 
     public async componentDidMount() {
         this.mounted = true;

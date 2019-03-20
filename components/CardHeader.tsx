@@ -13,55 +13,52 @@ export interface CardHeaderProps {
     extra?: ReactNode;
 }
 
-export default class CardHeader extends React.Component<CardHeaderProps, any> {
+const CardHeader = (props: CardHeaderProps) => {
+    const {
+        title,
+        thumb,
+        thumbStyle,
+        extra,
+        style,
+        ...restProps
+    } = props;
 
-    public render() {
-        const {
-            title,
-            thumb,
-            thumbStyle,
-            extra,
-            style,
-            ...restProps
-        } = this.props;
-
-        const titleDom =
-            title === undefined ? null : React.isValidElement(title) ? (
-                <View style={{flex: 1}}>{title}</View>
-            ) : (
-                <ChungText style={styles.headerContent}>{title}</ChungText>
-            );
-
-        const extraDom =
-            extra === undefined ? null : React.isValidElement(extra) ? (
-                <View style={{flex: 1}}>{extra}</View>
-            ) : (
-                <ChungText style={[styles.headerExtra]}>{extra}</ChungText>
-            );
-
-        return (
-            <View style={
-                [
-                    styles.headerWrap,
-                    {borderColor: Styles.borderColor, backgroundColor: Styles.extremeBackgroundColor},
-                    style
-                ]
-            } {...restProps}>
-                <View style={[styles.headerTitle]}>
-                    {typeof thumb === 'string' ? (
-                        <Image
-                            source={{uri: thumb}}
-                            style={[styles.headerImage, thumbStyle] as any}
-                        />
-                    ) : (
-                        thumb
-                    )}
-                    {titleDom}
-                </View>
-                {extra ? extraDom : null}
-            </View>
+    const titleDom =
+        title === undefined ? null : React.isValidElement(title) ? (
+            <View style={{flex: 1}}>{title}</View>
+        ) : (
+            <ChungText style={styles.headerContent}>{title}</ChungText>
         );
-    }
+
+    const extraDom =
+        extra === undefined ? null : React.isValidElement(extra) ? (
+            <View style={{flex: 1}}>{extra}</View>
+        ) : (
+            <ChungText style={[styles.headerExtra]}>{extra}</ChungText>
+        );
+
+    return (
+        <View style={
+            [
+                styles.headerWrap,
+                {borderColor: Styles.borderColor, backgroundColor: Styles.extremeBackgroundColor},
+                style
+            ]
+        } {...restProps}>
+            <View style={[styles.headerTitle]}>
+                {typeof thumb === 'string' ? (
+                    <Image
+                        source={{uri: thumb}}
+                        style={[styles.headerImage, thumbStyle] as any}
+                    />
+                ) : (
+                    thumb
+                )}
+                {titleDom}
+            </View>
+            {extra ? extraDom : null}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -90,3 +87,5 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
 });
+
+export default CardHeader;

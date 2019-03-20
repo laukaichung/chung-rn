@@ -9,83 +9,79 @@ import ChungText from "./ChungText";
 export interface ResultNativeProps {
     style?: StyleProp<ViewStyle>;
     imgUrl?: string;
-    iconProps?:IconProps;
+    iconProps?: IconProps;
     title?: React.ReactNode;
     children?: React.ReactNode;
-    buttonProps?:ButtonProps;
+    buttonProps?: ButtonProps;
     showBorder?: boolean;
     marginHorizontal?: boolean
     type?: "error" | "success" | "warning"
 }
 
-export default class Result extends React.Component<ResultNativeProps, any> {
+const Result = (props: ResultNativeProps) => {
 
-    public render() {
-        const {
-            style,
-            type,
-            children,
-            imgUrl,
-            iconProps,
-            title,
-            marginHorizontal = true,
-            showBorder = false,
-            buttonProps
-        } = this.props;
+    const {
+        style,
+        type,
+        children,
+        imgUrl,
+        iconProps,
+        title,
+        marginHorizontal = true,
+        showBorder = false,
+        buttonProps
+    } = props;
 
-        let imgContent: JSX.Element | null = null;
-        if (imgUrl) {
-            imgContent = (
-                <ChungImage
-                    source={imgUrl as ImageURISource | ImageURISource[]}
-                    style={styles.img as any}
-                />
-            );
-        } else if (iconProps) {
-            const {size} = iconProps;
-            imgContent = (
-                <Icon {...iconProps} size={size || "xl"}/>
-            )
-        }
-
-        let typeColor = type === "error" ? Styles.errorColor :
-            type === "warning" ? Styles.warningColor : Styles.fontColor;
-
-        return (
-            <View style={
-                [
-                    styles.result,
-                    showBorder && {borderColor: typeColor, borderWidth: Styles.borderWidth},
-                    marginHorizontal && {marginHorizontal: Styles.margin},
-                    style,
-                ]}>
-
-                {imgContent}
-                {title ? (
-                    <View style={styles.title}>
-                        {typeof title === 'string' ? (
-                            <ChungText style={{fontSize: Styles.headerFontSize, color: typeColor}}>{title}</ChungText>
-                        ) : (
-                            title
-                        )}
-                    </View>
-                ) : null}
-                {children ? (
-                    <View style={styles.message}>
-                        {children}
-                    </View>
-                ) : null}
-                {buttonProps ? (
-                    <View style={styles.buttonWrap}>
-                        <Button{...buttonProps}/>
-                    </View>
-                ) : null}
-            </View>
+    let imgContent: JSX.Element | null = null;
+    if (imgUrl) {
+        imgContent = (
+            <ChungImage
+                source={imgUrl as ImageURISource | ImageURISource[]}
+                style={styles.img as any}
+            />
         );
+    } else if (iconProps) {
+        const {size} = iconProps;
+        imgContent = (
+            <Icon {...iconProps} size={size || "xl"}/>
+        )
     }
 
+    let typeColor = type === "error" ? Styles.errorColor :
+        type === "warning" ? Styles.warningColor : Styles.fontColor;
 
-}
+    return (
+        <View style={
+            [
+                styles.result,
+                showBorder && {borderColor: typeColor, borderWidth: Styles.borderWidth},
+                marginHorizontal && {marginHorizontal: Styles.margin},
+                style,
+            ]}>
+
+            {imgContent}
+            {title ? (
+                <View style={styles.title}>
+                    {typeof title === 'string' ? (
+                        <ChungText style={{fontSize: Styles.headerFontSize, color: typeColor}}>{title}</ChungText>
+                    ) : (
+                        title
+                    )}
+                </View>
+            ) : null}
+            {children ? (
+                <View style={styles.message}>
+                    {children}
+                </View>
+            ) : null}
+            {buttonProps ? (
+                <View style={styles.buttonWrap}>
+                    <Button{...buttonProps}/>
+                </View>
+            ) : null}
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     result: {
@@ -118,3 +114,5 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
+
+export default Result;

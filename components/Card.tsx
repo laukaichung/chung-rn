@@ -1,8 +1,6 @@
 import * as React from 'react';
+import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import CardBody from './CardBody';
-import CardFooter from './CardFooter';
-import CardHeader from './CardHeader';
 import Styles from "./Styles";
 
 export interface CardProps {
@@ -10,14 +8,11 @@ export interface CardProps {
     full?: boolean;
     marginVertical?: boolean;
     hideBorder?:boolean
+    children: ReactNode;
 }
 
-export default class Card extends React.Component<CardProps, any> {
-    static Header = CardHeader;
-    static Body = CardBody;
-    static Footer = CardFooter;
-    public render() {
-        const {style = {}, full = true,hideBorder, children, marginVertical = false, ...restProps} = this.props;
+const Card = (props: CardProps)=> {
+        const {style = {}, full = true,hideBorder, children, marginVertical = false, ...restProps} = props;
         const cardStyle = full ? styles.full : {margin: Styles.margin};
         const childDom = React.Children.map(children, child =>
             React.cloneElement(child as React.ReactElement<any>, {styles}),
@@ -42,8 +37,7 @@ export default class Card extends React.Component<CardProps, any> {
                 {childDom}
             </View>
         );
-    }
-}
+};
 
 const styles = StyleSheet.create({
     full: {
@@ -52,3 +46,5 @@ const styles = StyleSheet.create({
         borderRightWidth: 0,
     },
 });
+
+export default Card;

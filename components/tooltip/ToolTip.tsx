@@ -1,13 +1,6 @@
 import * as React from "react"
 import {createRef, ReactNode, RefObject} from "react"
-import {
-    AsyncStorage,
-    LayoutRectangle,
-    TouchableHighlight, TouchableWithoutFeedback,
-    TouchableWithoutFeedbackComponent,
-    View,
-    ViewStyle
-} from "react-native";
+import {LayoutRectangle, View, ViewStyle} from "react-native";
 import Styles from "../Styles";
 import Portal from "../portal/Portal";
 import ScreenUtil from "../util/ScreenUtil";
@@ -15,6 +8,7 @@ import * as Animatable from "react-native-animatable";
 import ToolTipArrow, {ArrowDirection} from "./ToolTipArrow";
 import Icon from "../Icon";
 import Overlay from "../Overlay";
+import AsyncStorage from '@react-native-community/async-storage';
 
 interface ToolTipProps {
     backgroundColor?: string;
