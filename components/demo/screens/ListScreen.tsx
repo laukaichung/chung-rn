@@ -66,9 +66,9 @@ export class ListScreen extends React.Component<NavigationProps> {
                             </View>
                         )}
                     >
-                        <List.Item>
+                        <ListItem>
                             <ChungText>Swipeable from the left</ChungText>
-                        </List.Item>
+                        </ListItem>
                     </CustomSwipeable>
 
                     <CustomSwipeable
@@ -83,9 +83,9 @@ export class ListScreen extends React.Component<NavigationProps> {
                             </View>
                         )}
                     >
-                        <List.Item>
+                        <ListItem>
                             <ChungText>Swipeable custom view</ChungText>
-                        </List.Item>
+                        </ListItem>
                     </CustomSwipeable>
 
 
@@ -108,9 +108,9 @@ export class ListScreen extends React.Component<NavigationProps> {
                             }
                         ]}
                     >
-                        <List.Item>
+                        <ListItem>
                             <ChungText>Swipeable custom view</ChungText>
-                        </List.Item>
+                        </ListItem>
                     </CustomSwipeable>
 
                 </ScrollView>

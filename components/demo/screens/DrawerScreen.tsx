@@ -1,13 +1,12 @@
 import * as React from 'react'
 import {NavigationProps} from "../demotype";
-import {UIDrawerContainer} from "../../UIMainContainer";
-import List from "../../List";
 import {screenKeys} from "../data/ScreenKeys";
 import ChungText from "../../ChungText";
 import {StackActions} from "react-navigation";
 import {ScrollView} from "react-native";
 import UIContext from "../../UIContext";
 import Styles from "../../Styles";
+import {ListItem} from "../../index";
 
 interface DrawerScreenProps {
     navigation: NavigationProps
@@ -25,7 +24,7 @@ export class DrawerScreen extends React.Component<DrawerScreenProps> {
                         {
                             Object.keys(screenKeys).map((screen) => {
                                 return (
-                                    <List.Item
+                                    <ListItem
                                         key={screen}
                                         onPress={() => {
                                             navigation.dispatch(
@@ -36,7 +35,7 @@ export class DrawerScreen extends React.Component<DrawerScreenProps> {
                                         }}
                                     >
                                         <ChungText>{screen}</ChungText>
-                                    </List.Item>
+                                    </ListItem>
                                 )
                             })
                         }

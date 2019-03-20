@@ -22,7 +22,7 @@ interface AccordionContainerProps {
 
 const Accordion = (props: AccordionContainerProps) => {
     const {panes, defaultIndices, customHeaderContainer, fadeIn, headerStyle, headerTextStyle} = props;
-    let [activeIndices, setActiveIndices] = useState<number[]>(defaultIndices || [0]);
+    let [activeIndices, setActiveIndices] = useState<number[]>(defaultIndices);
     return (
         <View>
             {
@@ -39,7 +39,7 @@ const Accordion = (props: AccordionContainerProps) => {
                                     } else {
                                         activeIndices.push(idx);
                                     }
-                                    setActiveIndices(activeIndices);
+                                    setActiveIndices([...activeIndices]);
                                 }}
                             >
                                 {
