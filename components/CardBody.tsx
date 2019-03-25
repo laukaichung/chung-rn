@@ -1,11 +1,13 @@
 import * as React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
+import {ReactNode} from "react";
 
 export interface CardBodyProps {
     style?: StyleProp<ViewStyle>;
     marginVertical?: boolean
     paddingHorizontal?: boolean
+    children: ReactNode;
 }
 
 const CardBody = (props: CardBodyProps) => {

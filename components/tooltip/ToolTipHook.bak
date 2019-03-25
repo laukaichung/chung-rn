@@ -1,0 +1,318 @@
+import * as React from "react"
+import {createRef, ReactNode, RefObject, useEffect, useRef, useState} from "react"
+import {LayoutRectangle, View, ViewStyle} from "react-native";
+import Styles from "../Styles";
+import Portal from "../portal/Portal";
+import ScreenUtil from "../util/ScreenUtil";
+import * as Animatable from "react-native-animatable";
+import ToolTipArrow, {ArrowDirection} from "./ToolTipArrow";
+import Icon from "../Icon";
+import Overlay from "../Overlay";
+import AsyncStorage from '@react-native-community/async-storage';
+
+interface ToolTipProps {
+    backgroundColor?: string;
+    children: any;
+    maxWidth?: number;
+    enabled: boolean;
+    onClose?: () => void;
+    overlay?: boolean;
+    overlayStyle?: ViewStyle;
+    overlayOnClose?: () => void;
+    show?: boolean;
+    shouldCloseOnOverlayClick?: boolean;
+    storageKey?: string;
+    view: ReactNode;
+}
+
+interface State {
+    toolTip?: Partial<LayoutRectangle>;
+    target?: LayoutRectangle;
+    show: boolean;
+    loaded: boolean;
+}
+
+interface PositionResult {
+    toolTipX: number;
+    toolTipY: number;
+    arrowX: number;
+    arrowY: number;
+    arrowDirection: ArrowDirection;
+}
+
+interface PositionArgs {
+    toolTip: Partial<LayoutRectangle>
+    target: LayoutRectangle;
+}
+
+const arrowHeight = 10;
+const arrowWidth = 20;
+
+class ToolTipUtil {
+
+    public static autoPosition(data: PositionArgs): PositionResult {
+        const {toolTip, target} = data;
+        const fullHeight = ScreenUtil.fullHeight();
+        if (!target || !toolTip) {
+            return null
+        }
+        if (target.y + target.height + arrowHeight >= fullHeight) {
+            return this.topPosition(data);
+        }
+
+        if (target.y - toolTip.height - arrowHeight <= 0) {
+            return this.belowPosition(data);
+        }
+        return this.topPosition(data);
+    }
+
+    public static topPosition(data: PositionArgs): PositionResult {
+        const {toolTip, target} = data;
+        return {
+            toolTipY: target.y - toolTip.height - (arrowHeight),
+            arrowY: target.y - arrowHeight - 1,
+            arrowDirection: "down",
+            ...this.getLeftPositions(data),
+        }
+    }
+
+    public static belowPosition(data: PositionArgs): PositionResult {
+        const {toolTip, target} = data;
+        return {
+            toolTipY: (target.y + target.height + arrowHeight),
+            arrowY: target.y + target.height + 1,
+            arrowDirection: "up",
+            ...this.getLeftPositions(data),
+        };
+    }
+
+    public static getLeftPositions({toolTip, target}: PositionArgs): { toolTipX: number, arrowX: number } {
+        let left = target.x;
+        let arrowX = target.x;
+
+        /**
+         * When the target view is on the right end of the screen,
+         * change the tooltip position so the content won't get overflown outside of the screen.
+         */
+
+        if (target.x + toolTip.width > ScreenUtil.fullWidth()) {
+            left = (target.x + target.width) - toolTip.width - 2;
+        }
+
+        /**
+         * When the target view is on the left end of the screen and the tooltip content is too wide,
+         * change the tooltip position to avoid the overflown problem.
+         */
+
+        if (target.x - toolTip.width < 0) {
+            const leftLeaningToolTipWidth = target.x - (toolTip.width / 2);
+            if (leftLeaningToolTipWidth > 0) {
+                left = leftLeaningToolTipWidth
+            } else {
+                left = 2;
+                arrowX = arrowX + 3
+            }
+        }
+
+        return {
+            toolTipX: left,
+            arrowX,
+        }
+    }
+
+    static close(props: ToolTipProps) {
+        const {onClose, storageKey} = props;
+        await Promise.all([
+            this.arrowRef.current.fadeOut(1000),
+            this.toolTipRef.current.fadeOut(1000)
+        ]);
+
+        /**
+         * If the user provides the storage key, save the key on close so that this tooltip won't show again.
+         * Next time, when it finds that the key exists in componentDidMount, this tooltip won't show
+         */
+
+        if (storageKey) {
+            await AsyncStorage.setItem(storageKey, String(true));
+        }
+
+        if (onClose) {
+            onClose();
+        }
+
+        this.setState({show: false})
+    }
+
+}
+
+
+const borderRadius = 2;
+
+const ToolTip = (props: ToolTipProps) => {
+    const fullWidth = ScreenUtil.fullWidth();
+    const fullHeight = ScreenUtil.fullHeight();
+    const {
+        children, storageKey,
+        maxWidth = fullWidth * 0.6,
+        backgroundColor = Styles.isDarkMode ? Styles.primaryColor : "#eee",
+        view, overlay, overlayStyle, overlayOnClose,
+        shouldCloseOnOverlayClick, enabled,
+    } = props;
+
+    const targetRef = useRef<View>();
+    const toolTipRef = useRef<any>();
+    const arrowRef = useRef<any>();
+    const [loaded, setLoaded] = useState(false);
+    const [show, setShow] = useState(props.show);
+    let timeout;
+
+
+    if (!loaded) {
+        return null;
+    }
+
+    if (!enabled) {
+        return children;
+    }
+
+    useEffect(()=>{
+        if (storageKey) {
+            const disable = await AsyncStorage.getItem(storageKey);
+            setShow(disable !== "true");
+        }
+        setLoaded(true);
+
+        return ()=>{
+            clearTimeout(timeout);
+        }
+
+    },);
+
+    let toolTip = null;
+    if (show) {
+        const positions = ToolTipUtil.autoPosition();
+        toolTip = (
+            <Overlay
+                enabled={overlay}
+                onPress={(e) => {
+                    if (overlayOnClose) overlayOnClose();
+                    if (shouldCloseOnOverlayClick) ToolTipUtil.close(props);
+                }}
+            >
+                <Animatable.View
+                    ref={this.toolTipRef}
+                    style={{
+                        position: "absolute",
+                        /**
+                         * Hide the tooltip on load by setting its position to fullwidth and fullheight
+                         */
+                        left: positions ? positions.toolTipX : fullWidth,
+                        top: positions ? positions.toolTipY : fullHeight,
+                        backgroundColor
+                    }}
+                    useNativeDriver
+                    animation={positions && "fadeIn"}
+                >
+
+                    <View
+                        style={{
+                            padding: Styles.padding,
+                            borderRadius,
+                            backgroundColor,
+                            maxWidth,
+                        }}
+                        onLayout={({nativeEvent: {layout}}) => {
+                            if (this.state.toolTip) {
+                                return null;
+                            }
+                            this.setState({
+                                toolTip:
+                                    {
+                                        height: Math.ceil(layout.height),
+                                        width: Math.ceil(layout.width),
+                                        x: layout.x,
+                                        y: layout.y,
+                                    }
+                            })
+                        }}
+                    >
+                        <View style={{marginBottom: 5, flexDirection: "row", justifyContent: "flex-end"}}>
+                            <Icon
+                                onPress={this._close}
+                                name="times"
+                                customSize={14}
+                            />
+                        </View>
+                        {view}
+                    </View>
+                </Animatable.View>
+                <Animatable.View
+                    ref={arrowRef}
+                    useNativeDriver
+                    animation={positions && "fadeIn"}
+                    style={{
+                        position: "absolute",
+                        left: positions ? positions.arrowX : fullWidth,
+                        top: positions ? positions.arrowY : fullHeight,
+                    }}
+                >
+                    <ToolTipArrow
+                        direction={positions ? positions.arrowDirection : "up"}
+                        color={backgroundColor}
+                        width={arrowWidth}
+                        height={arrowHeight}
+                    />
+                </Animatable.View>
+            </Overlay>
+        );
+    }
+
+    return (
+        <React.Fragment>
+            <View
+                ref={targetRef}
+                onLayout={() => {
+                    /**
+                     * setTimeout Hack!
+                     * https://stackoverflow.com/a/29842652/2598292
+                     */
+                    timeout = setTimeout(() => {
+                        // if (this.timeout) {
+                        //     clearTimeout(this.timeout)
+                        // }
+
+                        targetRef.current.measure((x, y, width, height, pageX, pageY) => {
+                            const target = {x: pageX, y: pageY, width, height};
+                            this.setState({target})
+                        })
+                    }, 500)
+                }}
+            >
+                {children}
+            </View>
+            {
+                show &&
+                <Portal>
+                    {toolTip}
+                </Portal>
+            }
+        </React.Fragment>
+    )
+}
+
+
+
+// public
+// componentWillReceiveProps(nextProps
+// :
+// Readonly < ToolTipProps >, nextContext
+// :
+// any
+// )
+// {
+//     if (nextProps.show != this.props.show) {
+//         this.setState({show: nextProps.show})
+//     }
+// }
+
+

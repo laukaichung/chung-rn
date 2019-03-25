@@ -36,6 +36,7 @@ import TestScreen from "./screens/TestScreen";
 import TooltipScreen from "./screens/TooltipScreen";
 import HintTextScreen from "./screens/HintTextScreen";
 
+
 const StackNavigator = createStackNavigator(
     {
         [screenKeys.home]: HomeScreen,
@@ -99,6 +100,9 @@ const StackNavigator = createStackNavigator(
     }
 );
 
+/**
+ *
+ */
 const DrawerNavigator = createDrawerNavigator(
     {
         MainContent: StackNavigator
