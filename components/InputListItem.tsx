@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {ReactNode, RefObject} from 'react';
-import {StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
+import {StyleSheet, TextInputProps, TouchableWithoutFeedback, View,} from 'react-native';
 import Input from './Input';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
-import {FormCommonProps, FormListItemCommonProps} from "./type";
+import {FormCommonProps, FormListItemCommonProps, Omit} from "./type";
 import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 
-type InputEventHandler = (value?: string) => void;
+// type InputEventHandler = (value?: string) => void;
 
 export type KeyboardType =
     'decimal-pad'
@@ -20,7 +20,7 @@ export type KeyboardType =
     | 'password'
 
 
-export interface InputItemProps extends FormCommonProps, FormListItemCommonProps, FormHeaderProps {
+export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange">, FormCommonProps, FormListItemCommonProps, FormHeaderProps {
     last?: boolean;
     onExtraClick?: () => void;
     onErrorClick?: () => void;
@@ -41,9 +41,8 @@ export interface InputItemProps extends FormCommonProps, FormListItemCommonProps
     styles?: any;
     locale?: object;
     onChange?: (value: string) => void;
-    onFocus?: InputEventHandler;
-    onBlur?: InputEventHandler;
-    onVirtualKeyboardConfirm?: InputEventHandler;
+    // onFocus?: InputEventHandler;
+    // onBlur?: InputEventHandler;
     autoFocus?: boolean;
 }
 
@@ -131,8 +130,8 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                         keyboardType={type}
                         onChange={event => this._onChange(event.nativeEvent.text)}
                         secureTextEntry={type === 'password'}
-                        onBlur={this._onInputBlur}
-                        onFocus={this._onInputFocus}
+                        // onBlur={this._onInputBlur}
+                        // onFocus={this._onInputFocus}
                         type={inputType}
                     />
                     {extra ? (
@@ -197,24 +196,24 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
         }
     };
 
-    private _onInputBlur = () => {
-        if (this.props.onBlur) {
-            this.props.onBlur(this.props.value);
-        }
-    };
+    // private _onInputBlur = () => {
+    //     if (this.props.onBlur) {
+    //         this.props.onBlur(this.props.value);
+    //     }
+    // };
+    //
+    // private _onInputFocus = () => {
+    //     if (this.props.onFocus) {
+    //         this.props.onFocus(this.props.value);
+    //     }
+    // };
 
-    private _onInputFocus = () => {
-        if (this.props.onFocus) {
-            this.props.onFocus(this.props.value);
-        }
-    };
-
-    private _onInputClear = () => {
-        if (this.inputRef.current) {
-            this.inputRef.current.clear();
-        }
-        this._onChange('');
-    }
+    // private _onInputClear = () => {
+    //     if (this.inputRef.current) {
+    //         this.inputRef.current.clear();
+    //     }
+    //     this._onChange('');
+    // }
 
 }
 
