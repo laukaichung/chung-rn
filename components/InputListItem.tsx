@@ -41,6 +41,7 @@ export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange
     styles?: any;
     locale?: object;
     onChange?: (value: string) => void;
+    onEnter: ()=>void;
     // onFocus?: InputEventHandler;
     // onBlur?: InputEventHandler;
     autoFocus?: boolean;
@@ -76,6 +77,8 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
             invalidMessage,
             onExtraClick,
             listItemProps = {},
+            onEnter,
+            onKeyPress,
             ...restProps
         } = this.props;
         const {value, defaultValue} = restProps;
@@ -133,6 +136,13 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
                         // onBlur={this._onInputBlur}
                         // onFocus={this._onInputFocus}
                         type={inputType}
+                        onKeyPress={(e)=>{
+                            if(e.nativeEvent.key === "Enter" && onEnter){
+                                onEnter();
+                            }else if(onKeyPress){
+                                onKeyPress(e);
+                            }
+                        }}
                     />
                     {extra ? (
                         <TouchableWithoutFeedback onPress={onExtraClick}>
@@ -150,6 +160,14 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
         )
 
     }
+
+    // public _onKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>)=>{
+    //     if(e.nativeEvent.key === "Enter" && onEnter){
+    //         onEnter();
+    //     }else if(onKeyPress){
+    //         onKeyPress(e);
+    //     }
+    // }
 
     public componentDidMount() {
         if (this.props.autoFocus)
