@@ -41,7 +41,7 @@ export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange
     styles?: any;
     locale?: object;
     onChange?: (value: string) => void;
-    onEnter: ()=>void;
+    onEnter?: ()=>void;
     // onFocus?: InputEventHandler;
     // onBlur?: InputEventHandler;
     autoFocus?: boolean;
