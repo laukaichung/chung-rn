@@ -63,7 +63,7 @@ const StackNavigator = createStackNavigator(
         [screenKeys.hint]: HintTextScreen,
     },
     {
-        initialRouteName: screenKeys.list,
+        initialRouteName: screenKeys.modal,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {

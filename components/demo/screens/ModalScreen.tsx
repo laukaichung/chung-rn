@@ -23,11 +23,14 @@ export class ModalScreen extends React.Component<NavigationProps> {
                 <Button
                     onPress={()=> {
                         Modal.add({
-                            children: () => (
+                            children: ({closeModal}) => (
                                 <WingBlank size="lg" style={{padding: 20}}>
                                     <ChungText>
                                         Custom Modal Text
                                     </ChungText>
+                                    <Button onPress={closeModal}>
+                                        Close it
+                                    </Button>
                                 </WingBlank>
                             )
                         })

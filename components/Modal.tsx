@@ -89,13 +89,11 @@ export default class Modal extends React.Component<CustomModalCoreProps, State> 
         }
         this._onClose();
     }
-
-
 }
 
 interface ModalContainerProps extends ModalProps {
     overlayProps?: OverlayProps;
-    children?: () => ReactNode;
+    children?: (data:Partial<ModalCallback>) => ReactNode;
     onClose: () => void;
 }
 
@@ -140,7 +138,7 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
                             ]
                         }
                     >
-                        {children()}
+                        {children({closeModal: this._close})}
                     </Animatable.View>
                 </TouchableWithoutFeedback>
             </Overlay>
@@ -175,9 +173,9 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
         }
     };
 
-    public async fadeOut(){
+    public fadeOut = async ()=>{
         await this.animationRef.current.fadeOutDown(500);
-    }
+    };
 
 
     private _keyboardDidShow = () => {
@@ -192,6 +190,7 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
 
 
 function modalAdd(props: Omit<ModalContainerProps, "onClose">) {
+
     const key = Portal.add((
         <ModalContainer
             {...props}
