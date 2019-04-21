@@ -4,6 +4,7 @@ import Badge from "../../Badge";
 import {NavigationProps} from "../demotype";
 import UIMainContainer from "../../UIMainContainer";
 import ChungText from "../../ChungText";
+import {ListItem} from "../../index";
 
 export class BadgeScreen extends React.Component<NavigationProps> {
 
@@ -11,12 +12,12 @@ export class BadgeScreen extends React.Component<NavigationProps> {
         return (
             <UIMainContainer>
                 <List>
-                    <List.Item extra={<Badge text={"1234"}/>}>
+                    <ListItem extra={<Badge>1234</Badge>}>
                         <ChungText>Hello</ChungText>
-                    </List.Item>
-                    <List.Item extra={<ChungText>Extra</ChungText>}>
+                    </ListItem>
+                    <ListItem extra={<ChungText>Extra</ChungText>}>
                         <ChungText>Hello</ChungText>
-                    </List.Item>
+                    </ListItem>
                 </List>
             </UIMainContainer>
         )

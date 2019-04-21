@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Image, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {ReactNode} from 'react';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Carousel from './Carousel';
 import Styles from "./Styles";
-import {ReactNode} from "react";
 import Flex from "./Flex";
 import ScreenUtil from "./util/ScreenUtil";
 import ChungText from "./ChungText";
@@ -76,7 +76,8 @@ export default class Grid extends React.Component<GridProps, any> {
                         fontSize: Styles.fontSizeSm,
                         color: Styles.fontColor,
                         marginTop: Styles.margin,
-                    }}>
+                    }}
+                    >
                         {dataItem.text}
                     </ChungText>
                 </Flex>

@@ -7,7 +7,6 @@ import WhiteSpace from "../../WhiteSpace";
 import Modal from "../../Modal";
 import ChungText from "../../ChungText";
 import WingBlank from "../../WingBlank";
-import HintText from "../../HintText";
 
 
 export class ModalScreen extends React.Component<NavigationProps> {

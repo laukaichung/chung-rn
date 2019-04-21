@@ -35,6 +35,7 @@ import ChungAlertScreen from "./screens/ChungAlertScreen";
 import TestScreen from "./screens/TestScreen";
 import TooltipScreen from "./screens/TooltipScreen";
 import HintTextScreen from "./screens/HintTextScreen";
+import MenuModalScreen from "./screens/MenuModalScreen";
 
 
 const StackNavigator = createStackNavigator(
@@ -61,6 +62,7 @@ const StackNavigator = createStackNavigator(
         [screenKeys.tooltip]: TooltipScreen,
         [screenKeys.test]: TestScreen,
         [screenKeys.hint]: HintTextScreen,
+        [screenKeys.menuModal]: MenuModalScreen,
     },
     {
         initialRouteName: screenKeys.modal,
@@ -69,14 +71,14 @@ const StackNavigator = createStackNavigator(
             return {
                 headerStyle: isDarkMode ? {backgroundColor: Styles.extremeBackgroundColor} : {},
                 headerTitleStyle: isDarkMode ? {color: Styles.fontColor} : {},
-                headerTintColor:Styles.fontColor,
+                headerTintColor: Styles.fontColor,
                 headerRight: (
                     <View>
                         <UIContext.Consumer>
                             {
                                 ({theme, toggleTheme}) => {
                                     return (
-                                        <Button onPress={()=>{
+                                        <Button onPress={() => {
                                             toggleTheme();
 
                                             const resetAction = StackActions.reset({
@@ -84,9 +86,8 @@ const StackNavigator = createStackNavigator(
                                                 actions: [NavigationActions.navigate({routeName: screenKeys.home})],
                                             });
                                             navigation.dispatch(resetAction);
-
-
-                                        }}>
+                                        }}
+                                        >
                                             Current Theme {Styles.mode}
                                         </Button>
                                     )
@@ -100,9 +101,6 @@ const StackNavigator = createStackNavigator(
     }
 );
 
-/**
- *
- */
 const DrawerNavigator = createDrawerNavigator(
     {
         MainContent: StackNavigator

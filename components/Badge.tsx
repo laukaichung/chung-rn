@@ -3,6 +3,7 @@ import {StyleProp, TextStyle, View, ViewStyle} from 'react-native';
 import {ChungStyles} from "./index";
 import ChungText from "./ChungText";
 
+
 interface BadgeProps {
     containerStyle?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;

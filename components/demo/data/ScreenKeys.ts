@@ -22,4 +22,5 @@ export const screenKeys = {
     tooltip: "tooltip",
     test: "test",
     hint: "hint",
+    menuModal: "menuModal",
 };

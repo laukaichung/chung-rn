@@ -9,6 +9,7 @@ import Container from "../../UIMainContainer";
 import UIContext from "../../UIContext";
 import Header from "../../Header";
 import WhiteSpace from "../../WhiteSpace";
+import {ListItem} from "../../index";
 
 interface State {
 
@@ -49,9 +50,9 @@ export class HomeScreen extends React.Component<NavigationProps, State> {
                     </Button>
                 </WingBlank>
                 <List>
-                    <List.Item arrow="right">
+                    <ListItem arrow="right">
                         <ChungText>List Item</ChungText>
-                    </List.Item>
+                    </ListItem>
                 </List>
             </Container>
         )

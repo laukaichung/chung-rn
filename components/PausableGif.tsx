@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
-import {Image, ImageSourcePropType, StyleProp, ViewStyle} from "react-native";
+import {Image, ImageSourcePropType, StyleProp, TouchableHighlight, ViewStyle} from "react-native";
 import CustomTouchableHighlight from "./CustomTouchableHighlight";
 
 interface PausableGifProps {
@@ -21,13 +21,16 @@ export default class PausableGif extends React.Component<PausableGifProps, Pausa
         const {play} = this.state;
         const {pauseIcon,style,source} = this.props;
         return (
-            <CustomTouchableHighlight style={style} onPress={() => this.setState({play: !play})}>
+            <TouchableHighlight
+                style={style}
+                onPress={() => this.setState({play: !play})}
+            >
                 <React.Fragment>
                     {
                         play ? <Image source={source}/> : pauseIcon
                     }
                 </React.Fragment>
-            </CustomTouchableHighlight>
+            </TouchableHighlight>
         )
     }
 }

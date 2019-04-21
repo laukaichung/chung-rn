@@ -32,10 +32,12 @@ export {default as Header} from './Header'
 export {default as HintText} from './HintText'
 export {default as ImagePickerModal} from './ImagePickerModal'
 export {default as CameraRollImageList} from './CameraRollImageList'
+export {default as IconName} from "./util/IconName"
 export {default as InputListItem} from './InputListItem';
 export {default as Label} from './Label';
 export {default as List} from './List';
 export {default as ListItem} from './ListItem'
+export {default as MenuModal} from './MenuModal';
 export {default as Modal} from './Modal';
 export {default as PickerModal} from './PickerModal'
 export {default as Progress} from './Progress';
@@ -57,4 +59,5 @@ export {default as UIProvider} from "./UIProvider"
 export {default as Portal} from "./portal/Portal";
 export {default as UIMainContainer} from "./UIMainContainer"
 export {default as UIContext} from "./UIContext"
+
 export {default as VerticalMiddleContainer} from "./VerticalMiddleContainer"

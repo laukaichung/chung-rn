@@ -6,8 +6,7 @@ import ScreenUtil from "./util/ScreenUtil";
 import Icon from "./Icon";
 import {ChungStyles} from ".";
 import DeviceInfo from 'react-native-device-info';
-import FastImage from "react-native-fast-image";
-import StringUtil from "./util/StringUtil";
+
 
 interface CustomCameraRollProps {
     // assetType?: CameraRollAssetType;
@@ -18,7 +17,6 @@ interface CustomCameraRollProps {
     onItemSelected?: (image: CameraRollFile, allImages: CameraRollFile[]) => void;
     // maxSelectedImageNo?:number;
 }
-
 
 interface State {
     loadingMore: boolean;

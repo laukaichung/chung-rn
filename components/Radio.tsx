@@ -31,7 +31,6 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
     }
 
     public render(): JSX.Element {
-        const { style, disabled } = this.props;
         const checked = this.state.checked;
         return (
             <TouchableWithoutFeedback onPress={this._handleClick}>

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import DateTimePicker, {DateTimePickerProps} from 'react-native-modal-datetime-picker';
-import List from "./List";
 import ChungText from "./ChungText";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps} from "./type";
 import FormHeader from "./FormHeader";
+import {ListItem} from "./index";
 
 export interface DateTimePickerModalProps extends DateTimePickerProps, FormListItemCommonProps,FormCommonProps {
     date?: Date
@@ -25,8 +25,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
         const {onConfirm, onCancel,listItemProps = {}, renderDateValue} = props;
         const {isDarkMode} = Styles;
         return (
-
-            <List.Item
+            <ListItem
                 border
                 {...listItemProps}
                 onPress={() => this.setState({isVisible: true})}
@@ -51,7 +50,7 @@ export default class DateTimePickerModal extends React.Component<DateTimePickerM
                     titleStyle={isDarkMode ? {color: Styles.headerColor} : null}
 
                 />
-            </List.Item>
+            </ListItem>
         )
     }
 }
