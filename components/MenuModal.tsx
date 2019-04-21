@@ -21,7 +21,6 @@ interface MenuModalProps {
 }
 
 const MenuModal = ({menus, buttonTrigger}: MenuModalProps) => {
-
     return (
         <Modal buttonTrigger={buttonTrigger}>
             {
@@ -34,8 +33,8 @@ const MenuModal = ({menus, buttonTrigger}: MenuModalProps) => {
                                         return (
                                             <ListItem
                                                 key={text}
-                                                onPress={() => {
-                                                    onPress();
+                                                onPress={async () => {
+                                                    await onPress();
                                                     if (!modalRemainsOpenOnPress) {
                                                         closeModal();
                                                     }
