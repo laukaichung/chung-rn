@@ -110,8 +110,10 @@ async function requestAndroidReadExteralStorage() {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
                 {
-                    'title': 'Permission To Load Photos From External Storage',
-                    'message': 'Permissions have to be granted in order to list photos on your phones for you to choose.'
+                    buttonPositive: "OK",
+                    buttonNegative: "Cancel",
+                    title: 'Permission To Load Photos From External Storage',
+                    message: 'Permissions have to be granted in order to list photos on your phones for you to choose.'
                 }
             );
 

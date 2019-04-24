@@ -18,15 +18,16 @@ export interface MenuModalItem {
 interface MenuModalProps {
     menus: MenuModalItem[]
     buttonTrigger: ReactNode
+    title?: string;
 }
 
-const MenuModal = ({menus, buttonTrigger}: MenuModalProps) => {
+const MenuModal = ({menus, buttonTrigger, title}: MenuModalProps) => {
     return (
         <Modal buttonTrigger={buttonTrigger}>
             {
                 ({closeModal}) => {
                     return (
-                        <List>
+                        <List headerText={title}>
                             {
                                 menus.map((o) => {
                                         const {text, listItemProps, modalRemainsOpenOnPress, onPress} = o

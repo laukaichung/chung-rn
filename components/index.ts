@@ -1,7 +1,6 @@
 import './type';
 export {default as Accordion} from './Accordion';
 export {default as ActionButton} from './ActionButton'
-export {default as ActionButtonModal} from './ActionButtonModal'
 export {default as ActivityIndicator} from './ActivityIndicator';
 export {default as Badge} from './Badge';
 export {default as BoldText} from './BoldText'
