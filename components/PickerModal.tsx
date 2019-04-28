@@ -4,7 +4,7 @@ import {FlatList, TouchableOpacity} from "react-native";
 import CustomModal, {ModalProps} from "./Modal";
 import ChungText from "./ChungText";
 import HintText from "./HintText";
-import {FormCommonProps, FormListItemCommonProps} from "./type";
+import {FormCommonProps, FormListItemCommonProps, TestProps} from "./type";
 import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
@@ -20,6 +20,8 @@ export interface PickerModalProps extends ModalProps, FormCommonProps, FormListI
     labelView?: ReactNode;
     pickerOptionProps?: Partial<PickerOptionProps>
     renderPickerOption?: (data: { selectedOptions: PickerOptionData[], option: PickerOptionData }) => ReactNode
+    modalListTestID?: string;
+    modalListItemTestID?: string;
 }
 
 interface SelectOptionModel {
@@ -48,6 +50,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
             invalidMessage, data, multiple, labelView,
             hint, listItemProps = {}, displayTextAsValue, onChange,
             renderPickerOption, pickerOptionProps,
+            modalListTestID, modalListItemTestID,
         } = props;
         let displayValues: string[] = selectedOptions.map(option => {
             return displayTextAsValue ? option.text : option.value
@@ -77,6 +80,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                     ({closeModal}) => {
                         return (
                                 <FlatList
+                                    testID={modalListTestID}
                                     ListHeaderComponent={(
                                         <WingBlank marginVertical>
                                             <Header>
@@ -97,6 +101,7 @@ export default class PickerModal extends React.Component<PickerModalCore, Picker
                                     renderItem={({item: option}: { item: PickerOptionData }) => {
                                         return (
                                             <TouchableOpacity
+                                                testID={modalListItemTestID}
                                                 onPress={() => {
                                                     let targetIdx = selectedOptions.findIndex((o => option.value === o.value))
                                                     if (targetIdx > -1) {

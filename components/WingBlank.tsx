@@ -3,15 +3,16 @@ import {StyleProp, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
 import {ChungStyles} from "./index";
 import {ReactNode} from "react";
+import {TestProps} from "./type";
 
-export interface WingBlankProps {
+export interface WingBlankProps extends TestProps{
     style?: StyleProp<ViewStyle>;
     size?: 'sm' | 'md' | 'lg';
     marginVertical?: boolean
     children: ReactNode;
 }
 
-const WingBlank = ({size = "md", style, children, marginVertical}: WingBlankProps) => {
+const WingBlank = ({size = "md", style, testID, children, marginVertical}: WingBlankProps) => {
 
     let margin = Styles.margin;
     if (size === "sm") {
@@ -20,11 +21,14 @@ const WingBlank = ({size = "md", style, children, marginVertical}: WingBlankProp
         margin = Styles.marginLg;
     }
     return (
-        <View style={[{marginHorizontal: margin, marginVertical: marginVertical ? ChungStyles.margin : null}, style]}>
+        <View
+            testID={testID}
+            style={[{marginHorizontal: margin, marginVertical: marginVertical ? ChungStyles.margin : null}, style]}
+        >
             {children}
         </View>
     );
 
-}
+};
 
 export default WingBlank;

@@ -2,8 +2,9 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
+import {TestProps} from "./type";
 
-export interface CardProps {
+export interface CardProps extends TestProps{
     style?: StyleProp<ViewStyle>;
     full?: boolean;
     marginVertical?: boolean;

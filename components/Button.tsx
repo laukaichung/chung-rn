@@ -13,8 +13,9 @@ import ChungText from "./ChungText";
 import WingBlank from "./WingBlank";
 import {ReactNode} from "react";
 import * as Animatable from "react-native-animatable";
+import {TestProps} from "./type";
 
-export interface ButtonProps extends TouchableHighlightProps {
+export interface ButtonProps extends TouchableHighlightProps , TestProps{
     activeStyle?: StyleProp<ViewStyle>;
     onPress?: (_?: any) => void;
     type?: 'primary';

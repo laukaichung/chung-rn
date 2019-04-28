@@ -2,15 +2,16 @@ import * as React from 'react'
 import {View, StyleSheet, StyleProp, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import {ReactNode} from "react";
+import {TestProps} from "./type";
 
-interface WhiteSpaceProps {
+interface WhiteSpaceProps extends TestProps{
     children?:ReactNode;
     size?:"sm"|"md"|"lg"
     center?:boolean;
     style?:StyleProp<ViewStyle>
 }
 
-const WhiteSpace = ({children,size,center,style}: WhiteSpaceProps) => {
+const WhiteSpace = ({children, size, center, testID, style}: WhiteSpaceProps) => {
     let containerStyles:Array<StyleProp<ViewStyle>> = [];
 
     containerStyles.push(styles.whiteSpaceMd);
@@ -22,7 +23,12 @@ const WhiteSpace = ({children,size,center,style}: WhiteSpaceProps) => {
     containerStyles.push(style);
 
     return (
-        <View style={[center && {flex: 1, justifyContent: 'center', alignItems:'center'},containerStyles]}>{children}</View>
+        <View
+            testID={testID}
+            style={[center && {flex: 1, justifyContent: 'center', alignItems:'center'},containerStyles]}
+        >
+            {children}
+        </View>
     )
 };
 

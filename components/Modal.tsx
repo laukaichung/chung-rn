@@ -6,14 +6,14 @@ import Overlay, {OverlayProps} from "./Overlay";
 import Portal from "./portal/Portal";
 import * as Animatable from "react-native-animatable";
 import ScreenUtil from "./util/ScreenUtil";
-import {Omit} from "./type";
+import {Omit, TestProps} from "./type";
 import DeviceInfo from "react-native-device-info";
 
 export interface ModalCallback {
     closeModal: () => void;
 }
 
-export interface ModalProps {
+export interface ModalProps extends TestProps{
     nonButtonTrigger?: ReactNode;
     buttonTrigger?: any;
     fullScreen?: boolean;
@@ -105,7 +105,7 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
     public animationRef: RefObject<any> = createRef();
 
     public render() {
-        const {children, containerStyle, overlayProps} = this.props;
+        const {children, containerStyle, testID, overlayProps} = this.props;
         const fullWidth = ScreenUtil.fullWidth();
         return (
             <Overlay
@@ -125,6 +125,7 @@ export class ModalContainer extends React.Component<ModalContainerProps> {
                     }}
                 >
                     <Animatable.View
+                        testID={testID}
                         ref={this.animationRef}
                         animation="fadeInUp"
                         style={

@@ -4,8 +4,10 @@ import Styles from "./Styles";
 import Icon from "./Icon";
 import PersistentDraggable from "./PersistentDraggable";
 import ScreenUtil from "./util/ScreenUtil";
+import {Component} from "react";
+import {TestProps} from "./type";
 
-export interface ActionButtonProps {
+export interface ActionButtonProps extends TestProps{
     bottom?: number;
     right?: number
     size?: number
@@ -18,7 +20,7 @@ export interface ActionButtonProps {
     storageKey?: string;
 }
 
-export default class ActionButton extends React.Component<ActionButtonProps> {
+export default class ActionButton extends Component<ActionButtonProps> {
 
     public static defaultProps: ActionButtonProps = {
         bottom: Styles.margin * 3,
@@ -31,7 +33,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
     public render() {
         const {
             bottom, right, onPress, icon, iconColor, size,
-            draggable, backgroundColor, storageKey,
+            draggable, backgroundColor, storageKey, testID,
         } = this.props;
 
         const containerStyle = this.props.containerStyle ||
@@ -48,6 +50,7 @@ export default class ActionButton extends React.Component<ActionButtonProps> {
 
         const iconView =
             <View
+                testID={testID}
                 style={
                     [
                         {

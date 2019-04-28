@@ -2,8 +2,9 @@ import * as React from "react"
 import {Animated} from "react-native";
 import {PanGestureHandler, PanGestureHandlerStateChangeEvent, State} from "react-native-gesture-handler";
 import Styles from "./Styles";
+import {TestProps} from "./type";
 
-interface DraggableProps {
+interface DraggableProps extends TestProps{
     onDrag?: (event: PanGestureHandlerStateChangeEvent)=>void;
 }
 
@@ -22,7 +23,7 @@ export default class Draggable extends React.Component<DraggableProps> {
     );
 
     public render() {
-        const {onDrag, children} = this.props;
+        const {onDrag, testID, children} = this.props;
         return (
             <PanGestureHandler
                 onGestureEvent={this._onGestureEvent}
@@ -37,6 +38,7 @@ export default class Draggable extends React.Component<DraggableProps> {
                 }}
             >
                 <Animated.View
+                    testID={testID}
                     style={[
                         {
                             transform: [

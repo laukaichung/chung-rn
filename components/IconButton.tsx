@@ -12,10 +12,12 @@ export interface IconButtonProps extends IconProps {
 export const IconButton = (props: IconButtonProps) => {
     let {onPress, text} = props;
     return (
-        <Icon.Button {...props}
-                     backgroundColor={props.backgroundColor || Styles.isDarkMode ? Styles.darkestColor : "#eeeeee"}
-                     color={props.color || Styles.iconColor}
-                     onPress={onPress}>
+        <Icon.Button
+            {...props}
+            backgroundColor={props.backgroundColor || Styles.isDarkMode ? Styles.darkestColor : "#eeeeee"}
+            color={props.color || Styles.iconColor}
+            onPress={onPress}
+        >
             {text}
         </Icon.Button>
     )

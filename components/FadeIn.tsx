@@ -1,7 +1,8 @@
 import * as React from "react"
 import {Animated, StyleProp, ViewStyle} from "react-native";
+import {TestProps} from "./type";
 
-export interface FadeInProps {
+export interface FadeInProps extends TestProps{
     duration?: number;
     style?: StyleProp<ViewStyle>
 }
@@ -19,14 +20,16 @@ export default class FadeIn extends React.Component<FadeInProps> {
     }
 
     public render() {
+        const {children, testID} = this.props;
         return (
             <React.Fragment>
                 <Animated.View
+                    testID={testID}
                     style={{
                         opacity: this.toggleAnimation,
                     }}
                 >
-                    {this.props.children}
+                    {children}
                 </Animated.View>
             </React.Fragment>
         )

@@ -9,8 +9,9 @@ import ConfirmModal from "./ConfirmModal";
 import FlexItem from "./FlexItem";
 import Icon from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
+import {TestProps} from "./type";
 
-export interface FormHeaderProps {
+export interface FormHeaderProps extends TestProps {
     hint?: string
     label: string;
     onClear?: () => void,
@@ -20,9 +21,9 @@ export interface FormHeaderProps {
 
 const iconSize = Styles.labelFontSize;
 
-const FormHeader = ({hint, error, onErrorClick, onClear, label}: FormHeaderProps) => {
+const FormHeader = ({hint, error, onErrorClick, testID, onClear, label}: FormHeaderProps) => {
     return (
-        <Flex style={{marginBottom: Styles.margin}}>
+        <Flex testID={testID} style={{marginBottom: Styles.margin}}>
             {
                 label &&
                 <FlexItem flex={2}>
@@ -52,12 +53,15 @@ const FormHeader = ({hint, error, onErrorClick, onClear, label}: FormHeaderProps
 
                 </FlexItem>
             }
-            <FlexItem style={[
-                {
-                    flexDirection: 'row',
-                    justifyContent: 'flex-end'
-                }
-            ]} flex={1}>
+            <FlexItem
+                style={[
+                    {
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end'
+                    }
+                ]}
+                flex={1}
+            >
                 {
                     error && (
                         <WingBlank>

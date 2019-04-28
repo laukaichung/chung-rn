@@ -2,13 +2,14 @@ import * as React from 'react'
 import Styles from "./Styles";
 import ConfirmModal, {ConfirmModalProps} from "./ConfirmModal";
 import {StyleProp, TextStyle, TouchableOpacity} from "react-native";
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from "react-native-animatable";
 import WingBlank from "./WingBlank";
+import {TestProps} from "./type";
 
 export type IconSize = "sm" | "md" | "lg" | "xl"
 
-export interface IconProps{
+export interface IconProps extends TestProps{
     color?: string;
     backgroundColor?: string;
     onPress?: (e?: any) => void;
@@ -35,7 +36,7 @@ export default class Icon extends React.Component<IconProps> {
                         size === "xl" ? 60 : Styles.iconSizeMd;
         if (Styles.isDarkMode && !color) color = '#c6c6c6';
         let iconComponent = (
-            <FontAwesomeIcon
+            <FontAwesome
                 {...props}
                 color={color}
                 size={sizeNo}

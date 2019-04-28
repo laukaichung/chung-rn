@@ -3,18 +3,17 @@ import {ReactNode} from 'react'
 import {View, ViewStyle} from "react-native";
 import Styles from "./Styles";
 import Icon from "./Icon";
-import FlexItem from "./FlexItem";
-import Flex from "./Flex";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
-export interface HintTextProps {
+export interface HintTextProps extends TestProps{
     children: ReactNode;
     icon?: string;
     color?: string;
     containerStyle?: ViewStyle
 }
 
-const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
+const HintText = ({color, icon, children, testID, containerStyle}: HintTextProps) => {
     color = color || Styles.hintTextDefaultTextColor;
     return (
         <View
@@ -27,6 +26,7 @@ const HintText = ({color, icon, children, containerStyle}: HintTextProps) => {
                 },
                 containerStyle,
             ]}
+            testID={testID}
         >
             {
                 icon &&

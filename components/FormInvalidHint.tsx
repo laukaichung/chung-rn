@@ -2,16 +2,17 @@ import * as React from 'react'
 import {StyleSheet, View} from 'react-native'
 import Icon from "./Icon";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
 
-interface Props {
+interface Props extends TestProps{
     invalidMessage:string
 }
 
-const FormInvalidHint = ({invalidMessage}: Props) => {
+const FormInvalidHint = ({testID, invalidMessage}: Props) => {
     if (invalidMessage) {
         return (
-            <View>
+            <View testID={testID}>
                 <Icon size={"sm"} color={`red`} name={`arrow-circle-up`}>
                     {' '}<ChungText style={styles.warning}>{invalidMessage}</ChungText>
                 </Icon>

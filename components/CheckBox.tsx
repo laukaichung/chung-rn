@@ -3,12 +3,13 @@ import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from
 import Styles from "./Styles";
 import Icon from "./Icon";
 import {OnChangeParams} from "./CheckboxListItem";
+import {TestProps} from "./type";
 
 export interface ICheckboxNativeProps extends CheckboxProps {
     style?: StyleProp<ImageStyle>;
 }
 
-export interface CheckboxProps {
+export interface CheckboxProps extends TestProps{
     defaultChecked?: boolean;
     checked?: boolean;
     disabled?: boolean;
@@ -27,10 +28,10 @@ export default class Checkbox extends React.Component<ICheckboxNativeProps, Stat
     }
 
     public render(): JSX.Element {
-        const {style, disabled} = this.props;
+        const {testID, disabled} = this.props;
         const {checked} = this.state;
         return (
-            <TouchableWithoutFeedback onPress={this._handleClick}>
+            <TouchableWithoutFeedback testID={testID} onPress={this._handleClick}>
                 <View style={[styles.wrapper]}>
                     <Icon name={disabled?"times-circle-o":checked?"check-circle-o":"circle-o"}/>
                 </View>

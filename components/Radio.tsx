@@ -2,6 +2,7 @@ import * as React from 'react';
 import {ImageStyle, StyleProp, StyleSheet, TouchableWithoutFeedback, View,} from 'react-native';
 import Styles from "./Styles";
 import Icon from "./Icon";
+import {TestProps} from "./type";
 
 export interface RadioNativeProps extends RadioPropsType {
     style?: StyleProp<ImageStyle>;
@@ -11,7 +12,7 @@ interface State {
     checked:boolean
 }
 
-export interface RadioPropsType {
+export interface RadioPropsType extends TestProps{
     defaultChecked?: boolean;
     checked?: boolean;
     disabled?: boolean;
@@ -31,9 +32,10 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
     }
 
     public render(): JSX.Element {
-        const checked = this.state.checked;
+        const {testID} = this.props;
+        const {checked} = this.state;
         return (
-            <TouchableWithoutFeedback onPress={this._handleClick}>
+            <TouchableWithoutFeedback testID={testID} onPress={this._handleClick}>
                 <View style={[styles.wrapper]}>
                     <Icon name={checked?"check-circle-o":"circle-o"}/>
                 </View>
@@ -42,13 +44,14 @@ export default class Radio extends React.Component<RadioNativeProps, State> {
     }
 
     public _handleClick = () => {
-        if (this.props.disabled) {
+        const {disabled, onChange} = this.props;
+        if (disabled) {
             return;
         }
-        let checked = !this.state.checked;
+        const checked = !this.state.checked;
         this.setState({checked});
-        if (this.props.onChange) {
-            this.props.onChange({ target: { checked } });
+        if (onChange) {
+            onChange({ target: { checked } });
         }
     }
 }

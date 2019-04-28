@@ -12,7 +12,7 @@ export default class PortalConsumer extends React.Component<PortalConsumerProps>
     componentDidMount() {
         if (!this.props.manager) {
             throw new Error(
-                'You forgot to wrap your root component with `Provider` component from `chung-rn`.\n\n',
+                'You forgot to wrap your root component with `ChungProvider` from `chung-rn`.\n\n',
             );
         }
 

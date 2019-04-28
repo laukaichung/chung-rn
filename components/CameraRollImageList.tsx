@@ -1,20 +1,22 @@
 import * as React from 'react'
 import {CameraRoll, FlatList, GetPhotosParamType, Image, Platform, TouchableOpacity, View} from "react-native";
 import ActivityIndicator from "./ActivityIndicator";
-import {CameraRollFile} from "./type";
+import {CameraRollFile, TestProps} from "./type";
 import ScreenUtil from "./util/ScreenUtil";
 import Icon from "./Icon";
 import {ChungStyles} from ".";
 import DeviceInfo from 'react-native-device-info';
 
 
-interface CustomCameraRollProps {
+interface CustomCameraRollProps{
     // assetType?: CameraRollAssetType;
     // groupType?: CameraRollGroupType;
     multiple?: boolean;
     renderImage?: (props: { image: CameraRollFile, onSelected: (image: CameraRollFile) => void, isSelected: boolean }) => any;
     defaultSelectedImages?: CameraRollFile[];
     onItemSelected?: (image: CameraRollFile, allImages: CameraRollFile[]) => void;
+    listTestID?: string;
+    listItemTestID?: string;
     // maxSelectedImageNo?:number;
 }
 
@@ -42,12 +44,13 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
     }
 
     public render() {
-        const {renderImage, multiple = true, onItemSelected} = this.props;
+        const {renderImage, multiple = true, listItemTestID, listTestID, onItemSelected} = this.props;
         let {initialLoading, images, noMore, selectedImages} = this.state;
         if (initialLoading) return (<ActivityIndicator toast text={"Loading"}/>);
 
         return (
             <FlatList
+                testID={listTestID}
                 removeClippedSubviews={true}
                 initialNumToRender={10}
                 numColumns={DeviceInfo.isTablet() ? 4 : 3}
@@ -90,6 +93,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
 
                     return (
                         <ImageItem
+                            testID={listItemTestID}
                             image={image}
                             isSelected={isSelected}
                             onSelected={onSelected}
@@ -172,7 +176,7 @@ export default class CameraRollImageList extends React.Component<CustomCameraRol
 
 }
 
-interface ImageItemProps {
+interface ImageItemProps extends TestProps{
     image: CameraRollFile;
     isSelected: boolean;
     onSelected: (returnedImage: CameraRollFile) => void;
@@ -183,11 +187,13 @@ interface ImageItemProps {
 // https://github.com/DylanVann/react-native-fast-image/issues/410
 
 
-const ImageItem = ({image, onSelected, isSelected}: ImageItemProps) => {
+const ImageItem = ({image, onSelected, testID, isSelected}: ImageItemProps) => {
     const {uri} = image;
     return (
         <TouchableOpacity
-            onPress={() => onSelected(image)}>
+            testID={testID}
+            onPress={() => onSelected(image)}
+        >
             <View style={{flex: 1, margin: 1}}>
                 {
                     /**

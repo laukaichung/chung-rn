@@ -7,8 +7,9 @@ import {
     StyleProp,
     ViewStyle,
 } from 'react-native';
+import {TestProps} from "./type";
 
-export interface ProgressProps {
+export interface ProgressProps extends TestProps{
     style?: StyleProp<ViewStyle>;
     barColor: string;
     percentage?: number;
@@ -27,13 +28,15 @@ export default class Progress extends React.Component<ProgressProps, ProgressSta
 
     public render() {
         //const {percentage} = this.state;
-        const {barColor = "green"} = this.props;
+        const {barColor = "green", testID } = this.props;
         return Platform.OS === "ios" ?
             <AnimatedProgressIOS
+                testID={testID}
                 progressTintColor={barColor}
                 progress={this.percentageAnimation}
             /> :
             <AnimatedProgressAndroid
+                testID={testID}
                 color={barColor}
                 styleAttr="Horizontal"
                 indeterminate={false}

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
-import {FormCommonProps, FormListItemCommonProps, Omit} from "./type";
+import {FormCommonProps, FormListItemCommonProps, Omit, TestProps} from "./type";
 import FormHeader from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
@@ -24,7 +24,7 @@ function fixControlledValue(value?: string) {
 
 export type TextAreaEventHandle = (val?: string) => void;
 
-export interface TextareaItemNativeProps extends Omit<TextInputProps, "value" | "onChange">, FormListItemCommonProps,FormCommonProps {
+export interface TextareaItemNativeProps extends Omit<TextInputProps, "value" | "onChange">, FormListItemCommonProps,FormCommonProps, TestProps {
     last?: boolean;
     onContentSizeChange?: (e: any) => void;
     inputStyle?: ViewStyle;

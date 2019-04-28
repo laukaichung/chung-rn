@@ -4,7 +4,7 @@ import {ImageStyle, StyleProp, ViewStyle} from 'react-native';
 import Radio, {RadioPropsType} from "./Radio";
 import Label from "./Label";
 import Styles from "./Styles";
-import {FormCommonProps, FormListItemCommonProps} from "./type";
+import {FormCommonProps, FormListItemCommonProps, TestProps} from "./type";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 
@@ -13,7 +13,7 @@ export interface RadioItemPropsType extends RadioPropsType {
     onPress?: () => any;
 }
 
-export interface RadioItemNativeProps extends RadioItemPropsType,FormCommonProps, FormListItemCommonProps {
+export interface RadioItemNativeProps extends RadioItemPropsType, FormCommonProps, FormListItemCommonProps {
     style?: StyleProp<ViewStyle>;
     radioStyle?: StyleProp<ImageStyle>;
 }
@@ -27,9 +27,15 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
     }
 
     public render() {
-        const {style, radioStyle, defaultChecked, checked,listItemProps = {},invalidMessage, label, disabled, onChange} = this.props;
+        const {
+            style, radioStyle, defaultChecked,
+            checked, listItemProps = {}, invalidMessage, label,
+            disabled, onChange, testID,
+        } = this.props;
+
         const radioEl = (
             <Radio
+                testID={testID}
                 ref={this.ref}
                 style={radioStyle}
                 defaultChecked={defaultChecked}
@@ -47,7 +53,7 @@ export default class RadioListItem extends React.Component<RadioItemNativeProps>
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this.handleClick}
                 extra={radioEl}>
-                <Label style={disabled && {color:Styles.disabledTextColor}}>
+                <Label style={disabled && {color: Styles.disabledTextColor}}>
                     {label}
                 </Label>
             </ListItem>

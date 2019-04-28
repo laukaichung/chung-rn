@@ -1,8 +1,9 @@
 import * as React from 'react'
 import {ReactNode} from 'react'
 import {StyleProp, TouchableWithoutFeedback, View, ViewStyle} from 'react-native';
+import {TestProps} from "./type";
 
-export interface FlexItemProps {
+export interface FlexItemProps extends TestProps{
     flex?: number;
     onPress?: () => void;
     onLongPress?: () => void;

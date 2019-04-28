@@ -6,8 +6,9 @@ import ChungText from "./ChungText";
 import Icon, {IconProps} from "./Icon";
 import VerticalMiddleContainer from "./VerticalMiddleContainer";
 import CustomSwipeable, {CustomSwipeableProps} from "./CustomSwipeable";
+import {TestProps} from "./type";
 
-export interface ListItemProps {
+export interface ListItemProps extends TestProps{
     align?: 'top' | 'middle' | 'bottom';
     disabled?: boolean;
     children?: ReactNode;

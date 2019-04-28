@@ -3,10 +3,11 @@ import {ReactNode} from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
 type HideBorderOptions = "bottom" | "top" | "all"
 
-export interface ListProps {
+export interface ListProps extends TestProps{
     style?: StyleProp<ViewStyle>;
     renderHeader?: () => ReactNode
     headerTitleContainerStyle?: StyleProp<ViewStyle>

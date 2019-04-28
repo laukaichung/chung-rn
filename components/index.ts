@@ -19,7 +19,6 @@ export {default as CustomSwipeable} from './CustomSwipeable'
 export {default as Divider} from './Divider';
 export {default as Icon} from './Icon'
 export {default as IconButton} from './IconButton'
-export {default as CustomTouchableHighlight} from './CustomTouchableHighlight'
 export {default as DateTimePickerModal} from './DateTimePickerModal';
 export {default as Draggable} from "./Draggable"
 export {default as Flex} from './Flex';

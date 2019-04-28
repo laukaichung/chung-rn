@@ -3,8 +3,9 @@ import {ReactNode} from 'react';
 import {Image, ImageStyle, StyleProp, StyleSheet, View, ViewStyle,} from 'react-native';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
-export interface CardHeaderProps {
+export interface CardHeaderProps extends TestProps {
     style?: StyleProp<ViewStyle>;
     thumbStyle?: StyleProp<ImageStyle>;
     title?: ReactNode;
@@ -38,13 +39,16 @@ const CardHeader = (props: CardHeaderProps) => {
         );
 
     return (
-        <View style={
-            [
-                styles.headerWrap,
-                {borderColor: Styles.borderColor, backgroundColor: Styles.extremeBackgroundColor},
-                style
-            ]
-        } {...restProps}>
+        <View
+            style={
+                [
+                    styles.headerWrap,
+                    {borderColor: Styles.borderColor, backgroundColor: Styles.extremeBackgroundColor},
+                    style
+                ]
+            }
+            {...restProps}
+        >
             <View style={[styles.headerTitle]}>
                 {typeof thumb === 'string' ? (
                     <Image

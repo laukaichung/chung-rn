@@ -7,7 +7,7 @@ import Grid from "./Grid";
 import CustomModal from "./Modal";
 import Button from "./Button";
 import CameraRollImageList from "./CameraRollImageList";
-import {CameraRollFile, FormListItemCommonProps} from "./type";
+import {CameraRollFile, FormListItemCommonProps, TestProps} from "./type";
 import {ListItem} from "./index";
 import FastImage from "react-native-fast-image";
 
@@ -16,6 +16,8 @@ interface ImagePickerModalProps extends FormListItemCommonProps {
     onRemoveImages: (image: CameraRollFile) => void;
     onConfirm: (images: CameraRollFile[]) => void;
     multiple?: boolean;
+    modalListTestID?: string;
+    modalListItemTestID?: string
 }
 
 
@@ -28,7 +30,11 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
     }
 
     public render() {
-        const {images, onRemoveImages,listItemProps = {}, onConfirm,multiple} = this.props;
+        const {
+            images, onRemoveImages,listItemProps = {},
+            modalListTestID, modalListItemTestID,
+            onConfirm,multiple
+        } = this.props;
         return (
             <React.Fragment>
                 <CustomModal
@@ -53,6 +59,8 @@ export default class ImagePickerModal extends React.Component<ImagePickerModalPr
                                             </Button>
                                     </View>
                                     <CameraRollImageList
+                                        listTestID={modalListTestID}
+                                        listItemTestID={modalListItemTestID}
                                         defaultSelectedImages={images}
                                         multiple={multiple}
                                         ref={this.ref}

@@ -6,8 +6,9 @@ import ChungText from "./ChungText";
 import List from "./List";
 import Styles from "./Styles";
 import {ListItemProps} from "./ListItem";
+import {TestProps} from "./type";
 
-export interface MenuModalItem {
+export interface MenuModalItem extends TestProps{
     text: string;
     onPress: () => void;
     modalRemainsOpenOnPress?: boolean;
@@ -19,20 +20,23 @@ interface MenuModalProps {
     menus: MenuModalItem[]
     buttonTrigger: ReactNode
     title?: string;
+    modalListTestID?: string
+
 }
 
-const MenuModal = ({menus, buttonTrigger, title}: MenuModalProps) => {
+const MenuModal = ({menus, buttonTrigger, modalListTestID, title}: MenuModalProps) => {
     return (
         <Modal buttonTrigger={buttonTrigger}>
             {
                 ({closeModal}) => {
                     return (
-                        <List headerText={title}>
+                        <List testID={modalListTestID} headerText={title}>
                             {
                                 menus.map((o) => {
-                                        const {text, listItemProps, modalRemainsOpenOnPress, onPress} = o
+                                        const {text, testID, listItemProps, modalRemainsOpenOnPress, onPress} = o
                                         return (
                                             <ListItem
+                                                testID={testID}
                                                 key={text}
                                                 onPress={async () => {
                                                     await onPress();

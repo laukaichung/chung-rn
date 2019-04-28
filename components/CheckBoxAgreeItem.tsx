@@ -23,6 +23,7 @@ export default class CheckBoxAgreeItem extends React.Component<AgreeItemNativePr
             checked,
             defaultChecked,
             onChange,
+            testID,
         } = this.props;
 
         let contentDom = !children ? null : React.isValidElement(children) ? (
@@ -32,7 +33,7 @@ export default class CheckBoxAgreeItem extends React.Component<AgreeItemNativePr
         );
 
         return (
-            <TouchableWithoutFeedback onPress={this.refCheckbox.current._handleClick}>
+            <TouchableWithoutFeedback testID={testID} onPress={this.refCheckbox.current._handleClick}>
                 <View style={[styles.agreeItem, style]}>
                     <Checkbox
                         ref={refCheckbox}

@@ -6,16 +6,18 @@ import Swipeable, {SwipeableProperties} from 'react-native-gesture-handler/Swipe
 import ScreenUtil from "./util/ScreenUtil";
 import {ChungStyles} from "./index";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
-interface SwipeableMenuItemProps {
+interface SwipeableMenuItemProps extends TestProps{
     onPress: ()=>void;
     text?: string;
     view?: ReactNode
 }
 
-const SwipeableMenuItem = ({onPress, text, view}: SwipeableMenuItemProps)=>{
+const SwipeableMenuItem = ({onPress, text, testID, view}: SwipeableMenuItemProps)=>{
     return (
         <RectButton
+            testID={testID}
             style={[ {
                 backgroundColor: ChungStyles.secondaryColor,
                 alignItems: 'center',
@@ -39,7 +41,7 @@ interface MenuItem {
    view: ReactNode
 }
 
-export interface CustomSwipeableProps extends SwipeableProperties, GestureHandlerProperties {
+export interface CustomSwipeableProps extends SwipeableProperties, GestureHandlerProperties, TestProps {
     rightView?: ReactNode;
     leftView?: ReactNode;
     rightMenu?: MenuItem[]
@@ -58,6 +60,7 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
         const {
             leftView, renderLeftActions,
             leftContainerStyle,
+            testID,
         } = this.props;
         const fullWidth = ScreenUtil.fullWidth();
         if (renderLeftActions) {
@@ -70,6 +73,7 @@ export default class CustomSwipeable extends React.Component<CustomSwipeableProp
             });
             return (
                 <Animated.View
+                    testID={testID}
                     style={[
                         {
                             flex: 1,

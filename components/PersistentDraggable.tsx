@@ -4,8 +4,9 @@ import {Animated, StyleProp, ViewStyle} from "react-native";
 import {PanGestureHandler, RectButton, State} from 'react-native-gesture-handler';
 import Toast from "./Toast";
 import AsyncStorage from '@react-native-community/async-storage';
+import {TestProps} from "./type";
 
-interface Props {
+interface Props extends TestProps{
     boundary?: {top: number, bottom: number};
     containerStyle?: StyleProp<ViewStyle>;
     storageKey?: string;
@@ -65,7 +66,7 @@ export default class PersistentDraggable extends Component<Props, DraggableState
         if (!loaded) {
             return null;
         }
-        const {children, onPress, containerStyle} = this.props;
+        const {children, onPress, containerStyle, testID} = this.props;
         return (
             <PanGestureHandler
                 {...this.props}

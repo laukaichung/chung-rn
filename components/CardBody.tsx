@@ -2,8 +2,9 @@ import * as React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
 import {ReactNode} from "react";
+import {TestProps} from "./type";
 
-export interface CardBodyProps {
+export interface CardBodyProps extends TestProps{
     style?: StyleProp<ViewStyle>;
     marginVertical?: boolean
     paddingHorizontal?: boolean

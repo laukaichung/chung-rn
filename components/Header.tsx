@@ -3,8 +3,9 @@ import {TextProps, TextStyle} from 'react-native'
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 import Icon, {IconProps} from "./Icon";
+import {TestProps} from "./type";
 
-interface HeaderProps extends TextProps {
+interface HeaderProps extends TextProps, TestProps {
     color?: string
     center?: boolean
     marginVertical?: boolean
@@ -14,7 +15,7 @@ interface HeaderProps extends TextProps {
     iconProps?: IconProps;
 }
 
-const Header = ({color, center, fontSize, iconProps, style, marginVertical, ...textProps}: HeaderProps) => {
+const Header = ({color, center, fontSize, iconProps, style, marginVertical, ...restProps}: HeaderProps) => {
     const header = (
             <ChungText
                 style={[
@@ -28,7 +29,7 @@ const Header = ({color, center, fontSize, iconProps, style, marginVertical, ...t
                     style
                 ]
                 }
-                {...textProps}
+                {...restProps}
             />
     );
     

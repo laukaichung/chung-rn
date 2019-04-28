@@ -6,11 +6,12 @@ import Icon, {IconProps} from "./Icon";
 import WhiteSpace from "./WhiteSpace";
 import ChungText from "./ChungText";
 import * as Animatable from "react-native-animatable";
+import {TestProps} from "./type";
 
 
 export type ToastType = "success" | "fail" | "loading" | "bottomInfo"
 
-export interface ToastProps {
+export interface ToastProps extends TestProps{
     content: string;
     duration?: number;
     onClose?: () => void;
@@ -28,7 +29,7 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
     };
 
     public render() {
-        const {type = "info", content, iconProps, mask = true} = this.props;
+        const {type = "info", content, testID, iconProps, mask = true} = this.props;
         let iconDom: React.ReactElement<any> | null = null;
         let containerStyle: ViewStyle = {
             flex: 1,
@@ -66,6 +67,7 @@ export default class ToastContainer extends React.Component<ToastProps, any> {
 
         return (
             <View
+                testID={testID}
                 style={containerStyle}
                 pointerEvents={mask ? undefined : 'box-none'}
             >

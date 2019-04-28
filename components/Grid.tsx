@@ -9,6 +9,7 @@ import ChungText from "./ChungText";
 import FlexItem from "./FlexItem";
 import DeviceInfo from 'react-native-device-info';
 import FastImage from "react-native-fast-image";
+import {TestProps} from "./type";
 
 interface DataItem {
     icon?: any;
@@ -17,7 +18,7 @@ interface DataItem {
     [key: string]: any;
 }
 
-export interface GridProps {
+export interface GridProps extends TestProps{
     itemStyle?: StyleProp<ViewStyle>;
     data?: Array<DataItem | undefined>;
     showBorder?: boolean;
@@ -47,6 +48,7 @@ export default class Grid extends React.Component<GridProps, any> {
             isCarousel = false,
             tabletNumColumns,
             mobileNumColumns,
+            testID,
             onPress = () => {
             },
         } = this.props;
@@ -62,6 +64,7 @@ export default class Grid extends React.Component<GridProps, any> {
         const renderItem = this.props.renderItem ||
             ((dataItem: DataItem, index: number) => (
                 <Flex
+                    testID={testID}
                     direction="column"
                     justify="center"
                     style={{flex: 1}}

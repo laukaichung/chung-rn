@@ -4,7 +4,7 @@ import {StyleSheet, TextInputProps, TouchableWithoutFeedback, View,} from 'react
 import Input from './Input';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
-import {FormCommonProps, FormListItemCommonProps, Omit} from "./type";
+import {FormCommonProps, FormListItemCommonProps, Omit, TestProps} from "./type";
 import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
@@ -20,7 +20,7 @@ export type KeyboardType =
     | 'password'
 
 
-export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange">, FormCommonProps, FormListItemCommonProps, FormHeaderProps {
+export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange">, FormCommonProps, FormListItemCommonProps, FormHeaderProps, TestProps {
     last?: boolean;
     onExtraClick?: () => void;
     onErrorClick?: () => void;

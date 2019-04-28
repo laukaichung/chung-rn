@@ -3,7 +3,7 @@ import {RefObject} from 'react'
 import {ImageStyle, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import Label from "./Label";
 import Styles from "./Styles";
-import {FormCommonProps, FormListItemCommonProps} from "./type";
+import {FormCommonProps, FormListItemCommonProps, TestProps} from "./type";
 import Checkbox from "./CheckBox";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
@@ -14,7 +14,7 @@ export interface OnChangeParams {
     };
 }
 
-export interface ICheckboxItemNativeProps extends FormCommonProps, FormListItemCommonProps {
+export interface ICheckboxItemNativeProps extends FormCommonProps, FormListItemCommonProps, TestProps {
     checkboxStyle?: StyleProp<ImageStyle>;
     style?: StyleProp<ViewStyle>;
     extra?: React.ReactNode;
@@ -42,6 +42,7 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
             extra,
             listItemProps = {},
             onChange,
+            testID,
         } = this.props;
 
         return (
@@ -52,14 +53,17 @@ export default class CheckboxListItem extends React.Component<ICheckboxItemNativ
                 bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
                 style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
                 onPress={disabled ? undefined : this._handleClick}
-                extra={<Checkbox
-                    ref={this.refCheckbox}
-                    style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
-                    defaultChecked={defaultChecked}
-                    checked={checked}
-                    onChange={onChange}
-                    disabled={disabled}
-                />}
+                extra={
+                    <Checkbox
+                        testID={testID}
+                        ref={this.refCheckbox}
+                        style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
+                        defaultChecked={defaultChecked}
+                        checked={checked}
+                        onChange={onChange}
+                        disabled={disabled}
+                    />
+                }
             >
                 <Label style={disabled && {color: Styles.disabledTextColor}}>{label}</Label>
                 {extra}

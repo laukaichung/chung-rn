@@ -3,8 +3,9 @@ import {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
-export interface CardFooterProps {
+export interface CardFooterProps extends TestProps{
     style?: StyleProp<ViewStyle>;
     content?: ReactNode;
     extra?: ReactNode;

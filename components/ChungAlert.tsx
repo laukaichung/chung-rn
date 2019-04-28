@@ -8,15 +8,16 @@ import Button from "./Button";
 import ChungText from "./ChungText";
 import Overlay from "./Overlay";
 import AsyncStorage from '@react-native-community/async-storage';
+import {TestProps} from "./type";
 
-interface ChungAlertViewProps {
+interface ChungAlertViewProps extends TestProps{
     storageKey: string;
     view: ReactNode;
     containerStyle?: ViewStyle;
 }
 
 const ChungAlert = (props: ChungAlertViewProps) => {
-    const {containerStyle, view, storageKey} = props;
+    const {containerStyle, view, storageKey, testID} = props;
     const [show, setShow] = useState(false);
     const [doNotShowAgainVal, setDoNotShowAgainVal] = useState(true);
 
@@ -36,6 +37,7 @@ const ChungAlert = (props: ChungAlertViewProps) => {
             onPress={null}
         >
             <View
+                testID={testID}
                 style={{
                     flex: 1,
                     justifyContent: 'center',

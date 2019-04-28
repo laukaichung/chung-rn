@@ -2,8 +2,9 @@ import * as React from 'react';
 import {ActivityIndicator as OriginalActivityIndicator, StyleSheet, View} from 'react-native';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
-export interface ActivityIndicatorNativeProps {
+export interface ActivityIndicatorNativeProps extends TestProps{
     color?: string;
     animating?: boolean;
     toast?: boolean;
@@ -32,9 +33,9 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
     }
 
     private _renderToast() {
-        let {text} = this.props;
+        let {text, testID} = this.props;
         return (
-            <View style={[styles.container]}>
+            <View testID={testID} style={[styles.container]}>
                 <View style={[styles.innerContainer, {height: toastSize}]}>
                     <View style={[styles.wrapper]}>
                         <OriginalActivityIndicator color="white" size="large"/>
@@ -46,9 +47,9 @@ export default class ActivityIndicator extends React.Component<ActivityIndicator
     }
 
     private _renderSpinner() {
-        const {color, size, text} = this.props;
+        const {color, size, text, testID} = this.props;
         return (
-            <View style={styles.spinner}>
+            <View style={styles.spinner} testID={testID}>
                 <OriginalActivityIndicator color={color} size={size}/>
                 {text && <ChungText style={styles.tip}>{text}</ChungText>}
             </View>

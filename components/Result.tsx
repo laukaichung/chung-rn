@@ -5,8 +5,9 @@ import Styles from "./Styles";
 import ChungImage from "./ChungImage";
 import Icon, {IconProps} from "./Icon";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
-export interface ResultNativeProps {
+export interface ResultNativeProps extends TestProps {
     style?: StyleProp<ViewStyle>;
     imgUrl?: string;
     iconProps?: IconProps;
@@ -29,7 +30,8 @@ const Result = (props: ResultNativeProps) => {
         title,
         marginHorizontal = true,
         showBorder = false,
-        buttonProps
+        buttonProps,
+        testID,
     } = props;
 
     let imgContent: JSX.Element | null = null;
@@ -51,14 +53,17 @@ const Result = (props: ResultNativeProps) => {
         type === "warning" ? Styles.warningColor : Styles.fontColor;
 
     return (
-        <View style={
-            [
-                styles.result,
-                showBorder && {borderColor: typeColor, borderWidth: Styles.borderWidth},
-                marginHorizontal && {marginHorizontal: Styles.margin},
-                style,
-            ]}>
-
+        <View
+            testID={testID}
+            style={
+                [
+                    styles.result,
+                    showBorder && {borderColor: typeColor, borderWidth: Styles.borderWidth},
+                    marginHorizontal && {marginHorizontal: Styles.margin},
+                    style,
+                ]
+            }
+        >
             {imgContent}
             {title ? (
                 <View style={styles.title}>

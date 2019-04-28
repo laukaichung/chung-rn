@@ -2,9 +2,10 @@ import * as React from 'react';
 import {StyleProp, TextStyle, View, ViewStyle} from 'react-native';
 import {ChungStyles} from "./index";
 import ChungText from "./ChungText";
+import {TestProps} from "./type";
 
 
-interface BadgeProps {
+interface BadgeProps extends TestProps{
     containerStyle?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
     backgroundColor?: string;
@@ -12,9 +13,10 @@ interface BadgeProps {
     children?: any;
 }
 
-const Badge = ({containerStyle, textStyle, children, backgroundColor, color}: BadgeProps) => {
+const Badge = ({containerStyle, textStyle, children, testID, backgroundColor, color}: BadgeProps) => {
     return (
         <View
+            testID={testID}
             style={
                 [
                     {

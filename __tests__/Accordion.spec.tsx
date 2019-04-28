@@ -2,9 +2,8 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer';
 import {ReactTestRenderer} from 'react-test-renderer';
 import Grid from "../components/Grid";
-import {Text} from 'react-native';
+import {Text, TouchableHighlight} from 'react-native';
 import Accordion, {AccordionPane} from "../components/Accordion";
-import CustomTouchableHighlight from "../components/CustomTouchableHighlight";
 import FlexItem from "../components/FlexItem";
 
 interface PaneProps {
@@ -47,7 +46,7 @@ describe(`Accordion`, () => {
 
     it(`Should render options`,()=>{
         let accordion = testRenderer.root.findByType(Accordion);
-        accordion.findAllByType(CustomTouchableHighlight)[1].props.onPress(null);
+        accordion.findAllByType(TouchableHighlight)[1].props.onPress(null);
         expect(accordion.findAllByType(AccordionPane).length).toBe(panes.length)
     })
 

@@ -27,3 +27,7 @@ export interface FormCommonProps {
 export type OptionalExceptFor<T, TRequired extends keyof T> = Partial<T> & Pick<T, TRequired>
 
 export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
+export interface TestProps {
+    testID?: string
+}
