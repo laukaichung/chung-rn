@@ -44,6 +44,7 @@ export {default as PermissionUtil} from './util/PermissionUtil';
 export {default as PersistentDraggable} from "./PersistentDraggable"
 export {default as Radio} from './Radio';
 export {default as Result} from './Result';
+export {default as StarRating} from './StarRating';
 export {default as TextAreaListItem} from './TextAreaListItem';
 export {default as ChungImage} from './ChungImage';
 export {default as ChungText} from './ChungText';
