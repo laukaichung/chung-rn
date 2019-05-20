@@ -19,7 +19,8 @@ const StarRating = ({rating, maxRating = 10, starSize = 24, onChange}: Props)=>{
                 color={x <= rating ? "orange": null}
                 name={"star"}
                 onPress={() => {
-                    onChange(rating === 1 && x === 1 ? 0: x);
+                    // cancel the rating if the user clicks on the same rating star
+                    onChange(rating === x ? 0: x);
                 }}
             />
         )
