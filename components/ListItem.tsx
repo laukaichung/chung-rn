@@ -85,7 +85,7 @@ export default class Item extends React.Component<ListItemProps, any> {
             borderColor: Styles.borderColor
         };
 
-        const itemView = (
+        let listItem = (
             <View
                 {...restProps}
                 style={
@@ -126,13 +126,16 @@ export default class Item extends React.Component<ListItemProps, any> {
             </View>
         );
 
-        const listItem = (
-            <TouchableOpacity
-                onPress={onPress}
-                onLongPress={onLongPress}>
-                {itemView}
-            </TouchableOpacity>
-        );
+
+        if(onPress || onLongPress){
+            listItem = (
+                <TouchableOpacity
+                    onPress={onPress}
+                    onLongPress={onLongPress}>
+                    {listItem}
+                </TouchableOpacity>
+            );
+        }
 
         if (swipeableProps) {
             return (

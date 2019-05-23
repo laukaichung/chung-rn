@@ -15,7 +15,7 @@ import {ReactNode} from "react";
 import * as Animatable from "react-native-animatable";
 import {TestProps} from "./type";
 
-export interface ButtonProps extends TouchableHighlightProps , TestProps{
+export interface ButtonProps extends TouchableHighlightProps, TestProps {
     activeStyle?: StyleProp<ViewStyle>;
     onPress?: (_?: any) => void;
     type?: 'primary';
@@ -62,11 +62,12 @@ export default class Button extends React.Component<ButtonProps, State> {
         let wrapperStyle: ViewStyle[] = [{
             alignItems: 'center',
             justifyContent: 'center',
-            padding: size === "lg" ? Styles.padding : Styles.paddingSm,
+            padding: size === "lg" ? Styles.paddingLg : Styles.padding,
             borderWidth: 1,
+            borderColor: "#d0d0d0",
             borderRadius: Styles.radiusMd,
             borderBottomWidth: 2,
-            borderBottomColor: "grey",
+            borderBottomColor: "#cfcfcf",
             // elevation:2,
             // shadowOffset: { width: 1, height: 2 },
             // shadowColor: "grey",
@@ -74,12 +75,18 @@ export default class Button extends React.Component<ButtonProps, State> {
             // shadowRadius: Styles.radiusMd,
         }];
 
+        const disableButtonStyle = disabled && {
+            backgroundColor: Styles.disabledBackgroundColor,
+            borderColor: Styles.disabledBorderColor,
+            borderBottomColor: Styles.disabledBorderColor,
+        };
 
         if (type === "primary") {
 
             wrapperStyle.push({
                 backgroundColor: Styles.primaryButtonBackgroundColor,
-                borderColor: Styles.borderColor,
+                borderColor: "#1195ee",
+                borderBottomColor: "#1072bd",
             });
 
             textColor = Styles.primaryButtonTextColor;
@@ -92,9 +99,7 @@ export default class Button extends React.Component<ButtonProps, State> {
 
             if (disabled) {
 
-                wrapperStyle.push({
-                    borderColor: Styles.disabledBorderColor,
-                });
+                wrapperStyle.push(disableButtonStyle);
 
                 textStyle.push({
                     color: Styles.disabledTextColor
@@ -113,14 +118,12 @@ export default class Button extends React.Component<ButtonProps, State> {
             wrapperStyle.push({
                 backgroundColor: Styles.backgroundColor,
                 borderColor: Styles.borderColor,
+                borderBottomColor: Styles.disabledBorderColor,
             });
 
             if (disabled) {
 
-                wrapperStyle.push({
-                    backgroundColor: Styles.disabledBackgroundColor,
-                    borderColor: Styles.disabledBorderColor,
-                });
+                wrapperStyle.push(disableButtonStyle);
 
                 textStyle.push({
                     color: Styles.disabledTextColor
@@ -152,7 +155,7 @@ export default class Button extends React.Component<ButtonProps, State> {
                             />
                         ) : null}
                     {
-                        icon?
+                        icon ?
                             <View style={{flexDirection: "row"}}>
                                 {icon}
                                 <WingBlank>
