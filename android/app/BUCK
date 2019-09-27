@@ -8,6 +8,8 @@
 # - `buck install -r android/app` - compile, install and run application
 #
 
+load(":build_defs.bzl", "create_aar_targets", "create_jar_targets")
+
 lib_deps = []
 
 create_aar_targets(glob(["libs/*.aar"]))
@@ -33,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.chung_rn",
+    package = "com.chungrn",
 )
 
 android_resource(
     name = "res",
-    package = "com.chung_rn",
+    package = "com.chungrn",
     res = "src/main/res",
 )
 

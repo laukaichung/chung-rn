@@ -65,10 +65,11 @@ const FormHeader = ({hint, error, onErrorClick, testID, onClear, label}: FormHea
                 {
                     error && (
                         <WingBlank>
-                            <Icon color={"red"}
-                                  onPress={onErrorClick}
-                                  customSize={iconSize}
-                                  name={"exclamation-circle"}
+                            <Icon
+                                color={"red"}
+                                onPress={onErrorClick}
+                                customSize={iconSize}
+                                name={"exclamation-circle"}
                             />
                         </WingBlank>
                     )

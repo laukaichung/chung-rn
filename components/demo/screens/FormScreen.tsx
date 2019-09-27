@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {useContext} from 'react'
 import {NavigationProps} from "../demotype";
 import InputListItem from "../../InputListItem";
 import List from "../../List";
@@ -7,39 +8,69 @@ import RadioListItem from "../../RadioListItem";
 import DateTimePickerModal from "../../DateTimePickerModal";
 import TextAreaListItem from "../../TextAreaListItem";
 import UIMainContainer from "../../UIMainContainer";
-import {ScrollView} from "react-native";
+import {ScrollView, View} from "react-native";
+import {PortalContext} from "../../portal/PortalHost";
+import Button from "../../Button";
+import ChungText from "../../ChungText";
 
+const Testing = () => {
+    const {mount, unmount, update} = useContext(PortalContext)
+    return <Button onPress={
+        () => {
+            mount(
+                <View style={{width: 100, height: 200, backgroundColor: "red"}}>
+                    <ChungText>Fuck Portal!</ChungText>
+                    <Button onPress={()=>unmount("fuckit")}>
+                        Close
+                    </Button>
+                </View>, "fuckit"
+            )
+        }}
+    >
+        Testing
+    </Button>
+}
 
 export default class FormScreen extends React.Component<NavigationProps> {
     render() {
         return (
             <UIMainContainer>
                 <ScrollView>
+                    <Testing/>
                     <List>
-                        <InputListItem label={"Input"}
-                                       error
-                                       extra={"Hello"}
-                                       placeholder={"Some Holder"}/>
+                        <InputListItem
+                            autoFocus
+                            label={"Input"}
+                            error
+                            extra={"Hello"}
+                            placeholder={"Some Holder"}
+                        />
 
-                        <InputListItem label={"Numeric Input"}
-                                       type={"numeric"}
-                                       hint={"fdsdfsdfs asfd sd sdfds ffsd f sd sdf"}
-                                       onChange={(val) => console.log(val)}
-                                       placeholder={"Enter Int Val"}/>
+                        <InputListItem
+                            label={"Numeric Input"}
+                            type={"numeric"}
+                            hint={"fdsdfsdfs asfd sd sdfds ffsd f sd sdf"}
+                            onChange={(val) => console.log(val)}
+                            placeholder={"Enter Int Val"}
+                        />
 
-                        <InputListItem label={"Float Input"}
-                                       type={"decimal-pad"}
-                                       onChange={(val) => console.log(val)}
-                                       placeholder={"Enter Float Val"}/>
+                        <InputListItem
+                            label={"Float Input"}
+                            type={"decimal-pad"}
+                            onChange={(val) => console.log(val)}
+                            placeholder={"Enter Float Val"}
+                        />
 
-                        <TextAreaListItem placeholder={`sda dsffsd fsdfsdsfd sfdsdf sdf sdf sfd fdsfsdfsdsdf sfdsfd sdf sdfsd f sdfsdf sd fds`}
-                                          rows={5}
-                                          error
-                                          hint={"Hint text"}
-                                          count={400}
-                                          onClear={()=>alert('clear!!')}
-                                          autoHeight
-                                          label="Text Area"/>
+                        <TextAreaListItem
+                            placeholder={`sda dsffsd fsdfsdsfd sfdsdf sdf sdf sfd fdsfsdfsdsdf sfdsfd sdf sdfsd f sdfsdf sd fds`}
+                            rows={5}
+                            error
+                            hint={"Hint text"}
+                            count={400}
+                            onClear={() => alert('clear!!')}
+                            autoHeight
+                            label="Text Area"
+                        />
 
                         <CheckboxListItem label={"Checkbox"}/>
                         <RadioListItem label={"Radio"}/>

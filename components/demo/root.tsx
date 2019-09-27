@@ -1,8 +1,6 @@
 import * as React from 'react'
 import {
     createAppContainer,
-    createDrawerNavigator,
-    createStackNavigator,
     NavigationActions,
     StackActions
 } from 'react-navigation';
@@ -28,7 +26,7 @@ import Button from "../Button";
 import UIContext from "../UIContext";
 import Styles from "../Styles";
 import ResultScreen from "./screens/ResultScreen";
-import {DrawerScreen} from "./screens/DrawerScreen";
+import DrawerScreen from "./screens/DrawerScreen";
 import {ActionButtonScreen} from "./screens/ActionButtonScreen";
 import ChungProvider from "../ChungProvider";
 import ChungAlertScreen from "./screens/ChungAlertScreen";
@@ -36,6 +34,8 @@ import TestScreen from "./screens/TestScreen";
 import TooltipScreen from "./screens/TooltipScreen";
 import HintTextScreen from "./screens/HintTextScreen";
 import MenuModalScreen from "./screens/MenuModalScreen";
+import {createDrawerNavigator} from "react-navigation-drawer";
+import {createStackNavigator} from "react-navigation-stack";
 
 
 const StackNavigator = createStackNavigator(
@@ -65,7 +65,7 @@ const StackNavigator = createStackNavigator(
         [screenKeys.menuModal]: MenuModalScreen,
     },
     {
-        initialRouteName: screenKeys.test,
+        initialRouteName: screenKeys.form,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {
@@ -107,7 +107,7 @@ const DrawerNavigator = createDrawerNavigator(
     },
     {
         drawerPosition: 'left',
-        contentComponent: (navigation) => <DrawerScreen navigation={navigation}/>
+        contentComponent: (navigation) => <DrawerScreen/>
     }
 );
 

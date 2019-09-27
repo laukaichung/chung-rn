@@ -1,10 +1,9 @@
 import * as React from 'react'
-import {RefObject} from 'react'
 import {ImageStyle, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import Label from "./Label";
 import Styles from "./Styles";
 import {FormCommonProps, FormListItemCommonProps, TestProps} from "./type";
-import Checkbox from "./CheckBox";
+import Checkbox, {CheckboxPublicMethods} from "./CheckBox";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
 
@@ -26,62 +25,59 @@ export interface ICheckboxItemNativeProps extends FormCommonProps, FormListItemC
     onChange?: (params: OnChangeParams) => void;
 }
 
-export default class CheckboxListItem extends React.Component<ICheckboxItemNativeProps, any> {
+const CheckboxListItem = (props: ICheckboxItemNativeProps) => {
+    const refCheckbox = React.createRef<CheckboxPublicMethods>();
+    const {
+        style,
+        checkboxStyle,
+        defaultChecked,
+        checked,
+        disabled,
+        label,
+        onPress,
+        invalidMessage,
+        extra,
+        listItemProps = {},
+        onChange,
+        testID,
+    } = props;
 
-    private refCheckbox: RefObject<Checkbox> = React.createRef();
+    return (
 
-    public render() {
-        const {
-            style,
-            checkboxStyle,
-            defaultChecked,
-            checked,
-            disabled,
-            label,
-            invalidMessage,
-            extra,
-            listItemProps = {},
-            onChange,
-            testID,
-        } = this.props;
-
-        return (
-
-            <ListItem
-                border
-                {...listItemProps}
-                bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
-                style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
-                onPress={disabled ? undefined : this._handleClick}
-                extra={
-                    <Checkbox
-                        testID={testID}
-                        ref={this.refCheckbox}
-                        style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
-                        defaultChecked={defaultChecked}
-                        checked={checked}
-                        onChange={onChange}
-                        disabled={disabled}
-                    />
+        <ListItem
+            border
+            {...listItemProps}
+            bottomExtraView={<FormInvalidHint invalidMessage={invalidMessage}/>}
+            style={[style, disabled && {backgroundColor: Styles.disabledBackgroundColor}]}
+            onPress={disabled ? undefined : () => {
+                refCheckbox.current.onCheck();
+                if (onPress) {
+                    onPress();
                 }
-            >
-                <Label style={disabled && {color: Styles.disabledTextColor}}>{label}</Label>
-                {extra}
-            </ListItem>
+            }}
+            extra={
+                <Checkbox
+                    testID={testID}
+                    ref={refCheckbox}
+                    style={[styles.checkboxItemCheckbox, checkboxStyle] as any}
+                    defaultChecked={defaultChecked}
+                    checked={checked}
+                    onChange={onChange}
+                    disabled={disabled}
+                />
+            }
+        >
+            <Label style={disabled && {color: Styles.disabledTextColor}}>{label}</Label>
+            {extra}
+        </ListItem>
 
-        );
-    }
-
-    private _handleClick = () => {
-        this.refCheckbox.current._handleClick();
-        if (this.props.onPress) {
-            this.props.onPress();
-        }
-    }
-}
+    );
+};
 
 const styles = StyleSheet.create({
     checkboxItemCheckbox: {
         alignSelf: 'center',
     },
 });
+
+export default CheckboxListItem;

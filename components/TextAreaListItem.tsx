@@ -42,8 +42,6 @@ export interface TextareaItemNativeProps extends Omit<TextInputProps, "value" | 
     disabled?: boolean;
     labelNumber?: number;
     onChange?: TextAreaEventHandle;
-    // onBlur?: TextAreaEventHandle;
-    // onFocus?: TextAreaEventHandle;
     onClear?: () => void;
     disableHeader?: boolean;
 }
@@ -72,19 +70,21 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
     }
 
     public render() {
+
         const {
             rows = 1,
             error = false,
             count = 0,
+            editable = true,
             invalidMessage,
             autoHeight = false,
             inputStyle,
             disableHeader,
             listItemProps = {},
             placeholder = "Enter here",
-            ...restProps
+            value,
+            defaultValue
         } = this.props;
-        const {value, defaultValue} = restProps;
         const {inputCount, height} = this.state;
 
         let valueProps;
@@ -113,7 +113,9 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
             >
                 {
                     !disableHeader &&
-                    <FormHeader {...this.props}/>
+                    <FormHeader
+                        {...this.props}
+                    />
                 }
                 <TextInput
                     keyboardAppearance={Styles.isDarkMode ? "dark" : "default"}
@@ -132,7 +134,8 @@ export default class TextAreaListItem extends React.Component<TextareaItemNative
                         inputStyle,
 
                     ]}
-                    {...restProps}
+                    editable={editable}
+                    {...this.props}
                     {...valueProps}
                     onChange={event => this.onChange(event)}
                     onContentSizeChange={this.onContentSizeChange}

@@ -69,7 +69,7 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
             children,
             maxWidth = fullWidth * 0.6,
             backgroundColor = Styles.isDarkMode ? Styles.primaryColor : "#eee",
-            view, overlay, overlayStyle, overlayOnClose,
+            view, overlay, overlayOnClose,
             shouldCloseOnOverlayClick,
         } = this.props;
         const {show} = this.state;
@@ -151,23 +151,6 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
                 </Overlay>
             );
         }
-
-        /**
-         * <View
-         style={
-                            overlay && {
-                                flex: 1,
-                                position: 'absolute',
-                                left: 0,
-                                top: 0,
-                                backgroundColor: 'rgba(206, 88, 71, 0.7)',
-                                width: ScreenUtil.fullWidth(),
-                                height: "100%",
-                                ...overlayStyle,
-                            }}
-         >
-         * */
-
 
         return (
             <React.Fragment>
@@ -332,102 +315,4 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
 
         this.setState({show: false})
     }
-
-    // computeTopGeometry: ComputeGeometry = (displayArea, fromRect, contentSize, arrowSize) => {
-    //     const origin = {
-    //         x: Math.min(
-    //             displayArea.x + displayArea.width - contentSize.width,
-    //             Math.max(displayArea.x, fromRect.x + (fromRect.width - contentSize.width) / 2),
-    //         ),
-    //         y: fromRect.y - contentSize.height - arrowSize.height,
-    //     };
-    //
-    //     const anchor = { x: fromRect.x + fromRect.width / 2, y: fromRect.y };
-    //
-    //     return { origin, anchor, placement: 'top' };
-    // };
-
-
-    // computeBottomGeometry: ComputeGeometry = (displayArea, fromRect, contentSize, arrowSize) => {
-    //     const origin = {
-    //         x: Math.min(
-    //             displayArea.x + displayArea.width - contentSize.width,
-    //             Math.max(displayArea.x, fromRect.x + (fromRect.width - contentSize.width) / 2),
-    //         ),
-    //         y: fromRect.y + fromRect.height + arrowSize.height,
-    //     };
-    //
-    //     const anchor = { x: fromRect.x + fromRect.width / 2, y: fromRect.y + fromRect.height };
-    //
-    //     return { origin, anchor, placement: 'bottom' };
-    // };
-    //
-    // computeAutoGeometry = (displayArea: Rect, fromRect: Rect, contentSize: Size, arrowSize: Size): Geometry => {
-    //     let geom: Geometry | null = null;
-    //     const placements: Placement[] = ['left', 'top', 'right', 'bottom'];
-    //     for (let i = 0; i < 4; i += 1) {
-    //         const placement = placements[i];
-    //         geom = computeGeometry(contentSize, placement, fromRect, displayArea, arrowSize);
-    //         const { origin } = geom;
-    //
-    //         if (
-    //             origin.x >= displayArea.x &&
-    //             origin.x <= displayArea.x + displayArea.width - contentSize.width &&
-    //             origin.y >= displayArea.y &&
-    //             origin.y <= displayArea.y + displayArea.height - contentSize.height
-    //         ) {
-    //             break;
-    //         }
-    //     }
-    //     return geom as Geometry;
-    // };
-
 }
-
-// const computeLeftGeometry: ComputeGeometry = (displayArea, fromRect, contentSize, arrowSize) => {
-//     const origin = {
-//         x: fromRect.x - contentSize.width - arrowSize.width,
-//         y: Math.min(
-//             displayArea.y + displayArea.height - contentSize.height,
-//             Math.max(displayArea.y, fromRect.y + (fromRect.height - contentSize.height) / 2),
-//         ),
-//     };
-//
-//     const anchor = { x: fromRect.x, y: fromRect.y + fromRect.height / 2 };
-//
-//     return { origin, anchor, placement: 'left' };
-// };
-//
-// const computeRightGeometry: ComputeGeometry = (displayArea, fromRect, contentSize, arrowSize) => {
-//     const origin = {
-//         x: fromRect.x + fromRect.width + arrowSize.width,
-//         y: Math.min(
-//             displayArea.y + displayArea.height - contentSize.height,
-//             Math.max(displayArea.y, fromRect.y + (fromRect.height - contentSize.height) / 2),
-//         ),
-//     };
-//
-//     const anchor = { x: fromRect.x + fromRect.width, y: fromRect.y + fromRect.height / 2 };
-//
-//     return { origin, anchor, placement: 'right' };
-// };
-//
-// const computeAutoGeometry = (displayArea: Rect, fromRect: Rect, contentSize: Size, arrowSize: Size): Geometry => {
-//     let geom: Geometry | null = null;
-//     const placements: Placement[] = ['left', 'top', 'right', 'bottom'];
-//     for (let i = 0; i < 4; i += 1) {
-//         const placement = placements[i];
-//         geom = computeGeometry(contentSize, placement, fromRect, displayArea, arrowSize);
-//         const { origin } = geom;
-//
-//         if (
-//             origin.x >= displayArea.x &&
-//             origin.x <= displayArea.x + displayArea.width - contentSize.width &&
-//             origin.y >= displayArea.y &&
-//             origin.y <= displayArea.y + displayArea.height - contentSize.height
-//         ) {
-//             break;
-//         }
-//     }
-//     return geom as Geometry;
-// };

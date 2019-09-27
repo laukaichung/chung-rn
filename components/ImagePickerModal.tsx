@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {RefObject} from 'react';
+import {useEffect, useRef} from 'react';
 import {PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import Styles from "./Styles";
 import Label from "./Label";
@@ -7,7 +7,7 @@ import Grid from "./Grid";
 import CustomModal from "./Modal";
 import Button from "./Button";
 import CameraRollImageList from "./CameraRollImageList";
-import {CameraRollFile, FormListItemCommonProps, TestProps} from "./type";
+import {CameraRollFile, FormListItemCommonProps} from "./type";
 import {ListItem} from "./index";
 import FastImage from "react-native-fast-image";
 
@@ -21,96 +21,87 @@ interface ImagePickerModalProps extends FormListItemCommonProps {
 }
 
 
-export default class ImagePickerModal extends React.Component<ImagePickerModalProps, any> {
-    private ref: RefObject<CameraRollImageList>;
+const ImagePickerModal = (props: ImagePickerModalProps) => {
+    const ref = useRef<CameraRollImageList>();
 
-    public constructor(props) {
-        super(props);
-        this.ref = React.createRef()
-    }
+    useEffect(() => {
+        requestAndroidReadExteralStorage();
+    }, );
 
-    public render() {
-        const {
-            images, onRemoveImages,listItemProps = {},
-            modalListTestID, modalListItemTestID,
-            onConfirm,multiple
-        } = this.props;
-        return (
-            <React.Fragment>
-                <CustomModal
-                    fullScreen
-                    buttonTrigger={(
-                        <ListItem {...listItemProps} arrow="right">
-                            <Label>Select Images</Label>
-                        </ListItem>
-                    )}
-                >
-                    {
-                        ({closeModal}) => {
+    const {
+        images, onRemoveImages, listItemProps = {},
+        modalListTestID, modalListItemTestID,
+        onConfirm, multiple
+    } = props;
+    return (
+        <React.Fragment>
+            <CustomModal
+                fullScreen
+                buttonTrigger={(
+                    <ListItem {...listItemProps} arrow="right">
+                        <Label>Select Images</Label>
+                    </ListItem>
+                )}
+            >
+                {
+                    ({closeModal}) => {
+                        return (
+                            <View>
+                                <View style={{position: 'absolute', right: 5, bottom: 5, zIndex: 999}}>
+                                    <Button type="primary"
+                                            onPress={() => {
+                                                onConfirm(ref.current._getSelectedImages());
+                                                closeModal()
+                                            }}>
+                                        Confirm
+                                    </Button>
+                                </View>
+                                <CameraRollImageList
+                                    listTestID={modalListTestID}
+                                    listItemTestID={modalListItemTestID}
+                                    defaultSelectedImages={images}
+                                    multiple={multiple}
+                                    ref={ref}
+                                />
+                            </View>
+                        )
+                    }
+                }
+            </CustomModal>
+            {
+                images.length > 0 &&
+                <ListItem>
+                    <Grid
+                        tabletNumColumns={4}
+                        mobileNumColumns={3}
+                        data={images}
+                        renderItem={(file: CameraRollFile) => {
                             return (
-                                <View>
-                                    <View style={{position: 'absolute', right: 5, bottom: 5, zIndex: 999}}>
-                                            <Button type="primary"
-                                                    onPress={() => {
-                                                        onConfirm(this.ref.current._getSelectedImages())
-                                                        closeModal()
-                                                    }}>
-                                                Confirm
-                                            </Button>
-                                    </View>
-                                    <CameraRollImageList
-                                        listTestID={modalListTestID}
-                                        listItemTestID={modalListItemTestID}
-                                        defaultSelectedImages={images}
-                                        multiple={multiple}
-                                        ref={this.ref}
+                                <View style={[styles.item, styles.size]}>
+                                    <FastImage
+                                        source={{uri: file.uri}}
+                                        resizeMode={FastImage.resizeMode.contain}
+                                        style={[styles.size, styles.image] as any}
                                     />
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            ref.current._removeSelectedImage(file);
+                                            onRemoveImages(file)
+                                        }}
+                                        style={styles.closeWrap}
+                                        activeOpacity={0.6}>
+                                        <Text style={styles.closeText}>×</Text>
+                                    </TouchableOpacity>
                                 </View>
                             )
-                        }
-                    }
-                </CustomModal>
-                {
-                    images.length > 0 &&
-                    <ListItem>
-                        <Grid
-                            tabletNumColumns={4}
-                            mobileNumColumns={3}
-                            data={images}
-                            renderItem={(file: CameraRollFile) => {
-                                return (
-                                    <View style={[styles.item, styles.size]}>
-                                        <FastImage
-                                            source={{uri: file.uri}}
-                                            resizeMode={FastImage.resizeMode.contain}
-                                            style={[styles.size, styles.image] as any}
-                                        />
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                this.ref.current._removeSelectedImage(file);
-                                                onRemoveImages(file)
-                                            }}
-                                            style={styles.closeWrap}
-                                            activeOpacity={0.6}>
-                                            <Text style={styles.closeText}>×</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                )
-                            }}
+                        }}
 
-                        />
-                    </ListItem>
-                }
-            </React.Fragment>
-        );
-    }
-
-    public componentDidMount() {
-        requestAndroidReadExteralStorage();
-        // You need to implement the IOS permission yourself!
-    }
-}
-
+                    />
+                </ListItem>
+            }
+        </React.Fragment>
+    );
+};
 
 async function requestAndroidReadExteralStorage() {
     if (Platform.OS === 'android') {
@@ -174,5 +165,6 @@ const styles = StyleSheet.create({
         marginTop: -8,
         fontWeight: '300',
     },
-
 });
+
+export default ImagePickerModal

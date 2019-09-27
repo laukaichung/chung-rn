@@ -8,49 +8,41 @@ import {
     ViewStyle,
 } from 'react-native';
 import {TestProps} from "./type";
+import {useEffect, useState} from "react";
 
-export interface ProgressProps extends TestProps{
+export interface ProgressProps extends TestProps {
     style?: StyleProp<ViewStyle>;
     barColor: string;
     percentage?: number;
 }
 
-interface ProgressState {
-    percentage: number
-}
-
 const AnimatedProgressAndroid = Animated.createAnimatedComponent(ProgressBarAndroid);
 const AnimatedProgressIOS = Animated.createAnimatedComponent(ProgressViewIOS);
 
-export default class Progress extends React.Component<ProgressProps, ProgressState> {
-    public state: ProgressState = {percentage: this.props.percentage / 100};
-    private percentageAnimation = new Animated.Value(0);
-
-    public render() {
-        //const {percentage} = this.state;
-        const {barColor = "green", testID } = this.props;
-        return Platform.OS === "ios" ?
-            <AnimatedProgressIOS
-                testID={testID}
-                progressTintColor={barColor}
-                progress={this.percentageAnimation}
-            /> :
-            <AnimatedProgressAndroid
-                testID={testID}
-                color={barColor}
-                styleAttr="Horizontal"
-                indeterminate={false}
-                progress={this.percentageAnimation}
-            />
-    }
-
-    componentDidMount(){
-        Animated.timing(this.percentageAnimation,{
+const Progress = ({barColor = "green", percentage: initialPercentage, testID}: ProgressProps) => {
+    const percentageAnimation = new Animated.Value(0);
+    const [percentage] = useState(initialPercentage / 100);
+    useEffect(() => {
+        Animated.timing(percentageAnimation, {
             duration: 1000,
             useNativeDriver: true,
             easing: Easing.ease,
-            toValue: this.state.percentage,
+            toValue: percentage,
         }).start()
-    }
+    });
+    return Platform.OS === "ios" ?
+        <AnimatedProgressIOS
+            testID={testID}
+            progressTintColor={barColor}
+            progress={percentageAnimation}
+        /> :
+        <AnimatedProgressAndroid
+            testID={testID}
+            color={barColor}
+            styleAttr="Horizontal"
+            indeterminate={false}
+            progress={percentageAnimation}
+        />
+};
 
-}
+export default Progress;

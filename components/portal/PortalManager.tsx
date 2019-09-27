@@ -12,10 +12,7 @@ export type PortalManagerState = {
 /**
  * Portal host is the component which actually renders all Portals.
  */
-export default class PortalManager extends React.PureComponent<
-    {},
-    PortalManagerState
-    > {
+export default class PortalManager extends React.PureComponent<{}, PortalManagerState> {
     state: State = {
         portals: [],
     };

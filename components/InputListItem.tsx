@@ -1,15 +1,13 @@
 import * as React from 'react';
-import {ReactNode, RefObject} from 'react';
+import {ReactNode, useEffect, useRef} from 'react';
 import {StyleSheet, TextInputProps, TouchableWithoutFeedback, View,} from 'react-native';
-import Input from './Input';
+import Input, {InputPublicMethods} from './Input';
 import Styles from "./Styles";
 import ChungText from "./ChungText";
 import {FormCommonProps, FormListItemCommonProps, Omit, TestProps} from "./type";
 import FormHeader, {FormHeaderProps} from "./FormHeader";
 import FormInvalidHint from "./FormInvalidHint";
 import {ListItem} from "./index";
-
-// type InputEventHandler = (value?: string) => void;
 
 export type KeyboardType =
     'decimal-pad'
@@ -21,7 +19,6 @@ export type KeyboardType =
 
 
 export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange">, FormCommonProps, FormListItemCommonProps, FormHeaderProps, TestProps {
-    last?: boolean;
     onExtraClick?: () => void;
     onErrorClick?: () => void;
     type?: KeyboardType;
@@ -34,16 +31,11 @@ export interface InputItemProps extends Omit<TextInputProps, "value" | "onChange
     maxLength?: number;
     extra?: ReactNode;
     error?: boolean;
-    labelNumber?: number;
-    labelPosition?: 'left' | 'top';
-    textAlign?: 'left' | 'center';
     updatePlaceholder?: boolean;
     styles?: any;
     locale?: object;
     onChange?: (value: string) => void;
-    onEnter?: ()=>void;
-    // onFocus?: InputEventHandler;
-    // onBlur?: InputEventHandler;
+    onEnter?: () => void;
     autoFocus?: boolean;
 }
 
@@ -56,133 +48,36 @@ function normalizeValue(value?: string) {
 }
 
 
-export default class InputListItem extends React.Component<InputItemProps, any> {
-    public static defaultProps = {
-        editable: true,
-        clear: false,
-        extra: '',
-        error: false,
-        labelNumber: 4,
-        labelPosition: 'left',
-        textAlign: 'left',
-        last: false,
+const InputListItem = (props: InputItemProps) => {
+    const {
+        editable = true,
+        error = false,
+        type,
+        extra,
+        value,
+        defaultValue,
+        onChange,
+        invalidMessage,
+        autoFocus,
+        onExtraClick,
+        listItemProps = {},
+        onEnter,
+        onKeyPress,
+    } = props;
+    const inputRef = useRef<InputPublicMethods>();
+    const _focus = ()=>{
+        if (inputRef.current) {
+            inputRef.current.textInputRef.current.focus();
+        }
     };
-    private inputRef: RefObject<Input> = React.createRef();
 
-    public render() {
-        let {
-            type,
-            error,
-            extra,
-            invalidMessage,
-            onExtraClick,
-            listItemProps = {},
-            onEnter,
-            onKeyPress,
-            ...restProps
-        } = this.props;
-        const {value, defaultValue} = restProps;
-        let valueProps;
-        if ('value' in this.props) {
-            valueProps = {
-                value: normalizeValue(value),
-            };
-        } else {
-            valueProps = {
-                defaultValue,
-            };
+    useEffect(() => {
+        if (autoFocus) {
+            _focus();
         }
+    });
 
-        let inputType = type;
-
-        if (type === "decimal-pad") {
-            inputType = "numeric"
-        }
-
-        const extraStyle = {
-            width: typeof extra === 'string' && (extra as string).length > 0 ? (extra as string).length * 10 : 0,
-        };
-
-        return (
-            <ListItem
-                border
-                {...listItemProps}
-                bottomExtraView={
-                    <React.Fragment>
-                        {listItemProps.bottomExtraView}
-                        <FormInvalidHint invalidMessage={invalidMessage}/>
-                    </React.Fragment>
-                }
-            >
-                <FormHeader {...this.props}/>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Input
-                        placeholderTextColor={Styles.placeholderTextColor}
-                        underlineColorAndroid="transparent"
-                        ref={this.inputRef}
-                        {...restProps}
-                        {...valueProps}
-                        style={[
-                            styles.input,
-                            {
-                                color: Styles.fontColor,
-                                backgroundColor: Styles.extremeBackgroundColor,
-                                height: Styles.inputSingleRowHeight,
-                            },
-                            error && Styles.errorColor]}
-                        keyboardType={type}
-                        onChange={event => this._onChange(event.nativeEvent.text)}
-                        secureTextEntry={type === 'password'}
-                        // onBlur={this._onInputBlur}
-                        // onFocus={this._onInputFocus}
-                        type={inputType}
-                        onKeyPress={(e)=>{
-                            if(e.nativeEvent.key === "Enter" && onEnter){
-                                onEnter();
-                            }else if(onKeyPress){
-                                onKeyPress(e);
-                            }
-                        }}
-                    />
-                    {extra ? (
-                        <TouchableWithoutFeedback onPress={onExtraClick}>
-                            <View>
-                                {typeof extra === 'string' ? (
-                                    <ChungText style={[styles.extra, extraStyle]}>{extra}</ChungText>
-                                ) : (
-                                    extra
-                                )}
-                            </View>
-                        </TouchableWithoutFeedback>
-                    ) : null}
-                </View>
-            </ListItem>
-        )
-
-    }
-
-    // public _onKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>)=>{
-    //     if(e.nativeEvent.key === "Enter" && onEnter){
-    //         onEnter();
-    //     }else if(onKeyPress){
-    //         onKeyPress(e);
-    //     }
-    // }
-
-    public componentDidMount() {
-        if (this.props.autoFocus)
-            this._focus();
-    }
-
-    // expose this method for users;
-    public _focus() {
-        if (this.inputRef.current) {
-            this.inputRef.current.focus();
-        }
-    }
-
-    private _onChange = (text: string) => {
-        const {onChange, type} = this.props;
+    const _onChange = (text: string) => {
         switch (type) {
             case 'phone-pad':
                 text = text.replace(/\D/g, '').substring(0, 11);
@@ -214,26 +109,82 @@ export default class InputListItem extends React.Component<InputItemProps, any> 
         }
     };
 
-    // private _onInputBlur = () => {
-    //     if (this.props.onBlur) {
-    //         this.props.onBlur(this.props.value);
-    //     }
-    // };
-    //
-    // private _onInputFocus = () => {
-    //     if (this.props.onFocus) {
-    //         this.props.onFocus(this.props.value);
-    //     }
-    // };
+    let valueProps;
+    if ('value' in props) {
+        valueProps = {
+            value: normalizeValue(value),
+        };
+    } else {
+        valueProps = {
+            defaultValue,
+        };
+    }
 
-    // private _onInputClear = () => {
-    //     if (this.inputRef.current) {
-    //         this.inputRef.current.clear();
-    //     }
-    //     this._onChange('');
-    // }
+    let inputType = type;
 
-}
+    if (type === "decimal-pad") {
+        inputType = "numeric"
+    }
+
+    const extraStyle = {
+        width: typeof extra === 'string' && (extra as string).length > 0 ? (extra as string).length * 10 : 0,
+    };
+
+    return (
+        <ListItem
+            border
+            {...listItemProps}
+            bottomExtraView={
+                <React.Fragment>
+                    {listItemProps.bottomExtraView}
+                    <FormInvalidHint invalidMessage={invalidMessage}/>
+                </React.Fragment>
+            }
+        >
+            <FormHeader {...props}/>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Input
+                    placeholderTextColor={Styles.placeholderTextColor}
+                    underlineColorAndroid="transparent"
+                    ref={inputRef}
+                    editable={editable}
+                    {...props}
+                    {...valueProps}
+                    style={[
+                        styles.input,
+                        {
+                            color: Styles.fontColor,
+                            backgroundColor: Styles.extremeBackgroundColor,
+                            height: Styles.inputSingleRowHeight,
+                        },
+                        error && Styles.errorColor]}
+                    keyboardType={type}
+                    onChange={event => _onChange(event.nativeEvent.text)}
+                    secureTextEntry={type === 'password'}
+                    type={inputType}
+                    onKeyPress={(e) => {
+                        if (e.nativeEvent.key === "Enter" && onEnter) {
+                            onEnter();
+                        } else if (onKeyPress) {
+                            onKeyPress(e);
+                        }
+                    }}
+                />
+                {extra ? (
+                    <TouchableWithoutFeedback onPress={onExtraClick}>
+                        <View>
+                            {typeof extra === 'string' ? (
+                                <ChungText style={[styles.extra, extraStyle]}>{extra}</ChungText>
+                            ) : (
+                                extra
+                            )}
+                        </View>
+                    </TouchableWithoutFeedback>
+                ) : null}
+            </View>
+        </ListItem>
+    )
+};
 
 
 function parseNumber(str: any): number {
@@ -279,3 +230,5 @@ const styles = StyleSheet.create({
         height: Styles.iconSizeSm,
     }
 });
+
+export default InputListItem;

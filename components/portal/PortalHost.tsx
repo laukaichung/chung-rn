@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { DeviceEventEmitter, NativeEventEmitter, StyleSheet, View } from 'react-native';
+import {useEffect} from 'react';
+import {DeviceEventEmitter, NativeEventEmitter, StyleSheet, View} from 'react-native';
 import PortalManager from "./PortalManager";
 
 export type PortalHostProps = {
@@ -12,9 +13,9 @@ export type Operation =
     | { type: 'unmount'; key: number };
 
 export type PortalMethods = {
-    mount: (children: React.ReactNode) => number;
-    update: (key: number, children: React.ReactNode) => void;
-    unmount: (key: number) => void;
+    mount: (children: React.ReactNode, key?: any) => number;
+    update: (key: any, children: React.ReactNode) => void;
+    unmount: (key: any) => void;
 };
 
 export const PortalContext = React.createContext<PortalMethods>(null as any);
@@ -53,17 +54,50 @@ const TopViewEventEmitter = DeviceEventEmitter || new NativeEventEmitter();
 // Try putting ChungAlertScreen as initial route and you will see the alert won't get rendered.
 // One temporary salutation is to use setTimeout() to delay the portal.add() function.
 
-export default class PortalHost extends React.Component<PortalHostProps> {
-    static displayName = 'Portal.Host';
-    _nextKey = 0;
-    _queue: Operation[] = [];
-    _manager?: PortalManager;
+const PortalHost = ({children}: PortalHostProps) => {
+    //const displayName = 'Portal.Host';
+    let _nextKey = 0;
+    let queue: Operation[] = [];
+    let manager: PortalManager;
+    const _mount = (children: React.ReactNode, _key?: number) => {
+        const key = _key || _nextKey++;
+        if (manager) {
+            manager.mount(key, children);
+        } else {
+            queue.push({type: 'mount', key, children});
+        }
 
-    componentDidMount() {
-        const manager = this._manager;
-        const queue = this._queue;
-        TopViewEventEmitter.addListener(addType, this._mount);
-        TopViewEventEmitter.addListener(removeType, this._unmount);
+        return key;
+    };
+
+    const _unmount = (key: number) => {
+        if (manager) {
+            manager.unmount(key);
+        } else {
+            queue.push({type: 'unmount', key});
+        }
+    };
+
+    const _update = (key: number, children: React.ReactNode) => {
+        if (manager) {
+            manager.update(key, children);
+        } else {
+            const op: Operation = {type: 'mount', key, children};
+            const index = queue.findIndex(
+                o => o.type === 'mount' || (o.type === 'update' && o.key === key),
+            );
+
+            if (index > -1) {
+                queue[index] = op;
+            } else {
+                queue.push(op);
+            }
+        }
+    };
+
+    useEffect(() => {
+        TopViewEventEmitter.addListener(addType, _mount);
+        TopViewEventEmitter.addListener(removeType, _unmount);
         while (queue.length && manager) {
             const action = queue.pop();
             if (!action) {
@@ -82,70 +116,29 @@ export default class PortalHost extends React.Component<PortalHostProps> {
                     break;
             }
         }
-        this.setState({mounted: true})
-    }
-    componentWillUnmount() {
-        TopViewEventEmitter.removeListener(addType, this._mount);
-        TopViewEventEmitter.removeListener(removeType, this._unmount);
-    }
-    _setManager = (manager?: any) => {
-        this._manager = manager;
-    };
-
-    _mount = (children: React.ReactNode, _key?: number) => {
-        const key = _key || this._nextKey++;
-        if (this._manager) {
-            this._manager.mount(key, children);
-        } else {
-            this._queue.push({ type: 'mount', key, children });
+        return () => {
+            TopViewEventEmitter.removeListener(addType, _mount);
+            TopViewEventEmitter.removeListener(removeType, _unmount);
         }
+    });
 
-        return key;
-    };
+    return (
+        <PortalContext.Provider
+            value={{
+                mount: _mount,
+                update: _update,
+                unmount: _unmount,
+            }}
+        >
+            {/* Need collapsable=false here to clip the elevations, otherwise they appear above Portal components */}
+            <View style={styles.container} collapsable={false}>
+                {children}
+            </View>
+            <PortalManager ref={(managerRef)=> manager = managerRef}/>
+        </PortalContext.Provider>
+    );
 
-    _update = (key: number, children: React.ReactNode) => {
-        if (this._manager) {
-            this._manager.update(key, children);
-        } else {
-            const op: Operation = { type: 'mount', key, children };
-            const index = this._queue.findIndex(
-                o => o.type === 'mount' || (o.type === 'update' && o.key === key),
-            );
-
-            if (index > -1) {
-                this._queue[index] = op;
-            } else {
-                this._queue.push(op);
-            }
-        }
-    };
-
-    _unmount = (key: number) => {
-        if (this._manager) {
-            this._manager.unmount(key);
-        } else {
-            this._queue.push({ type: 'unmount', key });
-        }
-    };
-
-    render() {
-        return (
-            <PortalContext.Provider
-                value={{
-                    mount: this._mount,
-                    update: this._update,
-                    unmount: this._unmount,
-                }}
-            >
-                {/* Need collapsable=false here to clip the elevations, otherwise they appear above Portal components */}
-                <View style={styles.container} collapsable={false}>
-                    {this.props.children}
-                </View>
-                <PortalManager ref={this._setManager} />
-            </PortalContext.Provider>
-        );
-    }
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -154,7 +147,9 @@ const styles = StyleSheet.create({
 });
 
 class PortalGuard {
+
     private nextKey = 10000;
+
     add = (e: React.ReactNode) => {
         const key = this.nextKey++;
         TopViewEventEmitter.emit(addType, e, key);
@@ -162,7 +157,10 @@ class PortalGuard {
     };
     remove = (key: number) => TopViewEventEmitter.emit(removeType, key);
 }
+
 /**
  * portal
  */
 export const portal = new PortalGuard();
+
+export default PortalHost;
