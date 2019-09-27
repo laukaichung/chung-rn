@@ -66,7 +66,7 @@ export default class PersistentDraggable extends Component<Props, DraggableState
         if (!loaded) {
             return null;
         }
-        const {children, onPress, containerStyle, testID} = this.props;
+        const {children, onPress, containerStyle} = this.props;
         return (
             <PanGestureHandler
                 {...this.props}

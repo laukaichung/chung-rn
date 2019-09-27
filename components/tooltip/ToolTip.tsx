@@ -1,5 +1,5 @@
 import * as React from "react"
-import {createRef, ReactNode, RefObject} from "react"
+import {forwardRef, ReactNode, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState} from "react"
 import {LayoutRectangle, View, ViewStyle} from "react-native";
 import Styles from "../Styles";
 import Portal from "../portal/Portal";
@@ -25,13 +25,10 @@ interface ToolTipProps {
     view: ReactNode;
 }
 
-interface State {
-    toolTip?: Partial<LayoutRectangle>;
-    target?: LayoutRectangle;
-    show: boolean;
-    loaded: boolean;
+export interface ToolTipPublicMethods{
+    open: ()=> void;
+    close: (e: any)=> Promise<void>;
 }
-
 interface PositionResult {
     toolTipX: number;
     toolTipY: number;
@@ -42,180 +39,36 @@ interface PositionResult {
 
 const borderRadius = 2;
 
-export default class ToolTip extends React.Component<ToolTipProps, State> {
-    private targetRef: RefObject<View> = createRef();
-    private toolTipRef: RefObject<any> = createRef();
-    private arrowRef: RefObject<any> = createRef();
-    public state: State = {
-        show: this.props.show,
-        loaded: false
-    };
-    private arrowHeight = 10;
-    private arrowWidth = 20;
-    private timeout;
+const ToolTip: RefForwardingComponent<ToolTipPublicMethods, ToolTipProps> = (props: ToolTipProps, ref) => {
+    const targetRef = useRef<View>();
+    const toolTipRef = useRef<any>();
+    const arrowRef = useRef<any>();
+    const [show, setShow] = useState(props.show);
+    const [loaded, setLoaded] = useState(false);
+    const [toolTip, setToolTip] = useState<Partial<LayoutRectangle>>(null);
+    const [target, setTarget] = useState<LayoutRectangle>();
+    const fullWidth = ScreenUtil.fullWidth();
+    const fullHeight = ScreenUtil.fullHeight();
+    const {
+        children, onClose, storageKey,
+        enabled,
+        maxWidth = fullWidth * 0.6,
+        backgroundColor = Styles.isDarkMode ? Styles.primaryColor : "#eee",
+        view, overlay, overlayOnClose,
+        shouldCloseOnOverlayClick,
+    } = props;
 
-    public render() {
-        if (!this.state.loaded) {
-            return null;
-        }
-
-        if (!this.props.enabled) {
-            return this.props.children;
-        }
-
-        const fullWidth = ScreenUtil.fullWidth();
-        const fullHeight = ScreenUtil.fullHeight();
-        const {
-            children,
-            maxWidth = fullWidth * 0.6,
-            backgroundColor = Styles.isDarkMode ? Styles.primaryColor : "#eee",
-            view, overlay, overlayOnClose,
-            shouldCloseOnOverlayClick,
-        } = this.props;
-        const {show} = this.state;
-        let toolTip = null;
-        if (show) {
-            const positions = this._autoPosition();
-            toolTip = (
-                <Overlay
-                    enabled={overlay}
-                    onPress={(e) => {
-                        if (overlayOnClose) overlayOnClose();
-                        if (shouldCloseOnOverlayClick) this._close(e);
-                    }}
-                >
-                    <Animatable.View
-                        ref={this.toolTipRef}
-                        style={{
-                            position: "absolute",
-                            /**
-                             * Hide the tooltip on load by setting its position to fullwidth and fullheight
-                             */
-                            left: positions ? positions.toolTipX : fullWidth,
-                            top: positions ? positions.toolTipY : fullHeight,
-                            backgroundColor
-                        }}
-                        useNativeDriver
-                        animation={positions && "fadeIn"}
-                    >
-
-                        <View
-                            style={{
-                                padding: Styles.padding,
-                                borderRadius,
-                                backgroundColor,
-                                maxWidth,
-                            }}
-                            onLayout={({nativeEvent: {layout}}) => {
-                                if (this.state.toolTip) {
-                                    return null;
-                                }
-                                this.setState({
-                                    toolTip:
-                                        {
-                                            height: Math.ceil(layout.height),
-                                            width: Math.ceil(layout.width),
-                                            x: layout.x,
-                                            y: layout.y,
-                                        }
-                                })
-                            }}
-                        >
-                            <View style={{marginBottom: 5, flexDirection: "row", justifyContent: "flex-end"}}>
-                                <Icon
-                                    onPress={this._close}
-                                    name="times"
-                                    customSize={14}
-                                />
-                            </View>
-                            {view}
-                        </View>
-                    </Animatable.View>
-                    <Animatable.View
-                        ref={this.arrowRef}
-                        useNativeDriver
-                        animation={positions && "fadeIn"}
-                        style={{
-                            position: "absolute",
-                            left: positions ? positions.arrowX : fullWidth,
-                            top: positions ? positions.arrowY : fullHeight,
-                        }}
-                    >
-                        <ToolTipArrow
-                            direction={positions ? positions.arrowDirection : "up"}
-                            color={backgroundColor}
-                            width={this.arrowWidth}
-                            height={this.arrowHeight}
-                        />
-                    </Animatable.View>
-                </Overlay>
-            );
-        }
-
-        return (
-            <React.Fragment>
-                <View
-                    ref={this.targetRef}
-                    onLayout={() => {
-                        /**
-                         * setTimeout Hack!
-                         * https://stackoverflow.com/a/29842652/2598292
-                         */
-                        this.timeout = setTimeout(() => {
-                            // if (this.timeout) {
-                            //     clearTimeout(this.timeout)
-                            // }
-
-                            this.targetRef.current.measure((x, y, width, height, pageX, pageY) => {
-                                const target = {x: pageX, y: pageY, width, height};
-                                this.setState({target})
-                            })
-                        }, 500)
-                    }}
-                >
-                    {children}
-                </View>
-                {
-                    show &&
-                    <Portal>
-                        {toolTip}
-                    </Portal>
-                }
-            </React.Fragment>
-        )
+    if (!enabled) {
+        return children;
     }
 
-    public async componentDidMount() {
-        const {storageKey} = this.props;
-        if (storageKey) {
-            const disable = await AsyncStorage.getItem(storageKey);
-            this.setState({
-                show: disable !== "true",
-                loaded: true,
-            })
-        } else {
-            this.setState({loaded: true})
-        }
+    let arrowHeight = 10;
+    let arrowWidth = 20;
+    let timeout;
 
-    }
-
-    public componentWillUnmount() {
-        clearTimeout(this.timeout);
-    }
-
-    public componentWillReceiveProps(nextProps: Readonly<ToolTipProps>, nextContext: any) {
-        if (nextProps.show != this.props.show) {
-            this.setState({show: nextProps.show})
-        }
-    }
-
-    private _getLeftPositions(): { toolTipX: number, arrowX: number } {
-        const {toolTip, target} = this.state;
-
-
+    const _getLeftPositions = (): { toolTipX: number, arrowX: number } => {
         let left = target.x;
         let arrowX = target.x;
-
         /**
          * When the target view is on the right end of the screen,
          * change the tooltip position so the content won't get overflown outside of the screen.
@@ -240,64 +93,17 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
             }
         }
 
-        return {
-            toolTipX: left,
-            arrowX,
-        }
-    }
-
-    private _belowPosition(): PositionResult {
-        const {arrowHeight} = this;
-        const {toolTip, target} = this.state;
-
-        return {
-            toolTipY: (target.y + target.height + arrowHeight),
-            arrowY: target.y + target.height + 1,
-            arrowDirection: "up",
-            ...this._getLeftPositions(),
-        };
-    }
-
-    private _topPosition(): PositionResult {
-        const {arrowHeight} = this;
-        const {toolTip, target} = this.state;
-
-        return {
-            toolTipY: target.y - toolTip.height - (arrowHeight),
-            arrowY: target.y - arrowHeight - 1,
-            arrowDirection: "down",
-            ...this._getLeftPositions(),
-        }
-    }
-
-    private _autoPosition(): PositionResult {
-        const fullHeight = ScreenUtil.fullHeight();
-        const {toolTip, target} = this.state;
-        const {arrowHeight} = this;
-        console.log(this.state);
-        if (!target || !toolTip) {
-            return null
-        }
-        if (target.y + target.height + arrowHeight >= fullHeight) {
-            return this._topPosition();
-        }
-
-        if (target.y - toolTip.height - arrowHeight <= 0) {
-            return this._belowPosition();
-        }
-        return this._topPosition();
-    }
-
-    public _open = () => {
-        this.setState({show: true});
+        return {toolTipX: left, arrowX,}
     };
 
-    public _close = async (e) => {
-        console.log('close tooltip');
-        const {onClose, storageKey} = this.props;
+    const open = () => {
+        setShow(true)
+    };
+
+    const close = async (e) => {
         await Promise.all([
-            this.arrowRef.current.fadeOut(1000),
-            this.toolTipRef.current.fadeOut(1000)
+            arrowRef.current.fadeOut(1000),
+            toolTipRef.current.fadeOut(1000)
         ]);
 
         /**
@@ -312,7 +118,175 @@ export default class ToolTip extends React.Component<ToolTipProps, State> {
         if (onClose) {
             onClose();
         }
+        setShow(false);
+    };
 
-        this.setState({show: false})
+    const _belowPosition = (): PositionResult => {
+        return {
+            toolTipY: (target.y + target.height + arrowHeight),
+            arrowY: target.y + target.height + 1,
+            arrowDirection: "up",
+            ..._getLeftPositions(),
+        };
+    };
+
+    const _topPosition = (): PositionResult => {
+        return {
+            toolTipY: target.y - toolTip.height - (arrowHeight),
+            arrowY: target.y - arrowHeight - 1,
+            arrowDirection: "down",
+            ..._getLeftPositions(),
+        }
+    };
+
+    const _autoPosition = (): PositionResult => {
+        const fullHeight = ScreenUtil.fullHeight();
+        if (!target || !toolTip) {
+            return null
+        }
+        if (target.y + target.height + arrowHeight >= fullHeight) {
+            return _topPosition();
+        }
+
+        if (target.y - toolTip.height - arrowHeight <= 0) {
+            return _belowPosition();
+        }
+        return _topPosition();
+    };
+
+    useImperativeHandle(ref, () => ({
+        open,
+        close
+    }));
+
+    useEffect(() => {
+        if (storageKey) {
+            AsyncStorage.getItem(storageKey).then(disable => {
+                setShow(disable != "true");
+                setLoaded(true);
+            });
+        }else {
+            setLoaded(true);
+        }
+        return ()=> clearTimeout(timeout)
+    }, []);
+    //
+    // useEffect(()=>{
+    //     return ()=> clearTimeout(timeout)
+    // },[]);
+
+    useEffect(() => {
+        setShow(props.show)
+    }, [props.show]);
+
+    let toolTipView = null;
+
+    if(!loaded){
+        return null;
     }
-}
+
+    if (show) {
+        const positions = _autoPosition();
+        toolTipView = (
+            <Overlay
+                enabled={overlay}
+                onPress={(e) => {
+                    if (overlayOnClose) overlayOnClose();
+                    if (shouldCloseOnOverlayClick) close(e);
+                }}
+            >
+                <Animatable.View
+                    ref={toolTipRef}
+                    style={{
+                        position: "absolute",
+                        /**
+                         * Hide the tooltip on load by setting its position to fullwidth and fullheight
+                         */
+                        left: positions ? positions.toolTipX : fullWidth,
+                        top: positions ? positions.toolTipY : fullHeight,
+                        backgroundColor
+                    }}
+                    useNativeDriver
+                    animation={positions && "fadeIn"}
+                >
+
+                    <View
+                        style={{
+                            padding: Styles.padding,
+                            borderRadius,
+                            backgroundColor,
+                            maxWidth,
+                        }}
+                        onLayout={({nativeEvent: {layout}}) => {
+                            if (toolTip) {
+                                return null;
+                            }
+
+                            setToolTip({
+                                height: Math.ceil(layout.height),
+                                width: Math.ceil(layout.width),
+                                x: layout.x,
+                                y: layout.y,
+                            });
+                        }}
+                    >
+                        <View style={{marginBottom: 5, flexDirection: "row", justifyContent: "flex-end"}}>
+                            <Icon
+                                onPress={close}
+                                name="times"
+                                customSize={14}
+                            />
+                        </View>
+                        {view}
+                    </View>
+                </Animatable.View>
+                <Animatable.View
+                    ref={arrowRef}
+                    useNativeDriver
+                    animation={positions && "fadeIn"}
+                    style={{
+                        position: "absolute",
+                        left: positions ? positions.arrowX : fullWidth,
+                        top: positions ? positions.arrowY : fullHeight,
+                    }}
+                >
+                    <ToolTipArrow
+                        direction={positions ? positions.arrowDirection : "up"}
+                        color={backgroundColor}
+                        width={arrowWidth}
+                        height={arrowHeight}
+                    />
+                </Animatable.View>
+            </Overlay>
+        );
+    }
+
+    return (
+        <React.Fragment>
+            <View
+                ref={targetRef}
+                onLayout={() => {
+                    /**
+                     * setTimeout Hack!
+                     * https://stackoverflow.com/a/29842652/2598292
+                     */
+                    timeout = setTimeout(() => {
+                        targetRef.current.measure((x, y, width, height, pageX, pageY) => {
+                            setTarget({x: pageX, y: pageY, width, height})
+                        })
+                    }, 500)
+                }}
+            >
+                {children}
+            </View>
+            {
+                show &&
+                <Portal>
+                    {toolTipView}
+                </Portal>
+            }
+        </React.Fragment>
+    )
+};
+
+export default forwardRef(ToolTip);

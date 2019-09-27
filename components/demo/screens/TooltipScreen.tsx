@@ -3,7 +3,7 @@ import {createRef, RefObject} from 'react'
 import {NavigationProps} from "../demotype";
 import {LayoutRectangle, View} from "react-native";
 import Container from "../../UIMainContainer";
-import ToolTip from "../../tooltip/ToolTip";
+import ToolTip, {ToolTipPublicMethods} from "../../tooltip/ToolTip";
 import ChungText from "../../ChungText";
 import Button from "../../Button";
 import Card from "../../Card";
@@ -16,9 +16,7 @@ interface TestState {
 }
 
 export default class TooltipScreen extends React.Component<NavigationProps, TestState> {
-
-    private toolTipRef1: RefObject<ToolTip> = createRef();
-
+    private toolTipRef1: RefObject<ToolTipPublicMethods> = createRef();
     public render() {
         return (
             <Container>
@@ -29,7 +27,6 @@ export default class TooltipScreen extends React.Component<NavigationProps, Test
                                 <View>
                                     <ToolTip
                                         enabled
-                                        storageKey={"dsfdsf it"}
                                         shouldCloseOnOverlayClick
                                         overlay={false}
                                         view={(
@@ -44,11 +41,11 @@ export default class TooltipScreen extends React.Component<NavigationProps, Test
                                             </View>
                                         )}
                                         ref={this.toolTipRef1}
-                                        show={true}
+                                        show
                                     >
                                         <Button
                                             onPress={() => {
-                                                this.toolTipRef1.current._open();
+                                                this.toolTipRef1.current.open();
                                             }}
                                         >
                                             Click

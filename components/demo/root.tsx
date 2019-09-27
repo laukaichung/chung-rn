@@ -18,7 +18,7 @@ import {CardScreen} from "./screens/CardScreen";
 import {BadgeScreen} from "./screens/BadgeScreen";
 import {PickerModalScreen} from "./screens/PickerModalScreen";
 import {ModalScreen} from "./screens/ModalScreen";
-import {CameraRollImageList} from "./screens/CameraRollImageList";
+import CameraRollImageList from "./screens/CameraRollImageList";
 import {ImagePickerItemModalScreen} from "./screens/ImagePickerItemModalScreen";
 import {ToastScreen} from "./screens/ToastScreen";
 import {View} from "react-native";
@@ -65,7 +65,7 @@ const StackNavigator = createStackNavigator(
         [screenKeys.menuModal]: MenuModalScreen,
     },
     {
-        initialRouteName: screenKeys.form,
+        initialRouteName: screenKeys.tooltip,
         defaultNavigationOptions: ({navigation}) => {
             let isDarkMode = Styles.mode === "dark";
             return {
@@ -105,10 +105,10 @@ const DrawerNavigator = createDrawerNavigator(
     {
         MainContent: StackNavigator
     },
+    /*
     {
-        drawerPosition: 'left',
         contentComponent: (navigation) => <DrawerScreen/>
-    }
+    }*/
 );
 
 const AppContainer = createAppContainer(DrawerNavigator);
